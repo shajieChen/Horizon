@@ -5,349 +5,348 @@ date: 2026-04-29
 lang: en
 ---
 
-> From 39 items, 16 important content pieces were selected
+> From 37 items, 15 important content pieces were selected
 
 ---
 
-1. [Ghostty leaves GitHub: Mitchell Hashimoto moves away](#item-1) ⭐️ 9.0/10
-2. [OpenAI models to be available on Amazon Bedrock](#item-2) ⭐️ 9.0/10
-3. [Critical GitHub RCE Vulnerability CVE-2026-3854](#item-3) ⭐️ 9.0/10
-4. [Google Pushes Android Towards Walled Garden, Curtailing User Control](#item-4) ⭐️ 9.0/10
-5. [Talkie: A 13B Vintage Language Model Trained on Pre-1931 Text](#item-5) ⭐️ 9.0/10
-6. [Reflecting on Software Development Before GitHub](#item-6) ⭐️ 8.0/10
-7. [Who owns AI coding agent output?](#item-7) ⭐️ 8.0/10
-8. [Warp terminal emulator goes open source](#item-8) ⭐️ 8.0/10
-9. [UAE announces exit from OPEC](#item-9) ⭐️ 8.0/10
-10. [GitHub Availability Update Faces Community Skepticism](#item-10) ⭐️ 8.0/10
-11. [Waymo Launches in Portland](#item-11) ⭐️ 8.0/10
-12. [Pip 26.1 Introduces Lockfiles and Dependency Cooldowns](#item-12) ⭐️ 8.0/10
-13. [NVIDIA Releases Nemotron 3 Nano Omni Multimodal Model](#item-13) ⭐️ 8.0/10
-14. [ChatGPT introduces ads with full attribution loop](#item-14) ⭐️ 7.0/10
-15. [LocalSend: Open-Source Cross-Platform AirDrop Alternative](#item-15) ⭐️ 7.0/10
-16. [Claude.ai and API suffer elevated errors and outages](#item-16) ⭐️ 7.0/10
+1. [Critical RCE in GitHub Enterprise Server (CVE-2026-3854)](#item-1) ⭐️ 10.0/10
+2. [Google's Android Lockdown Sparks Openness Backlash](#item-2) ⭐️ 9.0/10
+3. [Ghostty Leaves GitHub Over Quality and Culture Decline](#item-3) ⭐️ 8.0/10
+4. [How GitHub Transformed Open Source](#item-4) ⭐️ 8.0/10
+5. [OpenAI models coming to Amazon Bedrock](#item-5) ⭐️ 8.0/10
+6. [Fake Wikipedia Entries Poison LLMs](#item-6) ⭐️ 8.0/10
+7. [Who owns AI-generated code? Legal ambiguity persists](#item-7) ⭐️ 8.0/10
+8. [Warp Open-Sources Its Terminal Emulator](#item-8) ⭐️ 8.0/10
+9. [LocalSend: Open-Source Cross-Platform AirDrop Alternative](#item-9) ⭐️ 8.0/10
+10. [GitHub Availability Update Met with Skepticism](#item-10) ⭐️ 8.0/10
+11. [NVIDIA Launches Nemotron 3 Nano Omni for Multimodal AI](#item-11) ⭐️ 8.0/10
+12. [ChatGPT Ad Serving: Full Attribution Loop Analysis](#item-12) ⭐️ 7.0/10
+13. [Malware reminder on every read causes subagent refusals in Claude Agents](#item-13) ⭐️ 7.0/10
+14. [CJIT: Single-binary C Compiler Enables C Scripting](#item-14) ⭐️ 7.0/10
+15. [UAE announces departure from OPEC](#item-15) ⭐️ 7.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Ghostty leaves GitHub: Mitchell Hashimoto moves away](https://mitchellh.com/writing/ghostty-leaving-github) ⭐️ 9.0/10
+## [Critical RCE in GitHub Enterprise Server (CVE-2026-3854)](https://www.wiz.io/blog/github-rce-vulnerability-cve-2026-3854) ⭐️ 10.0/10
 
-Mitchell Hashimoto, creator of the Ghostty terminal emulator, announced the project is leaving GitHub due to dissatisfaction with the platform's direction and declining quality. The migration to a self-hosted forge is underway. This move by a prominent developer signals growing discontent among open-source communities about platform dependency on GitHub, especially after its acquisition by Microsoft and perceived quality degradation. It could encourage other projects to reconsider their reliance on centralized platforms. Ghostty is a fast, GPU-accelerated terminal emulator that was open-sourced in late 2024. Hashimoto expressed emotional attachment to GitHub but cited its declining reliability and direction as reasons for leaving.
+Wiz Research disclosed CVE-2026-3854, a critical remote code execution vulnerability in GitHub Enterprise Server that allows unauthenticated attackers to execute arbitrary code via crafted git push options. The vulnerability was patched in GHES version 3.19.3 released on March 10, 2026. This vulnerability is critical because GHES is widely used by enterprises for self-hosted source code management, and the reported 88% of instances remain unpatched seven weeks after release. Exploitation could allow attackers full control of the server, leading to data breaches or supply chain attacks. The vulnerability stems from improper sanitization of push options in the X-Stat header, where semicolons are not stripped, enabling HTTP header injection. The attack requires push access to a repository, but push options are a standard git feature, making the attack surface broad.
 
-hackernews · WadeGrimridge · Apr 28, 19:44
+hackernews · bo0tzz · Apr 28, 16:15
 
-**Background**: GitHub is a widely used code hosting platform owned by Microsoft, on which many open-source projects rely, leading to concerns about vendor lock-in. Ghostty is a high-performance terminal emulator created by Mitchell Hashimoto, co-founder of HashiCorp, known for its native UI and GPU acceleration.
+**Background**: Git push options are arbitrary strings passed with 'git push -o' for server-side hints. In GitHub Enterprise Server, babeld forwards push requests and encodes these options into the X-Stat header without sanitizing semicolons, allowing injection. GitHub Enterprise Server is the self-hosted version of GitHub's platform, used by organizations that require on-premises control.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://ghostty.org/">Ghostty</a></li>
-<li><a href="https://github.com/ghostty-org/ghostty">GitHub - ghostty -org/ ghostty : Ghostty is a fast, feature-rich, and...</a></li>
+<li><a href="https://www.wiz.io/blog/github-rce-vulnerability-cve-2026-3854">GitHub RCE Vulnerability : CVE - 2026 - 3854 Breakdown | Wiz Blog</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3854">NVD - CVE - 2026 - 3854</a></li>
+<li><a href="https://docs.github.com/en/enterprise-server@3.16/admin/overview/about-github-enterprise-server">About GitHub Enterprise Server - GitHub Enterprise Server 3.16 Docs</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Comments show mixed reactions: some empathize with Hashimoto's emotional struggle, while others argue that GitHub's proprietary nature was always suspect and that the move was predictable. There is discussion about GitHub's decline and alternatives, with one user suggesting Hashimoto could turn GitHub around as CEO.
+**Discussion**: Commenters appreciated the technical depth and the use of AI-augmented reversing methodology, with one calling it a 'watershed moment' for AI in security research. There was concern about the 88% unpatched rate, with one commenter noting that many on-prem customers haven't applied a critical fix from weeks ago.
 
-**Tags**: `#GitHub`, `#open source`, `#platform dependency`, `#developer community`, `#Ghostty`
+**Tags**: `#security`, `#vulnerability`, `#GitHub`, `#RCE`, `#enterprise`
 
 ---
 
 <a id="item-2"></a>
-## [OpenAI models to be available on Amazon Bedrock](https://stratechery.com/2026/an-interview-with-openai-ceo-sam-altman-and-aws-ceo-matt-garman-about-bedrock-managed-agents/) ⭐️ 9.0/10
+## [Google's Android Lockdown Sparks Openness Backlash](https://keepandroidopen.org/en/) ⭐️ 9.0/10
 
-OpenAI and AWS announced that OpenAI's models will be available on Amazon Bedrock, expanding enterprise access. This marks a major partnership shift as OpenAI previously relied primarily on Microsoft Azure. This move significantly increases enterprise adoption of OpenAI models by offering them through a trusted cloud platform, directly competing with Anthropic's existing Bedrock presence. It could reshape the landscape of AI model deployment in regulated industries. OpenAI models will be accessible via Bedrock's managed API alongside other foundation models, with data residency and security features. The partnership involves running OpenAI models on AWS infrastructure, potentially addressing enterprise privacy concerns.
+The website KeepAndroidOpen.org has launched a call to action urging developers not to sign Google's new Android Developer Console terms, warning that Google plans to restrict Android devices and undermine the platform's openness. This campaign highlights a pivotal moment for Android's future: if Google succeeds, Android could lose its key differentiator—openness—and become a walled garden like iOS, forcing millions of users and developers into a more restrictive ecosystem. The campaign specifically asks developers to avoid signing up for the Android Developer Console and to add the FreeDroidWarn library to warn users, in protest against what it calls irrevocable terms that lock devices down.
 
-hackernews · translocator · Apr 28, 19:24
+hackernews · doener · Apr 28, 15:21
 
-**Background**: Amazon Bedrock is a fully managed service by AWS that provides a unified API to access foundation models from multiple AI companies, launched in 2023. It competes with platforms like Microsoft Azure AI Foundry and Google Cloud Vertex AI. Previously, Anthropic's Claude models were a key offering on Bedrock, and adding OpenAI diversifies the model selection.
+**Background**: Android, based on the Android Open Source Project (AOSP), has long been promoted as an open platform allowing users to run their own code and install apps from any source. Vendor lock-in refers to a customer's dependency on a vendor for products, making switching costly. Google's new terms reportedly restrict these freedoms, echoing concerns seen with proprietary systems like iOS.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Amazon_Bedrock">Amazon Bedrock</a></li>
-<li><a href="https://aws.amazon.com/bedrock/">Amazon Bedrock – Build genAI applications and agents at production scale – AWS</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Vendor_lock-in">Vendor lock-in</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Android_(operating_system)">Android (operating system) - Wikipedia</a></li>
+<li><a href="https://www.makeuseof.com/tag/android-really-open-source-matter/">Is Android Really Open - Source ? And Does It Even Matter?</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Commenters noted that many enterprises chose Bedrock for Anthropic due to trust and data privacy concerns with OpenAI. Some expressed skepticism about non-determinism across inference platforms, while others saw this as a strategic move by OpenAI to catch up in enterprise deployment.
+**Discussion**: Community sentiment is sharply divided: some users are switching to iOS preemptively, while others call for developer resistance and warn against signing Google's terms. The discussion underscores a deep mistrust of Google's intentions and a fear that Android's openness is ending.
 
-**Tags**: `#OpenAI`, `#Amazon Bedrock`, `#AI models`, `#AWS`, `#cloud AI`
+**Tags**: `#Android`, `#open source`, `#vendor lock-in`, `#Google`, `#mobile ecosystem`
 
 ---
 
 <a id="item-3"></a>
-## [Critical GitHub RCE Vulnerability CVE-2026-3854](https://www.wiz.io/blog/github-rce-vulnerability-cve-2026-3854) ⭐️ 9.0/10
+## [Ghostty Leaves GitHub Over Quality and Culture Decline](https://mitchellh.com/writing/ghostty-leaving-github) ⭐️ 8.0/10
 
-A critical remote code execution (RCE) vulnerability in GitHub Enterprise Server, tracked as CVE-2026-3854, allows attackers to execute arbitrary code by sending a malicious git push with unsanitized push options. The flaw was discovered and disclosed by Wiz researchers, and a fix was released in GHES version 3.19.3 on March 10, 2026. This vulnerability is critical because it enables unauthenticated remote code execution on GitHub Enterprise Server instances, potentially compromising entire enterprise codebases. With 88% of instances still unpatched as of late April 2026, the attack surface remains large, posing a significant risk to organizations relying on self-hosted GitHub. The vulnerability originates in babeld, a component that forwards push requests, where push options are copied directly into the X-Stat header without sanitizing semicolons, leading to command injection. The fix was included in GHES 3.19.3, and users are urged to upgrade immediately.
+Mitchell Hashimoto announced that Ghostty, a terminal emulator, is leaving GitHub due to declining quality and culture at the platform. This move highlights growing dissatisfaction with GitHub's direction under Microsoft, potentially influencing other open-source projects to consider alternative platforms. Ghostty is a fast, cross-platform terminal emulator using native UI and GPU acceleration. The decision follows months of discussion within the Ghostty team.
 
-hackernews · bo0tzz · Apr 28, 16:15
+hackernews · WadeGrimridge · Apr 28, 19:44
 
-**Background**: Git push options are standard git protocol features that allow users to pass arbitrary strings with `git push -o` for server-side hints. In GitHub Enterprise Server, babeld encodes these options as numbered fields in internal requests. The lack of sanitization on semicolons allows attackers to inject arbitrary headers or commands, leading to RCE.
+**Background**: GitHub is the largest host of open-source code, but concerns have risen about its reliability, feature stagnation, and aggressive AI training on user data. Ghostty is a popular terminal emulator known for its performance and native look.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://www.wiz.io/blog/github-rce-vulnerability-cve-2026-3854">GitHub RCE Vulnerability: CVE-2026-3854 Breakdown | Wiz Blog</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3854">CVE-2026-3854 Detail - NVD</a></li>
-<li><a href="https://securityaffairs.com/191434/security/cve-2026-3854-github-flaw-enables-remote-code-execution.html">CVE-2026-3854 GitHub flaw enables remote code execution</a></li>
+<li><a href="https://ghostty.org/">Ghostty</a></li>
+<li><a href="https://github.com/ghostty-org/ghostty">GitHub - ghostty-org/ghostty: 👻 Ghostty is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community comments highlight the severity of the vulnerability, with one user noting that 88% of on-premises instances remain unpatched seven weeks after the fix. Others discuss the use of AI-augmented reversing in the discovery, and some express concern about GitHub's security track record, questioning alternatives.
+**Discussion**: The community expressed mixed feelings: some sympathized with Hashimoto's emotional attachment to GitHub, while others criticized the platform's decline and urged earlier migration. Some comments pointed to ethical concerns with non-free software.
 
-**Tags**: `#security`, `#vulnerability`, `#github`, `#rce`, `#CVE`
+**Tags**: `#ghostty`, `#github`, `#open-source`, `#mitchell-hashimoto`, `#platform-migration`
 
 ---
 
 <a id="item-4"></a>
-## [Google Pushes Android Towards Walled Garden, Curtailing User Control](https://keepandroidopen.org/en/) ⭐️ 9.0/10
+## [How GitHub Transformed Open Source](https://lucumr.pocoo.org/2026/4/28/before-github/) ⭐️ 8.0/10
 
-Google is reportedly planning to enforce stricter controls on Android, requiring app developers to register with Google and pay fees, with changes potentially taking effect in September 2026. This effectively moves Android from an open ecosystem to a walled garden similar to iOS. This undermines Android's core value proposition of openness, which has attracted millions of users and developers seeking freedom and customization. If realized, it could reduce user control, stifle innovation, and lead to a less competitive mobile market. The reported changes include a silent update that would block apps from developers who have not registered with Google, signed a contract, and paid the required fees. This primarily affects apps distributed outside of Google Play, potentially sideloading forces developers into Google's ecosystem.
+The article reflects on how GitHub shifted open source focus from projects to individuals, fostered easy repository creation, and became a central archive for abandoned projects. It highlights a pivotal change in open source dynamics and raises concerns about centralization and archival dependency. Key points include GitHub's role in making repository creation personal and low-friction, and its underappreciated archival function that kept abandoned projects findable.
 
-hackernews · doener · Apr 28, 15:21
+hackernews · mlex · Apr 28, 21:17
 
-**Background**: Android is based on the Android Open Source Project (AOSP), which is free and open-source software. However, most Android devices include proprietary Google Mobile Services (GMS), which require certification from Google. A walled garden is a closed ecosystem where the provider controls access to content and applications, limiting user freedom.
+**Background**: GitHub, launched in 2008, is a platform for hosting Git repositories. Before GitHub, open source projects typically required setting up a project name and repository on sites like SourceForge, which had a higher mental barrier. GitHub made it easy to create a repository tied to an individual, lowering the barrier to contribution and fostering a people-centric model.
 
-<details><summary>References</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Android_(operating_system)">Android (operating system) - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Google_Mobile_Services">Google Mobile Services - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Closed_platform">Closed platform - Wikipedia</a></li>
+**Discussion**: Commenters discussed the shift from project-centric to person-centric structure, with one noting the liberating feeling. Another expressed nostalgia for Fossil's integrated tools. A third argued that centralization atrophies collective archival skills, while another called for a public, well-funded archive for open source.
 
-</ul>
-</details>
-
-**Discussion**: Community comments reveal strong opposition, with some users stating they chose Android for its openness and are now considering switching to iOS. Others argue that true openness requires alternatives beyond Google's ecosystem, and a few express skepticism about the technical feasibility of the reported changes.
-
-**Tags**: `#android`, `#open-source`, `#google`, `#walled-garden`, `#user-rights`
+**Tags**: `#GitHub`, `#open source`, `#version control`, `#software engineering`, `#history`
 
 ---
 
 <a id="item-5"></a>
-## [Talkie: A 13B Vintage Language Model Trained on Pre-1931 Text](https://simonwillison.net/2026/Apr/28/talkie/#atom-everything) ⭐️ 9.0/10
+## [OpenAI models coming to Amazon Bedrock](https://stratechery.com/2026/an-interview-with-openai-ceo-sam-altman-and-aws-ceo-matt-garman-about-bedrock-managed-agents/) ⭐️ 8.0/10
 
-Researchers Nick Levine, David Duvenaud, and Alec Radford released talkie-1930-13b, a 13B parameter language model trained exclusively on 260B tokens of pre-1931 English text, along with an instruction-tuned chat variant, both under Apache 2.0 license. This model enables research into historical NLP, such as how well a model trapped in 1930 can predict future events or invent ideas beyond its knowledge cutoff, and provides a legally clean, out-of-copyright training data paradigm that could spur open-source development. The base model (53.1 GB) and instruction-tuned model (26.6 GB) are on Hugging Face; the chat model was fine-tuned using synthetic instruction-response pairs from historical references and modern LLMs (Claude Sonnet 4.6 as judge, Claude Opus 4.6 for synthetic chats), raising concerns about anachronistic contamination.
+OpenAI announced that its models, including GPT-4o, will be available on Amazon Bedrock later in 2025, marking a strategic partnership between the two companies. This move makes OpenAI's frontier models accessible to enterprise customers through AWS's trusted cloud infrastructure, potentially accelerating enterprise AI adoption and reshaping the AI cloud market. The integration will allow customers to use OpenAI models alongside other models in Bedrock, with features like data residency, security, and compliance through AWS. Pricing and exact availability dates have not been disclosed.
 
-rss · Simon Willison · Apr 28, 02:47
+hackernews · translocator · Apr 28, 19:24
 
-**Background**: Language models are AI systems trained on vast text corpora to generate and understand human language. Training exclusively on historical text from before a certain date creates a 'time capsule' model with a fixed knowledge cutoff. The 1931 cutoff is legally significant in the US because works published before that year are generally in the public domain. Key researchers include Alec Radford, known for work on GPT and Whisper.
+**Background**: Amazon Bedrock is AWS's fully managed service that provides a unified API to access foundation models from multiple AI companies. It was launched in 2023 and competes with Microsoft Azure AI Foundry and Google Cloud Vertex AI. Previously, Bedrock already hosted models from Anthropic, Meta, and Amazon itself.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://simonwillison.net/2026/Apr/28/talkie/">Introducing talkie: a 13B vintage language model from 1930</a></li>
-<li><a href="https://aitoolly.com/ai-news/article/2026-04-28-talkie-a-13b-vintage-language-model-trained-exclusively-on-pre-1931-historical-text-and-cultural-val">Talkie: A 13B Vintage AI Model Trained on Pre-1931 Text | AIToolly</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Amazon_Bedrock">Amazon Bedrock</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#language model`, `#NLP`, `#historical text`, `#open source`, `#research`
+**Discussion**: Commenters noted that different inference platforms can produce varying results due to optimizations like quantization, adding non-determinism. Several enterprise users expressed that Bedrock availability is a major driver for adopting AI models, and that OpenAI was previously ignored in serious deployments due to lack of a corporate-friendly channel. The partnership is seen as a way for regulated industries to bypass separate data processing agreements with OpenAI.
+
+**Tags**: `#OpenAI`, `#AWS`, `#Bedrock`, `#AI`, `#cloud`
 
 ---
 
 <a id="item-6"></a>
-## [Reflecting on Software Development Before GitHub](https://lucumr.pocoo.org/2026/4/28/before-github/) ⭐️ 8.0/10
+## [Fake Wikipedia Entries Poison LLMs](https://ron.stoner.com/How_I_Won_a_Championship_That_Doesnt_Exist/) ⭐️ 8.0/10
 
-The article reflects on the era before GitHub, highlighting how GitHub revolutionized open source by lowering the barrier to sharing code and fostering community around individuals rather than projects. Understanding GitHub's impact helps developers appreciate how modern collaboration tools evolved, and it sparks debate about centralization, archival practices, and alternatives like Fossil. The article notes that GitHub popularized per-person repositories, making it trivial to start a project without the overhead of SourceForge's project registration. It also emphasizes GitHub's role as a library that preserved abandoned projects.
+Ron Stoner created fake Wikipedia-style entries describing a fictional championship and demonstrated that several leading LLMs later treated the fabricated information as fact. This reveals a serious vulnerability in LLMs to data poisoning attacks, where false information can be injected by simply creating plausible fake content, threatening the reliability of AI-generated knowledge. The attack does not require vandalizing real Wikipedia; it works because the fabricated information is new and does not conflict with existing training data, making it easier for LLMs to accept it as truth.
 
-hackernews · mlex · Apr 28, 21:17
+hackernews · SEJeff · Apr 28, 20:38
 
-**Background**: Before GitHub, open source hosting required formal project creation on platforms like SourceForge, with separate setup for version control, mailing lists, and issue trackers. GitHub unified these into a single, easy-to-use platform with Git, enabling fork-based collaboration and social coding.
+**Background**: Data poisoning attacks manipulate training data to introduce vulnerabilities or backdoors into machine learning models. LLMs are trained on massive datasets that include user-generated content like Wikipedia, so by creating fake but authoritative-looking pages, an adversary can inject false facts that the model later reproduces. This attack vector mirrors earlier SEO manipulation of search engines.
 
-**Discussion**: Commenters praised GitHub's reduction of mental load for starting projects, but some lamented Git's dominance over Fossil, which offers integrated wiki, forum, and issue tracking. Others warned that GitHub's centralization atrophies community archival skills.
+<details><summary>References</summary>
+<ul>
+<li><a href="https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/">LLM04:2025 Data and Model Poisoning - OWASP Gen AI Security Project</a></li>
+<li><a href="https://www.reddit.com/r/videos/comments/1o6muwi/llms_are_in_trouble_just_250_documents_00016_of_a/">LLMs are in trouble: Just 250 documents (.00016% of a LLM training dataset) were enough to poison the model and create a backdoor : r/videos - Reddit</a></li>
 
-**Tags**: `#GitHub`, `#version control`, `#open source`, `#software engineering history`
+</ul>
+</details>
+
+**Discussion**: Community comments highlight that similar results can be achieved without Wikipedia vandalism (e.g., Simon Willison named a whale via a blog post). Others note the attack is not LLM-specific—search engines also fall for it—but novel information is easier to inject. Parallels are drawn to SEO astroturfing and the erosion of trusted sources.
+
+**Tags**: `#LLM`, `#AI`, `#data poisoning`, `#fake news`, `#Wikipedia`
 
 ---
 
 <a id="item-7"></a>
-## [Who owns AI coding agent output?](https://legallayer.substack.com/p/who-owns-the-claude-code-wrote) ⭐️ 8.0/10
+## [Who owns AI-generated code? Legal ambiguity persists](https://legallayer.substack.com/p/who-owns-the-claude-code-wrote) ⭐️ 8.0/10
 
-A Substack article by Legallayer explores unresolved copyright ownership questions for code generated by AI coding agents like Claude Code, drawing parallels to earlier image-generation cases. This issue affects millions of developers using AI coding agents; unclear ownership could create legal risks for commercial software and open-source projects. The US Copyright Office stated in January 2025 that works predominantly generated by AI without meaningful human authorship are not eligible for copyright, but the Supreme Court's denial of certiorari in the Thaler appeal did not settle the issue nationwide.
+A recent article examines the legal uncertainty around copyright ownership for code generated by Anthropic's Claude Code, referencing the US Copyright Office's January 2025 ruling that AI-generated works without meaningful human authorship are not copyrightable, which the Supreme Court declined to review in March 2026. This matters for developers and companies relying on AI coding assistants, as unclear ownership could affect licensing, liability, and intellectual property strategies, especially in open-source software. The US Copyright Office confirmed that AI-assisted creation does not bar copyrightability, but purely AI-generated content without human authorial control is not eligible. The Supreme Court's denial of certiorari in Thaler v. Perlmutter does not legally settle the issue nationwide.
 
 hackernews · senaevren · Apr 28, 11:24
 
-**Background**: Claude Code is an agentic coding tool from Anthropic that can understand codebases, edit files, and run commands. AI coding agents are increasingly used in software development, raising legal questions about who owns the generated code, similar to earlier debates over AI-generated images.
+**Background**: Copyright law historically requires human authorship. As generative AI tools like Claude Code produce code from prompts, questions arise about who owns the output. The US Copyright Office has been issuing guidance, and courts have weighed in, but full clarity remains elusive, especially for complex interactions between humans and AI agents.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Claude_Code">Claude Code</a></li>
-<li><a href="https://claude.com/product/claude-code">Claude Code by Anthropic | AI Coding Agent, Terminal, IDE</a></li>
-<li><a href="https://codegen.com/blog/best-ai-coding-agents/">Best AI Coding Agents in 2026: Ranked and Compared</a></li>
+<li><a href="https://www.copyright.gov/newsnet/2025/1060.html">NewsNet Issue 1060 | U.S. Copyright Office</a></li>
+<li><a href="https://code.claude.com/docs/en/overview">Claude Code overview - Claude Code Docs</a></li>
+<li><a href="https://www.congress.gov/crs_external_products/LSB/PDF/LSB10922/LSB10922.8.pdf">Generative Artificial Intelligence and Copyright Law</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Commenters compared the situation to the Zarya of the Dawn case for Midjourney, noting that prompting an AI agent is more like prompting an image generator than writing code manually. Some expressed concern about copyright 'washing' in open-source, while others debated the legal significance of the Supreme Court's denial of certiorari.
+**Discussion**: Comments on the article highlight that the Supreme Court's denial of certiorari does not settle the law, and that similar issues were addressed in the Zarya of the Dawn case for AI images, where human-written elements were protected but AI-generated images were not. Some commenters express concern about copyright 'washing' and suggest using strong copyleft licenses for AI-generated code.
 
-**Tags**: `#AI`, `#copyright`, `#coding agents`, `#legal`, `#software engineering`
+**Tags**: `#AI code generation`, `#copyright law`, `#AI ownership`, `#software law`
 
 ---
 
 <a id="item-8"></a>
-## [Warp terminal emulator goes open source](https://www.warp.dev/blog/warp-is-now-open-source) ⭐️ 8.0/10
+## [Warp Open-Sources Its Terminal Emulator](https://www.warp.dev/blog/warp-is-now-open-source) ⭐️ 8.0/10
 
-Warp, a modern terminal emulator for macOS, Windows, and Linux, has been open-sourced under a proprietary license, allowing the community to view and contribute to its codebase. Open-sourcing a widely-used developer tool like Warp can accelerate innovation and community trust, though the business-driven motivation and bundled AI features have drawn mixed reactions from users. Warp is written in Rust and known for its modern UI and AI features; however, the app size is reportedly around 850 MB, and some users hope for a lightweight version without AI and code editing capabilities.
+Warp, a popular terminal emulator, announced the open-sourcing of its codebase, but the release lacks full commit history and retains heavy AI and cloud dependencies. This move could influence developer tooling transparency debates, as Warp's business model conflicts with community expectations of a clean, minimal terminal. The open-source repository does not include the commit history, so forking an early, less-bloated version is impossible. Warp's features are deeply integrated with its cloud agent platform Oz, making offline or minimal use challenging.
 
 hackernews · meetpateltech · Apr 28, 15:58
 
-**Background**: Warp is a proprietary terminal emulator first released in 2021, competing with tools like iTerm2 and Hyper. It gained popularity for its speed, Rust-based architecture, and integrated AI assistant. The decision to open-source is aimed at accelerating development and building a sustainable business around the platform.
+**Background**: Warp is a proprietary terminal emulator written in Rust, initially released for macOS, Windows, and Linux. Unlike traditional terminals, Warp integrates AI for natural language command generation and cloud-based workflows via its Oz platform. Many developers prefer lightweight terminals like Ghostty or iTerm2, leading to Warp being seen as bloated.
 
 <details><summary>References</summary>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Warp_(terminal)">Warp (terminal) - Wikipedia</a></li>
-<li><a href="https://www.warp.dev/">Warp: The Agentic Development Environment</a></li>
+<li><a href="https://www.warp.dev/warp-ai">Warp: AI: Natural‑Language Coding Agents</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community sentiment is mixed: while many appreciate the move to open source, some express concerns about bloat and the inclusion of AI features, hoping for a stripped-down version. Others note the business-driven strategy behind the decision.
+**Discussion**: Community sentiment is mixed: some welcome open-sourcing but lament the missing commit history and AI/cloud bloat, hoping for a lightweight fork. Others see Warp as an agentic development environment rather than a simple terminal, questioning its direction.
 
-**Tags**: `#open-source`, `#terminal`, `#Warp`, `#developer-tools`
+**Tags**: `#open-source`, `#terminal`, `#Warp`, `#developer-tools`, `#community-reaction`
 
 ---
 
 <a id="item-9"></a>
-## [UAE announces exit from OPEC](https://www.ft.com/content/8c354f2d-3e66-47f1-aad4-9b4aa30e386d) ⭐️ 8.0/10
+## [LocalSend: Open-Source Cross-Platform AirDrop Alternative](https://github.com/localsend/localsend) ⭐️ 8.0/10
 
-The United Arab Emirates has announced that it will withdraw from OPEC, effective April 28, 2026, according to a Reuters report. This move weakens OPEC's influence and signals a deepening rift between the UAE and Saudi Arabia, reshaping global oil market dynamics and Gulf geopolitics. The decision comes amid strained Saudi-Emirati relations and a reported request by the UAE for Pakistan to repay a $3.5 billion loan early. Community comments also suggest an emerging Emirati-Israeli axis balancing Saudi and Iranian hegemony.
+LocalSend is a free, open-source file-sharing app that enables direct device-to-device transfers across Windows, macOS, Linux, Android, and iOS without an internet connection. It fills a critical gap for users who need a reliable, privacy-focused alternative to Apple's proprietary AirDrop, working across all major platforms without reliance on cloud services or central servers. LocalSend uses a REST API and HTTPS for secure communication, with end-to-end encryption ensuring privacy. It operates entirely over the local network, requiring devices to be on the same Wi-Fi or a tethered connection.
 
-hackernews · bazzmt · Apr 28, 13:02
+hackernews · bilsbie · Apr 28, 11:54
 
-**Background**: OPEC is a cartel of oil-producing nations that coordinates production to influence global prices. The UAE has been a key member but has often clashed with Saudi Arabia over output quotas. This exit could undermine OPEC's cohesion and pricing power.
+**Background**: AirDrop is Apple's proprietary file-sharing feature that creates an ad-hoc Wi-Fi network between Apple devices. LocalSend provides a similar experience for users on any platform, but relies on an existing local network rather than creating its own, which is a key difference noted in community discussions.
 
-**Discussion**: Commenters analyze the geopolitical shift, noting an Emirati-Israeli axis forming to counter Saudi dominance and Iranian influence. Some highlight the historical problem of cartel cheating, while others see this as a win for US energy strategy. The discussion is deep and provides valuable context.
+<details><summary>References</summary>
+<ul>
+<li><a href="https://grokipedia.com/page/localsend">LocalSend</a></li>
+<li><a href="https://localsend.org/">LocalSend: Share files to nearby devices</a></li>
 
-**Tags**: `#geopolitics`, `#OPEC`, `#oil markets`, `#international relations`
+</ul>
+</details>
+
+**Discussion**: Users appreciate LocalSend's reliability compared to AirDrop, but point out the limitation that both devices must be on the same local network, unlike AirDrop's ad-hoc capability. Some suggest alternatives like Sendme or PairDrop that use peer-to-peer relays to bypass this restriction. Others call for UX improvements and note that AirDrop itself often has discovery issues.
+
+**Tags**: `#File Sharing`, `#Open Source`, `#Cross-Platform`, `#Networking`, `#AirDrop Alternative`
 
 ---
 
 <a id="item-10"></a>
-## [GitHub Availability Update Faces Community Skepticism](https://github.blog/news-insights/company-news/an-update-on-github-availability/) ⭐️ 8.0/10
+## [GitHub Availability Update Met with Skepticism](https://github.blog/news-insights/company-news/an-update-on-github-availability/) ⭐️ 8.0/10
 
-GitHub published an update stating that its priorities are availability, then capacity, then new features, but the community is skeptical given ongoing reliability issues and a history of prioritizing Azure migration over features. This matters because GitHub is a critical platform for millions of developers worldwide, and persistent reliability problems can erode trust and productivity; the company's stated priorities now contradict earlier actions and community experience. The update follows 12 months of dire uptime according to community members, and the lack of transparent data (e.g., unlabeled graphs) further fuels skepticism; GitHub also mentions working on a multi-cloud path, which some interpret as an implicit acknowledgement of Azure limitations.
+GitHub published an update reaffirming that availability is the top priority, ahead of capacity and new features, and mentioned a path to multi-cloud infrastructure. As a critical platform for millions of developers, GitHub's reliability directly impacts software development workflows; the community's skepticism highlights a trust gap between GitHub's stated priorities and users' actual experience. The post includes an unlabeled graph with large numbers, and the priorities list contradicts a previous statement that migration to Azure would take precedence over feature development; users report persistent issues like slow fixes for actions/checkout and incomplete pull request lists.
 
 hackernews · GitHub Blog · Apr 28, 10:05
 
-**Background**: GitHub is a popular code hosting and collaboration platform owned by Microsoft. In recent years, it has faced increasing reliability challenges, partly due to rapid user growth and the demands of AI agents generating repositories. The company previously announced a move to Azure, but the latest post signals a shift in priorities.
+**Background**: GitHub, owned by Microsoft, has been migrating its infrastructure to Azure, a process that previously led to a delay in feature development. The latest update introduces a multi-cloud strategy, raising questions about Azure's reliability and GitHub's consistency in messaging.
 
-**Discussion**: The community is highly critical, with comments calling the update 'hard to read with a straight face' and pointing out incomplete pull request lists on the website. Some users note the irony of Microsoft suggesting Azure unreliability by mentioning a multi-cloud path, while others confirm that agents are placing extra pressure on GitHub.
+**Discussion**: Community comments express deep skepticism, noting that GitHub's stated priorities do not match their experience of degraded service; some users interpret the multi-cloud move as an implicit admission that Azure may not be reliable enough, and others highlight long-standing ignored issues like the actions/checkout PR.
 
-**Tags**: `#github`, `#availability`, `#reliability`, `#cloud`, `#community-feedback`
+**Tags**: `#GitHub`, `#availability`, `#reliability`, `#cloud migration`, `#community`
 
 ---
 
 <a id="item-11"></a>
-## [Waymo Launches in Portland](https://waymo.com/blog/shorts/waymo-in-portland/) ⭐️ 8.0/10
+## [NVIDIA Launches Nemotron 3 Nano Omni for Multimodal AI](https://huggingface.co/blog/nvidia/nemotron-3-nano-omni-multimodal-intelligence) ⭐️ 8.0/10
 
-Waymo announced the launch of its autonomous ride-hailing service in Portland, Oregon, expanding its operations to a new city. This expansion marks a significant milestone in the deployment of autonomous vehicles and could provide an alternative to public transit, especially amid budget cuts to Portland's TriMet system. The service will operate within a geofenced area using Waymo's sensor-heavy approach, though specific details on service boundaries and launch dates were not provided.
+NVIDIA has released Nemotron 3 Nano Omni, a multimodal AI model capable of long-context understanding across documents, audio, and video, designed for AI agents. This model represents a significant step toward unified multimodal perception for agentic AI, potentially enabling more capable and context-aware AI assistants that can process diverse inputs simultaneously. The model is positioned as a 'multimodal perception and context sub-agent' in larger agent systems, providing capabilities like reading screens, interpreting documents, transcribing speech, and analyzing video while maintaining a converged multimodal context.
 
-hackernews · xnx · Apr 28, 18:08
+rss · Hugging Face Blog · Apr 28, 15:58
 
-**Background**: Waymo is a leading autonomous driving company that has been operating commercial robotaxi services in Phoenix and San Francisco. Its vehicles rely on a combination of LIDAR, cameras, and radar for safe navigation within predefined areas.
+**Background**: NVIDIA's Nemotron series is an open-source family of models with open weights and training recipes. The NeMo framework enables training of long-context models. This new model collapses the multimodal stack into a single model, aiming to provide agents with 'eyes and ears'.
 
-**Discussion**: Commenters expressed cautious optimism, with some noting Portland's public transit budget crisis makes Waymo a timely alternative. Others compared Waymo favorably to Tesla's FSD, while concerns about vehicle appearance and integration were raised.
+<details><summary>References</summary>
+<ul>
+<li><a href="https://developer.nvidia.com/nemotron">Nemotron AI Models | NVIDIA Developer</a></li>
+<li><a href="https://glitchwire.com/news/nvidias-nemotron-3-nano-omni-collapses-the-multimodal-stack-into-a-single-model/">NVIDIA's Nemotron 3 Nano Omni Collapses the Multimodal Stack ...</a></li>
 
-**Tags**: `#autonomous vehicles`, `#Waymo`, `#Portland`, `#transportation`, `#self-driving`
+</ul>
+</details>
+
+**Tags**: `#multimodal`, `#NVIDIA`, `#long-context`, `#AI`, `#agents`
 
 ---
 
 <a id="item-12"></a>
-## [Pip 26.1 Introduces Lockfiles and Dependency Cooldowns](https://simonwillison.net/2026/Apr/28/pip-261/#atom-everything) ⭐️ 8.0/10
+## [ChatGPT Ad Serving: Full Attribution Loop Analysis](https://www.buchodi.com/how-chatgpt-serves-ads-heres-the-full-attribution-loop/) ⭐️ 7.0/10
 
-Pip 26.1 adds experimental support for lockfiles via the new `pip lock` command, which generates a `pylock.toml` file pinning all dependencies, and introduces dependency cooldowns through the `--uploaded-prior-to` option. Additionally, this release drops support for Python 3.9. Lockfiles bring deterministic, reproducible installations to pip, a critical feature for deployment and CI/CD pipelines. Dependency cooldowns help mitigate supply-chain attacks by ensuring only packages older than a specified duration are installed, giving time for malware detection. The lockfile format is `pylock.toml`, and the cooldown option accepts ISO 8601 duration format (e.g., `P4D` for four days). The `pip lock` command currently only supports locking packages for the `pip install` command, not for `--upgrade` or other modes. These features are experimental and may change.
+A technical analysis reveals how ChatGPT serves ads via a full attribution loop, where structured ad objects are injected into the SSE stream and a merchant-side SDK tracks conversions. This ad model marks OpenAI's pivot toward advertising as a revenue source, raising questions about user privacy and the integrity of AI-generated content. It could influence how other LLM providers monetize their services. Ad units are injected as structured 'single_advertiser_ad_unit' objects into the ChatGPT SSE stream during response generation, and the OAIQ SDK on the merchant side reports product views to close the loop.
 
-rss · Simon Willison · Apr 28, 05:23
+hackernews · lmbbuchodi · Apr 28, 23:54
 
-**Background**: Pip is the default package installer for Python, used by millions of developers to manage dependencies. Lockfiles are common in other package managers (e.g., npm's package-lock.json) to freeze exact versions for reproducible builds. Dependency cooldowns are a security best practice where a waiting period is enforced after a package is uploaded before it can be installed, reducing the window for attackers to exploit malicious releases.
+**Background**: Closed-loop attribution is a marketing model that links ad impressions to sales conversions, giving advertisers clear ROI. OpenAI has implemented this in ChatGPT's free tier and the ad-supported Go plan, with ads labeled and separated from responses. The system does not share user chats with advertisers.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://pip.pypa.io/en/stable/cli/pip_lock/">pip lock - pip documentation v26.0.1</a></li>
-<li><a href="https://ichard26.github.io/blog/2026/04/whats-new-in-pip-26.1/">What's new in pip 26.1 - lockfiles and dependency cooldowns! | Richard Si</a></li>
+<li><a href="https://www.buchodi.com/how-chatgpt-serves-ads-heres-the-full-attribution-loop/">How ChatGPT serves ads. Here's the full attribution loop.</a></li>
+<li><a href="https://help.openai.com/en/articles/20001047-ads-in-chatgpt">Ads in ChatGPT | OpenAI Help Center</a></li>
+<li><a href="https://openai.com/index/our-approach-to-advertising-and-expanding-access/">Our approach to advertising and expanding access to ChatGPT | OpenAI</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#pip`, `#python`, `#package management`, `#lockfiles`
+**Discussion**: Commenters are skeptical: some recall Sam Altman's past statement that ads would be a 'last resort,' suggesting financial pressure. Others worry about adversarial content injection, while noting current ads are in the free tier and easy to block. A few express concern that future ads could be indistinguishable from real responses.
+
+**Tags**: `#ChatGPT`, `#ads`, `#OpenAI`, `#business model`, `#LLM`
 
 ---
 
 <a id="item-13"></a>
-## [NVIDIA Releases Nemotron 3 Nano Omni Multimodal Model](https://huggingface.co/blog/nvidia/nemotron-3-nano-omni-multimodal-intelligence) ⭐️ 8.0/10
+## [Malware reminder on every read causes subagent refusals in Claude Agents](https://github.com/anthropics/claude-code/issues/49363) ⭐️ 7.0/10
 
-NVIDIA has introduced the Nemotron 3 Nano Omni, a multimodal AI model capable of processing long-context documents, audio, and video for AI agents. This release extends the Nemotron family’s reach into multimodal AI, enabling more capable and efficient AI agents that can reason across different data types in a single context. The model supports long-context retrieval, structured extraction, table and chart reading, and multi-page reasoning, all in one pass.
+A regression in Claude Managed Agents appends a malware-scanning system prompt to every read operation, causing subagents to waste tokens on analysis and subsequently refuse to write any code. This bug wastes user money through unnecessary token consumption and breaks the core code generation functionality, highlighting the need for transparent system prompts and reliable agent behavior in AI development tools. The appended prompt instructs Claude to check every file for malware, after which the subagent misinterprets the reminder as a prohibition against editing files, leading to refusals; users are charged for each failed session.
 
-rss · Hugging Face Blog · Apr 28, 15:58
+hackernews · thomashobohm · Apr 28, 23:59
 
-**Background**: NVIDIA's Nemotron model family includes open models with open weights, training data, and recipes, designed for building specialized AI agents. The Nemotron 3 Nano is a 30B-3B A3B model balancing efficiency and accuracy. This new Omni variant adds multimodal capabilities for documents, audio, and video.
+**Background**: Claude Managed Agents is a hosted service for running autonomous agents with built-in tool execution, including file reading and code editing. The 'Read' tool appends a system prompt to prevent malware creation, but this prompt overrides subagent permissions, causing a regression that was previously fixed but has reappeared.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://huggingface.co/blog/nvidia/nemotron-3-nano-omni-multimodal-intelligence">Introducing NVIDIA Nemotron 3 Nano Omni: Long-Context Multimodal ...</a></li>
-<li><a href="https://developer.nvidia.com/nemotron">Nemotron AI Models | NVIDIA Developer</a></li>
-<li><a href="https://huggingface.co/blog/nvidia/nemotron-3-nano-efficient-open-intelligent-models">Nemotron 3 Nano \- A new Standard for Efficient, Open, and Intelligent...</a></li>
+<li><a href="https://github.com/anthropics/claude-code/issues/49363">[Bug] Regression: malware reminder on every Read still causes ...</a></li>
+<li><a href="https://platform.claude.com/docs/en/managed-agents/overview">Claude Managed Agents overview - Claude API Docs</a></li>
+<li><a href="https://www.anthropic.com/engineering/managed-agents">Scaling Managed Agents: Decoupling the brain from the hands</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#multimodal`, `#NVIDIA`, `#long-context`, `#AI models`
+**Discussion**: Community comments express frustration over opaque token consumption and the inability to scrutinize system prompts, with some suggesting alternatives like OpenCode that offer custom prompts and cheaper models. Many users hope Anthropic will prioritize fixing this regression again, as it previously resolved after a Hacker News discussion.
+
+**Tags**: `#claude`, `#ai agents`, `#bug`, `#token waste`, `#system prompts`
 
 ---
 
 <a id="item-14"></a>
-## [ChatGPT introduces ads with full attribution loop](https://www.buchodi.com/how-chatgpt-serves-ads-heres-the-full-attribution-loop/) ⭐️ 7.0/10
+## [CJIT: Single-binary C Compiler Enables C Scripting](https://dyne.org/cjit/) ⭐️ 7.0/10
 
-ChatGPT now displays advertisements that include a complete attribution loop, allowing tracking of ad performance from impression to conversion. This shift marks a significant change in OpenAI's business model, moving away from subscription-only revenue toward advertising, which could influence how users interact with AI chatbots and raise privacy concerns. The attribution loop tracks users across multiple touchpoints, potentially using identifiers like IP addresses and cookies, though OpenAI has not disclosed full technical specifics.
+CJIT is a new single-binary C compiler that embeds the TinyCC compiler, its headers, and standard library, allowing users to compile and execute C source files as easily as scripting languages. CJIT lowers the barrier to using C for quick tasks and scripting, making it more accessible for developers who want C's performance without traditional build setups. It could encourage more ad-hoc C programming and integration into toolchains. The tool is packaged as a single executable file, eliminating the need for system-wide installation or path configuration. It supports wildcards to include multiple C source files and pre-compiled objects in a single execution.
 
-hackernews · lmbbuchodi · Apr 28, 23:54
+hackernews · smartmic · Apr 28, 19:10
 
-**Background**: An attribution loop is a marketing concept that tracks the customer journey from initial ad exposure to final conversion, allowing advertisers to measure effectiveness. OpenAI had previously considered ads a last resort, but the company may be seeking additional revenue sources amid high operational costs.
+**Background**: TinyCC is a small, fast C compiler that can compile C code directly from source without a separate linker. CJIT builds on TinyCC by packaging it into a self-contained binary, making it portable and easy to use as a scripting engine. This aligns with the trend of using C for rapid prototyping and scripting.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://theconversation.com/you-probably-wouldnt-notice-if-an-ai-chatbot-slipped-ads-into-its-responses-276010">You probably wouldn't notice if an AI chatbot slipped ads into its responses</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Tiny_C_Compiler">Tiny C Compiler</a></li>
+<li><a href="https://grokipedia.com/page/Tiny_C_Compiler">Tiny C Compiler</a></li>
+<li><a href="https://github.com/tinycc/tinycc">GitHub - TinyCC/tinycc: Unofficial mirror of mob development branch · GitHub</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community comments express mixed feelings: some users recall Sam Altman's earlier statement that ads would be a last resort, while others worry about adversarial content and SEO manipulation. Some suggest the ads may be easy to block if served as distinct events.
+**Discussion**: Community members expressed interest in CJIT's ability to self-host, and comparisons to tcc -run were made, with the key difference being CJIT's ease of use as a single executable. Some users noted platform-specific issues on Arch Linux, but the demos worked well.
 
-**Tags**: `#OpenAI`, `#ChatGPT`, `#advertising`, `#business model`, `#AI ethics`
+**Tags**: `#C`, `#compiler`, `#scripting`, `#TinyCC`, `#tool`
 
 ---
 
 <a id="item-15"></a>
-## [LocalSend: Open-Source Cross-Platform AirDrop Alternative](https://github.com/localsend/localsend) ⭐️ 7.0/10
+## [UAE announces departure from OPEC](https://www.ft.com/content/8c354f2d-3e66-47f1-aad4-9b4aa30e386d) ⭐️ 7.0/10
 
-LocalSend is a free, open-source app that enables secure file sharing between nearby devices over a local network without internet, supporting Windows, macOS, Linux, Android, and iOS. It provides a privacy-focused, cross-platform alternative to Apple's AirDrop, empowering users to share files offline without relying on cloud services. LocalSend uses LAN multicast groups and on-the-fly TLS/SSL certificate generation for encryption, but requires devices to be on the same local network, unlike AirDrop which can create its own network.
+The United Arab Emirates announced its departure from OPEC on April 28, 2026, breaking from the Saudi-led oil cartel in a surprise move. This could reshape global oil dynamics and weaken OPEC's influence, as the UAE is a major producer. The move may also signal a realignment of Middle Eastern alliances, with the UAE potentially moving closer to Israel and the US. The exit comes amid tensions with Saudi Arabia and a reported demand that Pakistan repay a $3.5 billion loan. The move may be part of a broader geopolitical shift, including a possible Emirati-Israeli axis.
 
-hackernews · bilsbie · Apr 28, 11:54
+hackernews · bazzmt · Apr 28, 13:02
 
-**Background**: Apple's AirDrop uses Bluetooth and Wi-Fi to create a peer-to-peer network automatically, allowing file transfers even without a shared Wi-Fi network. LocalSend, being LAN-based, cannot do this out of the box, though workarounds like tethering exist.
+**Background**: OPEC (Organization of the Petroleum Exporting Countries) is a cartel of oil-producing nations that coordinates production to influence global prices. The UAE has been a member since 1967. Exits are rare; the last major departure was Qatar in 2019.
 
-<details><summary>References</summary>
-<ul>
-<li><a href="https://localsend.org/">LocalSend : Share files to nearby devices</a></li>
-<li><a href="https://github.com/localsend/localsend">GitHub - localsend / localsend : An open - source cross-platform...</a></li>
-<li><a href="https://blog.blackwing.dev/localsend-a-privacy-first-airdrop-alternative">Localsend : A Privacy-First Airdrop Alternative (2026)</a></li>
+**Discussion**: Commenters highlighted geopolitical implications, such as a UAE-Israeli axis countering Saudi and Iranian influence. Some discussed OPEC's historical struggle with cheating members and the US's goal to weaken the cartel.
 
-</ul>
-</details>
-
-**Discussion**: Community comments highlight that LocalSend's reliance on a pre-existing LAN is a key limitation compared to AirDrop, though some users find it more reliable. Alternatives like Sendme (using Iroh P2P relay) are mentioned as solutions without network constraints.
-
-**Tags**: `#open-source`, `#file-sharing`, `#cross-platform`, `#air-drop-alternative`, `#networking`
-
----
-
-<a id="item-16"></a>
-## [Claude.ai and API suffer elevated errors and outages](https://status.claude.com/incidents/9l93x2ht4s5w) ⭐️ 7.0/10
-
-Claude.ai and its API experienced elevated errors and downtime, severely impacting availability for users including enterprise customers. This incident highlights critical reliability issues for Anthropic's platform, with enterprise users reporting significant business impact and frustration over support. User reports indicate uptime measured at only one 9 (99%) over the last 90 days, and some organizations spend over $200,000 per month on Anthropic's enterprise tier.
-
-hackernews · shorsher · Apr 28, 18:01
-
-**Discussion**: Enterprise users expressed strong dissatisfaction, citing frequent outages and poor support. One user noted that their executive team is furious over spending $200k/month for low reliability. Another highlighted the uptime has dropped to one 9, and a third user emphasized the need for multi-model strategies.
-
-**Tags**: `#claude`, `#api`, `#reliability`, `#outage`, `#anthropic`
+**Tags**: `#OPEC`, `#oil`, `#geopolitics`, `#energy`, `#UAE`
 
 ---
