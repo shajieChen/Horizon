@@ -23,7 +23,7 @@
     "imap_server": "imap.qq.com",
     "imap_port": 993,
     "email_address": "513601594@qq.com",
-    "password_env": "cvpaevbjdjekcbcj",
+    "password_env": "EMAIL_PASSWORD",
     "sender_name": "Horizon Daily",
     "subscribe_keyword": "SUBSCRIBE",
     "unsubscribe_keyword": "UNSUBSCRIBE"
