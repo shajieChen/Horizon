@@ -862,12 +862,12 @@ def test_yahoo_price_provider_success_payload_has_new_fields():
     assert "vol_5d" in result
     assert "vol_20d" in result
     assert result["value"] != "N/A"
-    # Values should be formatted as 4-decimal strings
-    float(result["latest_close"])  # must not raise
-    float(result["ma5"])
-    float(result["ma20"])
-    float(result["vol_5d"])
-    float(result["vol_20d"])
+    # Values should be formatted as 4-decimal strings with expected magnitudes
+    assert abs(float(result["latest_close"]) - 110.0) < 0.1
+    assert 99.0 < float(result["ma5"]) <= 110.0
+    assert 100.0 < float(result["ma20"]) <= 110.0
+    assert float(result["vol_5d"]) >= 0.0
+    assert float(result["vol_20d"]) >= 0.0
 
 
 def test_yahoo_price_provider_failure_payload_has_symbol():
