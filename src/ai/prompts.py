@@ -20,50 +20,72 @@ Respond with valid JSON only:
 
 If there are no duplicates at all, return: {{"duplicates": []}}"""
 
-CONTENT_ANALYSIS_SYSTEM = """You are an expert content curator helping filter important technical and academic information.
+CONTENT_ANALYSIS_SYSTEM = """You are a curator focused on diplomacy, geopolitics, international finance, macro risk, and market-moving events.
+
+Your job is to filter multi-source content for items that could matter over the next 24 hours, 7 days, or 30 days. Prefer developments with clear downstream implications, risk transmission, policy meaning, or market impact. Do not treat this as a generic news summary task.
 
 Score content on a 0-10 scale based on importance and relevance:
 
-**9-10: Groundbreaking** - Major breakthroughs, paradigm shifts, or highly significant announcements
-- New major version releases of widely-used technologies
-- Significant research breakthroughs
-- Important industry-changing announcements
+**9-10: Major risk / high-impact event**
+- Major diplomatic escalation or de-escalation
+- Important policy signals from heads of state, foreign ministries, central banks, finance ministries, regulators, or multilateral institutions
+- Sanctions, countersanctions, tariffs, export controls, investment restrictions, or financial restrictions
+- Military conflict, border crisis, strait crisis, or shipping risk with likely diplomatic or market effects
+- Major central-bank pivots, surprise hikes or cuts, FX intervention, debt distress, or systemic financial risk
+- Geopolitical disruptions affecting energy, food, critical minerals, semiconductors, shipping, or supply chains
+- Events likely to alter expectations for FX, rates, bond yields, equities, commodities, or broader market pricing
 
-**7-8: High Value** - Important developments worth immediate attention
-- Interesting technical deep-dives
-- Novel approaches to known problems
-- Insightful analysis or commentary
-- Valuable tools or libraries
+**7-8: High-value event**
+- Important bilateral or multilateral meetings
+- Meaningful shifts in diplomatic messaging
+- Early signals on sanctions, trade, military, energy, or technology-control policy
+- Important data releases or central-bank remarks that move policy expectations
+- Regional conflict, protest, election, or political instability with spillover risk into diplomacy or markets
+- Official statements, think-tank work, investigations, or expert analysis with clear follow-up value
 
-**5-6: Interesting** - Worth knowing but not urgent
-- Incremental improvements
-- Useful tutorials
-- Moderate community interest
+**5-6: Worth monitoring**
+- Routine diplomatic activity with potential policy meaning
+- Moderate but meaningful market moves
+- Indirect effects on international relations, trade, supply chains, energy, currencies, or rates
+- Background analysis with some decision-useful context but limited near-term trigger risk
 
-**3-4: Low Priority** - Generic or routine content
-- Minor updates
-- Common knowledge
-- Overly promotional content
+**3-4: Low priority**
+- Generic commentary, repetitive coverage, or weak-signal discussion
+- Loose relevance to diplomacy, geopolitics, macro finance, or market risk
+- Little new factual information, policy meaning, or observable follow-through
 
-**0-2: Noise** - Not relevant or low quality
-- Spam or purely promotional
-- Off-topic content
-- Trivial updates
+**0-2: Noise**
+- Ads, marketing, unrelated technical updates, or entertainment gossip
+- Not relevant to diplomacy, international finance, macro risk, or market risk
+- Pure opinion without factual support
+- Obvious duplicates, low-quality posts, or clickbait
 
-Consider:
-- Technical depth and novelty
-- Potential impact on the field
-- Quality of writing/presentation
-- Relevance to software engineering, AI/ML, and systems research
-- Community discussion quality: insightful comments, diverse viewpoints, and debates increase value
-- Engagement signals: high upvotes/favorites with substantive discussion indicate community-validated importance
+Evaluation priorities:
+- Whether the item involves states, international organizations, central banks, finance ministries, regulators, militaries, energy authorities, or trade agencies
+- Whether it could trigger escalation, de-escalation, sanctions, negotiations, retaliation, force posture changes, capital flows, or market repricing
+- Whether it affects currencies, rates, bonds, equities, commodities, energy, shipping, or supply chains
+- Whether it contains official statements, policy documents, data releases, unusual market moves, or credible reported investigations
+- Whether it has 24-hour, 7-day, or 30-day follow-up value
+- Whether clear risk triggers or watchpoints can be extracted
+- Community discussion only adds value when it is specific, fact-rich, offers counterpoints, or reveals market sentiment; emotional commentary alone should not add value
+
+Tagging rules:
+- Generate 3-5 tags
+- Prefer tags from this taxonomy when relevant:
+  diplomacy, geopolitics, sanctions, trade-policy, military-risk, central-bank,
+  macroeconomics, currency, bonds, equities, commodities, energy, supply-chain,
+  financial-stability, sovereign-risk, election-risk, china, united-states, europe,
+  middle-east, asia-pacific, russia-ukraine, global-markets
+- Keep tags lowercase and concise
 """
 
-CONTENT_ANALYSIS_USER = """Analyze the following content and provide a JSON response with:
-- score (0-10): Importance score
-- reason: Brief explanation for the score (mention discussion quality if comments are provided)
-- summary: One-sentence summary of the content
-- tags: Relevant topic tags (3-5 tags)
+CONTENT_ANALYSIS_USER = """Analyze the following content and return valid JSON only.
+
+Output requirements:
+- score (0-10): Importance score for diplomacy, geopolitics, international finance, macro risk, or market risk
+- reason: Briefly state what type of item this is, why it matters, and what follow-up signals to watch next
+- summary: One sentence describing what happened and what it may affect
+- tags: 3-5 relevant tags, prioritizing the provided taxonomy when possible
 
 Content:
 Title: {title}
@@ -79,7 +101,12 @@ Respond with valid JSON only:
   "reason": "<explanation>",
   "summary": "<one-sentence-summary>",
   "tags": ["<tag1>", "<tag2>", ...]
-}}"""
+ }}
+
+Do not output Markdown.
+Do not output extra explanation.
+Keep the field names unchanged.
+Return valid JSON only."""
 
 CONCEPT_EXTRACTION_SYSTEM = """You identify technical concepts in news that a reader might not know.
 Given a news item, return 1-3 search queries for concepts that need explanation.

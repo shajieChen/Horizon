@@ -73,31 +73,31 @@
         "name": "Simon Willison",
         "url": "https://simonwillison.net/atom/everything/",
         "enabled": true,
-        "category": "ai-tools"
+        "category": "general-intelligence"
       },
       {
         "name": "OpenAI Blog",
         "url": "https://openai.com/news/rss.xml",
         "enabled": true,
-        "category": "ai"
+        "category": "general-intelligence"
       },
       {
         "name": "Anthropic News",
         "url": "https://www.anthropic.com/news/rss.xml",
         "enabled": true,
-        "category": "ai"
+        "category": "general-intelligence"
       },
       {
         "name": "GitHub Blog",
         "url": "https://github.blog/feed/",
         "enabled": true,
-        "category": "github"
+        "category": "general-intelligence"
       },
       {
         "name": "Hugging Face Blog",
         "url": "https://huggingface.co/blog/feed.xml",
         "enabled": true,
-        "category": "ai-models"
+        "category": "general-intelligence"
       }
     ],
     "reddit":
