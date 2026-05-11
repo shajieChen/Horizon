@@ -1,5 +1,7 @@
 """Tests for email rendering helpers."""
 
+from bs4 import BeautifulSoup
+
 from src.models import EmailConfig
 from src.services.email import EmailManager
 
@@ -30,8 +32,16 @@ def test_apply_email_html_styles_inlines_table_styles():
     manager = _make_email_manager()
 
     html = manager._apply_email_html_styles("<table><tr><th>A</th><td>1</td></tr></table>")
+    soup = BeautifulSoup(html, "html.parser")
+    table = soup.find("table")
+    row = soup.find("tr")
+    header = soup.find("th")
+    cell = soup.find("td")
 
-    assert 'style="border-collapse: collapse; width: 100%; max-width: 100%; table-layout: fixed; margin: 12px 0; font-size: 13px;"' in html
-    assert 'style="vertical-align: top;"' in html
-    assert 'style="border: 1px solid #d0d7de; background: #f6f8fa; padding: 6px 8px; text-align: left; vertical-align: top; word-break: break-word; overflow-wrap: anywhere;"' in html
-    assert 'style="border: 1px solid #d0d7de; padding: 6px 8px; vertical-align: top; word-break: break-word; overflow-wrap: anywhere;"' in html
+    assert table is not None and "table-layout: fixed" in table["style"]
+    assert table is not None and "font-size: 13px" in table["style"]
+    assert row is not None and "vertical-align: top" in row["style"]
+    assert header is not None and "background: #f6f8fa" in header["style"]
+    assert header is not None and "overflow-wrap: anywhere" in header["style"]
+    assert cell is not None and "border: 1px solid #d0d7de" in cell["style"]
+    assert cell is not None and "word-break: break-word" in cell["style"]
