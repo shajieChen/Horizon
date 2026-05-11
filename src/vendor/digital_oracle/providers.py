@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
@@ -101,7 +102,7 @@ class YahooPriceProvider(BaseProvider):
             ticker = yf.Ticker(symbol)
             hist = ticker.history(period="30d")
             if hist.empty or len(hist) < 2:
-                raise ValueError(f"Empty price history for {symbol}")
+                raise ValueError(f"Insufficient price history for {symbol} (got {len(hist)} day(s), need at least 2)")
 
             closes = hist["Close"].dropna()
             latest = float(closes.iloc[-1])
@@ -115,7 +116,6 @@ class YahooPriceProvider(BaseProvider):
             above_20d_ma = "true" if latest > ma20 else "false"
 
             # Realized volatility (annualised from daily log returns)
-            import math  # noqa: PLC0415
             log_rets = closes.pct_change().dropna()
             vol_5d = float(log_rets.iloc[-5:].std() * math.sqrt(252)) if len(log_rets) >= 5 else 0.0
             vol_20d = float(log_rets.iloc[-20:].std() * math.sqrt(252)) if len(log_rets) >= 20 else 0.0

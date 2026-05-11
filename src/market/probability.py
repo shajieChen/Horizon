@@ -18,7 +18,11 @@ def _normalize(up: float, down: float, neutral: float) -> tuple[float, float, fl
     if total <= 0:
         return 33.0, 33.0, 34.0
     scale = 100.0 / total
-    return round(up * scale, 1), round(down * scale, 1), round(neutral * scale, 1)
+    up_n = round(up * scale, 1)
+    down_n = round(down * scale, 1)
+    # Adjust neutral to guarantee exact sum of 100.0 despite floating-point rounding
+    neutral_n = round(100.0 - up_n - down_n, 1)
+    return up_n, down_n, neutral_n
 
 
 def _extract_signal_value(signals: "List[MarketSignal]", key: str) -> str:

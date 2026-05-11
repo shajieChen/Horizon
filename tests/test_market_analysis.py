@@ -214,8 +214,8 @@ def test_horizon_probabilities_sum_to_100():
     for av in result.asset_views:
         for hp in av.horizons:
             total = hp.up_probability + hp.down_probability + hp.neutral_probability
-            assert abs(total - 100.0) < 1.5, (
-                f"{av.name} {hp.horizon}: probabilities sum to {total} (expected ~100)"
+            assert abs(total - 100.0) < 0.2, (
+                f"{av.name} {hp.horizon}: probabilities sum to {total} (expected 100.0)"
             )
 
 

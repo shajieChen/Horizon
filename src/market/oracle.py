@@ -379,6 +379,7 @@ class TradingOracleAnalyzer:
         signals: List[MarketSignal],
         horizons: List[HorizonProbability],
     ) -> str:
+        """Build a one-line conclusion summarising bias direction and signal coverage."""
         if not horizons:
             return f"{name}: no horizon data available."
         biases = [h.expected_bias for h in horizons]
