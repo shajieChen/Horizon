@@ -1,7 +1,7 @@
 """Daily summary generation — pure programmatic rendering."""
 
 import re
-from typing import List, Dict
+from typing import List, Dict, Any
 
 from ..models import ContentItem
 
@@ -222,6 +222,11 @@ class DailySummarizer:
             lines.append("")
             lines.append(f"**{labels['discussion']}**: {discussion}")
 
+        forecast_block = self._format_forecast_block(meta.get("forecast"))
+        if forecast_block:
+            lines.append("")
+            lines.append(forecast_block)
+
         if item.ai_tags:
             tags_str = ", ".join([f"`#{t}`" for t in item.ai_tags])
             lines.append("")
@@ -231,6 +236,150 @@ class DailySummarizer:
         lines.append("---")
 
         return "\n".join(lines) + "\n\n"
+
+    @staticmethod
+    def _as_list(value: Any) -> List[str]:
+        """Convert unknown values into a cleaned string list."""
+        if isinstance(value, list):
+            cleaned = []
+            for item in value:
+                if isinstance(item, (str, int, float, bool)):
+                    text = str(item).strip()
+                    if text:
+                        cleaned.append(text)
+            return cleaned
+        if isinstance(value, str) and value.strip():
+            return [value.strip()]
+        return []
+
+    @staticmethod
+    def _join_items(value: Any, default: str = "暂无") -> str:
+        """Join list-like values into a human-readable line."""
+        items = DailySummarizer._as_list(value)
+        return "；".join(items) if items else default
+
+    @staticmethod
+    def _to_percent(value: Any) -> str:
+        """Render probability values as percent text."""
+        if isinstance(value, (int, float)):
+            return f"{value:.0f}%"
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+        return "-"
+
+    def _format_forecast_block(self, forecast: Any) -> str:
+        """Render the forecast analysis block in Chinese if available."""
+        if not isinstance(forecast, dict):
+            return ""
+
+        is_forecastable = forecast.get("is_forecastable")
+        if is_forecastable is False:
+            reason = str(forecast.get("reason") or "未提供")
+            return f"**预测分析**：该事件不适合进行独立情景预测。原因：{reason}"
+        if not is_forecastable:
+            return ""
+
+        cause_chain = forecast.get("cause_chain") if isinstance(forecast.get("cause_chain"), dict) else {}
+        scenarios_raw = forecast.get("scenarios") if isinstance(forecast.get("scenarios"), list) else []
+        scenarios_by_name = {
+            str(s.get("name", "")).strip().lower(): s
+            for s in scenarios_raw
+            if isinstance(s, dict)
+        }
+        near_term_watch = (
+            forecast.get("near_term_watch")
+            if isinstance(forecast.get("near_term_watch"), dict)
+            else {}
+        )
+        confidence = forecast.get("confidence") if isinstance(forecast.get("confidence"), dict) else {}
+
+        actor_lines = []
+        if isinstance(forecast.get("actors"), list):
+            for actor in forecast.get("actors"):
+                if not isinstance(actor, dict):
+                    actor_text = str(actor).strip()
+                    if actor_text:
+                        actor_lines.append(f"- {actor_text}")
+                    continue
+                name = str(actor.get("name") or "未知行为体")
+                incentives = self._join_items(actor.get("likely_incentives"))
+                role = str(actor.get("role") or "").strip()
+                role_text = f"（{role}）" if role else ""
+                actor_lines.append(f"- {name}{role_text}：{incentives}")
+        if not actor_lines:
+            actor_lines.append("- 暂无")
+
+        scenario_specs = [
+            ("baseline", "基准"),
+            ("escalation", "升级"),
+            ("deescalation", "缓和"),
+            ("wildcard", "意外"),
+        ]
+        scenario_rows = []
+        for key, label in scenario_specs:
+            scenario = scenarios_by_name.get(key, {})
+            horizon = str(scenario.get("horizon") or "-")
+            probability = self._to_percent(scenario.get("probability"))
+            reasoning = str(scenario.get("reasoning") or "-")
+            triggers = self._join_items(scenario.get("trigger_conditions"), default="-")
+            scenario_rows.append(f"| {label} | {horizon} | {probability} | {reasoning} | {triggers} |")
+
+        confidence_level_map = {
+            "low": "低",
+            "medium": "中等",
+            "high": "高",
+        }
+        confidence_level = str(confidence.get("level") or "medium").lower()
+        confidence_label = confidence_level_map.get(confidence_level, "中等")
+        confidence_reason = str(confidence.get("reason") or "")
+        confidence_text = f"{confidence_label}。{confidence_reason}" if confidence_reason else confidence_label
+
+        lines = [
+            "**预测分析**",
+            "",
+            f"**事件类型**：{forecast.get('event_type') or '未说明'}",
+            "",
+            "**原因链**",
+            f"- 直接触发：{cause_chain.get('immediate_trigger') or '暂无'}",
+            f"- 深层原因：{self._join_items(cause_chain.get('structural_causes'))}",
+            f"- 约束条件：{self._join_items(cause_chain.get('constraints'))}",
+            "",
+            "**主要行为体与激励**",
+            *actor_lines,
+            "",
+            "**未来情景**",
+            "| 情景 | 时间窗口 | 概率 | 逻辑 | 触发条件 |",
+            "|---|---:|---:|---|---|",
+            *scenario_rows,
+            "",
+            "**观察指标**",
+            f"- 24小时：{self._join_items(near_term_watch.get('24h'))}",
+            f"- 7天：{self._join_items(near_term_watch.get('7d'))}",
+            f"- 30天：{self._join_items(near_term_watch.get('30d'))}",
+            "",
+            f"**置信度**：{confidence_text}",
+            "",
+            "**反证条件**",
+        ]
+
+        falsifiers = self._as_list(forecast.get("falsifiers")) or ["暂无"]
+        lines.extend([f"- {item}" for item in falsifiers])
+
+        lines += [
+            "",
+            "**信息缺口**",
+        ]
+        missing_evidence = self._as_list(forecast.get("missing_evidence")) or ["暂无"]
+        lines.extend([f"- {item}" for item in missing_evidence])
+
+        lines += [
+            "",
+            "**市场或政策影响**",
+        ]
+        implications = self._as_list(forecast.get("market_or_policy_implications")) or ["暂无"]
+        lines.extend([f"- {item}" for item in implications])
+
+        return "\n".join(lines)
 
     def _generate_empty_summary(self, date: str, total_fetched: int, labels: dict) -> str:
         """Generate summary when no high-scoring items were found."""
