@@ -4,6 +4,8 @@ import asyncio
 from datetime import datetime, timezone
 from pathlib import Path
 
+import pytest
+
 from src.market.oracle import TradingOracleAnalyzer
 from src.market.router import TradingQuestionRouter
 from src.market.report import trading_result_to_forecast
@@ -478,7 +480,7 @@ def test_probability_reads_metadata_values():
 
     hp_1d = estimate_horizon_probability(asset, [sig], "1d")
     assert "insufficient price data" not in hp_1d.basis
-    assert "basket" in hp_1d.basis or "5D MA" in hp_1d.basis
+    assert "篮子" in hp_1d.basis or "均线" in hp_1d.basis
 
     hp_1w = estimate_horizon_probability(asset, [sig], "1w")
     assert "insufficient price data" not in hp_1w.basis
@@ -831,4 +833,259 @@ def test_conclusion_shows_price_signal_counts():
     # Bias string must be present (bullish/neutral/bullish from the horizons above)
     assert "bullish/neutral/bullish" in conclusion, (
         f"Expected bias string in conclusion, got: {conclusion!r}"
+    )
+
+
+# ─── New tests: provider payload fields, no truncation, Chinese basis ──────────
+
+def test_yahoo_price_provider_success_payload_has_new_fields():
+    """YahooPriceProvider success payload must include symbol, latest_close, ma5, ma20, vol_5d, vol_20d."""
+    pd = pytest.importorskip("pandas")
+    np = pytest.importorskip("numpy")
+    from unittest.mock import patch, MagicMock
+    from src.vendor.digital_oracle.providers import YahooPriceProvider
+
+    dates = pd.date_range("2026-01-01", periods=25, freq="B")
+    closes = pd.Series(np.linspace(100.0, 110.0, 25), index=dates, name="Close")
+    hist = pd.DataFrame({"Close": closes})
+
+    mock_ticker = MagicMock()
+    mock_ticker.history.return_value = hist
+
+    with patch("yfinance.Ticker", return_value=mock_ticker):
+        result = YahooPriceProvider._fetch_symbol_price("QQQ")
+
+    assert result["symbol"] == "QQQ"
+    assert "latest_close" in result
+    assert "ma5" in result
+    assert "ma20" in result
+    assert "vol_5d" in result
+    assert "vol_20d" in result
+    assert result["value"] != "N/A"
+    # Values should be formatted as 4-decimal strings with expected magnitudes
+    assert abs(float(result["latest_close"]) - 110.0) < 0.1
+    assert 99.0 < float(result["ma5"]) <= 110.0
+    assert 100.0 < float(result["ma20"]) <= 110.0
+    assert float(result["vol_5d"]) >= 0.0
+    assert float(result["vol_20d"]) >= 0.0
+
+
+def test_yahoo_price_provider_failure_payload_has_symbol():
+    """YahooPriceProvider failure payload must include symbol field."""
+    from src.vendor.digital_oracle.providers import YahooPriceProvider
+
+    with patch_yfinance_to_fail():
+        result = YahooPriceProvider._fetch_symbol_price("FAIL_SYM")
+    assert result["symbol"] == "FAIL_SYM"
+
+
+def test_yahoo_price_provider_does_not_truncate_symbols():
+    """YahooPriceProvider must fetch all symbols in context, not just the first 6."""
+    from unittest.mock import patch
+    from src.vendor.digital_oracle.providers import YahooPriceProvider, ProviderCallContext
+
+    test_symbols = ["AAPL", "MSFT", "NVDA", "GOOGL", "META", "AMZN", "TSLA"]  # 7 symbols
+    item = _make_item("test")
+    ctx = ProviderCallContext(item=item, question_type="asset_watchlist", symbols=test_symbols)
+
+    called_symbols: list = []
+
+    def mock_fetch_price(symbol):
+        called_symbols.append(symbol)
+        return {
+            "signal": f"{symbol} price", "value": "100.00", "horizon": "1d",
+            "interpretation": "test", "source": "YahooPriceProvider", "symbol": symbol,
+            "latest_close": "100.0000", "1d_return": "0.0100", "5d_return": "0.0200",
+            "20d_return": "0.0300", "ma5": "99.0000", "ma20": "98.0000",
+            "above_5d_ma": "true", "above_20d_ma": "true",
+            "vol_5d": "0.1500", "vol_20d": "0.1200", "volatility_regime": "medium",
+        }
+
+    with patch.object(YahooPriceProvider, "_fetch_symbol_price", staticmethod(mock_fetch_price)):
+        results = YahooPriceProvider().fetch(ctx)
+
+    assert called_symbols == test_symbols, f"Expected all 7 symbols fetched, got: {called_symbols}"
+    assert len(results) == 7
+
+
+def test_basis_contains_chinese_text_and_real_percentages():
+    """When valid price data exists, basis must contain Chinese text and percentage values."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import estimate_horizon_probability
+    from src.models import TradingAssetConfig
+
+    sig = MarketSignal(
+        layer="price", signal="QQQ price", value="450.00", horizon="1d",
+        interpretation="", source="YahooPriceProvider",
+        metadata={
+            "symbol": "QQQ",
+            "1d_return": "0.0072",
+            "5d_return": "0.0240",
+            "20d_return": "0.0580",
+            "above_5d_ma": "true",
+            "above_20d_ma": "true",
+            "volatility_regime": "low",
+        },
+    )
+    asset = TradingAssetConfig(name="QQQ", category="qdii_nasdaq100", symbols=["QQQ"])
+
+    hp_1d = estimate_horizon_probability(asset, [sig], "1d")
+    assert "篮子" in hp_1d.basis
+    assert "5日均线" in hp_1d.basis
+    assert "%" in hp_1d.basis
+    assert "1/1" in hp_1d.basis
+
+    hp_1w = estimate_horizon_probability(asset, [sig], "1w")
+    assert "篮子" in hp_1w.basis
+    assert "20日均线" in hp_1w.basis
+    assert "%" in hp_1w.basis
+
+    hp_1m = estimate_horizon_probability(asset, [sig], "1m")
+    assert "篮子" in hp_1m.basis
+    assert "20日均线" in hp_1m.basis
+    assert "%" in hp_1m.basis
+
+
+def test_basis_shows_matched_over_total():
+    """Basis must show matched/total count for symbols above MA."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import estimate_horizon_probability
+    from src.models import TradingAssetConfig
+
+    def _sig(sym, above_5d, above_20d, ret):
+        return MarketSignal(
+            layer="price", signal=f"{sym} price", value="100.00", horizon="1d",
+            interpretation="", source="YahooPriceProvider",
+            metadata={
+                "symbol": sym, "1d_return": ret, "5d_return": ret, "20d_return": ret,
+                "above_5d_ma": above_5d, "above_20d_ma": above_20d,
+                "volatility_regime": "low",
+            },
+        )
+
+    signals = [
+        _sig("AAPL", "true", "true", "0.02"),
+        _sig("MSFT", "true", "true", "0.01"),
+        _sig("NVDA", "true", "false", "0.03"),
+    ]
+    asset = TradingAssetConfig(name="Test", category="us_stock", symbols=["AAPL", "MSFT", "NVDA"])
+
+    # 1d: all 3 above 5D MA → 3/3
+    hp_1d = estimate_horizon_probability(asset, signals, "1d")
+    assert "3/3" in hp_1d.basis, f"Expected '3/3' in 1d basis, got: {hp_1d.basis!r}"
+
+    # 1w: 2 out of 3 above 20D MA → 2/3
+    hp_1w = estimate_horizon_probability(asset, signals, "1w")
+    assert "2/3" in hp_1w.basis, f"Expected '2/3' in 1w basis, got: {hp_1w.basis!r}"
+
+
+def test_basis_shows_symbol_return_samples():
+    """Basis must include sample symbol return values."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import estimate_horizon_probability
+    from src.models import TradingAssetConfig
+
+    sig = MarketSignal(
+        layer="price", signal="QQQ price", value="450.00", horizon="1d",
+        interpretation="", source="YahooPriceProvider",
+        metadata={
+            "symbol": "QQQ", "1d_return": "0.0065",
+            "5d_return": "0.0240", "20d_return": "0.0580",
+            "above_5d_ma": "true", "above_20d_ma": "true",
+            "volatility_regime": "low",
+        },
+    )
+    asset = TradingAssetConfig(name="QDII", category="qdii_nasdaq100", symbols=["QQQ"])
+
+    hp_1d = estimate_horizon_probability(asset, [sig], "1d")
+    assert "QQQ" in hp_1d.basis, f"Expected 'QQQ' in basis, got: {hp_1d.basis!r}"
+    assert "%" in hp_1d.basis
+
+
+def test_basis_not_only_english_template():
+    """Basis must not be the old English template strings when valid data is present."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import estimate_horizon_probability
+    from src.models import TradingAssetConfig
+
+    sig = MarketSignal(
+        layer="price", signal="QQQ price", value="450.00", horizon="1d",
+        interpretation="", source="YahooPriceProvider",
+        metadata={
+            "1d_return": "0.010", "5d_return": "0.020", "20d_return": "0.040",
+            "above_5d_ma": "true", "above_20d_ma": "true", "volatility_regime": "low",
+        },
+    )
+    asset = TradingAssetConfig(name="Test", category="us_stock", symbols=["QQQ"])
+
+    for hz in ("1d", "1w", "1m"):
+        hp = estimate_horizon_probability(asset, [sig], hz)
+        assert "1d basket avg return positive" not in hp.basis, (
+            f"horizon={hz}: old English template still present: {hp.basis!r}"
+        )
+        assert "100% symbols above" not in hp.basis, (
+            f"horizon={hz}: old '100%' template still present: {hp.basis!r}"
+        )
+
+
+def test_trading_config_has_max_symbols_per_asset():
+    """TradingConfig must expose max_symbols_per_asset with default value 10."""
+    config = TradingConfig()
+    assert hasattr(config, "max_symbols_per_asset")
+    assert config.max_symbols_per_asset == 10
+
+
+def test_oracle_respects_max_symbols_per_asset():
+    """Oracle must slice asset symbols to max_symbols_per_asset when building provider context."""
+    from unittest.mock import patch, MagicMock
+
+    fetched_symbols: list = []
+
+    def mock_fetch_price(symbol):
+        fetched_symbols.append(symbol)
+        return {
+            "signal": f"{symbol} price", "value": "100.00", "horizon": "1d",
+            "interpretation": "test", "source": "YahooPriceProvider", "symbol": symbol,
+            "latest_close": "100.0000", "1d_return": "0.01", "5d_return": "0.02",
+            "20d_return": "0.03", "ma5": "99.0000", "ma20": "98.0000",
+            "above_5d_ma": "true", "above_20d_ma": "true",
+            "vol_5d": "0.15", "vol_20d": "0.12", "volatility_regime": "low",
+        }
+
+    from src.vendor.digital_oracle.providers import YahooPriceProvider
+
+    mock_provider = MagicMock(spec=YahooPriceProvider)
+    mock_provider.layer = "price"
+
+    # Capture the call to see what symbols are passed
+    captured_contexts = []
+
+    def mock_fetch(ctx):
+        captured_contexts.append(list(ctx.symbols))
+        return [mock_fetch_price(s) for s in ctx.symbols]
+
+    mock_provider.fetch.side_effect = mock_fetch
+
+    config = TradingConfig(
+        enabled=True,
+        mode="asset_watchlist",
+        max_symbols_per_asset=3,
+        watch_assets=[
+            TradingAssetConfig(
+                name="US Mega Cap", category="us_stock",
+                symbols=["AAPL", "MSFT", "NVDA", "GOOGL", "META", "AMZN", "TSLA"],
+            )
+        ],
+        enabled_providers=["yahoo_price"],
+    )
+    analyzer = TradingOracleAnalyzer(config)
+
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+        result = asyncio.run(analyzer.analyze_asset_watchlist())
+
+    assert result is not None
+    # Should have fetched only the first 3 symbols
+    assert len(captured_contexts) == 1
+    assert captured_contexts[0] == ["AAPL", "MSFT", "NVDA"], (
+        f"Expected first 3 symbols, got: {captured_contexts[0]}"
     )

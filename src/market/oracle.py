@@ -295,7 +295,7 @@ class TradingOracleAnalyzer:
             call_context = ProviderCallContext(
                 item=item,
                 question_type="asset_watchlist",
-                symbols=asset.symbols,
+                symbols=asset.symbols[:self.config.max_symbols_per_asset],
                 user_email=user_email,
             )
             for provider_name in watchlist_providers:
