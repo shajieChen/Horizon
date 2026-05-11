@@ -492,7 +492,7 @@ class HorizonOrchestrator:
         return await analyzer.analyze_batch(items)
 
     async def _forecast_important_items(self, items: List[ContentItem]) -> None:
-        """Diplomacy forecaster module has been turned off by design; keep this stage as a no-op."""
+        """No-op placeholder. Diplomacy forecaster has been intentionally disabled."""
         return
 
     async def _generate_summary(
