@@ -115,6 +115,7 @@ class DiplomacyForecaster:
             return False
 
         total = sum(numeric_probabilities)
+        # Allow a small tolerance to handle floating-point rounding from model output.
         if abs(total - 100.0) > 0.5:
             logger.warning(
                 "Scenario probabilities must sum to 100 for %s, got %.2f, skipping forecast",
