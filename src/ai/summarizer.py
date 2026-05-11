@@ -223,13 +223,20 @@ class DailySummarizer:
             lines.append("")
             lines.append(f"**{labels['discussion']}**: {discussion}")
 
-        forecast_block = self._format_forecast_block(meta.get("forecast"))
-        if forecast_block:
-            lines.append("")
-            lines.append(forecast_block)
+        trading_analysis = meta.get("trading_analysis")
+        is_asset_watchlist = (
+            isinstance(trading_analysis, dict)
+            and trading_analysis.get("question_type") == "asset_watchlist"
+        )
+
+        if not is_asset_watchlist:
+            forecast_block = self._format_forecast_block(meta.get("forecast"))
+            if forecast_block:
+                lines.append("")
+                lines.append(forecast_block)
 
         trading_block = self._format_trading_analysis_block(
-            meta.get("trading_analysis"),
+            trading_analysis,
             meta.get("forecast"),
         )
         if trading_block:
@@ -275,6 +282,25 @@ class DailySummarizer:
         if isinstance(value, str) and value.strip():
             return value.strip()
         return "-"
+
+    @staticmethod
+    def _clean_table_cell(value: Any) -> str:
+        """Sanitize Markdown table cells by flattening newlines and replacing pipes that would break table structure."""
+        text = str(value or "").replace("\n", " ").replace("|", "/").strip()
+        return text
+
+    @staticmethod
+    def _to_probability_number(value: Any) -> str:
+        """Render probability values as compact whole numbers for the asset watchlist overview row, not detailed percent tables."""
+        if isinstance(value, (int, float)):
+            return f"{value:.0f}"
+        text = DailySummarizer._clean_table_cell(value).rstrip("%")
+        if not text:
+            return "-"
+        try:
+            return f"{float(text):.0f}"
+        except ValueError:
+            return text
 
     def _format_forecast_block(self, forecast: Any) -> str:
         """Render the forecast analysis block in Chinese if available."""
@@ -327,10 +353,12 @@ class DailySummarizer:
         scenario_rows = []
         for key, label in scenario_specs:
             scenario = scenarios_by_name.get(key, {})
-            horizon = str(scenario.get("horizon") or "-")
-            probability = self._to_percent(scenario.get("probability"))
-            reasoning = str(scenario.get("reasoning") or "-")
-            triggers = self._join_items(scenario.get("trigger_conditions"), default="-")
+            horizon = self._clean_table_cell(scenario.get("horizon") or "-")
+            probability = self._clean_table_cell(self._to_percent(scenario.get("probability")))
+            reasoning = self._clean_table_cell(scenario.get("reasoning") or "-")
+            triggers = self._clean_table_cell(
+                self._join_items(scenario.get("trigger_conditions"), default="-")
+            )
             scenario_rows.append(f"| {label} | {horizon} | {probability} | {reasoning} | {triggers} |")
 
         confidence_level_map = {
@@ -420,10 +448,10 @@ class DailySummarizer:
                 continue
             signal_rows.append(
                 "| {layer} | {signal} | {value} | {interpretation} |".format(
-                    layer=signal.get("layer", "-"),
-                    signal=signal.get("signal", "-"),
-                    value=signal.get("value", "-"),
-                    interpretation=signal.get("interpretation", "-"),
+                    layer=self._clean_table_cell(signal.get("layer", "-")),
+                    signal=self._clean_table_cell(signal.get("signal", "-")),
+                    value=self._clean_table_cell(signal.get("value", "-")),
+                    interpretation=self._clean_table_cell(signal.get("interpretation", "-")),
                 )
             )
         if not signal_rows:
@@ -433,11 +461,14 @@ class DailySummarizer:
         for scenario in scenarios:
             if not isinstance(scenario, dict):
                 continue
+            probability = self._clean_table_cell(scenario.get("probability", "-"))
+            if probability not in {"", "-"} and not probability.endswith("%"):
+                probability = f"{probability}%"
             scenario_rows.append(
-                "| {name} | {probability}% | {bias} |".format(
-                    name=scenario.get("name", "-"),
-                    probability=scenario.get("probability", "-"),
-                    bias=scenario.get("trading_bias", "-"),
+                "| {name} | {probability} | {bias} |".format(
+                    name=self._clean_table_cell(scenario.get("name", "-")),
+                    probability=probability or "-",
+                    bias=self._clean_table_cell(scenario.get("trading_bias", "-")),
                 )
             )
         if not scenario_rows:
@@ -449,9 +480,9 @@ class DailySummarizer:
                 continue
             monitor_rows.append(
                 "| {signal} | {threshold} | {meaning} |".format(
-                    signal=monitor.get("signal", "-"),
-                    threshold=monitor.get("threshold", "-"),
-                    meaning=monitor.get("meaning", "-"),
+                    signal=self._clean_table_cell(monitor.get("signal", "-")),
+                    threshold=self._clean_table_cell(monitor.get("threshold", "-")),
+                    meaning=self._clean_table_cell(monitor.get("meaning", "-")),
                 )
             )
         if not monitor_rows:
@@ -506,19 +537,13 @@ class DailySummarizer:
         errors = self._as_list(trading_analysis.get("errors"))
         data_sources = self._as_list(trading_analysis.get("data_sources")) or ["N/A"]
 
-        disclaimer = (
-            "> **免责声明**：本分析仅基于市场数据的概率估算，不构成投资建议。"
-            "市场存在不确定性，请独立判断并承担相应风险。"
-        )
-
         lines = [
             "**Trading Analysis**",
             "",
             "> 分析类型：固定资产池概率分析 (Asset Watchlist)  ",
             "> 分析范围：QDII 纳斯达克 100 / 海外股票 / 美国股票 / 日本股票 / 香港股票  ",
-            "> 时间维度：1日 / 1周 / 1月",
-            "",
-            disclaimer,
+            "> 时间维度：1日 / 1周 / 1月  ",
+            "> 免责声明：本分析仅基于市场数据进行概率估算，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。",
             "",
         ]
 
@@ -527,8 +552,8 @@ class DailySummarizer:
             lines += [
                 "### 资产概率总览 (Asset Probability Overview)",
                 "",
-                "| 资产 | 市场 | 1D 偏向 | 1D ↑/↓/~ | 1W 偏向 | 1W ↑/↓/~ | 1M 偏向 | 1M ↑/↓/~ | 数据质量 |",
-                "|---|---|---|---|---|---|---|---|---|",
+                "| 资产 | 市场 | 1日 | 1周 | 1月 | 数据质量 |",
+                "|---|---|---|---|---|---|",
             ]
             for av in asset_views:
                 if not isinstance(av, dict):
@@ -540,21 +565,21 @@ class DailySummarizer:
                         hz = hp.get("horizon", "")
                         if hz in cells:
                             cells[hz] = hp
-                def _fmt_cell(hp: dict) -> tuple:
+                def _format_probability_cell(hp: dict) -> str:
                     if not hp:
-                        return "-", "-"
-                    bias = hp.get("expected_bias", "-")
-                    up = hp.get("up_probability", 0)
-                    dn = hp.get("down_probability", 0)
-                    ne = hp.get("neutral_probability", 0)
-                    return bias, f"↑{up:.0f}/↓{dn:.0f}/~{ne:.0f}"
-                b1d, v1d = _fmt_cell(cells["1d"])
-                b1w, v1w = _fmt_cell(cells["1w"])
-                b1m, v1m = _fmt_cell(cells["1m"])
-                dq = av.get("data_quality", "medium")
+                        return "-"
+                    bias = self._clean_table_cell(hp.get("expected_bias", "-"))
+                    up = self._to_probability_number(hp.get("up_probability", 0))
+                    dn = self._to_probability_number(hp.get("down_probability", 0))
+                    ne = self._to_probability_number(hp.get("neutral_probability", 0))
+                    return self._clean_table_cell(f"{bias} {up}/{dn}/{ne}")
+                v1d = _format_probability_cell(cells["1d"])
+                v1w = _format_probability_cell(cells["1w"])
+                v1m = _format_probability_cell(cells["1m"])
+                dq = self._clean_table_cell(av.get("data_quality", "medium"))
                 lines.append(
-                    f"| {av.get('name', '-')} | {av.get('market', '-')} "
-                    f"| {b1d} | {v1d} | {b1w} | {v1w} | {b1m} | {v1m} | {dq} |"
+                    f"| {self._clean_table_cell(av.get('name', '-'))} | {self._clean_table_cell(av.get('market', '-'))} "
+                    f"| {v1d} | {v1w} | {v1m} | {dq} |"
                 )
 
             # Detailed per-asset views
@@ -570,9 +595,10 @@ class DailySummarizer:
                 ]
                 if av.get("note"):
                     lines += [f"> {av['note']}", ""]
-                syms = ", ".join(av.get("symbols") or [])
+                syms = self._clean_table_cell(", ".join(av.get("symbols") or []))
                 lines += [
-                    f"**市场**：{av.get('market', '-')} | **品种**：{syms}",
+                    f"市场：{self._clean_table_cell(av.get('market', '-'))}",
+                    f"品种：{syms or '-'}",
                     "",
                     "| 周期 | 上涨概率 | 下跌概率 | 中性概率 | 偏向 | 置信度 |",
                     "|---|---:|---:|---:|---|---|",
@@ -582,11 +608,11 @@ class DailySummarizer:
                         continue
                     hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
                     lines.append(
-                        f"| {hz_label} | {hp.get('up_probability', 0):.0f}% "
-                        f"| {hp.get('down_probability', 0):.0f}% "
-                        f"| {hp.get('neutral_probability', 0):.0f}% "
-                        f"| {hp.get('expected_bias', '-')} "
-                        f"| {hp.get('confidence', '-')} |"
+                        f"| {self._clean_table_cell(hz_label)} | {self._clean_table_cell(self._to_percent(hp.get('up_probability', 0)))} "
+                        f"| {self._clean_table_cell(self._to_percent(hp.get('down_probability', 0)))} "
+                        f"| {self._clean_table_cell(self._to_percent(hp.get('neutral_probability', 0)))} "
+                        f"| {self._clean_table_cell(hp.get('expected_bias', '-'))} "
+                        f"| {self._clean_table_cell(hp.get('confidence', '-'))} |"
                     )
                 lines += [""]
                 if any(hp.get("basis") for hp in (av.get("horizons") or []) if isinstance(hp, dict)):
