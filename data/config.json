@@ -1,7 +1,6 @@
 {
   "version": "1.0",
-  "ai":
-  {
+  "ai": {
     "provider": "openai",
     "model": "deepseek-v4-flash",
     "base_url": "https://api.deepseek.com",
@@ -9,13 +8,11 @@
     "temperature": 0.3,
     "max_tokens": 4096,
     "throttle_sec": 1.0,
-    "languages":
-    [
+    "languages": [
       "zh"
     ]
   },
-  "email":
-  {
+  "email": {
     "enabled": true,
     "smtp_server": "smtp.qq.com",
     "smtp_port": 465,
@@ -27,84 +24,120 @@
     "subscribe_keyword": "SUBSCRIBE",
     "unsubscribe_keyword": "UNSUBSCRIBE"
   },
-  "sources":
-  {
-    "github":
-    [
-      {
-        "type": "repo_releases",
-        "owner": "openai",
-        "repo": "openai-python",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "anthropics",
-        "repo": "anthropic-sdk-python",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "deepseek-ai",
-        "repo": "DeepSeek-V3",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "modelcontextprotocol",
-        "repo": "servers",
-        "enabled": true
-      },
-      {
-        "type": "user_events",
-        "username": "simonw",
-        "enabled": true
-      }
-    ],
-    "hackernews":
-    {
-      "enabled": true,
+  "sources": {
+    "github": [],
+    "hackernews": {
+      "enabled": false,
       "fetch_top_stories": 30,
       "min_score": 100
     },
-    "rss":
-    [
+    "rss": [
       {
-        "name": "Simon Willison",
-        "url": "https://simonwillison.net/atom/everything/",
+        "name": "UN News",
+        "url": "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
         "enabled": true,
-        "category": "general-intelligence"
+        "category": "international-organization"
       },
       {
-        "name": "OpenAI Blog",
-        "url": "https://openai.com/news/rss.xml",
+        "name": "UN Geneva Press Releases",
+        "url": "https://www.ungeneva.org/en/news-media/press-release/feed",
         "enabled": true,
-        "category": "general-intelligence"
+        "category": "official-diplomacy"
       },
       {
-        "name": "Anthropic News",
-        "url": "https://www.anthropic.com/news/rss.xml",
+        "name": "Council of the EU Press Releases",
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/rss/",
         "enabled": true,
-        "category": "general-intelligence"
+        "category": "official-diplomacy"
       },
       {
-        "name": "GitHub Blog",
-        "url": "https://github.blog/feed/",
+        "name": "Council of the EU Foreign Affairs Council",
+        "url": "https://www.consilium.europa.eu/en/council-eu/configurations/fac/rss/",
         "enabled": true,
-        "category": "general-intelligence"
+        "category": "official-diplomacy"
       },
       {
-        "name": "Hugging Face Blog",
-        "url": "https://huggingface.co/blog/feed.xml",
+        "name": "IMF News",
+        "url": "https://www.imf.org/en/News/RSS",
         "enabled": true,
-        "category": "general-intelligence"
+        "category": "macro-finance"
+      },
+      {
+        "name": "World Bank News",
+        "url": "https://www.worldbank.org/en/news/all?format=rss",
+        "enabled": true,
+        "category": "international-organization"
+      },
+      {
+        "name": "ECB Press Releases",
+        "url": "https://www.ecb.europa.eu/rss/press.html",
+        "enabled": true,
+        "category": "macro-finance"
+      },
+      {
+        "name": "Federal Reserve Press Releases",
+        "url": "https://www.federalreserve.gov/feeds/press_all.xml",
+        "enabled": true,
+        "category": "macro-finance"
+      },
+      {
+        "name": "BIS Press Releases",
+        "url": "https://www.bis.org/list/press_releases.rss",
+        "enabled": true,
+        "category": "macro-finance"
+      },
+      {
+        "name": "WTO News",
+        "url": "https://www.wto.org/english/news_e/news_e.rss",
+        "enabled": true,
+        "category": "geo-economics"
+      },
+      {
+        "name": "IEA News",
+        "url": "https://www.iea.org/news/rss",
+        "enabled": true,
+        "category": "energy-commodities"
+      },
+      {
+        "name": "Chatham House",
+        "url": "https://www.chathamhouse.org/rss.xml",
+        "enabled": true,
+        "category": "think-tank"
+      },
+      {
+        "name": "Council on Foreign Relations",
+        "url": "https://www.cfr.org/rss.xml",
+        "enabled": true,
+        "category": "geopolitical-risk"
+      },
+      {
+        "name": "CSIS",
+        "url": "https://www.csis.org/rss.xml",
+        "enabled": true,
+        "category": "geopolitical-risk"
+      },
+      {
+        "name": "Carnegie Endowment for International Peace",
+        "url": "https://carnegieendowment.org/rss",
+        "enabled": true,
+        "category": "think-tank"
+      },
+      {
+        "name": "Atlantic Council",
+        "url": "https://www.atlanticcouncil.org/feed/",
+        "enabled": true,
+        "category": "think-tank"
+      },
+      {
+        "name": "Financial Stability Board News",
+        "url": "https://www.fsb.org/feed/",
+        "enabled": true,
+        "category": "market-risk"
       }
     ],
-    "reddit":
-    {
+    "reddit": {
       "enabled": false,
-      "subreddits":
-      [
+      "subreddits": [
         {
           "subreddit": "MachineLearning",
           "enabled": true,
@@ -117,19 +150,16 @@
       "users": [],
       "fetch_comments": 5
     },
-    "telegram":
-    {
+    "telegram": {
       "enabled": false,
       "channels": []
     }
   },
-  "filtering":
-  {
+  "filtering": {
     "ai_score_threshold": 6.0,
     "time_window_hours": 24
   },
-  "webhook":
-  {
+  "webhook": {
     "enabled": false,
     "url_env": "HORIZON_WEBHOOK_URL",
     "delivery": "summary",
@@ -138,8 +168,7 @@
     "layout": "markdown",
     "fallback_layout": "markdown",
     "languages": null,
-    "request_body":
-    {
+    "request_body": {
       "text": "#{message_title}\n\n#{summary}"
     },
     "headers": ""
