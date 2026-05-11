@@ -5,33 +5,23 @@ date: 2026-05-11
 lang: zh
 ---
 
-> From 14 items, 1 important content pieces were selected
+> From 3 items, 1 important content pieces were selected
 
 ---
 
-1. [欧盟数字钱包将身份绑定于美国硬件双寡头](#item-1) ⭐️ 6.0/10
+1. [欧央行与印度储备银行签署合作备忘录](#item-1) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [欧盟数字钱包将身份绑定于美国硬件双寡头](https://grapheneos.social/@GrapheneOS/116550899908879585) ⭐️ 6.0/10
+## [欧央行与印度储备银行签署合作备忘录](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260510~e8a674e2fb.en.html) ⭐️ 6.0/10
 
-欧盟数字身份钱包要求使用谷歌或苹果的硬件认证，实际上将所有欧洲数字身份绑定到美国技术双寡头。 这损害了欧盟的数字主权并引发隐私担忧，因为认证数据包可将行为关联到特定设备，与钱包的隐私承诺相悖。 该系统未使用零知识证明或盲签名；而是通过静态设备 ID 从中介获取临时 ID，从而实现设备追踪。
+欧洲中央银行（ECB）与印度储备银行（RBI）签署了一份谅解备忘录，以加强在中央银行和金融稳定领域的合作。 该协议为欧元区与印度之间深化货币协调和监管对接铺平了道路，有望促进货币互换安排和跨境金融稳定合作。 该谅解备忘录于 2026 年 5 月 10 日签署，由欧洲央行宣布。具体合作领域包括与央行职能相关的信息交流和联合活动。
 
-hackernews · ChuckMcM · May 10, 17:54
+rss · ECB Press Releases · May 10, 13:00
 
-**背景**: 硬件认证通过嵌入芯片的加密密钥验证设备完整性。欧盟数字身份钱包是供欧盟公民在线证明身份的手机钱包。要求谷歌或苹果的认证使这些公司控制欧洲数字身份基础设施。
+**背景**: 央行常通过签署备忘录来正式确立在金融稳定、支付系统和监管等方面的合作。欧洲央行负责欧元区货币政策，而印度储备银行是印度的中央银行，负责货币稳定和监管。此类协议有助于建立信任，并在金融危机期间促进协调。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://developer.android.com/privacy-and-security/security-key-attestation">Verify hardware-backed key pairs with key attestation</a></li>
-<li><a href="https://en.wikipedia.org/wiki/EU_Digital_Identity_Wallet">EU Digital Identity Wallet - Wikipedia</a></li>
-
-</ul>
-</details>
-
-**社区讨论**: 评论者批评缺乏零知识证明等隐私保护技术以及硬件层面锁定，将其与过去英特尔 CPU 序列号和 Windows 11 TPM 要求的争议相提并论。
-
-**标签**: `#europe`, `#digital-sovereignty`, `#technology-policy`, `#geopolitics`, `#supply-chain`
+**标签**: `#central-bank`, `#europe`, `#asia-pacific`, `#financial-stability`
 
 ---
