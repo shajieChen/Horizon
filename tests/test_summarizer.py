@@ -53,3 +53,61 @@ def test_generate_webhook_item_renders_single_item_detail():
     assert "## [Important Item 1](https://example.com/items/1)" in result
     assert "Summary for item 1." in result
     assert "**Tags**: `#AI`, `#News`" in result
+
+
+def test_generate_webhook_item_renders_forecast_block_when_forecastable():
+    summarizer = DailySummarizer()
+    item = _make_item(1)
+    item.metadata["forecast"] = {
+        "is_forecastable": True,
+        "event_type": "policy-signal",
+        "actors": [
+            {"name": "Actor A", "role": "state", "likely_incentives": ["stability"]},
+        ],
+        "cause_chain": {
+            "immediate_trigger": "Trigger",
+            "structural_causes": ["Cause 1"],
+            "constraints": ["Constraint 1"],
+        },
+        "scenarios": [
+            {"name": "baseline", "horizon": "7d", "probability": 55, "reasoning": "R1", "trigger_conditions": ["T1"]},
+            {"name": "escalation", "horizon": "7d", "probability": 25, "reasoning": "R2", "trigger_conditions": ["T2"]},
+            {"name": "deescalation", "horizon": "7d", "probability": 15, "reasoning": "R3", "trigger_conditions": ["T3"]},
+            {"name": "wildcard", "horizon": "30d", "probability": 5, "reasoning": "R4", "trigger_conditions": ["T4"]},
+        ],
+        "near_term_watch": {"24h": ["W1"], "7d": ["W2"], "30d": ["W3"]},
+        "confidence": {"level": "medium", "reason": "Reason"},
+        "falsifiers": ["F1"],
+        "missing_evidence": ["M1"],
+        "market_or_policy_implications": ["I1"],
+    }
+
+    result = summarizer.generate_webhook_item(
+        item,
+        language="zh",
+        index=1,
+        total=1,
+    )
+
+    assert "**预测分析**" in result
+    assert "**未来情景**" in result
+    assert "| 基准 | 7d | 55% | R1 | T1 |" in result
+    assert "**置信度**：中等。Reason" in result
+
+
+def test_generate_webhook_item_renders_non_forecastable_reason():
+    summarizer = DailySummarizer()
+    item = _make_item(1)
+    item.metadata["forecast"] = {
+        "is_forecastable": False,
+        "reason": "insufficient evidence",
+    }
+
+    result = summarizer.generate_webhook_item(
+        item,
+        language="zh",
+        index=1,
+        total=1,
+    )
+
+    assert "**预测分析**：该事件不适合进行独立情景预测。原因：insufficient evidence" in result

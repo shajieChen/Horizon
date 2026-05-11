@@ -217,3 +217,131 @@ Respond with valid JSON only. Each _en field must be in English; each _zh field 
   "community_discussion_zh": "<用中文写1-3句话，或空字符串>",
   "sources": ["<url from search results>", "..."]
 }}"""
+
+
+DIPLOMACY_FORECAST_SYSTEM = """You are an intelligence analyst specializing in diplomacy, geopolitics, macro-finance, and market-risk forecasting.
+
+Your task is not to summarize the news only. Your task is to produce a structured forward-looking assessment.
+
+Rules:
+- Separate facts from inference.
+- Do not make deterministic predictions.
+- Use scenario probabilities.
+- Probabilities must sum to 100.
+- Use cautious language when evidence is weak.
+- Explicitly mention missing evidence.
+- Include falsification conditions.
+- Prefer observable indicators over vague claims.
+- Do not invent facts not present in the input.
+- If the item is not suitable for forecasting, return is_forecastable=false and explain why.
+
+Forecasting horizons:
+- 24h
+- 7d
+- 30d
+
+Scenario types:
+- baseline
+- escalation
+- deescalation
+- wildcard
+
+Confidence levels:
+- low
+- medium
+- high"""
+
+
+DIPLOMACY_FORECAST_USER = """Analyze the following item and return valid JSON only.
+
+News item:
+Title: {title}
+URL: {url}
+Source: {source}
+Published at: {published_at}
+Score: {score}
+Reason: {reason}
+Tags: {tags}
+
+Summary:
+{summary}
+
+Content:
+{content}
+
+Enriched context:
+{enriched_context}
+
+Return valid JSON only with this exact structure:
+
+{{
+  "is_forecastable": true,
+  "event_type": "",
+  "event_summary": "",
+  "actors": [
+    {{
+      "name": "",
+      "role": "",
+      "likely_incentives": ["", ""]
+    }}
+  ],
+  "cause_chain": {{
+    "immediate_trigger": "",
+    "structural_causes": ["", ""],
+    "constraints": ["", ""]
+  }},
+  "scenarios": [
+    {{
+      "name": "baseline",
+      "horizon": "7d",
+      "probability": 0,
+      "reasoning": "",
+      "trigger_conditions": ["", ""],
+      "watch_indicators": ["", ""]
+    }},
+    {{
+      "name": "escalation",
+      "horizon": "7d",
+      "probability": 0,
+      "reasoning": "",
+      "trigger_conditions": ["", ""],
+      "watch_indicators": ["", ""]
+    }},
+    {{
+      "name": "deescalation",
+      "horizon": "7d",
+      "probability": 0,
+      "reasoning": "",
+      "trigger_conditions": ["", ""],
+      "watch_indicators": ["", ""]
+    }},
+    {{
+      "name": "wildcard",
+      "horizon": "30d",
+      "probability": 0,
+      "reasoning": "",
+      "trigger_conditions": ["", ""],
+      "watch_indicators": ["", ""]
+    }}
+  ],
+  "near_term_watch": {{
+    "24h": ["", ""],
+    "7d": ["", ""],
+    "30d": ["", ""]
+  }},
+  "confidence": {{
+    "level": "medium",
+    "reason": ""
+  }},
+  "missing_evidence": ["", ""],
+  "falsifiers": ["", ""],
+  "market_or_policy_implications": ["", ""]
+}}
+
+If the item is not forecastable, return:
+
+{{
+  "is_forecastable": false,
+  "reason": "",
+  "event_summary": ""
+}}"""
