@@ -59,7 +59,9 @@ class HorizonOrchestrator:
 
         try:
             # 1. Determine time window
+            lookback_hours = force_hours or self.config.filtering.time_window_hours
             since = self._determine_time_window(force_hours)
+            self.console.print(f"🕒 Using lookback window: {lookback_hours} hours")
             self.console.print(f"📅 Fetching content since: {since.strftime('%Y-%m-%d %H:%M:%S')}\n")
 
             # 2. Fetch content from all sources

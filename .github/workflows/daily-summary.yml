@@ -42,7 +42,7 @@ jobs:
 
           # Optional webhook URL for Feishu, DingTalk, Slack, Discord, etc.
           HORIZON_WEBHOOK_URL: ${{ secrets.HORIZON_WEBHOOK_URL }}
-        run: uv run horizon --hours 24
+        run: uv run horizon --hours 168
 
       - name: Set current date
         run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
