@@ -88,6 +88,55 @@ def _format_ratio(ratio: float) -> str:
     return f"{ratio:.0%}" if ratio >= 0 else "?"
 
 
+def _format_pct(value: "str | float") -> str:
+    """Format a decimal return value as a signed percentage string."""
+    try:
+        return f"{float(value) * 100:+.2f}%"
+    except (TypeError, ValueError):
+        return "N/A"
+
+
+def _valid_price_signals(signals: "List[MarketSignal]") -> "List[MarketSignal]":
+    """Return price signals that have a numeric value and a usable 1d_return metadata."""
+    return [
+        s for s in signals
+        if s.layer == "price"
+        and s.value not in ("", "N/A")
+        and (getattr(s, "metadata", {}) or {}).get("1d_return") not in (None, "", "N/A", "unknown")
+    ]
+
+
+def _symbol_return_summary(signals: "List[MarketSignal]", key: str, limit: int = 5) -> str:
+    """Return a semicolon-joined list of 'SYMBOL +X.XX%' strings for up to *limit* symbols."""
+    rows = []
+    for s in _valid_price_signals(signals):
+        meta = getattr(s, "metadata", {}) or {}
+        symbol = meta.get("symbol") or s.signal.replace(" price", "")
+        raw = meta.get(key)
+        if raw in (None, "", "N/A", "unknown"):
+            continue
+        rows.append(f"{symbol} {_format_pct(raw)}")
+    return "；".join(rows[:limit])
+
+
+def _ratio_count(
+    signals: "List[MarketSignal]", key: str, expected: str = "true"
+) -> "tuple[int, int, float]":
+    """Return (matched, total, ratio) for *key* among valid price signals."""
+    total = 0
+    matched = 0
+    for s in _valid_price_signals(signals):
+        meta = getattr(s, "metadata", {}) or {}
+        raw = meta.get(key)
+        if raw in (None, "", "N/A", "unknown"):
+            continue
+        total += 1
+        if str(raw).lower() == expected:
+            matched += 1
+    ratio = matched / total if total else 0.0
+    return matched, total, ratio
+
+
 def estimate_horizon_probability(
     asset: "TradingAssetConfig",
     price_signals: "List[MarketSignal]",
@@ -107,14 +156,6 @@ def estimate_horizon_probability(
 
     basis_items: list[str] = []
     invalidation_items: list[str] = []
-
-    # Extract relevant price metric values from metadata (basket-averaged)
-    ret_1d = _average_metadata(price_signals, "1d_return")
-    ret_5d = _average_metadata(price_signals, "5d_return")
-    ret_20d = _average_metadata(price_signals, "20d_return")
-    above_5d_ratio = _ratio_metadata(price_signals, "above_5d_ma", "true")
-    above_20d_ratio = _ratio_metadata(price_signals, "above_20d_ma", "true")
-    vol_regime = _extract_metadata_value(price_signals, "volatility_regime")
 
     # Determine high-volatility regime: true if any single symbol is "high",
     # or if 30% or more of symbols are "high".
@@ -140,20 +181,23 @@ def estimate_horizon_probability(
         except (ValueError, TypeError):
             return False
 
-    def _ratio_float(val: str) -> float:
-        try:
-            return float(val)
-        except (ValueError, TypeError):
-            return -1.0
-
     if horizon == "1d":
-        r5 = _ratio_float(above_5d_ratio)
-        if _positive(ret_1d) and r5 >= 0.5:
+        matched_5, total_5, r5 = _ratio_count(price_signals, "above_5d_ma")
+        avg_1d = _average_metadata(price_signals, "1d_return")
+        summary = _symbol_return_summary(price_signals, "1d_return")
+        suffix = f"样本：{summary}。" if summary else ""
+        if _positive(avg_1d) and r5 >= 0.5:
             up += 10
-            basis_items.append(f"1d basket avg return positive and {_format_ratio(r5)} symbols above 5D MA")
-        elif _negative(ret_1d) and 0.0 <= r5 < 0.5:
+            basis_items.append(
+                f"1日篮子平均涨幅 {_format_pct(avg_1d)}，"
+                f"{matched_5}/{total_5} 个品种位于 5日均线上方，短线动量偏多。{suffix}"
+            )
+        elif _negative(avg_1d) and 0.0 <= r5 < 0.5:
             down += 10
-            basis_items.append(f"1d basket avg return negative and only {_format_ratio(r5)} symbols above 5D MA")
+            basis_items.append(
+                f"1日篮子平均跌幅 {_format_pct(avg_1d)}，"
+                f"仅 {matched_5}/{total_5} 个品种位于 5日均线上方，短线动量偏弱。{suffix}"
+            )
         if high_vol:
             neutral += 5
             down += 3
@@ -161,26 +205,44 @@ def estimate_horizon_probability(
         invalidation_items.append("price reclaims / loses 5D MA intraday")
 
     elif horizon == "1w":
-        r20 = _ratio_float(above_20d_ratio)
-        if _positive(ret_5d) and r20 >= 0.5:
+        matched_20, total_20, r20 = _ratio_count(price_signals, "above_20d_ma")
+        avg_5d = _average_metadata(price_signals, "5d_return")
+        summary = _symbol_return_summary(price_signals, "5d_return")
+        suffix = f"样本：{summary}。" if summary else ""
+        if _positive(avg_5d) and r20 >= 0.5:
             up += 10
-            basis_items.append(f"5d basket avg return positive and {_format_ratio(r20)} symbols above 20D MA")
-        elif _negative(ret_5d) and 0.0 <= r20 < 0.5:
+            basis_items.append(
+                f"1周篮子平均涨幅 {_format_pct(avg_5d)}，"
+                f"{matched_20}/{total_20} 个品种位于 20日均线上方，中短期趋势偏多。{suffix}"
+            )
+        elif _negative(avg_5d) and 0.0 <= r20 < 0.5:
             down += 10
-            basis_items.append(f"5d basket avg return negative and only {_format_ratio(r20)} symbols above 20D MA")
+            basis_items.append(
+                f"1周篮子平均跌幅 {_format_pct(avg_5d)}，"
+                f"仅 {matched_20}/{total_20} 个品种位于 20日均线上方，中短期趋势偏弱。{suffix}"
+            )
         if high_vol:
             neutral += 5
             basis_items.append("high volatility reduces trend conviction over 1W")
         invalidation_items.append("weekly close outside 20D MA band")
 
     elif horizon == "1m":
-        r20 = _ratio_float(above_20d_ratio)
-        if _positive(ret_20d) and r20 >= 0.5:
+        matched_20, total_20, r20 = _ratio_count(price_signals, "above_20d_ma")
+        avg_20d = _average_metadata(price_signals, "20d_return")
+        summary = _symbol_return_summary(price_signals, "20d_return")
+        suffix = f"样本：{summary}。" if summary else ""
+        if _positive(avg_20d) and r20 >= 0.5:
             up += 15
-            basis_items.append(f"20d basket avg return positive with {_format_ratio(r20)} symbols above 20D MA")
-        elif _negative(ret_20d) and 0.0 <= r20 < 0.5:
+            basis_items.append(
+                f"1月篮子平均涨幅 {_format_pct(avg_20d)}，"
+                f"{matched_20}/{total_20} 个品种位于 20日均线上方，中期趋势偏多。{suffix}"
+            )
+        elif _negative(avg_20d) and 0.0 <= r20 < 0.5:
             down += 15
-            basis_items.append(f"20d basket avg return negative with only {_format_ratio(r20)} symbols above 20D MA")
+            basis_items.append(
+                f"1月篮子平均跌幅 {_format_pct(avg_20d)}，"
+                f"仅 {matched_20}/{total_20} 个品种位于 20日均线上方，中期趋势偏弱。{suffix}"
+            )
         # Check macro stress via fear/greed (still via signal name search)
         fg_val = _extract_signal_value(price_signals, "fear_greed")
         if fg_val == "extreme_fear":

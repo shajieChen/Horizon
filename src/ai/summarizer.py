@@ -617,12 +617,13 @@ class DailySummarizer:
                 lines += [""]
                 if any(hp.get("basis") for hp in (av.get("horizons") or []) if isinstance(hp, dict)):
                     lines.append("**分析依据 (Basis)**")
+                    lines.append("")
                     for hp in (av.get("horizons") or []):
                         if not isinstance(hp, dict) or not hp.get("basis"):
                             continue
                         hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
-                        lines.append(f"- {hz_label}: {hp['basis']}")
-                    lines.append("")
+                        lines.append(f"- {hz_label}：{hp['basis']}")
+                        lines.append("")
                 if any(hp.get("invalidation") for hp in (av.get("horizons") or []) if isinstance(hp, dict)):
                     lines.append("**反证条件 (Invalidation)**")
                     for hp in (av.get("horizons") or []):

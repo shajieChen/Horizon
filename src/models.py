@@ -243,6 +243,8 @@ class TradingConfig(BaseModel):
         ]
     )
 
+    max_symbols_per_asset: int = 10
+
     enabled_providers: List[str] = Field(
         default_factory=lambda: [
             "yahoo_price",

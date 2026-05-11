@@ -86,7 +86,7 @@ class YahooPriceProvider(BaseProvider):
     layer = "price"
 
     def fetch(self, context: ProviderCallContext) -> List[Dict[str, str]]:
-        symbols = context.symbols[:6] if context.symbols else ["SPY", "QQQ"]
+        symbols = context.symbols if context.symbols else ["SPY", "QQQ"]
         signals = []
         for sym in symbols:
             price_data = self._fetch_symbol_price(sym)
@@ -131,11 +131,17 @@ class YahooPriceProvider(BaseProvider):
                     f"vol_5d={vol_5d:.1%} vol_20d={vol_20d:.1%}"
                 ),
                 "source": "YahooPriceProvider",
+                "symbol": symbol,
+                "latest_close": f"{latest:.4f}",
                 "1d_return": f"{ret_1d:.4f}",
                 "5d_return": f"{ret_5d:.4f}",
                 "20d_return": f"{ret_20d:.4f}",
+                "ma5": f"{ma5:.4f}",
+                "ma20": f"{ma20:.4f}",
                 "above_5d_ma": above_5d_ma,
                 "above_20d_ma": above_20d_ma,
+                "vol_5d": f"{vol_5d:.4f}",
+                "vol_20d": f"{vol_20d:.4f}",
                 "volatility_regime": vol_regime,
             }
         except Exception as exc:
@@ -145,6 +151,7 @@ class YahooPriceProvider(BaseProvider):
                 "horizon": "1d",
                 "interpretation": f"Price data unavailable for {symbol}: {exc}",
                 "source": "YahooPriceProvider",
+                "symbol": symbol,
                 "1d_return": "N/A",
                 "5d_return": "N/A",
                 "20d_return": "N/A",
