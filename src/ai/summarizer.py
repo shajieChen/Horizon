@@ -241,7 +241,13 @@ class DailySummarizer:
     def _as_list(value: Any) -> List[str]:
         """Convert unknown values into a cleaned string list."""
         if isinstance(value, list):
-            return [str(v).strip() for v in value if str(v).strip()]
+            cleaned = []
+            for item in value:
+                if isinstance(item, (str, int, float, bool)):
+                    text = str(item).strip()
+                    if text:
+                        cleaned.append(text)
+            return cleaned
         if isinstance(value, str) and value.strip():
             return [value.strip()]
         return []
@@ -291,8 +297,9 @@ class DailySummarizer:
         if isinstance(forecast.get("actors"), list):
             for actor in forecast.get("actors"):
                 if not isinstance(actor, dict):
-                    if str(actor).strip():
-                        actor_lines.append(f"- {str(actor).strip()}")
+                    actor_text = str(actor).strip()
+                    if actor_text:
+                        actor_lines.append(f"- {actor_text}")
                     continue
                 name = str(actor.get("name") or "未知行为体")
                 incentives = self._join_items(actor.get("likely_incentives"))
