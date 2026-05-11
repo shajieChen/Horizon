@@ -220,7 +220,7 @@ class EmailManager:
                 if key and value:
                     style_map[key] = value
         style_map.update(style_updates)
-        return "; ".join(f"{key}: {value}" for key, value in style_map.items())
+        return "; ".join(f"{key}: {value}" for key, value in style_map.items()) + ";"
 
     def _render_markdown_for_email(self, summary_md: str) -> str:
         """Render Markdown into email-safe HTML."""
