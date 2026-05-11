@@ -565,7 +565,7 @@ class DailySummarizer:
                         hz = hp.get("horizon", "")
                         if hz in cells:
                             cells[hz] = hp
-                def _fmt_cell(hp: dict) -> str:
+                def _format_probability_cell(hp: dict) -> str:
                     if not hp:
                         return "-"
                     bias = self._clean_table_cell(hp.get("expected_bias", "-"))
@@ -573,9 +573,9 @@ class DailySummarizer:
                     dn = self._to_probability_number(hp.get("down_probability", 0))
                     ne = self._to_probability_number(hp.get("neutral_probability", 0))
                     return self._clean_table_cell(f"{bias} {up}/{dn}/{ne}")
-                v1d = _fmt_cell(cells["1d"])
-                v1w = _fmt_cell(cells["1w"])
-                v1m = _fmt_cell(cells["1m"])
+                v1d = _format_probability_cell(cells["1d"])
+                v1w = _format_probability_cell(cells["1w"])
+                v1m = _format_probability_cell(cells["1m"])
                 dq = self._clean_table_cell(av.get("data_quality", "medium"))
                 lines.append(
                     f"| {self._clean_table_cell(av.get('name', '-'))} | {self._clean_table_cell(av.get('market', '-'))} "
@@ -595,9 +595,9 @@ class DailySummarizer:
                 ]
                 if av.get("note"):
                     lines += [f"> {av['note']}", ""]
-                syms = ", ".join(av.get("symbols") or [])
+                syms = self._clean_table_cell(", ".join(av.get("symbols") or []))
                 lines += [
-                    f"市场：{av.get('market', '-')}",
+                    f"市场：{self._clean_table_cell(av.get('market', '-'))}",
                     f"品种：{syms or '-'}",
                     "",
                     "| 周期 | 上涨概率 | 下跌概率 | 中性概率 | 偏向 | 置信度 |",
