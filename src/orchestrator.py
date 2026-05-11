@@ -21,7 +21,6 @@ from .ai.client import create_ai_client
 from .ai.analyzer import ContentAnalyzer
 from .ai.summarizer import DailySummarizer
 from .ai.enricher import ContentEnricher
-from .ai.diplomacy_forecaster import DiplomacyForecaster
 from .ai.tokens import get_usage_snapshot
 
 
@@ -494,17 +493,8 @@ class HorizonOrchestrator:
 
     async def _forecast_important_items(self, items: List[ContentItem]) -> None:
         """Generate structured forecasts for important items."""
-        if not items:
-            return
-
-        try:
-            self.console.print("🔮 Generating diplomacy and market forecasts...")
-            ai_client = create_ai_client(self.config.ai)
-            forecaster = DiplomacyForecaster(ai_client)
-            count = await forecaster.forecast_batch(items)
-            self.console.print(f"   Forecasted {count} items\n")
-        except Exception as e:
-            self.console.print(f"[yellow]⚠️ Forecast stage failed, continuing without forecasts: {e}[/yellow]\n")
+        if items:
+            self.console.print("🔕 Diplomacy forecaster module is disabled, skipping forecast stage.\n")
 
     async def _generate_summary(
         self,
