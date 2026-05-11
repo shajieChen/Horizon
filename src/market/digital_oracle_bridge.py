@@ -223,49 +223,49 @@ class DigitalOracleBridge:
                     query_cls = getattr(module, "PriceHistoryQuery")
                     for symbol in group.symbols:
                         key = f"{group.key}:{symbol}"
-                        tasks[key] = lambda s=symbol: provider.get_history(query_cls(symbol=s, limit=30))
+                        tasks[key] = lambda s=symbol, p=provider, qc=query_cls: p.get_history(qc(symbol=s, limit=30))
                         meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "price", "label": symbol}
 
                 elif group.key == "yfinance":
                     query_cls = getattr(module, "OptionsChainQuery")
                     for symbol in group.symbols:
                         key = f"{group.key}:{symbol}"
-                        tasks[key] = lambda s=symbol: provider.get_chain(query_cls(ticker=s))
+                        tasks[key] = lambda s=symbol, p=provider, qc=query_cls: p.get_chain(qc(ticker=s))
                         meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "options", "label": symbol}
 
                 elif group.key == "fear_greed":
                     key = f"{group.key}:index"
-                    tasks[key] = provider.get_index
+                    tasks[key] = lambda p=provider: p.get_index()
                     meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "fear_greed", "label": "index"}
 
                 elif group.key == "treasury":
                     key = f"{group.key}:curve"
-                    tasks[key] = provider.latest_yield_curve
+                    tasks[key] = lambda p=provider: p.latest_yield_curve()
                     meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "treasury", "label": "latest_yield_curve"}
 
                 elif group.key == "cme_fedwatch":
                     key = f"{group.key}:probabilities"
-                    tasks[key] = provider.get_probabilities
+                    tasks[key] = lambda p=provider: p.get_probabilities()
                     meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "fedwatch", "label": "probabilities"}
 
                 elif group.key == "kalshi":
                     query_cls = getattr(module, "KalshiMarketQuery")
                     series = group.series_ticker or "KXINX"
                     key = f"{group.key}:{series}"
-                    tasks[key] = lambda s=series: provider.list_markets(query_cls(series_ticker=s, limit=5))
+                    tasks[key] = lambda s=series, p=provider, qc=query_cls: p.list_markets(qc(series_ticker=s, limit=5))
                     meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "kalshi", "label": series}
 
                 elif group.key == "web_search":
                     for query in group.queries:
                         key = f"{group.key}:{query}"
-                        tasks[key] = lambda q=query: provider.search(q)
+                        tasks[key] = lambda q=query, p=provider: p.search(q)
                         meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "web", "label": query}
 
                 elif group.key == "edgar":
                     query_cls = getattr(module, "EdgarInsiderQuery")
                     for symbol in group.symbols[:3]:
                         key = f"{group.key}:{symbol}"
-                        tasks[key] = lambda s=symbol: provider.get_insider_transactions(query_cls(ticker=s, limit=10))
+                        tasks[key] = lambda s=symbol, p=provider, qc=query_cls: p.get_insider_transactions(qc(ticker=s, limit=10))
                         meta[key] = {"provider": group.provider, "layer": group.layer, "kind": "edgar", "label": symbol}
             except Exception as exc:
                 skipped.append(f"{group.provider}: task wiring failed ({exc})")
