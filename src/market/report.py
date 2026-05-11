@@ -32,7 +32,7 @@ def trading_result_to_forecast(result: TradingAnalysisResult) -> Dict:
         )
 
     confidence_level = _confidence_level(result)
-    missing_evidence = list(result.errors)
+    missing_evidence = list(result.missing_evidence or result.errors)
     if len(result.signals) < 3 and "signal coverage is insufficient." not in missing_evidence:
         missing_evidence.append("signal coverage is insufficient.")
 
@@ -65,6 +65,7 @@ def trading_result_to_forecast(result: TradingAnalysisResult) -> Dict:
     return {
         "is_forecastable": result.is_forecastable,
         "event_type": result.question_type,
+        "analysis_method": result.analysis_method,
         "cause_chain": {
             "immediate_trigger": result.market_question,
             "structural_causes": result.resonance,

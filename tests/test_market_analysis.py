@@ -443,7 +443,10 @@ def test_oracle_preserves_price_metadata_in_analyze_asset_watchlist():
     )
     analyzer = TradingOracleAnalyzer(config)
 
-    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider), patch(
+        "src.market.digital_oracle_bridge.DigitalOracleBridge._detect_digital_oracle",
+        return_value=False,
+    ):
         result = asyncio.run(analyzer.analyze_asset_watchlist())
 
     assert result is not None
@@ -672,7 +675,10 @@ def test_only_na_price_signals_gives_low_data_quality():
     )
     analyzer = TradingOracleAnalyzer(config)
 
-    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider), patch(
+        "src.market.digital_oracle_bridge.DigitalOracleBridge._detect_digital_oracle",
+        return_value=False,
+    ):
         result = asyncio.run(analyzer.analyze_asset_watchlist())
 
     assert result is not None
@@ -727,7 +733,10 @@ def test_valid_price_signal_raises_data_quality_to_at_least_medium():
     )
     analyzer = TradingOracleAnalyzer(config)
 
-    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider), patch(
+        "src.market.digital_oracle_bridge.DigitalOracleBridge._detect_digital_oracle",
+        return_value=False,
+    ):
         result = asyncio.run(analyzer.analyze_asset_watchlist())
 
     assert result is not None
@@ -783,7 +792,10 @@ def test_three_valid_price_signals_give_high_data_quality():
     )
     analyzer = TradingOracleAnalyzer(config)
 
-    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider), patch(
+        "src.market.digital_oracle_bridge.DigitalOracleBridge._detect_digital_oracle",
+        return_value=False,
+    ):
         result = asyncio.run(analyzer.analyze_asset_watchlist())
 
     assert result is not None
@@ -1080,7 +1092,10 @@ def test_oracle_respects_max_symbols_per_asset():
     )
     analyzer = TradingOracleAnalyzer(config)
 
-    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider), patch(
+        "src.market.digital_oracle_bridge.DigitalOracleBridge._detect_digital_oracle",
+        return_value=False,
+    ):
         result = asyncio.run(analyzer.analyze_asset_watchlist())
 
     assert result is not None

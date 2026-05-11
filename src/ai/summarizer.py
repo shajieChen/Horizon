@@ -534,21 +534,32 @@ class DailySummarizer:
             if isinstance(trading_analysis.get("asset_views"), list)
             else []
         )
-        errors = self._as_list(trading_analysis.get("errors"))
+        errors = self._as_list(trading_analysis.get("missing_evidence")) or self._as_list(trading_analysis.get("errors"))
         data_sources = self._as_list(trading_analysis.get("data_sources")) or ["N/A"]
+        analysis_method = str(trading_analysis.get("analysis_method") or "unknown")
+        digital_layers = (
+            trading_analysis.get("digital_oracle_layers")
+            if isinstance(trading_analysis.get("digital_oracle_layers"), dict)
+            else {}
+        )
 
         lines = [
             "**Trading Analysis**",
             "",
-            "> 分析类型：固定资产池概率分析 (Asset Watchlist)  ",
+            "> 分析方法：digital-oracle multi-signal synthesis  ",
             "> 分析范围：QDII 纳斯达克 100 / 海外股票 / 美国股票 / 日本股票 / 香港股票  ",
             "> 时间维度：1日 / 1周 / 1月  ",
+            "> 数据原则：仅使用市场交易数据，不使用新闻观点或分析师观点  ",
             "> 免责声明：本分析仅基于市场数据进行概率估算，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。",
             "",
         ]
+        if analysis_method == "horizon_minimal_fallback":
+            lines += [
+                "> ⚠ 当前使用 Horizon fallback provider，并非完整 digital-oracle provider。",
+                "",
+            ]
 
         if asset_views:
-            # Overview table
             lines += [
                 "### 资产概率总览 (Asset Probability Overview)",
                 "",
@@ -582,58 +593,111 @@ class DailySummarizer:
                     f"| {v1d} | {v1w} | {v1m} | {dq} |"
                 )
 
-            # Detailed per-asset views
-            lines += ["", "### 详细资产分析 (Detailed Asset Views)"]
+            lines += ["", "### Digital Oracle Signal Layers"]
             for av in asset_views:
                 if not isinstance(av, dict):
                     continue
+                name = str(av.get("name", "Unknown"))
                 proxy_note = " *(代理品种)*" if av.get("analysis_proxy") else ""
                 lines += [
                     "",
-                    f"#### {av.get('name', 'Unknown')}{proxy_note}",
+                    f"#### {name}{proxy_note}",
                     "",
                 ]
                 if av.get("note"):
                     lines += [f"> {av['note']}", ""]
                 syms = self._clean_table_cell(", ".join(av.get("symbols") or []))
+                lines += [f"市场：{self._clean_table_cell(av.get('market', '-'))}", f"品种：{syms or '-'}", ""]
+
+                layer_payload = digital_layers.get(name) if isinstance(digital_layers.get(name), dict) else {}
+                layer_signals = layer_payload.get("signals") if isinstance(layer_payload.get("signals"), list) else []
+                grouped = {"Price Trend": [], "Options / Volatility": [], "Risk Appetite / Macro": []}
+                for signal in layer_signals:
+                    if not isinstance(signal, dict):
+                        continue
+                    layer = str(signal.get("layer") or "")
+                    if layer in grouped:
+                        grouped[layer].append(signal)
+
+                for title, layer_key in [
+                    ("Layer 1: Price Trend", "Price Trend"),
+                    ("Layer 2: Options / Volatility", "Options / Volatility"),
+                    ("Layer 3: Risk Appetite / Macro", "Risk Appetite / Macro"),
+                ]:
+                    lines += [f"##### {title}", "| Signal | Data | What it's saying |", "|---|---|---|"]
+                    rows = grouped.get(layer_key) or []
+                    if not rows:
+                        lines.append("| - | - | - |")
+                    else:
+                        for signal in rows[:6]:
+                            lines.append(
+                                "| {signal} | {data} | {interp} |".format(
+                                    signal=self._clean_table_cell(signal.get("signal", "-")),
+                                    data=self._clean_table_cell(signal.get("data", "-")),
+                                    interp=self._clean_table_cell(signal.get("interpretation", "-")),
+                                )
+                            )
+                    lines.append("")
+
+                lines.append("##### Analysis")
+                lines.append("")
+                lines.append("**Resonance signals**")
+                resonance = self._as_list(layer_payload.get("resonance")) or ["暂无"]
+                lines.extend([f"- {entry}" for entry in resonance])
+                lines.append("")
+                lines.append("**Key divergences**")
+                divergences = self._as_list(layer_payload.get("divergences")) or ["暂无"]
+                lines.extend([f"- {entry}" for entry in divergences])
+                lines.append("")
+                lines.append("**Time stratification**")
+                hz_map = {h.get("horizon"): h for h in (av.get("horizons") or []) if isinstance(h, dict)}
+                lines.append(f"- 1日：{self._clean_table_cell((hz_map.get('1d') or {}).get('basis', '暂无'))}")
+                lines.append(f"- 1周：{self._clean_table_cell((hz_map.get('1w') or {}).get('basis', '暂无'))}")
+                lines.append(f"- 1月：{self._clean_table_cell((hz_map.get('1m') or {}).get('basis', '暂无'))}")
+                lines.append("")
+
                 lines += [
-                    f"市场：{self._clean_table_cell(av.get('market', '-'))}",
-                    f"品种：{syms or '-'}",
-                    "",
-                    "| 周期 | 上涨概率 | 下跌概率 | 中性概率 | 偏向 | 置信度 |",
-                    "|---|---:|---:|---:|---|---|",
+                    "##### Probability Estimates",
+                    "| Horizon | Up | Down | Neutral | Bias | Basis | Confidence |",
+                    "|---|---:|---:|---:|---|---|---|",
                 ]
                 for hp in (av.get("horizons") or []):
                     if not isinstance(hp, dict):
                         continue
                     hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
                     lines.append(
-                        f"| {self._clean_table_cell(hz_label)} | {self._clean_table_cell(self._to_percent(hp.get('up_probability', 0)))} "
-                        f"| {self._clean_table_cell(self._to_percent(hp.get('down_probability', 0)))} "
-                        f"| {self._clean_table_cell(self._to_percent(hp.get('neutral_probability', 0)))} "
-                        f"| {self._clean_table_cell(hp.get('expected_bias', '-'))} "
-                        f"| {self._clean_table_cell(hp.get('confidence', '-'))} |"
+                        "| {hz} | {up} | {dn} | {ne} | {bias} | {basis} | {conf} |".format(
+                            hz=self._clean_table_cell(hz_label),
+                            up=self._clean_table_cell(self._to_percent(hp.get("up_probability", 0))),
+                            dn=self._clean_table_cell(self._to_percent(hp.get("down_probability", 0))),
+                            ne=self._clean_table_cell(self._to_percent(hp.get("neutral_probability", 0))),
+                            bias=self._clean_table_cell(hp.get("expected_bias", "-")),
+                            basis=self._clean_table_cell(hp.get("basis", "-")),
+                            conf=self._clean_table_cell(hp.get("confidence", "-")),
+                        )
                     )
-                lines += [""]
-                if any(hp.get("basis") for hp in (av.get("horizons") or []) if isinstance(hp, dict)):
-                    lines.append("**分析依据 (Basis)**")
-                    lines.append("")
-                    for hp in (av.get("horizons") or []):
-                        if not isinstance(hp, dict) or not hp.get("basis"):
-                            continue
-                        hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
-                        lines.append(f"- {hz_label}：{hp['basis']}")
-                        lines.append("")
-                if any(hp.get("invalidation") for hp in (av.get("horizons") or []) if isinstance(hp, dict)):
-                    lines.append("**反证条件 (Invalidation)**")
-                    for hp in (av.get("horizons") or []):
-                        if not isinstance(hp, dict) or not hp.get("invalidation"):
-                            continue
-                        hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
-                        lines.append(f"- {hz_label}: {hp['invalidation']}")
-                    lines.append("")
+                lines.append("")
+
+                lines += [
+                    "##### Signals to Monitor",
+                    "| Signal | Current value | Threshold | Meaning |",
+                    "|---|---:|---:|---|",
+                ]
+                if grouped["Price Trend"]:
+                    for signal in grouped["Price Trend"][:3]:
+                        lines.append(
+                            "| {signal} | {value} | regime shift | {meaning} |".format(
+                                signal=self._clean_table_cell(signal.get("signal", "-")),
+                                value=self._clean_table_cell(signal.get("data", "-")),
+                                meaning=self._clean_table_cell(signal.get("interpretation", "-")),
+                            )
+                        )
+                else:
+                    lines.append("| - | - | - | - |")
+                lines.append("")
+
                 if av.get("conclusion"):
-                    lines += [f"**结论**：{av['conclusion']}", ""]
+                    lines += ["##### Conclusion", "", f"> {av['conclusion']}", ""]
 
         if errors:
             lines += ["### 信息缺口 (Missing Evidence)", *[f"- {entry}" for entry in errors], ""]
