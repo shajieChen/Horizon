@@ -170,29 +170,85 @@ class FilteringConfig(BaseModel):
     time_window_hours: int = 24
 
 
+class TradingAssetConfig(BaseModel):
+    """Trading asset configuration."""
+
+    name: str
+    category: str
+    symbols: List[str] = Field(default_factory=list)
+    market: str = "US"
+    enabled: bool = True
+    analysis_proxy: bool = False
+    note: Optional[str] = None
+
+
 class TradingConfig(BaseModel):
     """Trading analysis configuration."""
 
-    enabled: bool = False
-    min_ai_score: float = 7.0
-    max_items_per_run: int = 5
-    mode: str = "event_driven"
+    enabled: bool = True
+    min_ai_score: float = 0.0
+    max_items_per_run: int = 20
+    mode: str = "asset_watchlist"
     user_email_env: Optional[str] = "SEC_USER_EMAIL"
+
+    # Legacy event_driven fields (kept for backward compatibility)
     watch_keywords: List[str] = Field(default_factory=list)
     symbols: List[str] = Field(default_factory=list)
+
+    asset_scope: List[str] = Field(
+        default_factory=lambda: [
+            "qdii_nasdaq100",
+            "overseas_stock",
+            "us_stock",
+            "japan_stock",
+            "hongkong_stock",
+        ]
+    )
+
+    default_horizons: List[str] = Field(
+        default_factory=lambda: ["1d", "1w", "1m"]
+    )
+
+    watch_assets: List[TradingAssetConfig] = Field(
+        default_factory=lambda: [
+            TradingAssetConfig(
+                name="QDII Nasdaq 100 Proxy",
+                category="qdii_nasdaq100",
+                symbols=["QQQ", "^NDX", "NQ=F"],
+                market="US",
+                analysis_proxy=True,
+                note=(
+                    "Proxy for QDII Nasdaq 100 underlying exposure. "
+                    "Does not include China-listed QDII premium/discount."
+                ),
+            ),
+            TradingAssetConfig(
+                name="US Mega Cap Basket",
+                category="us_stock",
+                symbols=["AAPL", "MSFT", "NVDA", "GOOGL", "META", "AMZN", "TSLA"],
+                market="US",
+            ),
+            TradingAssetConfig(
+                name="Japan Equity Basket",
+                category="japan_stock",
+                symbols=["7203.T", "6758.T", "9984.T", "8035.T", "6861.T"],
+                market="JP",
+            ),
+            TradingAssetConfig(
+                name="Hong Kong Equity Basket",
+                category="hongkong_stock",
+                symbols=["0700.HK", "9988.HK", "3690.HK", "1810.HK", "9618.HK"],
+                market="HK",
+            ),
+        ]
+    )
+
     enabled_providers: List[str] = Field(
         default_factory=lambda: [
-            "treasury",
-            "fear_greed",
-            "cme_fedwatch",
-            "coingecko",
-            "deribit",
-            "polymarket",
-            "kalshi",
-            "cftc",
-            "edgar",
             "yahoo_price",
             "yfinance",
+            "fear_greed",
+            "treasury",
         ]
     )
 
@@ -204,6 +260,6 @@ class Config(BaseModel):
     ai: AIConfig
     sources: SourcesConfig
     filtering: FilteringConfig
-    trading: Optional[TradingConfig] = None
+    trading: TradingConfig = Field(default_factory=TradingConfig)
     email: Optional[EmailConfig] = None
     webhook: Optional[WebhookConfig] = None

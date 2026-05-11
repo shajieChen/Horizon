@@ -7,6 +7,7 @@ from typing import Optional, List, Tuple
 from pydantic import BaseModel, Field
 
 from ..models import ContentItem, TradingConfig
+from .universe import get_enabled_assets
 
 
 class TradingRoute(BaseModel):
@@ -55,6 +56,9 @@ class TradingQuestionRouter:
 
     def route(self, item: ContentItem) -> TradingRoute:
         """Return market-analysis route for a content item."""
+        if self.config.mode == "asset_watchlist":
+            return self.route_asset_watchlist()
+
         ai_score = item.ai_score or 0.0
         if ai_score < self.config.min_ai_score:
             return TradingRoute(enabled=False, reason="ai_score_below_threshold")
@@ -81,6 +85,21 @@ class TradingQuestionRouter:
             reason=reason,
             symbols=symbols,
             keywords=merged_hits,
+        )
+
+    def route_asset_watchlist(self) -> TradingRoute:
+        """Route fixed watchlist assets to trading analysis."""
+        enabled_assets = get_enabled_assets(self.config)
+        all_symbols: List[str] = []
+        for asset in enabled_assets:
+            all_symbols.extend(asset.symbols)
+        return TradingRoute(
+            enabled=True,
+            question_type="asset_watchlist",
+            reason="default_asset_watchlist_mode",
+            symbols=all_symbols,
+            keywords=[],
+            horizon="1d_1w_1m",
         )
 
     @staticmethod

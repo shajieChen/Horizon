@@ -36,6 +36,32 @@ def trading_result_to_forecast(result: TradingAnalysisResult) -> Dict:
     if len(result.signals) < 3 and "signal coverage is insufficient." not in missing_evidence:
         missing_evidence.append("signal coverage is insufficient.")
 
+    # Build asset_views summary for near_term_watch when available
+    near_term_watch: Dict[str, list] = {
+        "24h": [],
+        "7d": [],
+        "30d": [],
+    }
+    if result.asset_views:
+        for av in result.asset_views:
+            for hp in av.horizons:
+                entry = (
+                    f"{av.name} {hp.horizon}: {hp.expected_bias} "
+                    f"(↑{hp.up_probability:.0f}%/↓{hp.down_probability:.0f}%/~{hp.neutral_probability:.0f}%)"
+                )
+                if hp.horizon == "1d":
+                    near_term_watch["24h"].append(entry)
+                elif hp.horizon == "1w":
+                    near_term_watch["7d"].append(entry)
+                elif hp.horizon == "1m":
+                    near_term_watch["30d"].append(entry)
+    else:
+        near_term_watch = {
+            "24h": [m.get("signal", "") for m in result.monitor_signals[:2] if m.get("signal")],
+            "7d": [m.get("signal", "") for m in result.monitor_signals[2:4] if m.get("signal")],
+            "30d": [m.get("signal", "") for m in result.monitor_signals[4:] if m.get("signal")],
+        }
+
     return {
         "is_forecastable": result.is_forecastable,
         "event_type": result.question_type,
@@ -46,11 +72,7 @@ def trading_result_to_forecast(result: TradingAnalysisResult) -> Dict:
         },
         "actors": [],
         "scenarios": scenarios,
-        "near_term_watch": {
-            "24h": [m.get("signal", "") for m in result.monitor_signals[:2] if m.get("signal")],
-            "7d": [m.get("signal", "") for m in result.monitor_signals[2:4] if m.get("signal")],
-            "30d": [m.get("signal", "") for m in result.monitor_signals[4:] if m.get("signal")],
-        },
+        "near_term_watch": near_term_watch,
         "confidence": {
             "level": confidence_level,
             "reason": f"Based on {len(result.signals)} independent market signals.",

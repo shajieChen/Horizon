@@ -85,16 +85,73 @@ class YahooPriceProvider(BaseProvider):
     layer = "price"
 
     def fetch(self, context: ProviderCallContext) -> List[Dict[str, str]]:
-        symbols = ", ".join(context.symbols[:4]) if context.symbols else "SPY, QQQ"
-        return [
-            {
-                "signal": "Spot trend check",
-                "value": symbols,
-                "horizon": "short_to_medium",
-                "interpretation": "Price trend and volatility regime checked for mapped instruments.",
+        symbols = context.symbols[:6] if context.symbols else ["SPY", "QQQ"]
+        signals = []
+        for sym in symbols:
+            price_data = self._fetch_symbol_price(sym)
+            signals.append(price_data)
+        return signals
+
+    @staticmethod
+    def _fetch_symbol_price(symbol: str) -> Dict[str, str]:
+        """Attempt yfinance price fetch; fall back to stub on failure."""
+        try:
+            import yfinance as yf  # noqa: PLC0415
+
+            ticker = yf.Ticker(symbol)
+            hist = ticker.history(period="30d")
+            if hist.empty or len(hist) < 2:
+                raise ValueError(f"Empty price history for {symbol}")
+
+            closes = hist["Close"].dropna()
+            latest = float(closes.iloc[-1])
+            ret_1d = float((closes.iloc[-1] - closes.iloc[-2]) / closes.iloc[-2]) if len(closes) >= 2 else 0.0
+            ret_5d = float((closes.iloc[-1] - closes.iloc[-6]) / closes.iloc[-6]) if len(closes) >= 6 else 0.0
+            ret_20d = float((closes.iloc[-1] - closes.iloc[0]) / closes.iloc[0]) if len(closes) >= 20 else 0.0
+
+            ma5 = float(closes.iloc[-5:].mean()) if len(closes) >= 5 else latest
+            ma20 = float(closes.mean())
+            above_5d_ma = "true" if latest > ma5 else "false"
+            above_20d_ma = "true" if latest > ma20 else "false"
+
+            # Realized volatility (annualised from daily log returns)
+            import math  # noqa: PLC0415
+            log_rets = closes.pct_change().dropna()
+            vol_5d = float(log_rets.iloc[-5:].std() * math.sqrt(252)) if len(log_rets) >= 5 else 0.0
+            vol_20d = float(log_rets.iloc[-20:].std() * math.sqrt(252)) if len(log_rets) >= 20 else 0.0
+            vol_regime = "high" if vol_5d > 0.30 else ("medium" if vol_5d > 0.15 else "low")
+
+            return {
+                "signal": f"{symbol} price",
+                "value": f"{latest:.2f}",
+                "horizon": "1d",
+                "interpretation": (
+                    f"1d={ret_1d:+.2%} 5d={ret_5d:+.2%} 20d={ret_20d:+.2%} "
+                    f"above_5D_MA={above_5d_ma} above_20D_MA={above_20d_ma} "
+                    f"vol_5d={vol_5d:.1%} vol_20d={vol_20d:.1%}"
+                ),
                 "source": "YahooPriceProvider",
+                "1d_return": f"{ret_1d:.4f}",
+                "5d_return": f"{ret_5d:.4f}",
+                "20d_return": f"{ret_20d:.4f}",
+                "above_5d_ma": above_5d_ma,
+                "above_20d_ma": above_20d_ma,
+                "volatility_regime": vol_regime,
             }
-        ]
+        except Exception as exc:
+            return {
+                "signal": f"{symbol} price",
+                "value": "N/A",
+                "horizon": "1d",
+                "interpretation": f"Price data unavailable for {symbol}: {exc}",
+                "source": "YahooPriceProvider",
+                "1d_return": "0",
+                "5d_return": "0",
+                "20d_return": "0",
+                "above_5d_ma": "unknown",
+                "above_20d_ma": "unknown",
+                "volatility_regime": "unknown",
+            }
 
 
 class CftcCotProvider(BaseProvider):
@@ -221,18 +278,86 @@ class YFinanceProvider(BaseProvider):
 
     def fetch(self, context: ProviderCallContext) -> List[Dict[str, str]]:
         try:
-            import yfinance  # noqa: F401
-        except ImportError as exc:
-            raise RuntimeError("yfinance dependency is not installed.") from exc
-        return [
-            {
-                "signal": "Options implied volatility",
-                "value": "surface_checked",
+            import yfinance as yf  # noqa: PLC0415
+        except ImportError:
+            return [
+                {
+                    "signal": "Options implied volatility",
+                    "value": "N/A",
+                    "horizon": "short_to_medium",
+                    "interpretation": "yfinance not installed — options IV unavailable.",
+                    "source": "YFinanceProvider",
+                }
+            ]
+
+        results = []
+        for symbol in context.symbols[:4]:
+            result = self._fetch_options(symbol, yf)
+            if result:
+                results.append(result)
+
+        if not results:
+            results.append(
+                {
+                    "signal": "Options implied volatility",
+                    "value": "N/A",
+                    "horizon": "short_to_medium",
+                    "interpretation": "No options data retrieved for configured symbols.",
+                    "source": "YFinanceProvider",
+                }
+            )
+        return results
+
+    @staticmethod
+    def _fetch_options(symbol: str, yf) -> Optional[Dict[str, str]]:  # type: ignore[type-arg]
+        """Fetch ATM implied volatility for a single symbol; return None on failure."""
+        try:
+            ticker = yf.Ticker(symbol)
+            expirations = ticker.options
+            if not expirations:
+                return {
+                    "signal": f"{symbol} options IV",
+                    "value": "N/A",
+                    "horizon": "short_to_medium",
+                    "interpretation": f"No options listed for {symbol} (non-US or delisted).",
+                    "source": "YFinanceProvider",
+                    "fear_greed": "",
+                }
+
+            # Use nearest expiry
+            chain = ticker.option_chain(expirations[0])
+            calls = chain.calls
+            if calls.empty:
+                raise ValueError(f"Empty options chain for {symbol}")
+
+            # Find ATM strike
+            hist = ticker.history(period="2d")
+            spot = float(hist["Close"].iloc[-1]) if not hist.empty else None
+            if spot is None:
+                raise ValueError(f"Cannot determine spot price for {symbol}")
+
+            calls["strike_diff"] = (calls["strike"] - spot).abs()
+            atm_row = calls.nsmallest(1, "strike_diff").iloc[0]
+            iv = float(atm_row.get("impliedVolatility", 0.0))
+
+            return {
+                "signal": f"{symbol} ATM IV",
+                "value": f"{iv:.1%}",
                 "horizon": "short_to_medium",
-                "interpretation": "Implied volatility surface indicates expected event magnitude.",
+                "interpretation": (
+                    f"ATM implied volatility for {symbol} at {spot:.2f}: "
+                    f"IV={iv:.1%} (expiry {expirations[0]})"
+                ),
                 "source": "YFinanceProvider",
             }
-        ]
+        except Exception as exc:
+            return {
+                "signal": f"{symbol} options IV",
+                "value": "N/A",
+                "horizon": "short_to_medium",
+                "interpretation": f"Options data unavailable for {symbol}: {exc}",
+                "source": "YFinanceProvider",
+            }
 
 
 PROVIDER_REGISTRY = {
