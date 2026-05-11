@@ -170,6 +170,33 @@ class FilteringConfig(BaseModel):
     time_window_hours: int = 24
 
 
+class TradingConfig(BaseModel):
+    """Trading analysis configuration."""
+
+    enabled: bool = False
+    min_ai_score: float = 7.0
+    max_items_per_run: int = 5
+    mode: str = "event_driven"
+    user_email_env: Optional[str] = "SEC_USER_EMAIL"
+    watch_keywords: List[str] = Field(default_factory=list)
+    symbols: List[str] = Field(default_factory=list)
+    enabled_providers: List[str] = Field(
+        default_factory=lambda: [
+            "treasury",
+            "fear_greed",
+            "cme_fedwatch",
+            "coingecko",
+            "deribit",
+            "polymarket",
+            "kalshi",
+            "cftc",
+            "edgar",
+            "yahoo_price",
+            "yfinance",
+        ]
+    )
+
+
 class Config(BaseModel):
     """Main configuration model."""
 
@@ -177,5 +204,6 @@ class Config(BaseModel):
     ai: AIConfig
     sources: SourcesConfig
     filtering: FilteringConfig
+    trading: Optional[TradingConfig] = None
     email: Optional[EmailConfig] = None
     webhook: Optional[WebhookConfig] = None

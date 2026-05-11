@@ -3,6 +3,7 @@
 import re
 from typing import List, Dict, Any
 
+from ..market.constants import DEFAULT_FALSIFIER
 from ..models import ContentItem
 
 
@@ -227,6 +228,14 @@ class DailySummarizer:
             lines.append("")
             lines.append(forecast_block)
 
+        trading_block = self._format_trading_analysis_block(
+            meta.get("trading_analysis"),
+            meta.get("forecast"),
+        )
+        if trading_block:
+            lines.append("")
+            lines.append(trading_block)
+
         if item.ai_tags:
             tags_str = ", ".join([f"`#{t}`" for t in item.ai_tags])
             lines.append("")
@@ -379,6 +388,108 @@ class DailySummarizer:
         implications = self._as_list(forecast.get("market_or_policy_implications")) or ["暂无"]
         lines.extend([f"- {item}" for item in implications])
 
+        return "\n".join(lines)
+
+    def _format_trading_analysis_block(self, trading_analysis: Any, forecast: Any = None) -> str:
+        """Render market trading analysis details when available."""
+        if not isinstance(trading_analysis, dict):
+            return ""
+
+        market_question = str(trading_analysis.get("market_question") or "N/A")
+        question_type = str(trading_analysis.get("question_type") or "generic_market_event")
+        signals = trading_analysis.get("signals") if isinstance(trading_analysis.get("signals"), list) else []
+        resonance = self._as_list(trading_analysis.get("resonance")) or ["N/A"]
+        divergences = self._as_list(trading_analysis.get("divergences")) or ["N/A"]
+        scenarios = trading_analysis.get("scenarios") if isinstance(trading_analysis.get("scenarios"), list) else []
+        monitor_signals = (
+            trading_analysis.get("monitor_signals")
+            if isinstance(trading_analysis.get("monitor_signals"), list)
+            else []
+        )
+        errors = self._as_list(trading_analysis.get("errors"))
+        forecast_falsifiers = self._as_list(forecast.get("falsifiers")) if isinstance(forecast, dict) else []
+        data_sources = self._as_list(trading_analysis.get("data_sources")) or ["N/A"]
+
+        signal_rows = []
+        for signal in signals:
+            if not isinstance(signal, dict):
+                continue
+            signal_rows.append(
+                "| {layer} | {signal} | {value} | {interpretation} |".format(
+                    layer=signal.get("layer", "-"),
+                    signal=signal.get("signal", "-"),
+                    value=signal.get("value", "-"),
+                    interpretation=signal.get("interpretation", "-"),
+                )
+            )
+        if not signal_rows:
+            signal_rows.append("| - | - | - | - |")
+
+        scenario_rows = []
+        for scenario in scenarios:
+            if not isinstance(scenario, dict):
+                continue
+            scenario_rows.append(
+                "| {name} | {probability}% | {bias} |".format(
+                    name=scenario.get("name", "-"),
+                    probability=scenario.get("probability", "-"),
+                    bias=scenario.get("trading_bias", "-"),
+                )
+            )
+        if not scenario_rows:
+            scenario_rows.append("| - | - | - |")
+
+        monitor_rows = []
+        for monitor in monitor_signals:
+            if not isinstance(monitor, dict):
+                continue
+            monitor_rows.append(
+                "| {signal} | {threshold} | {meaning} |".format(
+                    signal=monitor.get("signal", "-"),
+                    threshold=monitor.get("threshold", "-"),
+                    meaning=monitor.get("meaning", "-"),
+                )
+            )
+        if not monitor_rows:
+            monitor_rows.append("| - | - | - |")
+
+        lines = [
+            "**Trading Analysis**",
+            "",
+            f"- Event Type: {question_type}",
+            "",
+            "### Market Question",
+            market_question,
+            "",
+            "### Data Summary",
+            "| Layer | Signal | Current Reading | Trading Meaning |",
+            "|---|---|---:|---|",
+            *signal_rows,
+            "",
+            "### Resonance Signals",
+            *[f"- {entry}" for entry in resonance],
+            "",
+            "### Key Divergences",
+            *[f"- {entry}" for entry in divergences],
+            "",
+            "### Probability Estimates",
+            "| Scenario | Probability | Trading Bias |",
+            "|---|---:|---|",
+            *scenario_rows,
+            "",
+            "### Signals to Monitor",
+            "| Signal | Threshold | Meaning |",
+            "|---|---:|---|",
+            *monitor_rows,
+            "",
+            "### Falsifiers",
+            *[f"- {entry}" for entry in (forecast_falsifiers or [DEFAULT_FALSIFIER])],
+            "",
+            "### Data Sources",
+            *[f"- {entry}" for entry in data_sources],
+        ]
+        if errors:
+            lines.extend(["", "### Missing Evidence", *[f"- {entry}" for entry in errors]])
         return "\n".join(lines)
 
     def _generate_empty_summary(self, date: str, total_fetched: int, labels: dict) -> str:

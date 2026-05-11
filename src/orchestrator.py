@@ -492,8 +492,38 @@ class HorizonOrchestrator:
         return await analyzer.analyze_batch(items)
 
     async def _forecast_important_items(self, items: List[ContentItem]) -> None:
-        """No-op placeholder. Diplomacy forecaster has been intentionally disabled."""
-        return
+        """Generate market-based trading analysis for high-scoring items."""
+        trading_config = getattr(self.config, "trading", None)
+        if not trading_config or not trading_config.enabled:
+            return
+
+        from .market.oracle import TradingOracleAnalyzer
+        from .market.report import trading_result_to_forecast
+
+        analyzer = TradingOracleAnalyzer(trading_config)
+
+        candidates = [
+            item for item in items
+            if item.ai_score and item.ai_score >= trading_config.min_ai_score
+        ][:trading_config.max_items_per_run]
+        if not candidates:
+            return
+
+        self.console.print("📈 Running market analysis...")
+        for item in candidates:
+            try:
+                if not analyzer.is_trading_relevant(item):
+                    continue
+
+                result = await analyzer.analyze(item)
+                if not result:
+                    continue
+
+                item.metadata["trading_analysis"] = result.model_dump()
+                item.metadata["forecast"] = trading_result_to_forecast(result)
+                self.console.print(f"   Added trading analysis: {item.title}")
+            except Exception as e:
+                self.console.print(f"[yellow]  market analysis skipped for item: {e}[/yellow]")
 
     async def _generate_summary(
         self,
