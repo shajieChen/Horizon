@@ -333,16 +333,11 @@ class TradingOracleAnalyzer:
                 )
 
             # Valid price signals: layer=="price", numeric value, and has usable 1d_return metadata
-            valid_price_signals = [
-                s for s in asset_signals
-                if s.layer == "price"
-                and s.value not in ("", "N/A")
-                and (s.metadata or {}).get("1d_return") not in (None, "", "N/A", "unknown")
-            ]
+            valid_count, _ = self._count_valid_price_signals(asset_signals)
 
-            if len(valid_price_signals) >= 3:
+            if valid_count >= 3:
                 data_quality = "high"
-            elif len(valid_price_signals) >= 1:
+            elif valid_count >= 1:
                 data_quality = "medium"
             else:
                 data_quality = "low"
@@ -404,6 +399,22 @@ class TradingOracleAnalyzer:
         )
 
     @staticmethod
+    def _count_valid_price_signals(signals: List[MarketSignal]) -> tuple[int, int]:
+        """Return (valid_count, total_price_count) for price signals.
+
+        A price signal is *valid* when its value is not empty/N/A and it carries
+        a usable ``1d_return`` metadata entry.
+        """
+        total = sum(1 for s in signals if s.layer == "price")
+        valid = sum(
+            1 for s in signals
+            if s.layer == "price"
+            and s.value not in ("", "N/A")
+            and (s.metadata or {}).get("1d_return") not in (None, "", "N/A", "unknown")
+        )
+        return valid, total
+
+    @staticmethod
     def _build_asset_conclusion(
         name: str,
         signals: List[MarketSignal],
@@ -415,13 +426,7 @@ class TradingOracleAnalyzer:
         biases = [h.expected_bias for h in horizons]
         bias_str = "/".join(biases)
 
-        total_price = len([s for s in signals if s.layer == "price"])
-        valid_price = len([
-            s for s in signals
-            if s.layer == "price"
-            and s.value not in ("", "N/A")
-            and (s.metadata or {}).get("1d_return") not in (None, "", "N/A", "unknown")
-        ])
+        valid_price, total_price = TradingOracleAnalyzer._count_valid_price_signals(signals)
 
         if valid_price == 0:
             return (

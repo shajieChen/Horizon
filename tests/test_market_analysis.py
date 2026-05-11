@@ -547,7 +547,7 @@ def test_basis_not_conservative_when_price_data_present():
 
 
 def test_conservative_basis_only_when_all_data_missing():
-    """When all price data is N/A/unknown, fallback basis must include bilingual message."""
+    """When all price data is N/A/unknown, conservative base distribution with bilingual message is used."""
     from src.market.oracle import MarketSignal
     from src.market.probability import estimate_horizon_probability
     from src.models import TradingAssetConfig
@@ -828,3 +828,7 @@ def test_conclusion_shows_price_signal_counts():
         f"Expected 'Price signals: 1/2 symbols' in conclusion, got: {conclusion!r}"
     )
     assert "No valid price data" not in conclusion
+    # Bias string must be present (bullish/neutral/bullish from the horizons above)
+    assert "bullish/neutral/bullish" in conclusion, (
+        f"Expected bias string in conclusion, got: {conclusion!r}"
+    )
