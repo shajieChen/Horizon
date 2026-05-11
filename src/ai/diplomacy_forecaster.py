@@ -1,11 +1,14 @@
 """Structured diplomacy forecasting for important items."""
 
+import logging
 from typing import List
 
 from .client import AIClient
 from .prompts import DIPLOMACY_FORECAST_SYSTEM, DIPLOMACY_FORECAST_USER
 from .utils import parse_json_response
 from ..models import ContentItem
+
+logger = logging.getLogger(__name__)
 
 
 class DiplomacyForecaster:
@@ -30,7 +33,7 @@ class DiplomacyForecaster:
                     success_count += 1
             except Exception as e:
                 # Keep the pipeline running if a single item fails.
-                print(f"Warning: forecast failed for {item.id}: {e}")
+                logger.warning("Forecast failed for %s: %s", item.id, e)
 
         return success_count
 
@@ -82,8 +85,42 @@ class DiplomacyForecaster:
         result = parse_json_response(response)
         if result is None:
             # Parsing errors are non-fatal for the full batch.
-            print(f"Warning: could not parse forecast response for {item.id}, skipping forecast")
+            logger.warning("Could not parse forecast response for %s, skipping forecast", item.id)
+            return False
+
+        if not self._is_valid_probability_sum(result, item.id):
             return False
 
         item.metadata["forecast"] = result
+        return True
+
+    @staticmethod
+    def _is_valid_probability_sum(result: dict, item_id: str) -> bool:
+        """Validate that scenario probabilities sum to 100 for forecastable results."""
+        if result.get("is_forecastable") is not True:
+            return True
+
+        scenarios = result.get("scenarios")
+        if not isinstance(scenarios, list):
+            logger.warning("Missing scenarios in forecastable response for %s, skipping forecast", item_id)
+            return False
+
+        numeric_probabilities = [
+            scenario.get("probability")
+            for scenario in scenarios
+            if isinstance(scenario, dict) and isinstance(scenario.get("probability"), (int, float))
+        ]
+        if not numeric_probabilities:
+            logger.warning("No numeric probabilities in forecastable response for %s, skipping forecast", item_id)
+            return False
+
+        total = sum(numeric_probabilities)
+        if abs(total - 100.0) > 0.5:
+            logger.warning(
+                "Scenario probabilities must sum to 100 for %s, got %.2f, skipping forecast",
+                item_id,
+                total,
+            )
+            return False
+
         return True

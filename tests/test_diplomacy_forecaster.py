@@ -38,7 +38,7 @@ def _make_item(idx: int, score: float) -> ContentItem:
 def test_forecast_batch_applies_limits_and_tolerates_parse_failure():
     client = _FakeAIClient(
         [
-            '{"is_forecastable": true, "event_type": "meeting"}',
+            '{"is_forecastable": true, "event_type": "meeting", "scenarios": [{"probability": 55}, {"probability": 45}]}',
             "not json",
         ]
     )
