@@ -32,6 +32,8 @@ jobs:
       - name: Verify trading dependencies
         run: |
           uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
+          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; print('bridge import ok')"
+          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle bridge: available', b.available)"
           uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); print(hist.tail())"
 
       - name: Run Horizon with DeepSeek

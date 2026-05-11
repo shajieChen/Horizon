@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import os
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -78,6 +78,9 @@ class TradingAnalysisResult(BaseModel):
     data_sources: List[str]
     errors: List[str] = Field(default_factory=list)
     asset_views: List[AssetTradingView] = Field(default_factory=list)
+    analysis_method: str = "unknown"
+    digital_oracle_layers: Dict[str, Any] = Field(default_factory=dict)
+    missing_evidence: List[str] = Field(default_factory=list)
 
 
 class TradingOracleAnalyzer:
@@ -252,8 +255,35 @@ class TradingOracleAnalyzer:
         self, item: Optional[ContentItem] = None
     ) -> Optional[TradingAnalysisResult]:
         """Generate fixed asset watchlist trading analysis."""
+        from .digital_oracle_bridge import DigitalOracleBridge
         from .universe import get_enabled_assets
+        print("📈 Running market analysis...")
+        enabled_assets = get_enabled_assets(self.config)
+        if not enabled_assets:
+            return None
+
+        bridge = DigitalOracleBridge(self.config)
+        if bridge.available:
+            print("🔮 digital-oracle bridge: available")
+            oracle_result = await bridge.analyze_assets(enabled_assets)
+            return self._convert_digital_oracle_result(oracle_result)
+
+        print("⚠ digital-oracle full package unavailable; using Horizon minimal fallback providers.")
+        return await self._analyze_asset_watchlist_fallback(
+            item,
+            fallback_reason=(
+                "digital-oracle full provider package unavailable; using minimal Horizon fallback provider."
+            ),
+        )
+
+    async def _analyze_asset_watchlist_fallback(
+        self,
+        item: Optional[ContentItem] = None,
+        fallback_reason: Optional[str] = None,
+    ) -> Optional[TradingAnalysisResult]:
+        """Fallback watchlist analysis using local minimal providers."""
         from .probability import estimate_horizon_probability
+        from .universe import get_enabled_assets
 
         enabled_assets = get_enabled_assets(self.config)
         if not enabled_assets:
@@ -267,7 +297,6 @@ class TradingOracleAnalyzer:
         sec_env = self.config.user_email_env or "SEC_USER_EMAIL"
         user_email = os.getenv(sec_env)
 
-        # Build a synthetic ContentItem for provider context if none provided
         if item is None:
             from datetime import datetime, timezone
             from ..models import SourceType
@@ -279,7 +308,6 @@ class TradingOracleAnalyzer:
                 published_at=datetime.now(timezone.utc),
             )
 
-        # Asset-watchlist providers
         watchlist_providers = [
             p for p in self.config.enabled_providers
             if p in {"yahoo_price", "yfinance", "fear_greed", "treasury"}
@@ -291,7 +319,6 @@ class TradingOracleAnalyzer:
 
         for asset in enabled_assets:
             asset_signals: List[MarketSignal] = []
-            asset_errors: List[str] = []
             call_context = ProviderCallContext(
                 item=item,
                 question_type="asset_watchlist",
@@ -322,19 +349,15 @@ class TradingOracleAnalyzer:
                         data_sources.append(signal.source)
                 except Exception as exc:
                     msg = f"{asset.name}/{provider_name}: {exc}"
-                    asset_errors.append(msg)
                     errors.append(msg)
 
-            # Compute per-horizon probabilities
             horizons_list: List[HorizonProbability] = []
             for hz in self.config.default_horizons:
                 horizons_list.append(
                     estimate_horizon_probability(asset, asset_signals, hz)
                 )
 
-            # Valid price signals: layer=="price", numeric value, and has usable 1d_return metadata
             valid_count, _ = self._count_valid_price_signals(asset_signals)
-
             if valid_count >= 3:
                 data_quality = "high"
             elif valid_count >= 1:
@@ -347,7 +370,6 @@ class TradingOracleAnalyzer:
                 )
 
             conclusion = self._build_asset_conclusion(asset.name, asset_signals, horizons_list)
-
             asset_views.append(
                 AssetTradingView(
                     name=asset.name,
@@ -362,7 +384,9 @@ class TradingOracleAnalyzer:
                 )
             )
 
-        # Build aggregate result
+        if fallback_reason:
+            errors.append(fallback_reason)
+
         signal_count = len(all_signals)
         confidence = "medium" if signal_count >= 4 else "low"
         resonance = self._extract_resonance(all_signals)
@@ -396,6 +420,102 @@ class TradingOracleAnalyzer:
             data_sources=sorted(set(data_sources)),
             errors=errors,
             asset_views=asset_views,
+            analysis_method="horizon_minimal_fallback",
+            digital_oracle_layers={},
+            missing_evidence=errors,
+        )
+
+    @staticmethod
+    def _convert_digital_oracle_result(oracle_result: Any) -> TradingAnalysisResult:
+        """Convert bridge watchlist result into TradingAnalysisResult."""
+        asset_views: List[AssetTradingView] = []
+        all_signals: List[MarketSignal] = []
+        all_sources: List[str] = []
+        digital_layers: Dict[str, Any] = {}
+
+        for asset in oracle_result.asset_results:
+            asset_market_signals: List[MarketSignal] = []
+            for signal in asset.signals:
+                metadata = {
+                    str(k): str(v)
+                    for k, v in (signal.raw or {}).items()
+                    if v is not None and not isinstance(v, (dict, list))
+                }
+                ms = MarketSignal(
+                    layer=signal.layer,
+                    signal=signal.signal,
+                    value=signal.data,
+                    horizon=signal.horizon,
+                    interpretation=signal.interpretation,
+                    source=signal.provider,
+                    metadata=metadata,
+                )
+                all_signals.append(ms)
+                asset_market_signals.append(ms)
+                all_sources.append(signal.provider)
+
+            quality = "high" if len({s.layer for s in asset.signals}) >= 3 else "medium"
+            asset_views.append(
+                AssetTradingView(
+                    name=asset.name,
+                    category=asset.category,
+                    market=asset.market,
+                    symbols=asset.symbols,
+                    analysis_proxy=asset.category == "qdii_nasdaq100",
+                    horizons=asset.horizon_views,
+                    key_signals=asset_market_signals[:5],
+                    conclusion=asset.conclusion,
+                    data_quality=quality,
+                )
+            )
+            digital_layers[asset.name] = {
+                "signals": [s.model_dump() for s in asset.signals],
+                "resonance": asset.resonance,
+                "divergences": asset.divergences,
+                "probability_scenarios": [s.model_dump() for s in asset.probability_scenarios],
+            }
+
+        if not all_signals:
+            scenarios = []
+            monitor_signals = []
+        else:
+            scenarios = [
+                TradingScenario(name="baseline", probability=50.0, basis="multi-asset synthesis", trading_bias="balanced"),
+                TradingScenario(name="upside", probability=30.0, basis="risk appetite stabilizes", trading_bias="risk-on"),
+                TradingScenario(name="downside", probability=20.0, basis="volatility/rates shock", trading_bias="defensive"),
+            ]
+            monitor_signals = TradingOracleAnalyzer._build_monitor_signals(all_signals)
+
+        conclusion = (
+            f"Digital-oracle watchlist analysis completed for {len(asset_views)} basket(s) "
+            f"with {len(all_signals)} normalized signals."
+        )
+        if oracle_result.missing_evidence:
+            conclusion += f" Missing evidence items: {len(oracle_result.missing_evidence)}."
+
+        return TradingAnalysisResult(
+            is_forecastable=True,
+            question_type="asset_watchlist",
+            market_question=(
+                "asset_watchlist: 1D/1W/1M directional probability for "
+                "QDII Nasdaq 100 / US / Japan / Hong Kong baskets"
+            ),
+            summary=(
+                f"Generated from {len(all_signals)} market signals across "
+                f"{len(set(all_sources))} sources for {len(asset_views)} asset basket(s)."
+            ),
+            signals=all_signals,
+            resonance=list(oracle_result.global_resonance),
+            divergences=list(oracle_result.global_divergences),
+            scenarios=scenarios,
+            conclusion=conclusion,
+            monitor_signals=monitor_signals,
+            data_sources=sorted(set(all_sources)),
+            errors=list(oracle_result.missing_evidence),
+            asset_views=asset_views,
+            analysis_method="digital_oracle",
+            digital_oracle_layers=digital_layers,
+            missing_evidence=list(oracle_result.missing_evidence),
         )
 
     @staticmethod
