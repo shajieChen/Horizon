@@ -387,3 +387,237 @@ def test_summarizer_event_driven_block_still_works():
     assert "macro_rates" in block
     assert "Market Question" in block or "市场问题" in block
 
+
+# ─── New metadata / basket tests ──────────────────────────────────────────────
+
+def test_market_signal_stores_metadata():
+    """MarketSignal must accept and store arbitrary metadata fields."""
+    from src.market.oracle import MarketSignal
+
+    sig = MarketSignal(
+        layer="price",
+        signal="QQQ price",
+        value="450.00",
+        horizon="1d",
+        interpretation="test",
+        source="YahooPriceProvider",
+        metadata={"1d_return": "0.012", "5d_return": "-0.005", "above_5d_ma": "true"},
+    )
+    assert sig.metadata["1d_return"] == "0.012"
+    assert sig.metadata["above_5d_ma"] == "true"
+
+
+def test_oracle_preserves_price_metadata_in_analyze_asset_watchlist():
+    """analyze_asset_watchlist must propagate 1d_return etc. into MarketSignal.metadata."""
+    from src.market.oracle import TradingOracleAnalyzer
+    from src.models import TradingConfig, TradingAssetConfig
+    from unittest.mock import patch, MagicMock
+
+    fake_payload = {
+        "signal": "QQQ price",
+        "value": "450.00",
+        "horizon": "1d",
+        "interpretation": "test",
+        "source": "YahooPriceProvider",
+        "1d_return": "0.0120",
+        "5d_return": "0.0250",
+        "20d_return": "0.0500",
+        "above_5d_ma": "true",
+        "above_20d_ma": "true",
+        "volatility_regime": "low",
+    }
+
+    mock_provider = MagicMock()
+    mock_provider.layer = "price"
+    mock_provider.fetch.return_value = [fake_payload]
+
+    config = TradingConfig(
+        enabled=True,
+        mode="asset_watchlist",
+        watch_assets=[
+            TradingAssetConfig(name="Test Basket", category="us_stock", symbols=["QQQ"]),
+        ],
+        enabled_providers=["yahoo_price"],
+    )
+    analyzer = TradingOracleAnalyzer(config)
+
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+        result = asyncio.run(analyzer.analyze_asset_watchlist())
+
+    assert result is not None
+    price_signals = [s for s in result.signals if s.layer == "price"]
+    assert len(price_signals) > 0
+    sig = price_signals[0]
+    assert sig.metadata.get("1d_return") == "0.0120"
+    assert sig.metadata.get("above_5d_ma") == "true"
+
+
+def test_probability_reads_metadata_values():
+    """estimate_horizon_probability must read price metrics from metadata, not signal name."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import estimate_horizon_probability
+    from src.models import TradingAssetConfig
+
+    sig = MarketSignal(
+        layer="price",
+        signal="QQQ price",
+        value="450.00",
+        horizon="1d",
+        interpretation="test",
+        source="YahooPriceProvider",
+        metadata={
+            "1d_return": "0.012",
+            "5d_return": "0.025",
+            "20d_return": "0.050",
+            "above_5d_ma": "true",
+            "above_20d_ma": "true",
+            "volatility_regime": "low",
+        },
+    )
+    asset = TradingAssetConfig(name="Test", category="us_stock", symbols=["QQQ"])
+
+    hp_1d = estimate_horizon_probability(asset, [sig], "1d")
+    assert "insufficient price data" not in hp_1d.basis
+    assert "basket" in hp_1d.basis or "5D MA" in hp_1d.basis
+
+    hp_1w = estimate_horizon_probability(asset, [sig], "1w")
+    assert "insufficient price data" not in hp_1w.basis
+
+    hp_1m = estimate_horizon_probability(asset, [sig], "1m")
+    assert "insufficient price data" not in hp_1m.basis
+
+
+def test_basket_aggregation_averages_returns():
+    """Multi-symbol basket return and MA ratio should be averaged across symbols."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import _average_metadata, _ratio_metadata
+
+    signals = [
+        MarketSignal(
+            layer="price", signal="AAPL price", value="180.00", horizon="1d",
+            interpretation="", source="YahooPriceProvider",
+            metadata={"1d_return": "0.02", "above_5d_ma": "true"},
+        ),
+        MarketSignal(
+            layer="price", signal="MSFT price", value="380.00", horizon="1d",
+            interpretation="", source="YahooPriceProvider",
+            metadata={"1d_return": "-0.01", "above_5d_ma": "false"},
+        ),
+        MarketSignal(
+            layer="price", signal="NVDA price", value="800.00", horizon="1d",
+            interpretation="", source="YahooPriceProvider",
+            metadata={"1d_return": "0.03", "above_5d_ma": "true"},
+        ),
+    ]
+
+    avg_ret = float(_average_metadata(signals, "1d_return"))
+    assert abs(avg_ret - (0.02 - 0.01 + 0.03) / 3) < 1e-9
+
+    ratio = float(_ratio_metadata(signals, "above_5d_ma", "true"))
+    assert abs(ratio - 2 / 3) < 1e-9
+
+
+def test_basis_not_conservative_when_price_data_present():
+    """When valid price data is available, basis must not say 'insufficient price data'."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import estimate_horizon_probability
+    from src.models import TradingAssetConfig
+
+    signals = [
+        MarketSignal(
+            layer="price", signal="QQQ price", value="450.00", horizon="1d",
+            interpretation="", source="YahooPriceProvider",
+            metadata={
+                "1d_return": "0.015",
+                "5d_return": "0.030",
+                "20d_return": "0.060",
+                "above_5d_ma": "true",
+                "above_20d_ma": "true",
+                "volatility_regime": "low",
+            },
+        ),
+    ]
+    asset = TradingAssetConfig(name="QQQ", category="qdii_nasdaq100", symbols=["QQQ"])
+
+    for hz in ("1d", "1w", "1m"):
+        hp = estimate_horizon_probability(asset, signals, hz)
+        assert "insufficient price data" not in hp.basis, (
+            f"horizon={hz}: got conservative basis: {hp.basis!r}"
+        )
+
+
+def test_conservative_basis_only_when_all_data_missing():
+    """When all price data is N/A/unknown, conservative base distribution is acceptable."""
+    from src.market.oracle import MarketSignal
+    from src.market.probability import estimate_horizon_probability
+    from src.models import TradingAssetConfig
+
+    signals = [
+        MarketSignal(
+            layer="price", signal="QQQ price", value="N/A", horizon="1d",
+            interpretation="Price unavailable", source="YahooPriceProvider",
+            metadata={
+                "1d_return": "N/A",
+                "5d_return": "N/A",
+                "20d_return": "N/A",
+                "above_5d_ma": "unknown",
+                "above_20d_ma": "unknown",
+                "volatility_regime": "unknown",
+            },
+        ),
+    ]
+    asset = TradingAssetConfig(name="QQQ", category="qdii_nasdaq100", symbols=["QQQ"])
+
+    for hz in ("1d", "1w", "1m"):
+        hp = estimate_horizon_probability(asset, signals, hz)
+        assert "conservative base distribution" in hp.basis
+
+
+def test_yahoo_price_provider_fallback_uses_na_not_zero():
+    """YahooPriceProvider exception fallback must use N/A, not 0, for returns."""
+    from src.vendor.digital_oracle.providers import YahooPriceProvider
+
+    with patch_yfinance_to_fail():
+        result = YahooPriceProvider._fetch_symbol_price("FAIL_SYM")
+    assert result["1d_return"] == "N/A"
+    assert result["5d_return"] == "N/A"
+    assert result["20d_return"] == "N/A"
+
+
+def test_yfinance_unavailable_does_not_crash_watchlist():
+    """When yfinance is not importable, analysis still runs without raising."""
+    from src.market.oracle import TradingOracleAnalyzer
+    from src.models import TradingConfig, TradingAssetConfig
+
+    config = TradingConfig(
+        enabled=True,
+        mode="asset_watchlist",
+        watch_assets=[
+            TradingAssetConfig(name="Test", category="us_stock", symbols=["AAPL"]),
+        ],
+        enabled_providers=["yahoo_price"],
+    )
+    analyzer = TradingOracleAnalyzer(config)
+
+    with patch_yfinance_to_fail():
+        result = asyncio.run(analyzer.analyze_asset_watchlist())
+    assert result is not None
+    assert len(result.asset_views) >= 1
+
+
+# Helper context manager for the fallback test
+class patch_yfinance_to_fail:
+    def __enter__(self):
+        import sys
+        self._orig = sys.modules.get("yfinance", None)
+        sys.modules["yfinance"] = None  # type: ignore[assignment]
+        return self
+
+    def __exit__(self, *args):
+        import sys
+        if self._orig is None:
+            sys.modules.pop("yfinance", None)
+        else:
+            sys.modules["yfinance"] = self._orig
+
+
