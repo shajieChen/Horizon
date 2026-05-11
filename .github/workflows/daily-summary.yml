@@ -27,7 +27,12 @@ jobs:
         uses: astral-sh/setup-uv@v3
 
       - name: Install dependencies
-        run: uv sync
+        run: uv sync --extra trading
+
+      - name: Verify trading dependencies
+        run: |
+          uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
+          uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); print(hist.tail())"
 
       - name: Run Horizon with DeepSeek
         env:

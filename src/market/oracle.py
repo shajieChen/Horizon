@@ -332,18 +332,20 @@ class TradingOracleAnalyzer:
                     estimate_horizon_probability(asset, asset_signals, hz)
                 )
 
-            data_quality = "medium" if len(asset_signals) >= 3 else "low"
-            if data_quality == "low":
-                errors.append(
-                    f"Missing Evidence: only {len(asset_signals)} signal(s) for {asset.name}"
-                )
-
-            # Check for valid price signals (layer=="price" and value not "N/A")
+            # Valid price signals: layer=="price", numeric value, and has usable 1d_return metadata
             valid_price_signals = [
                 s for s in asset_signals
-                if s.layer == "price" and s.value not in ("", "N/A")
+                if s.layer == "price"
+                and s.value not in ("", "N/A")
+                and (s.metadata or {}).get("1d_return") not in (None, "", "N/A", "unknown")
             ]
-            if not valid_price_signals:
+
+            if len(valid_price_signals) >= 3:
+                data_quality = "high"
+            elif len(valid_price_signals) >= 1:
+                data_quality = "medium"
+            else:
+                data_quality = "low"
                 errors.append(
                     f"Missing price data for {asset.name}: no valid yfinance price signals. "
                     "Check yfinance installation, network access, and Yahoo symbol support."
@@ -412,5 +414,21 @@ class TradingOracleAnalyzer:
             return f"{name}: no horizon data available."
         biases = [h.expected_bias for h in horizons]
         bias_str = "/".join(biases)
-        signal_note = f"{len(signals)} signal(s)" if signals else "no signals"
-        return f"{name}: {bias_str} bias across 1D/1W/1M ({signal_note}). Treat as probability estimate only."
+
+        total_price = len([s for s in signals if s.layer == "price"])
+        valid_price = len([
+            s for s in signals
+            if s.layer == "price"
+            and s.value not in ("", "N/A")
+            and (s.metadata or {}).get("1d_return") not in (None, "", "N/A", "unknown")
+        ])
+
+        if valid_price == 0:
+            return (
+                f"{name}: {bias_str} bias across 1D/1W/1M. "
+                "No valid price data. Conservative probability distribution used."
+            )
+        return (
+            f"{name}: {bias_str} bias across 1D/1W/1M. "
+            f"Price signals: {valid_price}/{total_price} symbols. Treat as probability estimate only."
+        )
