@@ -5,37 +5,33 @@ date: 2026-05-11
 lang: zh
 ---
 
-> From 47 items, 27 important content pieces were selected
+> From 46 items, 23 important content pieces were selected
 
 ---
 
 1. [Daily Trading Watchlist: QDII Nasdaq 100 / US / Japan / Hong Kong Stocks](#item-1) ⭐️ 10.0/10
-2. [巴林与美国就霍尔木兹海峡提出安理会决议](#item-2) ⭐️ 9.0/10
-3. [以色列空袭贝鲁特郊区引发联合国警觉](#item-3) ⭐️ 9.0/10
-4. [阿联酋遭袭后联合国安理会召开会议](#item-4) ⭐️ 9.0/10
-5. [联合国报告：5 月初乌克兰 70 多名平民死亡](#item-5) ⭐️ 8.0/10
-6. [欧洲央行董事会成员警告央行独立性正被悄然侵蚀](#item-6) ⭐️ 8.0/10
-7. [欧洲央行奇波洛内谈新一轮能源冲击情景](#item-7) ⭐️ 8.0/10
-8. [欧央行工资追踪器显示 2026 年议定工资压力稳定](#item-8) ⭐️ 8.0/10
-9. [欧央行副行长向欧洲议会提交 2025 年度报告](#item-9) ⭐️ 8.0/10
-10. [FSB 警告私人信贷风险威胁金融稳定](#item-10) ⭐️ 8.0/10
-11. [黎巴嫩停火未能阻止破坏，家庭觅食维生](#item-11) ⭐️ 7.0/10
-12. [联合国警告海湾安全事件危及地区稳定](#item-12) ⭐️ 7.0/10
-13. [欧央行副行长德金多斯在金融时报访谈中释放政策信号](#item-13) ⭐️ 7.0/10
-14. [拉加德：将稳定币功能与工具分离](#item-14) ⭐️ 7.0/10
-15. [欧洲央行副行长德金多斯呼吁深化欧洲金融一体化](#item-15) ⭐️ 7.0/10
-16. [欧央行报告显示欧元区金融一体化进展不一](#item-16) ⭐️ 7.0/10
-17. [Philip R. Lane: Climate change and monetary policy](#item-17) ⭐️ 7.0/10
-18. [拉加德将气候与自然风险关联货币政策](#item-18) ⭐️ 7.0/10
-19. [欧洲央行管理委员会宣布额外非利率决策](#item-19) ⭐️ 7.0/10
-20. [海地危机：帮派势力扩展至首都外](#item-20) ⭐️ 6.0/10
-21. [索马里饥饿危机加剧，逼近灾难](#item-21) ⭐️ 6.0/10
-22. [世卫组织：乌克兰医疗遭 3000 多次袭击](#item-22) ⭐️ 6.0/10
-23. [油价上涨或加速从塑料到材料的转型](#item-23) ⭐️ 6.0/10
-24. [联合国人权办公室：向加沙运送援助不是犯罪，敦促以色列释放被扣人员](#item-24) ⭐️ 6.0/10
-25. [联合国呼吁全球为系统性数字崩溃做准备](#item-25) ⭐️ 6.0/10
-26. [在埃及的苏丹难民面临资金削减威胁](#item-26) ⭐️ 6.0/10
-27. [欧洲央行西波洛内谈数字资产、支付效率与货币政策](#item-27) ⭐️ 6.0/10
+2. [巴林和美国提议安理会霍尔木兹海峡决议](#item-2) ⭐️ 9.0/10
+3. [联合国安理会就阿联酋遭袭举行闭门会议](#item-3) ⭐️ 9.0/10
+4. [联合国对以色列袭击贝鲁特郊区表示震惊](#item-4) ⭐️ 8.0/10
+5. [联合国警告海湾安全风险升级](#item-5) ⭐️ 8.0/10
+6. [拉加德：将稳定币功能与工具分离](#item-6) ⭐️ 8.0/10
+7. [欧洲央行施纳贝尔警告央行独立性悄然受到侵蚀](#item-7) ⭐️ 8.0/10
+8. [欧洲央行西波洛内谈新能源冲击与政策](#item-8) ⭐️ 8.0/10
+9. [欧央行薪资追踪器显示 2026 年薪资压力稳定](#item-9) ⭐️ 8.0/10
+10. [金融稳定理事会警告私人信贷带来系统性风险](#item-10) ⭐️ 8.0/10
+11. [联合国：5 月以来乌克兰超 70 名平民死亡](#item-11) ⭐️ 7.0/10
+12. [联合国：运送援助不是犯罪，敦促以色列释放船队成员](#item-12) ⭐️ 7.0/10
+13. [联合国呼吁全球为数字系统崩溃做好准备](#item-13) ⭐️ 7.0/10
+14. [欧央行副行长金多斯发出欧元区政策信号](#item-14) ⭐️ 7.0/10
+15. [欧央行兰恩：气候变化融入货币政策](#item-15) ⭐️ 7.0/10
+16. [欧央行行长拉加德将气候与自然问题纳入货币政策](#item-16) ⭐️ 7.0/10
+17. [欧央行公布非利率货币政策决定](#item-17) ⭐️ 7.0/10
+18. [欧央行 2025 年报提交欧洲议会](#item-18) ⭐️ 7.0/10
+19. [黎巴嫩停火难阻暴力，民众觅食维生](#item-19) ⭐️ 6.0/10
+20. [油价上涨可能加速塑料转型](#item-20) ⭐️ 6.0/10
+21. [资金短缺威胁在埃及的苏丹难民](#item-21) ⭐️ 6.0/10
+22. [欧洲央行与印度储备银行签署谅解备忘录加强合作](#item-22) ⭐️ 6.0/10
+23. [欧洲央行副行长德金多斯呼吁深化金融一体化](#item-23) ⭐️ 6.0/10
 
 ---
 
@@ -44,7 +40,7 @@ lang: zh
 
 Daily fixed trading watchlist analysis for QDII Nasdaq 100, overseas stocks, US stocks, Japan stocks, and Hong Kong stocks.
 
-rss · Horizon Trading · May 11, 10:40
+rss · Horizon Trading · May 11, 12:06
 
 **Trading Analysis**
 
@@ -76,9 +72,12 @@ rss · Horizon Trading · May 11, 10:40
 | 1月 | 42% | 29% | 30% | bullish | medium |
 
 **分析依据 (Basis)**
-- 1日: 1d basket avg return positive and 100% symbols above 5D MA
-- 1周: 5d basket avg return positive and 100% symbols above 20D MA
-- 1月: 20d basket avg return positive with 100% symbols above 20D MA
+
+- 1日：1日篮子平均涨幅 +1.57%，3/3 个品种位于 5日均线上方，短线动量偏多。样本：QQQ +2.34%；^NDX +2.35%；NQ=F +0.01%。
+
+- 1周：1周篮子平均涨幅 +5.54%，3/3 个品种位于 20日均线上方，中短期趋势偏多。样本：QQQ +5.50%；^NDX +5.50%；NQ=F +5.62%。
+
+- 1月：1月篮子平均涨幅 +24.39%，3/3 个品种位于 20日均线上方，中期趋势偏多。样本：QQQ +26.42%；^NDX +26.38%；NQ=F +20.37%。
 
 **反证条件 (Invalidation)**
 - 1日: price reclaims / loses 5D MA intraday
@@ -100,16 +99,19 @@ rss · Horizon Trading · May 11, 10:40
 | 1月 | 42% | 29% | 30% | bullish | medium |
 
 **分析依据 (Basis)**
-- 1日: 1d basket avg return positive and 67% symbols above 5D MA; elevated realized volatility increases uncertainty
-- 1周: 5d basket avg return positive and 83% symbols above 20D MA; high volatility reduces trend conviction over 1W
-- 1月: 20d basket avg return positive with 83% symbols above 20D MA
+
+- 1日：1日篮子平均涨幅 +0.94%，5/7 个品种位于 5日均线上方，短线动量偏多。样本：AAPL +2.05%；MSFT -1.34%；NVDA +1.75%；GOOGL +0.71%；META -1.16%。; elevated realized volatility increases uncertainty
+
+- 1周：1周篮子平均涨幅 +4.09%，6/7 个品种位于 20日均线上方，中短期趋势偏多。样本：AAPL +4.70%；MSFT +0.16%；NVDA +8.44%；GOOGL +3.92%；META +0.14%。; high volatility reduces trend conviction over 1W
+
+- 1月：1月篮子平均涨幅 +25.71%，6/7 个品种位于 20日均线上方，中期趋势偏多。样本：AAPL +17.89%；MSFT +16.36%；NVDA +28.46%；GOOGL +46.10%；META +15.96%。
 
 **反证条件 (Invalidation)**
 - 1日: price reclaims / loses 5D MA intraday
 - 1周: weekly close outside 20D MA band
 - 1月: monthly close reversal vs 20D MA trend
 
-**结论**：US Mega Cap Basket: bullish/bullish/bullish bias across 1D/1W/1M. Price signals: 6/6 symbols. Treat as probability estimate only.
+**结论**：US Mega Cap Basket: bullish/bullish/bullish bias across 1D/1W/1M. Price signals: 7/7 symbols. Treat as probability estimate only.
 
 
 #### Japan Equity Basket
@@ -124,9 +126,12 @@ rss · Horizon Trading · May 11, 10:40
 | 1月 | 42% | 29% | 30% | bullish | medium |
 
 **分析依据 (Basis)**
-- 1日: elevated realized volatility increases uncertainty
-- 1周: 5d basket avg return positive and 80% symbols above 20D MA; high volatility reduces trend conviction over 1W
-- 1月: 20d basket avg return positive with 80% symbols above 20D MA
+
+- 1日：elevated realized volatility increases uncertainty
+
+- 1周：1周篮子平均涨幅 +6.48%，4/5 个品种位于 20日均线上方，中短期趋势偏多。样本：7203.T -7.78%；6758.T +4.27%；9984.T +9.02%；8035.T +15.35%；6861.T +11.52%。; high volatility reduces trend conviction over 1W
+
+- 1月：1月篮子平均涨幅 +22.80%，4/5 个品种位于 20日均线上方，中期趋势偏多。样本：7203.T -12.74%；6758.T +3.65%；9984.T +50.98%；8035.T +30.25%；6861.T +41.87%。
 
 **反证条件 (Invalidation)**
 - 1日: price reclaims / loses 5D MA intraday
@@ -148,9 +153,12 @@ rss · Horizon Trading · May 11, 10:40
 | 1月 | 33% | 33% | 34% | neutral | medium |
 
 **分析依据 (Basis)**
-- 1日: elevated realized volatility increases uncertainty
-- 1周: 5d basket avg return positive and 60% symbols above 20D MA; high volatility reduces trend conviction over 1W
-- 1月: 价格数据不足：未获取到有效 yfinance 价格历史，使用保守基准分布。（insufficient price data — conservative base distribution used）
+
+- 1日：elevated realized volatility increases uncertainty
+
+- 1周：1周篮子平均涨幅 +0.70%，3/5 个品种位于 20日均线上方，中短期趋势偏多。样本：0700.HK -1.82%；9988.HK +1.67%；3690.HK -0.12%；1810.HK +2.32%；9618.HK +1.46%。; high volatility reduces trend conviction over 1W
+
+- 1月：价格数据不足：未获取到有效 yfinance 价格历史，使用保守基准分布。（insufficient price data — conservative base distribution used）
 
 **反证条件 (Invalidation)**
 - 1日: price reclaims / loses 5D MA intraday
@@ -172,255 +180,303 @@ rss · Horizon Trading · May 11, 10:40
 ---
 
 <a id="item-2"></a>
-## [巴林与美国就霍尔木兹海峡提出安理会决议](https://news.un.org/feed/view/en/story/2026/05/1167464) ⭐️ 9.0/10
+## [巴林和美国提议安理会霍尔木兹海峡决议](https://news.un.org/feed/view/en/story/2026/05/1167464) ⭐️ 9.0/10
 
-巴林与美国向联合国安理会散发了一份决议草案，要求伊朗停止在霍尔木兹海峡的攻击行为。 霍尔木兹海峡是全球石油和液化天然气运输的关键咽喉要道；该决议可能加剧紧张局势、扰乱能源市场，并带来军事对抗风险。 该决议草案可能援引《联合国宪章》第七章使其具有约束力，但可能遭到俄罗斯或中国的否决。伊朗的反应以及后续海军态势变化是关键观察点。
+巴林和美国大使周四在联合国总部宣布，已散发一份联合国安理会决议草案，要求伊朗停止在霍尔木兹海峡的攻击行动。 该决议可能升级对伊朗的外交压力，甚至导致制裁或军事授权，直接影响通过这一全球最关键的能源咽喉要道的石油供应和航运安全。 该决议草案需要获得安理会 15 个成员中至少九票赞成才能通过，且常任理事国不得否决。伊朗尚未对该提案作出正式回应。
 
 rss · UN News · May 7, 12:00
 
-**背景**: 霍尔木兹海峡承载着全球约 20%的液化天然气和 25%的海运石油贸易。根据《联合国宪章》第七章通过的安理会对所有会员国具有法律约束力。该决议草案是在数周紧张局势升级和海峡内袭击报告后提出的。
+**背景**: 霍尔木兹海峡是伊朗和阿曼之间的一条狭窄水道，全球约 20%的液化天然气和 25%的海运石油途经此地。自 2026 年 2 月以来，伊朗实际上封锁了该海峡，导致与美国海军的零星交火和油价飙升。联合国安理会决议将构成要求降级的正式国际呼吁。
 
 <details><summary>参考链接</summary>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Strait_of_Hormuz">Strait of Hormuz - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis">2026 Strait of Hormuz crisis - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/United_Nations_Security_Council_resolution">United Nations Security Council resolution - Wikipedia</a></li>
+<li><a href="https://www.un.org/en/delegate/explainer-journey-un-security-council-resolution">Explainer: The journey of a UN Security Council resolution</a></li>
+<li><a href="https://www.nytimes.com/2026/05/09/world/middleeast/strait-hormuz-ships-blockade-us-iran.html">Strait of Hormuz Remains Effectively Blocked After Naval Skirmishes</a></li>
 
 </ul>
 </details>
 
-**标签**: `#diplomacy`, `#geopolitics`, `#middle-east`, `#energy`, `#military-risk`
+**标签**: `#diplomacy`, `#geopolitics`, `#energy`, `#middle-east`, `#supply-chain`
 
 ---
 
 <a id="item-3"></a>
-## [以色列空袭贝鲁特郊区引发联合国警觉](https://news.un.org/feed/view/en/story/2026/05/1167460) ⭐️ 9.0/10
+## [联合国安理会就阿联酋遭袭举行闭门会议](https://news.un.org/feed/view/en/story/2026/05/1167453) ⭐️ 9.0/10
 
-以色列对贝鲁特南郊发动空袭，导致新一轮平民流离失所，联合国谴责此举为‘非常令人担忧的事态发展’。 此次空袭加剧了以色列与黎巴嫩之间的冲突，增加了爆发更广泛地区战争的风险，并使已在长达数月的敌对行动中流离失所的平民人道主义危机进一步恶化。 据联合国称，空袭目标为贝鲁特南郊，该地区已受数月冲突影响，并引发了新的流离失所。
+联合国安理会在阿拉伯联合酋长国遭袭后举行闭门磋商，此时霍尔木兹海峡紧张局势正在升级。 此次闭门会议表明国际社会对霍尔木兹海峡危机的担忧加剧，该危机可能扰乱全球石油供应——全球近 20%的石油经过这一咽喉要道——并进一步破坏地区稳定。 会谈以闭门形式进行，这是敏感安全讨论的惯例，此前有报道称阿联酋资产遭袭，背景是伊朗、美国及地区国家之间的更广泛对抗。
 
-rss · UN News · May 7, 12:00
+rss · UN News · May 6, 12:00
 
-**背景**: 贝鲁特南郊是黎巴嫩真主党的据点，该组织是一个武装团体和政治党派，与以色列冲突数十年。联合国多次谴责以色列在黎巴嫩和加沙的空袭，安理会也通过决议呼吁局势降级。此次事件发生前，以色列与真主党已持续数月跨境交火。
+**背景**: 霍尔木兹海峡位于阿曼和伊朗之间，是全球能源贸易的关键海上咽喉，约 20%的石油和 20%的海运天然气运输经过此处。联合国安理会负责维护国际和平与安全，闭门会议常用于讨论紧急事务而不受公众监督。近几个月来，海峡紧张局势不断升级，包括商船遇袭和军事行动，引发了对更广泛冲突的担忧。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Conflict_escalation">Conflict escalation - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/List_of_United_Nations_resolutions_concerning_Israel">List of United Nations resolutions concerning Israel - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Strait_of_Hormuz">Strait of Hormuz - Wikipedia</a></li>
+<li><a href="https://news.un.org/en/story/2026/04/1167383">Chokepoints and conflict: How the Hormuz crisis is exposing global shipping vulnerabilities | UN News</a></li>
+<li><a href="https://www.theguardian.com/business/2026/mar/01/us-israel-strikes-iran-oil-price">What is the strait of Hormuz and why is it crucial for oil supplies? | Oil</a></li>
 
 </ul>
 </details>
 
-**标签**: `#military-risk`, `#middle-east`, `#diplomacy`, `#geopolitics`
+**标签**: `#geopolitics`, `#military-risk`, `#energy`, `#middle-east`, `#diplomacy`
 
 ---
 
 <a id="item-4"></a>
-## [阿联酋遭袭后联合国安理会召开会议](https://news.un.org/feed/view/en/story/2026/05/1167453) ⭐️ 9.0/10
+## [联合国对以色列袭击贝鲁特郊区表示震惊](https://news.un.org/feed/view/en/story/2026/05/1167460) ⭐️ 8.0/10
 
-在霍尔木兹海峡危机升级之际，联合国安理会在阿联酋遭受袭击后举行了闭门磋商。 此次会议标志着重大地缘政治升级，对全球能源市场、航运和地区稳定构成直接风险，可能引发安理会行动或加剧紧张局势。 会谈为闭门形式，未公布讨论细节或结果；联合国重申其支持和平努力的承诺。
+以色列对贝鲁特南郊发动空袭，导致新一轮平民流离失所，联合国称这是“非常令人担忧的事态发展”。 此次袭击可能加剧以色列与真主党之间的冲突，甚至引发更广泛的地区势力介入，破坏停火努力。 空袭击中了已受数月冲突影响的平民区，加剧了黎巴嫩的人道主义危机。尚无立即的伤亡报告。
 
-rss · UN News · May 6, 12:00
+rss · UN News · May 7, 12:00
 
-**背景**: 霍尔木兹海峡是全球石油运输的关键咽喉，约 20%的世界石油运输经过该海峡。近期对阿联酋的袭击加剧了对供应中断和地区更广泛冲突的担忧。
+**背景**: 真主党是黎巴嫩的什叶派武装组织和政党，自 2023 年 10 月以来与以色列持续冲突，2024 年 9 月爆发全面战争。联合国在黎以边境设有维和部队（UNIFIL），依据安理会第 1701 号决议进行监控。
 
-**标签**: `#diplomacy`, `#middle-east`, `#energy`, `#military-risk`, `#united-nations`
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Hezbollah">Hezbollah</a></li>
+<li><a href="https://en.wikipedia.org/wiki/UNIFIL">UNIFIL</a></li>
+<li><a href="https://en.wikipedia.org/wiki/2024_Lebanon_war">2024 Lebanon war - Wikipedia</a></li>
+
+</ul>
+</details>
+
+**标签**: `#military-risk`, `#middle-east`, `#israel-lebanon`, `#diplomacy`, `#humanitarian`
 
 ---
 
 <a id="item-5"></a>
-## [联合国报告：5 月初乌克兰 70 多名平民死亡](https://news.un.org/feed/view/en/story/2026/05/1167454) ⭐️ 8.0/10
+## [联合国警告海湾安全风险升级](https://news.un.org/feed/view/en/story/2026/05/1167447) ⭐️ 8.0/10
 
-联合国人权监测机构报告称，自 5 月初以来，乌克兰全境至少有 70 名平民死亡、500 多人受伤，多座城市遭受袭击浪潮，人道主义工作者难以抵达前线社区。 平民伤亡急剧上升表明冲突升级，可能加大国际外交压力、影响军事援助决策，并冲击能源市场风险情绪。 联合国未具体说明哪一方的攻击导致伤亡，但报告覆盖整个乌克兰。前线附近的人道主义准入仍然严重受限。
+联合国对海湾地区不断升级的安全事件表示深切担忧，警告称近期袭击可能破坏维护地区稳定的努力。 海湾紧张局势升级威胁霍尔木兹海峡——全球石油和液化天然气运输的关键咽喉要道，可能导致能源价格飙升并破坏全球经济稳定。此外，局势也加大了伊朗与其他地区或全球大国发生更广泛军事对抗的风险。 此前，伊朗自 2026 年 3 月以来对商船发动了一系列袭击，并实际上关闭了霍尔木兹海峡，仅允许来自‘友好’国家的船只通过。美国海事管理局评估进一步袭击的风险为高，美国海军已设立海上警戒区。
 
-rss · UN News · May 6, 12:00
+rss · UN News · May 5, 12:00
 
-**背景**: 俄罗斯于 2022 年 2 月对乌克兰发动全面入侵，导致长期战争和平民大量伤亡。联合国定期监测并报告平民伤亡情况，自入侵以来已有超过 1 万人死亡。
+**背景**: 霍尔木兹海峡位于阿曼和伊朗之间，是全球最重要的石油咽喉要道之一，承载着约 20%的全球石油消费量。伊朗曾多次威胁在面临制裁或军事压力时关闭海峡。近期事件包括伊朗 2026 年 3 月宣布关闭海峡并随后袭击航运，再次引发供应中断的担忧。
 
-**标签**: `#russia-ukraine`, `#military-risk`, `#diplomacy`, `#europe`
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis">2026 Strait of Hormuz crisis - Wikipedia</a></li>
+<li><a href="https://www.eia.gov/todayinenergy/detail.php?id=65504">Amid regional conflict, the Strait of Hormuz remains critical oil chokepoint - U.S. Energy Information Administration (EIA)</a></li>
+<li><a href="https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels">2026-004-Persian Gulf, Strait of Hormuz, and Gulf of Oman-Iranian Attacks on Commercial Vessels | MARAD</a></li>
+
+</ul>
+</details>
+
+**标签**: `#geopolitics`, `#middle-east`, `#energy`, `#military-risk`
 
 ---
 
 <a id="item-6"></a>
-## [欧洲央行董事会成员警告央行独立性正被悄然侵蚀](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507_1~d5ae988ece.en.html) ⭐️ 8.0/10
+## [拉加德：将稳定币功能与工具分离](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260508~dd909fbed1.en.html) ⭐️ 8.0/10
 
-欧洲央行执行委员会成员伊莎贝尔·施纳贝尔发表讲话警告称，央行独立性正因政治压力而被悄然侵蚀，这可能削弱货币政策可信度和市场稳定。 央行独立性对于维持低通胀和可信的货币政策至关重要。这位欧洲央行高级官员的警告表明，政治对央行独立性的威胁不断加剧，可能导致风险溢价上升和市场波动。 施纳贝尔于 2026 年 5 月 7 日在欧洲央行的讲话中指出，这种侵蚀是“悄然”进行的，往往以非正式压力而非法律变更的形式出现。她强调保护独立性需要央行和公众保持警惕。
+欧洲央行行长克里斯蒂娜·拉加德于 2026 年 5 月 8 日发表演讲，主张采取一种监管方法，将稳定币的功能与执行这些功能的工具分离开来。 这标志着欧洲央行对数字货币监管立场的发展，可能影响欧洲稳定币和央行数字货币的结构设计，对金融稳定和货币政策产生影响。 拉加德强调，稳定币在单一工具内执行多种功能（例如支付、价值储存），并主张每种功能应单独监管，以降低系统性风险。
 
-rss · ECB Press Releases · May 7, 17:00
+rss · ECB Press Releases · May 8, 07:00
 
-**背景**: 央行独立性——即不受政府干预制定货币政策的能力——是保证可信度和物价稳定的关键制度特征。在欧洲，欧洲央行在法律上是独立的，但近年来各国政府越来越施压央行支持财政政策或为债务融资。施纳贝尔的言论反映了央行官员对这一原则倒退的日益担忧。
+**背景**: 稳定币是一种旨在保持价值稳定的加密货币，通常与美元等法定货币挂钩。央行数字货币（CBDC）是中央银行发行的官方货币的数字版本。欧洲央行一直在探索数字欧元，同时根据《加密资产市场监管条例》（MiCA）监管私人稳定币。拉加德的演讲建立在‘相同活动、相同风险、相同监管’的概念基础上，将其应用于数字货币的功能。
 
-**标签**: `#central-bank`, `#europe`, `#monetary-policy`, `#financial-stability`
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260508~dd909fbed1.en.html">Stablecoins and the future of money: separating functions from ...</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Central_bank_digital_currency">Central bank digital currency - Wikipedia</a></li>
+
+</ul>
+</details>
+
+**标签**: `#central-bank`, `#europe`, `#currency`, `#financial-stability`, `#digital-currency`
 
 ---
 
 <a id="item-7"></a>
-## [欧洲央行奇波洛内谈新一轮能源冲击情景](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260506~1bbd4ed780.en.html) ⭐️ 8.0/10
+## [欧洲央行施纳贝尔警告央行独立性悄然受到侵蚀](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507_1~d5ae988ece.en.html) ⭐️ 8.0/10
 
-欧洲央行执行委员会成员皮耶罗·奇波洛内于 2026 年 5 月 6 日发表演讲，分析了新一轮能源冲击的经济情景及政策影响。该演讲可能预示欧洲央行对能源驱动型通胀及潜在货币政策调整的评估立场。 该演讲提供了欧洲央行对能源价格风险的关键看法，可能影响市场对利率决策的预期，尤其是在冲击重新引发通胀压力的情况下。它还凸显了在地缘政治紧张局势下，欧元区经济对能源供应中断的持续脆弱性。 奇波洛内的演讲是欧洲央行关于能源问题的一系列官方沟通之一；2022 年的能源危机曾催生出“传导保护工具”等前所未有的政策工具。分析包括基准情景和不利情景，可能反映了天然气价格和经济增长的不同路径。
+欧洲央行执行委员会委员伊莎贝尔·施纳贝尔发表演讲，警告央行独立性正悄然受到侵蚀，这可能损害政策可信度和市场稳定。 这一警告表明欧洲央行可能面临政治压力，并凸显了货币政策可信度面临的风险，可能影响整个欧洲的通胀预期和债券市场。 施纳贝尔用“悄然侵蚀”一词来描述央行自主权受到的逐步侵蚀，强调这种趋势通常很微妙，但累积起来会危及政策有效性。
 
-rss · ECB Press Releases · May 6, 08:20
+rss · ECB Press Releases · May 7, 17:00
 
-**背景**: 能源冲击是指能源价格突然、意外变化，从而扰乱经济活动。2022 年，俄罗斯入侵乌克兰后欧洲面临严重能源危机，导致天然气和电价飙升。欧洲央行通过加息应对通胀，并引入“传导保护工具”以防止金融分裂。本次演讲更新了欧洲央行在当前环境下对此类风险的评估。
+**背景**: 央行独立性是现代货币政策的基石，确保决策不受政治干预，以有效控制通胀。欧洲央行的独立性受欧盟条约保障，但近年来多国政治压力日益增大，引发对长期可信度的担忧。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Shock_(economics)">Shock ( economics ) - Wikipedia</a></li>
-<li><a href="https://cryptorank.io/news/feed/488ea-ecb-energy-shock-nomura-scenarios">ECB Energy Shock Response : Nomura’s Critical Divergence...</a></li>
-<li><a href="https://globaltechfinance.com/ecb-monetary-policy-energy-disruption/">ECB : Energy Crisis Shapes Eurozone... - Global Tech Finance</a></li>
-
-</ul>
-</details>
-
-**标签**: `#central-bank`, `#macroeconomics`, `#energy`, `#europe`
+**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#financial-stability`, `#sovereign-risk`
 
 ---
 
 <a id="item-8"></a>
-## [欧央行工资追踪器显示 2026 年议定工资压力稳定](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html) ⭐️ 8.0/10
+## [欧洲央行西波洛内谈新能源冲击与政策](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260506~1bbd4ed780.en.html) ⭐️ 8.0/10
 
-欧洲央行发布其工资追踪器的新数据，显示包括平滑一次性支付在内的议定工资增长 2025 年为 3.2%，2026 年为 2.3%，表明工资压力稳定。 稳定的议定工资压力降低了欧央行调整政策利率的紧迫性，支持了当前的货币政策前景，并影响欧元区债券收益率和利率预期。 数据覆盖 2025 年 51.3%的员工和 2026 年 41.9%的员工，基于九个欧元区国家的集体谈判协议。该工资追踪器由欧央行与九个成员国央行合作构建。
+欧洲央行执行委员会成员皮耶罗·西波洛内发表了题为《新能源冲击：经济情景与政策影响》的演讲，概述了欧洲央行应对新一轮能源危机可能采取的措施。 此次演讲表明欧洲央行对继 2021-2023 年危机后第二次能源冲击的评估，可能影响未来的利率和资产购买等货币政策决策，从而影响欧元区的通胀和增长。 西波洛内讨论了新能源冲击下的经济情景，并强调了潜在的政策影响。该演讲可能暗示欧洲央行在能源价格压力再度上升时是收紧还是放松政策。
 
-rss · ECB Press Releases · May 6, 08:00
+rss · ECB Press Releases · May 6, 08:20
 
-**背景**: 欧央行工资追踪器是一个活跃集体谈判协议数据库，用于评估欧元区工资压力。它由欧央行与比利时、德国、希腊、西班牙、法国、意大利、荷兰、奥地利和芬兰的央行共同编制。2026 年 3 月的先前发布曾显示工资压力缓解，而最新数据则显示稳定。
+**背景**: 欧元区在 2021-2023 年经历了严重的能源危机，部分原因是俄乌战争，导致高通胀并促使欧洲央行大幅加息。新的能源冲击可能源于地缘政治紧张或供应中断，迫使欧洲央行在控制通胀和支持经济之间取得平衡。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html">New data release: ECB wage tracker indicates negotiated wage pressures stable in 2026</a></li>
-<li><a href="https://www.bde.es/wbe/en/noticias-eventos/actualidad-bce/notas-prensa-bce/publicacion-de-nuevos-datos-los-indicadores-del-bce-de-seguimiento-de-los-salarios-senalan-una-estabilizacion-de-las-presiones-de-los-salarios-negociados-en-2026.html">New data release: ECB wage tracker indicates negotiated wage pressures stable in 2026 - ECB press releases - Banco de España</a></li>
+<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260325~ac2916a211.en.html">Navigating energy shocks: risks and policy responses</a></li>
+<li><a href="https://www.ecb.europa.eu/press/key/date/2023/html/ecb.sp230216~a297a41feb.en.html">Monetary policy after the energy shock - European Central Bank</a></li>
 
 </ul>
 </details>
 
-**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#bonds`
+**标签**: `#central-bank`, `#energy`, `#macroeconomics`, `#europe`
 
 ---
 
 <a id="item-9"></a>
-## [欧央行副行长向欧洲议会提交 2025 年度报告](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260504_1~c7601bf295.en.html) ⭐️ 8.0/10
+## [欧央行薪资追踪器显示 2026 年薪资压力稳定](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html) ⭐️ 8.0/10
 
-欧洲央行副行长路易斯·德金多斯于 2026 年 5 月 4 日向欧洲议会经济与货币事务委员会提交了《欧洲央行 2025 年度报告》，概述了过去一年的货币政策和经济评估。 此次报告提供了欧洲央行对欧元区通胀、经济增长和金融稳定的关键评估，并可能预示未来货币政策方向，影响债券市场和汇率。 该报告涵盖了欧洲央行的货币政策决策，包括利率变动和资产购买，以及 2025 年的经济预测和金融稳定分析。
+欧洲央行于 2026 年 5 月 6 日发布薪资追踪数据，显示欧元区协议薪资增长在 2026 年保持稳定，约为 2.6%，未出现显著的薪资驱动通胀加速。 该数据支持欧央行逐步实现货币政策正常化，稳定的薪资压力降低了通胀持续的风险，影响欧元区利率预期、债券收益率和欧元汇率。 薪资追踪器采用双重汇总方法并提供前瞻性信号；对以往数据的修正显示前几个季度的薪资增长略高，但 2026 年的整体前景保持不变。
 
-rss · ECB Press Releases · May 4, 12:30
+rss · ECB Press Releases · May 6, 08:00
 
-**背景**: 欧洲央行需向欧洲议会提交年度报告，随后在全体会议上进行辩论。副行长的报告为议员们提供了就欧洲央行政策及欧元区经济状况进行质询的机会。
+**背景**: 欧央行薪资追踪器于 2024 年 12 月首次发布，用于监测欧元区协议薪资以评估可能影响通胀的薪资压力。政策制定者藉此判断劳动力成本向消费者价格的传导，尤其是在高通胀环境下。该追踪器补充了欧央行其他指标，如协议薪资指标。
 
-**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#currency`, `#bonds`
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html">New data release: ECB wage tracker indicates negotiated wage ...</a></li>
+<li><a href="https://www.ecb.europa.eu/press/blog/date/2024/html/ecb.blog20241218~1b3de009b4.en.html">The ECB wage tracker : your guide to euro area wage developments</a></li>
+
+</ul>
+</details>
+
+**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#bonds`, `#currency`
 
 ---
 
 <a id="item-10"></a>
-## [FSB 警告私人信贷风险威胁金融稳定](https://www.fsb.org/2026/05/fsb-warns-on-private-credit-vulnerabilities/) ⭐️ 8.0/10
+## [金融稳定理事会警告私人信贷带来系统性风险](https://www.fsb.org/2026/05/fsb-warns-on-private-credit-vulnerabilities/) ⭐️ 8.0/10
 
-金融稳定理事会（FSB）发布警告，指出资产规模约 1.5-2 万亿美元的私人信贷行业因其复杂性、杠杆率和相互关联性而构成系统性风险。 这一警告预示着快速增长中的私人信贷市场可能面临监管收紧，进而引发市场重新定价和监管加强，影响依赖此类融资的中型企业。 私人信贷行业在十年间从 4000 亿美元增长至超过 1.5 万亿美元，FSB 强调杠杆作用及与传统银行和机构投资者的联系可能放大压力。
+金融稳定理事会（FSB）警告称，私人信贷行业因其复杂性、杠杆率和关联性，可能在不利情景下加剧金融压力，威胁全球金融稳定。 这一警告意味着私人信贷可能面临更严格的监管或市场重新定价，该行业资产已迅速增长至约 1.5 至 2 万亿美元，影响中型企业和更广泛的金融市场。 FSB 特别指出，私人信贷的复杂性、杠杆率和关联性可能在不利情景下放大压力，带来超出该行业本身的更广泛金融稳定风险。
 
 rss · Financial Stability Board News · May 6, 06:00
 
-**背景**: 金融稳定理事会是一个国际机构，负责监测全球金融体系并提出建议。私人信贷指非银行机构向企业提供的贷款，自 2008 年金融危机后银行退出高风险贷款以来，该行业迅速扩张。FSB 的分析旨在在脆弱性威胁更广泛的金融稳定前识别它们。
+**背景**: 私人信贷是指通过直接贷款或私人债务基金向企业（通常是中型公司）提供的非银行贷款。金融稳定理事会是一个监测全球金融体系并提出建议的国际机构，其警告通常先于监管行动或市场调整。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.fsb.org/">Financial Stability Board - Promoting global financial stability ...</a></li>
-<li><a href="https://fortune.com/2024/01/24/small-businesses-turning-private-credit-regulation-threat-finance-drew-maloney/">Small businesses are turning to private credit –but... | Fortune</a></li>
-
-</ul>
-</details>
-
-**标签**: `#financial-stability`, `#macroeconomics`, `#global-markets`
+**标签**: `#financial-stability`, `#private-credit`, `#leverage`, `#interconnectedness`, `#global-markets`
 
 ---
 
 <a id="item-11"></a>
-## [黎巴嫩停火未能阻止破坏，家庭觅食维生](https://news.un.org/feed/view/en/story/2026/05/1167467) ⭐️ 7.0/10
+## [联合国：5 月以来乌克兰超 70 名平民死亡](https://news.un.org/feed/view/en/story/2026/05/1167454) ⭐️ 7.0/10
 
-尽管 2024 年 11 月实施的停火协议仍然有效，以色列的军事打击已摧毁黎巴嫩南部村庄，导致家庭缺乏食物和住所，被迫觅食维生。 这凸显了停火的脆弱性和持续的人道主义危机，威胁地区稳定，并可能升级为以色列与真主党之间的新一轮冲突。 联合国报告指出，黎巴嫩南部村庄在以色列打击后'完全无法辨认'，援助团队报告称尽管有停火，杀戮和流离失所仍在继续。
+联合国人权监察员报告称，自 5 月初以来，乌克兰全境至少有 70 名平民死亡、500 多人受伤，多轮袭击波及城市并阻碍人道主义援助。 该报告凸显了冲突的持续烈度和人道主义危机，可能加大外交压力以推动更多制裁或军事援助，从而影响地缘政治风险和市场情绪。 伤亡发生在不到一周的时间内，人道主义工作者难以接近前线附近的社区，表明援助准入严重受限。
 
-rss · UN News · May 8, 12:00
+rss · UN News · May 6, 12:00
 
-**背景**: 2024 年以色列-黎巴嫩停火协议于 2024 年 11 月实施，旨在结束以色列与真主党之间的敌对行动，并要求黎巴嫩政府解除真主党武装。然而，违规行为时有报告，包括以色列坦克炮击和真主党迫击炮袭击。联合国驻黎巴嫩临时部队（UNIFIL）根据联合国安理会第 1701 号决议监督停火。
+**背景**: 俄乌战争始于 2022 年 2 月，持续的战斗已导致数千平民伤亡。联合国乌克兰人权监测团定期记录平民受损情况，这往往影响国际政策回应。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://nypost.com/2024/11/28/world-news/israel-says-hezbollah-cease-fire-violated-fires-on-south-lebanon/">Cease - fire hangs by a thread after Israel hits Lebanon with tank fire...</a></li>
-<li><a href="https://unifil.unmissions.org/en/unifil-mandate">UNIFIL Mandate | United Nations Peace Operations</a></li>
-<li><a href="https://en.wikipedia.org/wiki/United_Nations_Interim_Force_in_Lebanon">United Nations Interim Force in Lebanon - Wikipedia</a></li>
-
-</ul>
-</details>
-
-**标签**: `#middle-east`, `#military-risk`, `#humanitarian`, `#lebanon`, `#israel`
+**标签**: `#russia-ukraine`, `#military-risk`, `#humanitarian`, `#diplomacy`
 
 ---
 
 <a id="item-12"></a>
-## [联合国警告海湾安全事件危及地区稳定](https://news.un.org/feed/view/en/story/2026/05/1167447) ⭐️ 7.0/10
+## [联合国：运送援助不是犯罪，敦促以色列释放船队成员](https://news.un.org/feed/view/en/story/2026/05/1167450) ⭐️ 7.0/10
 
-联合国对海湾地区不断升级的安全事件表示深切担忧，警告称近期的袭击可能破坏维护地区稳定的努力。 这一警告凸显了关键能源运输通道面临的风险上升，可能推高油价并威胁全球能源安全。任何进一步升级都可能破坏地区稳定，扰乱全球石油供应。 联合国未指明具体事件，但近期报告包括英国海上贸易组织（UKMTO）在阿拉伯海和阿曼湾的未解决事件，以及美伊军事交火导致油价突破每桶 100 美元。
+联合国人权事务办公室呼吁以色列立即释放在国际水域被扣押的全球坚守船队的两名成员，并指出向加沙运送人道主义援助不是犯罪行为。 这一声明加大了对以色列的外交压力，可能进一步损害以色列与联合国关系，并影响国际社会对加沙封锁及人道主义准入的看法。 被拘留者属于全球坚守船队（Global Sumud Flotilla），这是一支试图突破以色列对加沙封锁的活动人士船队。联合国办公室强调，声援巴勒斯坦人和运送援助物资是合法行为。
 
-rss · UN News · May 5, 12:00
+rss · UN News · May 6, 12:00
 
-**背景**: 海湾地区是重要的海上通道，霍尔木兹海峡承担着全球约 20%的石油运输。历史上，紧张局势常涉及伊朗、美国及地区国家，导致航运中断和油价波动。联合国此次警告释放出可能影响全球市场的地缘政治和经济风险信号。
+**背景**: 自 2007 年以来，以色列以安全为由对加沙地带实施海上封锁。全球坚守船队是活动人士多次尝试直接向加沙运送援助的一部分，此类行动常导致与以色列军队的冲突。联合国人权事务办公室定期监测并报告该地区的人权侵犯情况。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://moderndiplomacy.eu/2026/05/08/oil-rises-above-100-as-gulf-tensions-shake-markets-while-ai-boom-drives-global-stocks-higher/">Oil Rises Above $100 as Gulf Tensions Shake... - Modern Diplomacy</a></li>
-<li><a href="https://www.pizzint.watch/intel/ukmto-arabian-gulf-gulf-oman-shipping-mow0y58b">UKMTO reports incident in Arabian Gulf and Gulf of... | PizzINT Intel</a></li>
-
-</ul>
-</details>
-
-**标签**: `#diplomacy`, `#middle-east`, `#military-risk`, `#energy`
+**标签**: `#diplomacy`, `#geopolitics`, `#middle-east`, `#human-rights`, `#gaza`
 
 ---
 
 <a id="item-13"></a>
-## [欧央行副行长德金多斯在金融时报访谈中释放政策信号](https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260511~3fa2df2fa9.en.html) ⭐️ 7.0/10
+## [联合国呼吁全球为数字系统崩溃做好准备](https://news.un.org/feed/view/en/story/2026/05/1167445) ⭐️ 7.0/10
 
-欧洲央行副行长路易斯·德金多斯接受了《金融时报》采访，很可能就货币政策和经济前景提供了前瞻指引。 此次采访意义重大，可能影响市场对欧央行利率决策的预期，从而影响欧元/美元汇率和债券收益率。 德金多斯的言论将受到密切关注，以寻找任何关于降息时机或通胀评估变化的暗示。
+联合国发出行动呼吁，要求各国政府和组织为可能发生的灾难性、大范围数字系统故障做好准备，这种故障可能破坏关键基础设施和经济稳定。 这一联合国主导的倡议表明，人们日益认识到系统性数字风险可能瘫痪全球供应链、金融市场和基本服务，并可能促使各国出台有关网络韧性和基础设施保护的新国际政策。 联合国强调，准备工作应超越网络安全范畴，包括针对卫星、通信网络和医院生命维持系统等多个数字系统同时失效的应急计划。
+
+rss · UN News · May 5, 12:00
+
+**背景**: 数字系统支撑着现代社会，从银行业到医疗保健。联合国的呼吁反映了人们的担忧，即过度依赖互联数字基础设施会带来系统性脆弱性。此前的事件，如重大云服务中断，已显示出局部影响，但协调一致的全球性故障可能是前所未有的。
+
+**标签**: `#geopolitics`, `#supply-chain`, `#financial-stability`, `#global-markets`
+
+---
+
+<a id="item-14"></a>
+## [欧央行副行长金多斯发出欧元区政策信号](https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260511~3fa2df2fa9.en.html) ⭐️ 7.0/10
+
+欧洲央行副行长路易斯·德·金多斯接受了《金融时报》采访，可能就欧元区货币政策立场和宏观经济前景提供了新的指引。 此次采访可能影响市场对欧央行利率决策和欧元汇率的预期，投资者会从中解读通胀评估或金融稳定风险的变化。 采访于 2026 年 5 月 11 日发布，金多斯是欧央行执行委员会的关键成员，常反映管理委员会的共识。他的发言正值关于降息步伐和欧元区经济韧性的持续辩论。
 
 rss · ECB Press Releases · May 11, 04:00
 
-**背景**: 欧央行副行长通常在管理委员会会议之间传达政策立场。此类采访提供了对央行思路的洞察，并能影响金融市场。
+**背景**: 欧洲央行负责欧元区货币政策，目标是将通胀率维持在接近 2%的水平。副行长金多斯负责金融稳定和货币政策分析。欧央行高官的采访备受金融市场关注，以寻找未来政策行动的线索。
 
 **标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#currency`
 
 ---
 
-<a id="item-14"></a>
-## [拉加德：将稳定币功能与工具分离](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260508~dd909fbed1.en.html) ⭐️ 7.0/10
+<a id="item-15"></a>
+## [欧央行兰恩：气候变化融入货币政策](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html) ⭐️ 7.0/10
 
-欧洲央行行长克里斯蒂娜·拉加德发表演讲，指出稳定币结合了多种货币功能，监管机构应分别分析每种功能，而不是将其视为单一工具。 这一方法可能重塑全球数字货币监管，影响央行设计 CBDC 的方式以及稳定币发行商的监管，对金融稳定和货币主权具有重要影响。 拉加德强调，稳定币既作为支付手段又作为价值储存功能，分离这些功能会揭示不同的监管需求。她还指出，单独审视每个功能时，其广泛采用的理由就变得不那么有说服力。
+2026 年 5 月 5 日，欧洲央行首席经济学家菲利普·R·莱恩发表演讲，详细阐述了欧洲央行将气候变化纳入其经济分析、建模和货币政策框架的工作。 这标志着央行优先级的潜在转变，影响绿色投资和通胀管理预期。欧洲央行对气候行动的承诺可能影响整个欧元区的市场认知和政策可信度。 欧洲央行已采取重大努力，将气候因素纳入经济分析、建模、预测以及货币政策传导和立场的评估中。其最新货币政策战略承诺考虑气候变化和自然退化。
 
-rss · ECB Press Releases · May 8, 07:00
+rss · ECB Press Releases · May 5, 15:40
 
-**背景**: 稳定币是一种旨在保持相对于参考资产（如法定货币）价值稳定的加密货币。包括欧洲央行在内的全球央行正在探索央行数字货币（CBDC），例如数字欧元。拉加德的演讲反映了关于如何监管新型数字货币形式、同时维护金融稳定和货币政策有效性的持续辩论。
+**背景**: 传统上，央行专注于价格稳定，但气候变化对金融稳定和经济产出构成风险。欧洲央行与其他央行一样，越来越多地将气候因素纳入风险管理并符合更广泛的政策目标。央行与监管机构绿色金融网络（NGFS）为央行的可持续投资实践提供建议。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260508~dd909fbed1.en.html">Stablecoins and the future of money: separating functions from ...</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Stablecoin">Stablecoin - Wikipedia</a></li>
-<li><a href="https://www.ecb.europa.eu/euro/digital_euro/html/index.en.html">Digital euro | European Central Bank</a></li>
+<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html">Climate change and monetary policy - European Central Bank</a></li>
+<li><a href="https://greencentralbanking.com/2025/07/08/ecb-to-consider-climate-and-nature-in-monetary-policy/">ECB to consider climate and nature in monetary policy</a></li>
 
 </ul>
 </details>
 
-**标签**: `#central-bank`, `#monetary-policy`, `#digital-currency`, `#stablecoins`, `#europe`
+**标签**: `#central-bank`, `#macroeconomics`, `#climate`, `#europe`
 
 ---
 
-<a id="item-15"></a>
-## [欧洲央行副行长德金多斯呼吁深化欧洲金融一体化](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507~c99288185f.en.html) ⭐️ 7.0/10
+<a id="item-16"></a>
+## [欧央行行长拉加德将气候与自然问题纳入货币政策](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505~936c9c11b5.en.html) ⭐️ 7.0/10
 
-欧洲央行副行长路易斯·德金多斯于 2026 年 5 月 7 日发表演讲，主张深化金融一体化以支持欧洲繁荣，重点强调完成银行业联盟和推进资本市场联盟。 此次演讲表明欧洲央行继续将金融一体化作为优先事项，这对于减少市场碎片化、增强货币政策传导以及提升欧元区抵御经济冲击的能力至关重要。 德金多斯特别强调需要建立欧洲存款保险计划（EDIS），并消除跨境资本流动的剩余障碍，作为完成银行业和资本市场联盟的一部分。
+2026 年 5 月 5 日，欧洲央行行长克里斯蒂娜·拉加德在演讲中表示，气候变化和自然退化对货币政策的影响日益显著，表明欧央行致力于将这些风险纳入其操作中。 这预示着欧央行未来可能调整政策，包括资产购买、抵押品框架和风险评估，对欧元区的金融稳定和宏观风险具有重要影响。 拉加德强调，在日益激烈的政治辩论中需要进行基于事实的分析，并指出欧央行将继续深化气候与自然风险方面的工作，作为其货币政策战略的一部分。
 
-rss · ECB Press Releases · May 7, 07:15
+rss · ECB Press Releases · May 5, 12:30
 
-**背景**: 欧盟的银行业联盟于 2012 年启动，包括单一监管机制（SSM）和单一清算机制（SRM），但共同的存款保险计划（EDIS）仍未到位。资本市场联盟（CMU）于 2015 年启动，旨在打造欧盟统一的资本市场，但进展缓慢。金融一体化被视为打破银行与主权之间恶性循环、支持欧元区长期增长的关键。
+**背景**: 自 2021 年战略评估以来，欧央行一直将气候因素纳入货币政策，包括气候压力测试和调整公司债券购买。此次演讲将重点扩展至自然损失，这被视为对经济和金融体系的另一种但相关的风险。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/EU_banking_union">EU banking union</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Capital_Markets_Union">Capital Markets Union - Wikipedia</a></li>
+<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html">Climate change and monetary policy - European Central Bank</a></li>
+<li><a href="https://greencentralbanking.com/2025/07/08/ecb-to-consider-climate-and-nature-in-monetary-policy/">ECB to consider climate and nature in monetary policy</a></li>
+<li><a href="https://www.econostream-media.com/news/2026-05-05/ecb’s_lagarde:_climate_nature_risks_need_fact-based_analysis_amid_political_noise.html">ECB’s Lagarde: Climate, Nature Risks Need Fact-Based Analysis ...</a></li>
+
+</ul>
+</details>
+
+**标签**: `#central-bank`, `#europe`, `#macroeconomics`, `#financial-stability`, `#climate`
+
+---
+
+<a id="item-17"></a>
+## [欧央行公布非利率货币政策决定](https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc260504~07dc9bac72.en.html) ⭐️ 7.0/10
+
+欧洲央行管理委员会发布了一份新闻文件，详细说明了除利率设定之外的最新货币政策措施决定，包括可能对操作框架、抵押品政策或资产购买计划的调整。 这些非利率决定直接影响欧元区的流动性状况、债券收益率和银行融资成本，塑造市场预期和宏观经济风险。投资者和政策制定者密切关注这些决定，以获取欧央行在利率路径之外的政策立场信号。 摘要中未披露具体措施，但过去类似的决定包括调整定向长期再融资操作（TLTROs）的条件或调整大流行紧急购买计划（PEPP）的再投资。该文件发布于 2026 年 5 月 4 日，表明近期有政策活动。
+
+rss · ECB Press Releases · May 4, 13:00
+
+**背景**: 欧洲央行管理委员会定期开会制定欧元区货币政策，使用标准利率工具和非标准措施，如资产购买和贷款操作。非利率决定可能包括改变抵押品框架，这影响资产在欧央行再融资操作中的资格，或修改影响长期收益率的资产购买计划。这些措施是欧央行实现价格稳定和支持货币政策传导的工具包的一部分。
+
+**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#financial-stability`
+
+---
+
+<a id="item-18"></a>
+## [欧央行 2025 年报提交欧洲议会](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260504_1~c7601bf295.en.html) ⭐️ 7.0/10
+
+2026 年 5 月 4 日，欧洲央行副行长路易斯·德金多斯向欧洲议会经济与货币事务委员会提交了欧央行 2025 年年报，概述了央行对欧元区经济和货币政策的评估。 此次提交是重要的问责机制，提供了欧央行政策展望和金融稳定评估的洞见，可能影响市场预期及整个欧元区的政策讨论。 欧央行年报涵盖央行活动、财务报表及监管职责。向 ECON 委员会提交报告是货币对话的一部分，使欧洲议会议员能够就政策决定向欧央行官员提问。
+
+rss · ECB Press Releases · May 4, 12:30
+
+**背景**: 欧洲央行按规定需向欧洲议会提交年报，以在保持独立性的同时维持问责制。ECON 委员会通过定期货币对话（包括与欧央行行长或其他执行委员会成员的季度听证会）对欧央行进行监督。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.ecb.europa.eu/press/annual-reports-financial-statements/annual/html/index.en.html">Annual Report</a></li>
+<li><a href="https://en.wikipedia.org/wiki/European_Parliament_Committee_on_Economic_and_Monetary_Affairs">European Parliament Committee on Economic and Monetary Affairs</a></li>
 
 </ul>
 </details>
@@ -429,179 +485,67 @@ rss · ECB Press Releases · May 7, 07:15
 
 ---
 
-<a id="item-16"></a>
-## [欧央行报告显示欧元区金融一体化进展不一](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260507~8af27d170e.en.html) ⭐️ 7.0/10
-
-欧洲央行发布报告指出，欧元区金融一体化总体有所改善，但部分领域仍存在持续的碎片化现象，影响风险评估和市场定价。 该报告对于理解欧元区金融体系的韧性以及单一货币架构的有效性至关重要，并对跨境投资和货币政策传导产生影响。 报告衡量了货币、债券、股票和银行市场的一体化程度，指出虽然价格指标有所改善，但数量指标仍显示出明显的本土偏好和分割，尤其是在零售银行业务方面。
-
-rss · ECB Press Releases · May 7, 06:00
-
-**背景**: 金融一体化是欧元区的一个关键目标，旨在减少跨境壁垒并加强风险分担。欧洲央行关于金融一体化的年度报告提供了对进展和剩余挑战的官方评估，影响着关于完成银行联盟和资本市场联盟的政策辩论。
-
-**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#financial-stability`, `#global-markets`
-
----
-
-<a id="item-17"></a>
-## [Philip R. Lane: Climate change and monetary policy](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html) ⭐️ 7.0/10
-
-ECB's Philip R. Lane delivers a speech on the implications of climate change for monetary policy, highlighting potential long-term impacts on inflation, financial stability, and central bank strategy.
-
-rss · ECB Press Releases · May 5, 15:40
-
-**标签**: `#central-bank`, `#macroeconomics`, `#climate`, `#europe`, `#financial-stability`
-
----
-
-<a id="item-18"></a>
-## [拉加德将气候与自然风险关联货币政策](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505~936c9c11b5.en.html) ⭐️ 7.0/10
-
-欧洲央行行长克里斯蒂娜·拉加德在 2026 年 5 月 5 日的演讲中，明确将气候与自然退化问题与货币政策挂钩，暗示未来可能调整欧洲央行的政策框架。 这标志着一位顶级央行行长发出重要信号，即环境风险可能影响货币政策决策，对宏观金融稳定和欧洲央行的战略方向具有潜在影响。 拉加德的演讲正值欧洲央行持续进行气候与自然战略评估之际，暗示后续政策评估中可能出现具体的操作变化或工具调整。
-
-rss · ECB Press Releases · May 5, 12:30
-
-**背景**: 自 2021 年以来，欧洲央行一直在将气候因素纳入其货币政策框架，包括信息披露要求和压力测试。拉加德的最新言论将其扩展至自然退化问题，反映出对生物多样性风险影响经济稳定性的日益重视。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.ecb.europa.eu/ecb/climate/html/index.en.html">Climate change, nature degradation and the ECB</a></li>
-
-</ul>
-</details>
-
-**标签**: `#central-bank`, `#europe`, `#climate`, `#macroeconomics`, `#monetary-policy`
-
----
-
 <a id="item-19"></a>
-## [欧洲央行管理委员会宣布额外非利率决策](https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc260504~07dc9bac72.en.html) ⭐️ 7.0/10
+## [黎巴嫩停火难阻暴力，民众觅食维生](https://news.un.org/feed/view/en/story/2026/05/1167467) ⭐️ 6.0/10
 
-欧洲央行管理委员会发布新闻稿，详细说明了除利率设定之外的其他决策，可能包括政策工具调整、监管措施或宏观审慎政策。 这些决策塑造了欧元区的整体货币政策立场和金融稳定，影响市场预期和经济状况，超越关键利率的影响。 摘要中未披露具体决策内容，但此类发布通常涉及资产购买计划、定向长期再融资操作或监管措施等领域。
+据联合国报告，尽管处于脆弱的停火状态，以色列对黎巴嫩南部的袭击仍在继续，造成持续杀戮和流离失所，村庄面目全非，家庭被迫觅食。 持续的暴力威胁停火稳定，并可能引发更广泛的地区升级，同时粮食严重短缺和流离失所的人道主义危机加深，影响平民。 据报道，黎巴嫩南部村庄在以色列袭击后‘完全面目全非’，尽管有停火协议，持续的暴力迫使家庭觅食为生。
 
-rss · ECB Press Releases · May 4, 13:00
+rss · UN News · May 8, 12:00
 
-**背景**: 管理委员会是欧洲央行的主要决策机构，负责制定欧元区的货币政策。其决策不仅限于利率，还包括一系列旨在维护物价稳定和支持经济增长的政策工具。
+**背景**: 以色列与黎巴嫩真主党之间的冲突历史悠久，近期达成停火协议以停止敌对行动。然而，停火脆弱，以色列持续的空袭表明南部仍有军事行动，加剧了人道主义危机。
 
-**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#financial-stability`, `#global-markets`
+**标签**: `#middle-east`, `#diplomacy`, `#military-risk`, `#humanitarian`, `#israel-lebanon`
 
 ---
 
 <a id="item-20"></a>
-## [海地危机：帮派势力扩展至首都外](https://news.un.org/feed/view/en/story/2026/05/1167475) ⭐️ 6.0/10
+## [油价上涨可能加速塑料转型](https://news.un.org/feed/view/en/story/2026/05/1167463) ⭐️ 6.0/10
 
-海地持续面临不断升级的帮派暴力，武装团体现在将行动范围扩大到首都太子港以外，平民日益陷入敌对帮派和安全部队之间的夹缝。 帮派暴力的扩大可能使海地更多地区陷入动荡，加剧人道主义危机，并可能引发区域溢出效应，促使国际社会加强外交介入。 随着暴力蔓延至新地区，平民陷入武装团体与安全行动之间的夹缝，但本次简报未提供具体的伤亡数字或地理范围细节。
+联合国新闻的一篇分析指出，地缘政治动荡导致的油价上涨可能加速从石油基塑料向替代材料的转变，从而减少对化石燃料的依赖并支持气候目标。 这之所以重要，是因为塑料生产是气候变化的一个重要且常被忽视的因素，而远离塑料的转变可能显著减少化石燃料需求和温室气体排放。 分析指出，油价上涨使塑料更加昂贵，可能刺激创新和采用替代品，如生物塑料或回收材料。
 
-rss · UN News · May 8, 12:00
+rss · UN News · May 7, 12:00
 
-**背景**: 海地长期面临政治不稳定、国家机构薄弱以及控制太子港大部分地区的强大帮派问题。2021 年总统若弗内尔·莫伊兹遇刺后，当前危机进一步恶化，权力真空被帮派利用以扩大其势力范围。
+**背景**: 塑料源自化石燃料，主要是石油和天然气，其生产在全生命周期中都会产生温室气体排放。材料转型是指从基于化石燃料的材料转向更可持续的替代品，通常受经济或政策压力驱动。
 
-**标签**: `#diplomacy`, `#geopolitics`, `#military-risk`, `#haiti`
+**标签**: `#geopolitics`, `#energy`, `#climate`, `#supply-chain`, `#commodities`
 
 ---
 
 <a id="item-21"></a>
-## [索马里饥饿危机加剧，逼近灾难](https://news.un.org/feed/view/en/story/2026/05/1167473) ⭐️ 6.0/10
+## [资金短缺威胁在埃及的苏丹难民](https://news.un.org/feed/view/en/story/2026/05/1167443) ⭐️ 6.0/10
 
-联合国警告，索马里的饥饿危机正在迅速恶化，有可能导致大规模灾难，进而引发地区不稳定。 这场日益严重的危机可能引发大规模流离失所，使国际援助系统不堪重负，同时加剧非洲之角的安全风险。 据联合国称，危机已在迅速发展和加剧，但报告未提供饥荒声明或受影响人口等具体数据。
+联合国难民署警告称，资金短缺正危及在埃及的苏丹难民的关键服务，使其生存面临风险。 这可能导致人道主义危机恶化及区域不稳定，流离失所者可能面临教育、食品和医疗获取减少，进而引发二次流离失所或社会紧张。 警告特别指出，由于资金缺口，难民被迫在教育与食品等基本需求之间做出“非常艰难的决定”。
 
-rss · UN News · May 8, 12:00
+rss · UN News · May 5, 12:00
 
-**背景**: 过去几十年来，索马里经历了反复的干旱和冲突，导致粮食不安全频发。该国严重依赖人道主义援助，以往的饥荒曾造成灾难性后果。
+**背景**: 自 2023 年 4 月苏丹内战爆发以来，数百万人逃离该国，许多人前往邻国埃及寻求庇护。联合国难民署及其他机构一直在提供援助，但资金未能跟上日益增长的需求。
 
-**标签**: `#humanitarian`, `#somalia`, `#africa`, `#food-security`, `#crisis`
+**标签**: `#diplomacy`, `#humanitarian`, `#refugees`, `#egypt`, `#sudan`
 
 ---
 
 <a id="item-22"></a>
-## [世卫组织：乌克兰医疗遭 3000 多次袭击](https://news.un.org/feed/view/en/story/2026/05/1167468) ⭐️ 6.0/10
+## [欧洲央行与印度储备银行签署谅解备忘录加强合作](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260510~e8a674e2fb.en.html) ⭐️ 6.0/10
 
-世界卫生组织（WHO）已核实，自俄罗斯 2022 年 2 月全面入侵乌克兰以来，乌克兰境内医疗系统遭到超过 3000 次袭击。 这一累计数据凸显了医疗设施、人员和患者遭受系统性攻击的情况，这违反了国际人道法，可能构成战争罪，并将进一步引发国际谴责和潜在的法律行动。 袭击包括对医院、诊所、救护车和医疗物资的破坏，以及医护人员伤亡。自入侵以来，世卫组织一直在记录这些事件，为问责机制提供证据。
+欧洲中央银行（ECB）与印度储备银行（RBI）于 2026 年 5 月 10 日签署了一份谅解备忘录，旨在加强在金融稳定和跨境支付等共同关注领域的合作。 该协议标志着欧洲央行与印度储备银行之间机构关系的深化，可能促进未来在金融稳定框架和支付系统方面的协调。它可能带来更高效的跨境交易，并加强欧元区与印度之间的经济联系。 谅解备忘录建立了双边合作框架，但未规定具体措施或立即行动。这是一项不具约束力的协议，为进一步对话和未来可能的协议（如货币互换额度）铺平了道路。
 
-rss · UN News · May 8, 12:00
+rss · ECB Press Releases · May 10, 13:00
 
-**背景**: 国际人道法，特别是《日内瓦公约》，禁止在武装冲突中攻击医疗设施、人员和患者。根据《国际刑事法院罗马规约》，此类攻击可作为战争罪起诉。乌克兰遭受的攻击规模空前，已确认超过 3000 起事件，反映了对平民保护的刻意漠视。
+**背景**: 中央银行常签署谅解备忘录，以正式确定在金融稳定、监管和支付系统等问题上的合作。欧洲央行是欧元区的中央银行，而印度储备银行是印度的中央银行。该协议遵循了欧洲与亚洲经济体之间金融合作日益加强的趋势。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://blogs.icrc.org/law-and-policy/2026/05/06/attacks-on-the-medical-mission-identification-of-issues-and-good-practices/">Attacks on the medical mission: identification of issues and good...</a></li>
-<li><a href="https://inews.co.uk/news/world/what-are-war-crimes-definition-russia-chemical-attack-mariupol-ukraine-1570065">War crimes defined as Russia accused of chemical attack on Mariupol...</a></li>
-
-</ul>
-</details>
-
-**标签**: `#russia-ukraine`, `#ukraine`, `#humanitarian`, `#diplomacy`, `#healthcare-attacks`
+**标签**: `#central-bank`, `#europe`, `#asia-pacific`, `#diplomacy`, `#financial-stability`
 
 ---
 
 <a id="item-23"></a>
-## [油价上涨或加速从塑料到材料的转型](https://news.un.org/feed/view/en/story/2026/05/1167463) ⭐️ 6.0/10
+## [欧洲央行副行长德金多斯呼吁深化金融一体化](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507~c99288185f.en.html) ⭐️ 6.0/10
 
-联合国的一份报告指出，地缘政治动荡导致的油价上涨可能加速摆脱与化石燃料相关的塑料生产的转型。 这一转变可能通过减少塑料用油的长期需求，显著影响能源和商品市场，并有助于减缓气候变化。 报告强调塑料生产是气候变化的一个被忽视的驱动因素，因为它与化石燃料供应链深度融合。
+欧洲央行副行长路易斯·德金多斯发表演讲，强调欧洲需要深化金融一体化以促进繁荣和增强韧性。 这次演讲表明欧洲央行继续推动完成银行业联盟和资本市场联盟，这对欧元区的长期稳定和增长至关重要。它可能影响关于进一步一体化步骤的政策辩论。 德金多斯强调，碎片化的金融市场阻碍了货币政策的传导，并降低了欧元区吸收冲击的能力。他可能呼吁消除跨境资本流动的剩余障碍。
 
-rss · UN News · May 7, 12:00
+rss · ECB Press Releases · May 7, 07:15
 
-**背景**: 塑料源自石油和天然气，是温室气体排放的主要来源。油价上涨可使替代材料更具成本竞争力，从而可能加速可持续材料的创新和采用。
+**背景**: 欧洲央行长期以来一直倡导深化金融一体化，作为货币联盟的补充。关键举措包括 2008 年金融危机后启动的银行业联盟和 2015 年提出的资本市场联盟。然而，政治和监管障碍减缓了进展。
 
-**标签**: `#energy`, `#commodities`, `#supply-chain`, `#oil`, `#climate`
-
----
-
-<a id="item-24"></a>
-## [联合国人权办公室：向加沙运送援助不是犯罪，敦促以色列释放被扣人员](https://news.un.org/feed/view/en/story/2026/05/1167450) ⭐️ 6.0/10
-
-联合国人权办公室呼吁以色列释放两名在公海被扣留的'全球萨穆德船队'成员，指出向加沙运送人道主义援助不是犯罪。 此番表态可能加大对以色列的外交压力，并可能触发国际法庭的法律程序，从而影响以色列与联合国及人权倡导者的关系。 该船队在公海被拦截，被扣人员是'全球萨穆德船队'成员，该船队是一个旨在打破以色列对加沙封锁的声援团体。
-
-rss · UN News · May 6, 12:00
-
-**背景**: 自 2007 年以来，以色列以安全为由对加沙实施严格封锁。多支援助船队曾试图突破封锁，导致冲突和法律争端。联合国一再呼吁结束封锁并保护人道主义准入。
-
-**标签**: `#diplomacy`, `#human-rights`, `#israel-palestine`, `#gaza`, `#united-nations`
-
----
-
-<a id="item-25"></a>
-## [联合国呼吁全球为系统性数字崩溃做准备](https://news.un.org/feed/view/en/story/2026/05/1167445) ⭐️ 6.0/10
-
-联合国减少灾害风险办公室（UNDRR）呼吁各国为数字系统（包括卫星和医院生命支持系统）可能发生系统性故障做好准备。 这一警告凸显了全球对数字基础设施日益增长的依赖以及故障的级联风险，可能扰乱全球供应链、金融稳定和关键服务，亟需政策回应和投资。 UNDRR 负责人卡迈勒·基肖尔强调，许多风险是看不见的，且相互依赖性往往未被充分认识，这意味着一个领域的故障可能迅速波及多个领域。
-
-rss · UN News · May 5, 12:00
-
-**背景**: 数字系统已深度融入日常生活，从通信到医疗保健，使社会易受网络攻击和系统性崩溃的影响。联合国此前主要关注自然灾害的减灾工作，但此次表态标志着其首次将数字脆弱性视为全球优先事项。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://phys.org/news/2025-09-digital-crisis.html">The warning signs are clear: We're heading toward a digital crisis</a></li>
-<li><a href="https://www.ungeneva.org/en/news-media/news/2026/05/118340/un-leads-call-prepare-when-digital-systems-fail">UN leads call to prepare ‘for when digital systems fail’ | The United...</a></li>
-
-</ul>
-</details>
-
-**标签**: `#cyber-risk`, `#infrastructure`, `#un`, `#global-governance`, `#supply-chain`
-
----
-
-<a id="item-26"></a>
-## [在埃及的苏丹难民面临资金削减威胁](https://news.un.org/feed/view/en/story/2026/05/1167443) ⭐️ 6.0/10
-
-联合国难民署警告称，资金短缺迫使在埃及的苏丹难民在教育和基本生活需求之间做出选择，关键服务面临削减。 这场资金危机可能加剧人道主义局势并破坏区域稳定，因为埃及收容了大量难民人口。该警告可能促使国际捐助者做出回应或政策调整。 联合国难民署的警告强调，如果没有额外资金，难民儿童的教育等服务可能难以为继，迫使家庭做出艰难取舍。
-
-rss · UN News · May 5, 12:00
-
-**背景**: 自 2023 年 4 月苏丹内战爆发以来，已有超过 150 万人逃离，其中许多人前往埃及避难。联合国难民署及其合作伙伴为难民提供基本服务，但依赖自愿捐助者资金，这些资金一直不足。
-
-**标签**: `#diplomacy`, `#humanitarian`, `#africa`, `#refugees`, `#funding-crisis`
-
----
-
-<a id="item-27"></a>
-## [欧洲央行西波洛内谈数字资产、支付效率与货币政策](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260504~3e75e8b138.en.html) ⭐️ 6.0/10
-
-欧洲央行执行委员会委员皮耶罗·西波洛内发表演讲，讨论数字资产、支付效率及其对货币政策的影响。 此次演讲表明欧央行正在持续评估数字资产和支付创新，可能影响欧元区未来的监管框架和央行数字货币的发展。 西波洛内可能谈到了创新与金融稳定之间的平衡，以及数字资产对货币政策传导的潜在影响。
-
-rss · ECB Press Releases · May 4, 11:30
-
-**背景**: 欧央行一直在探索数字欧元作为央行数字货币，以确保支付效率和韧性。包括加密货币和稳定币在内的数字资产对货币政策和金融稳定构成挑战，促使央行评估其影响。
-
-**标签**: `#central-bank`, `#digital-assets`, `#monetary-policy`, `#europe`, `#financial-stability`
+**标签**: `#europe`, `#central-bank`, `#macroeconomics`, `#financial-stability`
 
 ---
