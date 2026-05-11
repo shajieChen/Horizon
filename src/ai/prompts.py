@@ -108,13 +108,33 @@ Do not output extra explanation.
 Keep the field names unchanged.
 Return valid JSON only."""
 
-CONCEPT_EXTRACTION_SYSTEM = """You identify technical concepts in news that a reader might not know.
-Given a news item, return 1-3 search queries for concepts that need explanation.
-Focus on: specific technologies, protocols, algorithms, tools, or projects that are not widely known.
-Do NOT return queries for well-known things (e.g. "Python", "Linux", "Google").
-If the news is self-explanatory, return an empty list."""
+CONCEPT_EXTRACTION_SYSTEM = """You identify geopolitical, diplomatic, macro-financial, policy, market, and institutional concepts that a reader may need to understand.
 
-CONCEPT_EXTRACTION_USER = """What concepts in this news might need explanation?
+Focus on:
+- state actors
+- international organizations
+- sanctions
+- tariffs
+- export controls
+- treaties
+- central banks
+- monetary policy
+- fiscal policy
+- FX
+- bonds
+- commodities
+- energy
+- military posture
+- supply chains
+- elections
+- sovereign risk
+- geopolitical flashpoints
+
+Do not extract generic software, programming, AI model, developer tool, or technical concepts unless they are directly tied to public policy, sanctions, national security, export controls, financial markets, or geopolitical risk.
+
+If the item is self-explanatory, return an empty list."""
+
+CONCEPT_EXTRACTION_USER = """What geopolitical, diplomatic, macro-financial, policy, market, or institutional concepts in this item may need explanation?
 
 Title: {title}
 Summary: {summary}
@@ -126,7 +146,7 @@ Respond with valid JSON only:
   "queries": ["<search query 1>", "<search query 2>"]
 }}"""
 
-CONTENT_ENRICHMENT_SYSTEM = """You are a knowledgeable technical writer who helps readers understand important news in context.
+CONTENT_ENRICHMENT_SYSTEM = """You are a knowledgeable analyst specializing in diplomacy, geopolitics, macro-finance, and international affairs who helps readers understand important news in context.
 
 Given a high-scoring news item, its content, and web search results about the topic, your job is to produce a structured analysis.
 
@@ -141,25 +161,25 @@ Provide EACH text field in BOTH English and Chinese. Use the following key namin
 Field definitions:
 0. **title** (one short phrase, ≤15 words): A clear, accurate headline for the news item.
 
-1. **whats_new** (1-2 complete sentences): What exactly happened, what changed, what breakthrough was made. Be specific — mention names, versions, numbers, dates when available.
+1. **whats_new** (1-2 complete sentences): What exactly happened, what changed, what was announced or decided. Be specific — mention names, institutions, numbers, dates when available.
 
-2. **why_it_matters** (1-2 complete sentences): Why this is significant, what impact it could have, who will be affected. Connect to the broader ecosystem or industry trends.
+2. **why_it_matters** (1-2 complete sentences): Why this is significant for diplomacy, markets, or policy; what impact it could have; who will be affected. Connect to broader geopolitical or financial trends.
 
-3. **key_details** (1-2 complete sentences): Notable technical details, limitations, caveats, or additional context worth knowing. Include specifics that a technically-minded reader would find valuable.
+3. **key_details** (1-2 complete sentences): Notable specifics, limitations, caveats, or additional context worth knowing for a policy-aware or market-aware reader. Include concrete details where available.
 
-4. **background** (2-4 sentences): Brief background knowledge that helps a reader without deep domain expertise understand the news. Explain key concepts, technologies, or context that the news assumes the reader already knows.
+4. **background** (2-4 sentences): Brief background that helps a reader without deep domain expertise understand the news. Explain key institutions, policy frameworks, historical context, or relationships that the news assumes the reader already knows.
 
 5. **community_discussion** (1-3 sentences): If community comments are provided, summarize the overall sentiment and key viewpoints from the discussion — agreements, disagreements, concerns, additional insights, or notable counterarguments. If no comments are provided, return an empty string.
 
 **CRITICAL — Language rules (MUST follow):**
 - All *_en fields MUST be written in English.
-- All *_zh fields MUST be written in Simplified Chinese (简体中文). 绝对不能用英文写 _zh 字段的内容。Only keep technical abbreviations, acronyms, and widely-used proper nouns (e.g. "GPT-4", "CUDA", "Rust") in their original English form; everything else must be Chinese.
+- All *_zh fields MUST be written in Simplified Chinese (简体中文). 绝对不能用英文写 _zh 字段的内容。Only keep widely-used abbreviations, acronyms, and proper nouns (e.g. "IMF", "NATO", "G7", "SWIFT") in their original English form; everything else must be Chinese.
 
 Guidelines:
 - EVERY field (except community_discussion when no comments exist) must contain at least one complete sentence — no field may be empty or contain just a phrase
 - Base your explanation on the provided content and web search results — do NOT fabricate information
 - ONLY explain concepts and terms that are explicitly mentioned in the title, summary, or content
-- Use the web search results to ensure accuracy, especially for recent projects, tools, or events
+- Use the web search results to ensure accuracy, especially for recent events, institutions, or policy developments
 - If the news is self-explanatory and needs no background, return an empty string for both background fields
 - For **sources**: pick 1-3 URLs from the Web Search Results that you actually relied on for the background fields. Only use URLs that appear verbatim in the search results above — do not invent or modify URLs.
 """
