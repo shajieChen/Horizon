@@ -79,6 +79,53 @@
     "ai_score_threshold": 6.0,
     "time_window_hours": 24
   },
+  "trading": {
+    "enabled": false,
+    "min_ai_score": 7.0,
+    "max_items_per_run": 5,
+    "mode": "event_driven",
+    "user_email_env": "SEC_USER_EMAIL",
+    "watch_keywords": [
+      "rate cut",
+      "inflation",
+      "recession",
+      "war",
+      "oil",
+      "gold",
+      "bitcoin",
+      "ethereum",
+      "NVDA",
+      "SPY",
+      "AI bubble",
+      "Taiwan",
+      "Fed",
+      "Treasury",
+      "yield curve"
+    ],
+    "symbols": [
+      "SPY",
+      "QQQ",
+      "NVDA",
+      "GC=F",
+      "CL=F",
+      "HG=F",
+      "BTC",
+      "ETH"
+    ],
+    "enabled_providers": [
+      "treasury",
+      "fear_greed",
+      "cme_fedwatch",
+      "coingecko",
+      "deribit",
+      "polymarket",
+      "kalshi",
+      "cftc",
+      "edgar",
+      "yahoo_price",
+      "yfinance"
+    ]
+  },
   "webhook": {
     "enabled": false,
     "url_env": "HORIZON_WEBHOOK_URL",
