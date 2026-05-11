@@ -208,7 +208,7 @@ class EmailManager:
 
     @staticmethod
     def _merge_inline_styles(existing_style: str | None, style_updates: dict[str, str]) -> str:
-        """Merge inline styles while preserving existing declarations."""
+        """Merge inline styles and let required email-safe rules override conflicts."""
         style_map = {}
         if existing_style:
             for declaration in existing_style.split(";"):

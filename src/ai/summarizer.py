@@ -285,7 +285,7 @@ class DailySummarizer:
 
     @staticmethod
     def _clean_table_cell(value: Any) -> str:
-        """Clean text for safe Markdown table cells."""
+        """Clean text for safe Markdown table cells by flattening newlines and pipes."""
         text = str(value or "").replace("\n", " ").replace("|", "/").strip()
         return text
 
