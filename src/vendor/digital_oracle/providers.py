@@ -183,7 +183,11 @@ class EdgarProvider(BaseProvider):
 
     def fetch(self, context: ProviderCallContext) -> List[Dict[str, str]]:
         if not context.user_email:
-            raise ValueError("SEC user email is required for EDGAR provider.")
+            raise ValueError(
+                "SEC user email is required for EDGAR provider. "
+                "Set the environment variable configured by trading.user_email_env "
+                "(default: SEC_USER_EMAIL)."
+            )
         return [
             {
                 "signal": "Insider transaction pulse",

@@ -3,6 +3,7 @@
 import re
 from typing import List, Dict, Any
 
+from ..market.constants import DEFAULT_FALSIFIER
 from ..models import ContentItem
 
 
@@ -227,7 +228,10 @@ class DailySummarizer:
             lines.append("")
             lines.append(forecast_block)
 
-        trading_block = self._format_trading_analysis_block(meta.get("trading_analysis"))
+        trading_block = self._format_trading_analysis_block(
+            meta.get("trading_analysis"),
+            meta.get("forecast"),
+        )
         if trading_block:
             lines.append("")
             lines.append(trading_block)
@@ -386,7 +390,7 @@ class DailySummarizer:
 
         return "\n".join(lines)
 
-    def _format_trading_analysis_block(self, trading_analysis: Any) -> str:
+    def _format_trading_analysis_block(self, trading_analysis: Any, forecast: Any = None) -> str:
         """Render market trading analysis details when available."""
         if not isinstance(trading_analysis, dict):
             return ""
@@ -403,6 +407,7 @@ class DailySummarizer:
             else []
         )
         errors = self._as_list(trading_analysis.get("errors"))
+        forecast_falsifiers = self._as_list(forecast.get("falsifiers")) if isinstance(forecast, dict) else []
         data_sources = self._as_list(trading_analysis.get("data_sources")) or ["N/A"]
 
         signal_rows = []
@@ -478,7 +483,7 @@ class DailySummarizer:
             *monitor_rows,
             "",
             "### Falsifiers",
-            *[f"- {entry}" for entry in divergences],
+            *[f"- {entry}" for entry in (forecast_falsifiers or [DEFAULT_FALSIFIER])],
             "",
             "### Data Sources",
             *[f"- {entry}" for entry in data_sources],

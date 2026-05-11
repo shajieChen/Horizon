@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Dict
 
+from .constants import DEFAULT_FALSIFIER
 from .oracle import TradingAnalysisResult
 
 
@@ -54,7 +55,7 @@ def trading_result_to_forecast(result: TradingAnalysisResult) -> Dict:
             "level": confidence_level,
             "reason": f"Based on {len(result.signals)} independent market signals.",
         },
-        "falsifiers": result.divergences or ["Signal alignment fails across layers."],
+        "falsifiers": result.divergences or [DEFAULT_FALSIFIER],
         "missing_evidence": missing_evidence,
         "market_or_policy_implications": [result.conclusion],
     }

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional, List
+from typing import Optional, List, Tuple
 
 from pydantic import BaseModel, Field
 
@@ -92,7 +92,7 @@ class TradingQuestionRouter:
                 hits.append(keyword)
         return hits
 
-    def _match_question_type(self, text: str) -> tuple[Optional[str], List[str]]:
+    def _match_question_type(self, text: str) -> Tuple[Optional[str], List[str]]:
         for question_type, keywords in self._QUESTION_KEYWORDS:
             hits = self._collect_hits(keywords, text)
             if hits:

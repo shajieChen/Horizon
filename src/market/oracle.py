@@ -54,6 +54,9 @@ class TradingAnalysisResult(BaseModel):
 class TradingOracleAnalyzer:
     """Analyze Horizon content items using market trading data."""
 
+    _MIN_SIGNALS = 3
+    _INSUFFICIENT_COVERAGE_REASON = "insufficient independent market signals"
+
     _PROVIDER_PLAN = {
         "macro_rates": ["treasury", "cme_fedwatch", "fear_greed", "yahoo_price", "cftc", "kalshi"],
         "recession_risk": ["treasury", "cme_fedwatch", "fear_greed", "yahoo_price", "cftc", "kalshi"],
@@ -80,7 +83,7 @@ class TradingOracleAnalyzer:
             return None
 
         providers = self._select_providers(route.question_type)
-        if len(providers) < 3:
+        if len(providers) < self._MIN_SIGNALS:
             providers = list(dict.fromkeys(providers + ["fear_greed", "yahoo_price", "treasury"]))
 
         errors: List[str] = []
@@ -114,11 +117,11 @@ class TradingOracleAnalyzer:
                 errors.append(f"{provider_name}: {exc}")
 
         signal_count = len(signals)
-        confidence = "high" if signal_count >= 5 else ("medium" if signal_count >= 3 else "low")
+        confidence = "high" if signal_count >= 5 else ("medium" if signal_count >= self._MIN_SIGNALS else "low")
         resonance = self._extract_resonance(signals)
         divergences = self._extract_divergences(signals)
-        if signal_count < 3:
-            errors.append("signal coverage is insufficient (<3 independent signals).")
+        if signal_count < self._MIN_SIGNALS:
+            errors.append(f"{self._INSUFFICIENT_COVERAGE_REASON} (<{self._MIN_SIGNALS} signals).")
 
         scenarios = self._build_scenarios(route.question_type, confidence)
         conclusion = self._build_conclusion(route.question_type, confidence, signal_count)
@@ -183,11 +186,11 @@ class TradingOracleAnalyzer:
             TradingScenario(name="downside_shock", probability=25, basis="Growth or geopolitical shock expands.", trading_bias="Long duration and safe havens."),
         ]
 
-    @staticmethod
-    def _build_conclusion(question_type: str, confidence: str, signal_count: int) -> str:
-        if signal_count < 3:
+    @classmethod
+    def _build_conclusion(cls, question_type: str, confidence: str, signal_count: int) -> str:
+        if signal_count < cls._MIN_SIGNALS:
             return (
-                f"{question_type} analysis completed but signal coverage is insufficient; "
+                f"{question_type} analysis completed with {cls._INSUFFICIENT_COVERAGE_REASON}; "
                 "treat directional bias as tentative."
             )
         return f"{question_type} analysis indicates a {confidence} confidence tactical setup."
