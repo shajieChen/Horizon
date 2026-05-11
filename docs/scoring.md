@@ -54,6 +54,8 @@ Items scoring 9.0 or above are featured in the "Today's Highlights" section of t
 
 The parsed JSON fields remain unchanged: `ai_score`, `ai_reason`, `ai_summary`, and `ai_tags`. The tag set should now favor labels such as `diplomacy`, `geopolitics`, `central-bank`, `macroeconomics`, `trade-policy`, `energy`, `supply-chain`, and `global-markets`.
 
+The new criteria apply when items are scored in future runs. Existing stored outputs remain backward-compatible at the JSON-schema level and are only re-evaluated if they go through the scoring stage again.
+
 ## Enrichment
 
 Items that pass the score threshold go through a second AI pass for enrichment (`src/ai/enricher.py`):
