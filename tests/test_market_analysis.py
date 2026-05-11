@@ -575,33 +575,17 @@ def test_conservative_basis_only_when_all_data_missing():
 
 def test_yahoo_price_provider_fallback_uses_na_not_zero():
     """YahooPriceProvider exception fallback must use N/A, not 0, for returns."""
-    from src.vendor.digital_oracle.providers import YahooPriceProvider, ProviderCallContext
-    import sys
+    from src.vendor.digital_oracle.providers import YahooPriceProvider
 
-    item = _make_item("test")
-    ctx = ProviderCallContext(item=item, question_type="asset_watchlist", symbols=["INVALID_XYZ_999"])
-
-    # Force yfinance to raise by simulating a failure-prone symbol
-    # We patch _fetch_symbol_price to call the except branch directly
-    original = YahooPriceProvider._fetch_symbol_price
-    try:
-        # simulate failure: pass a symbol that raises in all paths
-        with patch_yfinance_to_fail():
-            provider = YahooPriceProvider()
-            result = provider._fetch_symbol_price("FAIL_SYM")
-        assert result["1d_return"] == "N/A"
-        assert result["5d_return"] == "N/A"
-        assert result["20d_return"] == "N/A"
-    except Exception:
-        # If we can't simulate, at least verify the static code returns N/A in fallback
-        import inspect
-        src_text = inspect.getsource(YahooPriceProvider._fetch_symbol_price)
-        assert '"1d_return": "N/A"' in src_text or "'1d_return': 'N/A'" in src_text
+    with patch_yfinance_to_fail():
+        result = YahooPriceProvider._fetch_symbol_price("FAIL_SYM")
+    assert result["1d_return"] == "N/A"
+    assert result["5d_return"] == "N/A"
+    assert result["20d_return"] == "N/A"
 
 
 def test_yfinance_unavailable_does_not_crash_watchlist():
     """When yfinance is not importable, analysis still runs without raising."""
-    import sys
     from src.market.oracle import TradingOracleAnalyzer
     from src.models import TradingConfig, TradingAssetConfig
 
@@ -615,19 +599,10 @@ def test_yfinance_unavailable_does_not_crash_watchlist():
     )
     analyzer = TradingOracleAnalyzer(config)
 
-    original = sys.modules.get("yfinance", None)
-    sys.modules["yfinance"] = None  # type: ignore[assignment]
-    try:
+    with patch_yfinance_to_fail():
         result = asyncio.run(analyzer.analyze_asset_watchlist())
-        assert result is not None
-        # Should have errors mentioning yfinance / price data
-        all_errors = " ".join(result.errors)
-        assert len(result.asset_views) >= 1
-    finally:
-        if original is None:
-            sys.modules.pop("yfinance", None)
-        else:
-            sys.modules["yfinance"] = original
+    assert result is not None
+    assert len(result.asset_views) >= 1
 
 
 # Helper context manager for the fallback test

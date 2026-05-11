@@ -43,7 +43,7 @@ def _extract_metadata_value(signals: "List[MarketSignal]", key: str) -> str:
     return ""
 
 
-def _extract_numeric_metadata_values(signals: "List[MarketSignal]", key: str) -> list[float]:
+def _extract_numeric_metadata_values(signals: "List[MarketSignal]", key: str) -> List[float]:
     """Return all usable numeric metadata values for key across all signals."""
     values = []
     for signal in signals:
@@ -83,6 +83,11 @@ def _ratio_metadata(signals: "List[MarketSignal]", key: str, expected: str = "tr
     return str(matched / total)
 
 
+def _format_ratio(ratio: float) -> str:
+    """Format a ratio as a percentage string, or '?' if ratio is negative (unknown)."""
+    return f"{ratio:.0%}" if ratio >= 0 else "?"
+
+
 def estimate_horizon_probability(
     asset: "TradingAssetConfig",
     price_signals: "List[MarketSignal]",
@@ -111,7 +116,8 @@ def estimate_horizon_probability(
     above_20d_ratio = _ratio_metadata(price_signals, "above_20d_ma", "true")
     vol_regime = _extract_metadata_value(price_signals, "volatility_regime")
 
-    # Determine high-volatility regime: any symbol "high" or >= 30% "high"
+    # Determine high-volatility regime: true if any single symbol is "high",
+    # or if 30% or more of symbols are "high".
     vol_values = [
         (getattr(s, "metadata", {}) or {}).get("volatility_regime", "")
         for s in price_signals
@@ -144,12 +150,10 @@ def estimate_horizon_probability(
         r5 = _ratio_float(above_5d_ratio)
         if _positive(ret_1d) and r5 >= 0.5:
             up += 10
-            pct = f"{r5:.0%}" if r5 >= 0 else "?"
-            basis_items.append(f"1d basket avg return positive and {pct} symbols above 5D MA")
+            basis_items.append(f"1d basket avg return positive and {_format_ratio(r5)} symbols above 5D MA")
         elif _negative(ret_1d) and 0.0 <= r5 < 0.5:
             down += 10
-            pct = f"{r5:.0%}"
-            basis_items.append(f"1d basket avg return negative and only {pct} symbols above 5D MA")
+            basis_items.append(f"1d basket avg return negative and only {_format_ratio(r5)} symbols above 5D MA")
         if high_vol:
             neutral += 5
             down += 3
@@ -160,12 +164,10 @@ def estimate_horizon_probability(
         r20 = _ratio_float(above_20d_ratio)
         if _positive(ret_5d) and r20 >= 0.5:
             up += 10
-            pct = f"{r20:.0%}" if r20 >= 0 else "?"
-            basis_items.append(f"5d basket avg return positive and {pct} symbols above 20D MA")
+            basis_items.append(f"5d basket avg return positive and {_format_ratio(r20)} symbols above 20D MA")
         elif _negative(ret_5d) and 0.0 <= r20 < 0.5:
             down += 10
-            pct = f"{r20:.0%}"
-            basis_items.append(f"5d basket avg return negative and only {pct} symbols above 20D MA")
+            basis_items.append(f"5d basket avg return negative and only {_format_ratio(r20)} symbols above 20D MA")
         if high_vol:
             neutral += 5
             basis_items.append("high volatility reduces trend conviction over 1W")
@@ -175,12 +177,10 @@ def estimate_horizon_probability(
         r20 = _ratio_float(above_20d_ratio)
         if _positive(ret_20d) and r20 >= 0.5:
             up += 15
-            pct = f"{r20:.0%}" if r20 >= 0 else "?"
-            basis_items.append(f"20d basket avg return positive with {pct} symbols above 20D MA")
+            basis_items.append(f"20d basket avg return positive with {_format_ratio(r20)} symbols above 20D MA")
         elif _negative(ret_20d) and 0.0 <= r20 < 0.5:
             down += 15
-            pct = f"{r20:.0%}"
-            basis_items.append(f"20d basket avg return negative with only {pct} symbols above 20D MA")
+            basis_items.append(f"20d basket avg return negative with only {_format_ratio(r20)} symbols above 20D MA")
         # Check macro stress via fear/greed (still via signal name search)
         fg_val = _extract_signal_value(price_signals, "fear_greed")
         if fg_val == "extreme_fear":
