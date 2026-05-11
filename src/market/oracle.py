@@ -23,6 +23,7 @@ class MarketSignal(BaseModel):
     interpretation: str
     confidence: str = "medium"
     source: str
+    metadata: Dict[str, str] = Field(default_factory=dict)
 
 
 class HorizonProbability(BaseModel):
@@ -129,11 +130,18 @@ class TradingOracleAnalyzer:
             user_email=user_email,
         )
 
+        _known_keys = {"signal", "value", "horizon", "interpretation", "source"}
+
         for provider_name in providers:
             try:
                 provider = get_provider_by_name(provider_name)
                 payloads = await asyncio.to_thread(provider.fetch, call_context)
                 for payload in payloads:
+                    metadata = {
+                        str(k): str(v)
+                        for k, v in payload.items()
+                        if k not in _known_keys and v is not None
+                    }
                     signal = MarketSignal(
                         layer=provider.layer,
                         signal=str(payload.get("signal", "")),
@@ -141,6 +149,7 @@ class TradingOracleAnalyzer:
                         horizon=str(payload.get("horizon", "short_to_medium")),
                         interpretation=str(payload.get("interpretation", "")),
                         source=str(payload.get("source", provider_name)),
+                        metadata=metadata,
                     )
                     signals.append(signal)
                     data_sources.append(signal.source)
@@ -278,6 +287,8 @@ class TradingOracleAnalyzer:
         if not watchlist_providers:
             watchlist_providers = ["fear_greed", "yahoo_price", "treasury"]
 
+        _known_keys = {"signal", "value", "horizon", "interpretation", "source"}
+
         for asset in enabled_assets:
             asset_signals: List[MarketSignal] = []
             asset_errors: List[str] = []
@@ -292,6 +303,11 @@ class TradingOracleAnalyzer:
                     provider = get_provider_by_name(provider_name)
                     payloads = await asyncio.to_thread(provider.fetch, call_context)
                     for payload in payloads:
+                        metadata = {
+                            str(k): str(v)
+                            for k, v in payload.items()
+                            if k not in _known_keys and v is not None
+                        }
                         signal = MarketSignal(
                             layer=provider.layer,
                             signal=str(payload.get("signal", "")),
@@ -299,6 +315,7 @@ class TradingOracleAnalyzer:
                             horizon=str(payload.get("horizon", "short_to_medium")),
                             interpretation=str(payload.get("interpretation", "")),
                             source=str(payload.get("source", provider_name)),
+                            metadata=metadata,
                         )
                         asset_signals.append(signal)
                         all_signals.append(signal)
@@ -319,6 +336,17 @@ class TradingOracleAnalyzer:
             if data_quality == "low":
                 errors.append(
                     f"Missing Evidence: only {len(asset_signals)} signal(s) for {asset.name}"
+                )
+
+            # Check for valid price signals (layer=="price" and value not "N/A")
+            valid_price_signals = [
+                s for s in asset_signals
+                if s.layer == "price" and s.value not in ("", "N/A")
+            ]
+            if not valid_price_signals:
+                errors.append(
+                    f"Missing price data for {asset.name}: no valid yfinance price signals. "
+                    "Check yfinance installation, network access, and Yahoo symbol support."
                 )
 
             conclusion = self._build_asset_conclusion(asset.name, asset_signals, horizons_list)
