@@ -239,8 +239,10 @@ class HorizonOrchestrator:
                 tasks.append(self._fetch_with_progress("Hacker News", hn_scraper, since))
 
             # RSS feeds
+            rss_task_idx = None
             if self.config.sources.rss:
                 rss_scraper = RSSScraper(self.config.sources.rss, client)
+                rss_task_idx = len(tasks)
                 tasks.append(self._fetch_with_progress("RSS Feeds", rss_scraper, since))
 
             # Reddit
@@ -258,11 +260,27 @@ class HorizonOrchestrator:
 
             # Flatten results
             all_items = []
-            for result in results:
+            rss_result = None
+            for i, result in enumerate(results):
                 if isinstance(result, Exception):
                     self.console.print(f"[red]Error fetching source: {result}[/red]")
                 elif isinstance(result, list):
                     all_items.extend(result)
+                    if rss_task_idx is not None and i == rss_task_idx:
+                        rss_result = result
+
+            # Show full RSS per-feed breakdown (including 0-count feeds)
+            if rss_result is not None:
+                feed_counts: Dict[str, int] = defaultdict(int)
+                for item in rss_result:
+                    feed_name = item.metadata.get("feed_name", "unknown")
+                    feed_counts[feed_name] += 1
+                self.console.print("RSS breakdown:")
+                for src in self.config.sources.rss:
+                    if src.enabled:
+                        count = feed_counts.get(src.name, 0)
+                        self.console.print(f"   - {src.name}: {count}")
+                self.console.print("")
 
             return all_items
 

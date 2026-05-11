@@ -64,6 +64,9 @@ class RSSScraper(BaseScraper):
             List[ContentItem]: Feed content items
         """
         items = []
+        total_entries = 0
+        skipped_no_date = 0
+        skipped_too_old = 0
 
         try:
             # Expand environment variables in URL (e.g. ${LWN_TOKEN})
@@ -81,15 +84,20 @@ class RSSScraper(BaseScraper):
             feed = feedparser.parse(response.text)
 
             for entry in feed.entries:
+                total_entries += 1
+
                 # Parse published date
                 published_at = self._parse_date(entry)
-                if not published_at or published_at < since:
+                if not published_at:
+                    skipped_no_date += 1
+                    continue
+                if published_at < since:
+                    skipped_too_old += 1
                     continue
 
                 # Generate unique ID from feed URL and entry ID
                 feed_id = str(source.url).split("//")[1].replace("/", "_")
                 entry_id = entry.get("id", entry.get("link", ""))
-                unique_id = f"{feed_id}:{hash(entry_id)}"
 
                 # Extract content
                 content = self._extract_content(entry)
@@ -110,10 +118,22 @@ class RSSScraper(BaseScraper):
                 )
                 items.append(item)
 
+            logger.info(
+                "RSS feed result:\n- name: %s\n- total_entries: %d\n- selected: %d\n"
+                "- skipped_no_date: %d\n- skipped_too_old: %d",
+                source.name, total_entries, len(items), skipped_no_date, skipped_too_old,
+            )
+
         except httpx.HTTPError as e:
-            logger.warning("Error fetching RSS feed %s: %s", source.name, e)
+            logger.warning(
+                "RSS feed failed:\n- name: %s\n- url: %s\n- error: %s",
+                source.name, source.url, e,
+            )
         except Exception as e:
-            logger.warning("Error parsing RSS feed %s: %s", source.name, e)
+            logger.warning(
+                "RSS feed failed:\n- name: %s\n- url: %s\n- error: %s",
+                source.name, source.url, e,
+            )
 
         return items
 
