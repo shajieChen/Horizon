@@ -332,18 +332,15 @@ class TradingOracleAnalyzer:
                     estimate_horizon_probability(asset, asset_signals, hz)
                 )
 
-            data_quality = "medium" if len(asset_signals) >= 3 else "low"
-            if data_quality == "low":
-                errors.append(
-                    f"Missing Evidence: only {len(asset_signals)} signal(s) for {asset.name}"
-                )
+            # Valid price signals: layer=="price", numeric value, and has usable 1d_return metadata
+            valid_count, _ = self._count_valid_price_signals(asset_signals)
 
-            # Check for valid price signals (layer=="price" and value not "N/A")
-            valid_price_signals = [
-                s for s in asset_signals
-                if s.layer == "price" and s.value not in ("", "N/A")
-            ]
-            if not valid_price_signals:
+            if valid_count >= 3:
+                data_quality = "high"
+            elif valid_count >= 1:
+                data_quality = "medium"
+            else:
+                data_quality = "low"
                 errors.append(
                     f"Missing price data for {asset.name}: no valid yfinance price signals. "
                     "Check yfinance installation, network access, and Yahoo symbol support."
@@ -402,6 +399,22 @@ class TradingOracleAnalyzer:
         )
 
     @staticmethod
+    def _count_valid_price_signals(signals: List[MarketSignal]) -> tuple[int, int]:
+        """Return (valid_count, total_price_count) for price signals.
+
+        A price signal is *valid* when its value is not empty/N/A and it carries
+        a usable ``1d_return`` metadata entry.
+        """
+        total = sum(1 for s in signals if s.layer == "price")
+        valid = sum(
+            1 for s in signals
+            if s.layer == "price"
+            and s.value not in ("", "N/A")
+            and (s.metadata or {}).get("1d_return") not in (None, "", "N/A", "unknown")
+        )
+        return valid, total
+
+    @staticmethod
     def _build_asset_conclusion(
         name: str,
         signals: List[MarketSignal],
@@ -412,5 +425,15 @@ class TradingOracleAnalyzer:
             return f"{name}: no horizon data available."
         biases = [h.expected_bias for h in horizons]
         bias_str = "/".join(biases)
-        signal_note = f"{len(signals)} signal(s)" if signals else "no signals"
-        return f"{name}: {bias_str} bias across 1D/1W/1M ({signal_note}). Treat as probability estimate only."
+
+        valid_price, total_price = TradingOracleAnalyzer._count_valid_price_signals(signals)
+
+        if valid_price == 0:
+            return (
+                f"{name}: {bias_str} bias across 1D/1W/1M. "
+                "No valid price data. Conservative probability distribution used."
+            )
+        return (
+            f"{name}: {bias_str} bias across 1D/1W/1M. "
+            f"Price signals: {valid_price}/{total_price} symbols. Treat as probability estimate only."
+        )

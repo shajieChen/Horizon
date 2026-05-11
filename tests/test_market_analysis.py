@@ -547,7 +547,7 @@ def test_basis_not_conservative_when_price_data_present():
 
 
 def test_conservative_basis_only_when_all_data_missing():
-    """When all price data is N/A/unknown, conservative base distribution is acceptable."""
+    """When all price data is N/A/unknown, conservative base distribution with bilingual message is used."""
     from src.market.oracle import MarketSignal
     from src.market.probability import estimate_horizon_probability
     from src.models import TradingAssetConfig
@@ -571,6 +571,7 @@ def test_conservative_basis_only_when_all_data_missing():
     for hz in ("1d", "1w", "1m"):
         hp = estimate_horizon_probability(asset, signals, hz)
         assert "conservative base distribution" in hp.basis
+        assert "价格数据不足" in hp.basis
 
 
 def test_yahoo_price_provider_fallback_uses_na_not_zero():
@@ -621,3 +622,213 @@ class patch_yfinance_to_fail:
             sys.modules["yfinance"] = self._orig
 
 
+# ─── New tests for yfinance fix and data quality ──────────────────────────────
+
+def test_workflow_installs_trading_extra():
+    """daily-summary.yml must use 'uv sync --extra trading' to install yfinance."""
+    import re
+    from pathlib import Path
+
+    wf = Path(__file__).parent.parent / ".github" / "workflows" / "daily-summary.yml"
+    content = wf.read_text()
+    assert "uv sync --extra trading" in content, (
+        "Workflow must install yfinance via 'uv sync --extra trading'"
+    )
+
+
+def test_only_na_price_signals_gives_low_data_quality():
+    """data_quality must be 'low' when all price signals have value=N/A."""
+    from src.market.oracle import TradingOracleAnalyzer
+    from src.models import TradingConfig, TradingAssetConfig
+    from unittest.mock import patch, MagicMock
+
+    na_payload = {
+        "signal": "QQQ price",
+        "value": "N/A",
+        "horizon": "1d",
+        "interpretation": "Price data unavailable for QQQ: import error",
+        "source": "YahooPriceProvider",
+        "1d_return": "N/A",
+        "5d_return": "N/A",
+        "20d_return": "N/A",
+        "above_5d_ma": "unknown",
+        "above_20d_ma": "unknown",
+        "volatility_regime": "unknown",
+    }
+
+    mock_provider = MagicMock()
+    mock_provider.layer = "price"
+    mock_provider.fetch.return_value = [na_payload]
+
+    config = TradingConfig(
+        enabled=True,
+        mode="asset_watchlist",
+        watch_assets=[
+            TradingAssetConfig(name="Test Basket", category="us_stock", symbols=["QQQ"]),
+        ],
+        enabled_providers=["yahoo_price"],
+    )
+    analyzer = TradingOracleAnalyzer(config)
+
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+        result = asyncio.run(analyzer.analyze_asset_watchlist())
+
+    assert result is not None
+    av = result.asset_views[0]
+    assert av.data_quality == "low"
+
+    # probability basis must include the bilingual fallback text
+    for hp in av.horizons:
+        assert "价格数据不足" in hp.basis, f"Expected 价格数据不足 in basis, got: {hp.basis!r}"
+
+    # conclusion must mention no valid price data
+    assert "No valid price data" in av.conclusion, (
+        f"Expected 'No valid price data' in conclusion, got: {av.conclusion!r}"
+    )
+
+    # errors must include the missing price data message
+    price_errors = [e for e in result.errors if "no valid yfinance price signals" in e]
+    assert price_errors, "Expected a missing-price-data error in result.errors"
+
+
+def test_valid_price_signal_raises_data_quality_to_at_least_medium():
+    """data_quality must be at least 'medium' when a valid price signal with 1d_return exists."""
+    from src.market.oracle import TradingOracleAnalyzer
+    from src.models import TradingConfig, TradingAssetConfig
+    from unittest.mock import patch, MagicMock
+
+    valid_payload = {
+        "signal": "QQQ price",
+        "value": "450.00",
+        "horizon": "1d",
+        "interpretation": "1d=+1.20% above_5D_MA=true",
+        "source": "YahooPriceProvider",
+        "1d_return": "0.0120",
+        "5d_return": "0.0250",
+        "20d_return": "0.0500",
+        "above_5d_ma": "true",
+        "above_20d_ma": "true",
+        "volatility_regime": "low",
+    }
+
+    mock_provider = MagicMock()
+    mock_provider.layer = "price"
+    mock_provider.fetch.return_value = [valid_payload]
+
+    config = TradingConfig(
+        enabled=True,
+        mode="asset_watchlist",
+        watch_assets=[
+            TradingAssetConfig(name="Test Basket", category="us_stock", symbols=["QQQ"]),
+        ],
+        enabled_providers=["yahoo_price"],
+    )
+    analyzer = TradingOracleAnalyzer(config)
+
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+        result = asyncio.run(analyzer.analyze_asset_watchlist())
+
+    assert result is not None
+    av = result.asset_views[0]
+    assert av.data_quality in ("medium", "high"), (
+        f"Expected 'medium' or 'high' data_quality, got: {av.data_quality!r}"
+    )
+    # basis must not be the conservative fallback
+    for hp in av.horizons:
+        assert "价格数据不足" not in hp.basis, (
+            f"Expected real basis when valid data present, got: {hp.basis!r}"
+        )
+
+
+def test_three_valid_price_signals_give_high_data_quality():
+    """data_quality must be 'high' when 3+ valid price signals with 1d_return exist."""
+    from src.market.oracle import TradingOracleAnalyzer
+    from src.models import TradingConfig, TradingAssetConfig
+    from unittest.mock import patch, MagicMock
+
+    def make_payload(sym: str, ret: str) -> dict:
+        return {
+            "signal": f"{sym} price",
+            "value": "100.00",
+            "horizon": "1d",
+            "interpretation": "test",
+            "source": "YahooPriceProvider",
+            "1d_return": ret,
+            "5d_return": ret,
+            "20d_return": ret,
+            "above_5d_ma": "true",
+            "above_20d_ma": "true",
+            "volatility_regime": "low",
+        }
+
+    mock_provider = MagicMock()
+    mock_provider.layer = "price"
+    mock_provider.fetch.return_value = [
+        make_payload("QQQ", "0.01"),
+        make_payload("SPY", "0.02"),
+        make_payload("AAPL", "0.03"),
+    ]
+
+    config = TradingConfig(
+        enabled=True,
+        mode="asset_watchlist",
+        watch_assets=[
+            TradingAssetConfig(
+                name="Test Basket", category="us_stock", symbols=["QQQ", "SPY", "AAPL"]
+            ),
+        ],
+        enabled_providers=["yahoo_price"],
+    )
+    analyzer = TradingOracleAnalyzer(config)
+
+    with patch("src.market.oracle.get_provider_by_name", return_value=mock_provider):
+        result = asyncio.run(analyzer.analyze_asset_watchlist())
+
+    assert result is not None
+    av = result.asset_views[0]
+    assert av.data_quality == "high", (
+        f"Expected 'high' data_quality with 3 valid price signals, got: {av.data_quality!r}"
+    )
+
+
+def test_conclusion_shows_price_signal_counts():
+    """_build_asset_conclusion must show 'Price signals: X/Y symbols' when data is valid."""
+    from src.market.oracle import TradingOracleAnalyzer, MarketSignal, HorizonProbability
+    from src.models import TradingAssetConfig
+
+    signals = [
+        MarketSignal(
+            layer="price", signal="QQQ price", value="450.00", horizon="1d",
+            interpretation="", source="YahooPriceProvider",
+            metadata={"1d_return": "0.01", "above_5d_ma": "true"},
+        ),
+        MarketSignal(
+            layer="price", signal="SPY price", value="N/A", horizon="1d",
+            interpretation="", source="YahooPriceProvider",
+            metadata={"1d_return": "N/A"},
+        ),
+    ]
+    horizons = [
+        HorizonProbability(
+            horizon="1d", up_probability=40.0, down_probability=30.0, neutral_probability=30.0,
+            expected_bias="bullish", confidence="low", basis="test", invalidation="test",
+        ),
+        HorizonProbability(
+            horizon="1w", up_probability=35.0, down_probability=35.0, neutral_probability=30.0,
+            expected_bias="neutral", confidence="low", basis="test", invalidation="test",
+        ),
+        HorizonProbability(
+            horizon="1m", up_probability=38.0, down_probability=32.0, neutral_probability=30.0,
+            expected_bias="bullish", confidence="low", basis="test", invalidation="test",
+        ),
+    ]
+
+    conclusion = TradingOracleAnalyzer._build_asset_conclusion("Test", signals, horizons)
+    assert "Price signals: 1/2 symbols" in conclusion, (
+        f"Expected 'Price signals: 1/2 symbols' in conclusion, got: {conclusion!r}"
+    )
+    assert "No valid price data" not in conclusion
+    # Bias string must be present (bullish/neutral/bullish from the horizons above)
+    assert "bullish/neutral/bullish" in conclusion, (
+        f"Expected bias string in conclusion, got: {conclusion!r}"
+    )

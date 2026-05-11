@@ -215,7 +215,7 @@ def estimate_horizon_probability(
     else:
         confidence = "low"
 
-    basis = "; ".join(basis_items) if basis_items else "insufficient price data — conservative base distribution used"
+    basis = "; ".join(basis_items) if basis_items else "价格数据不足：未获取到有效 yfinance 价格历史，使用保守基准分布。（insufficient price data — conservative base distribution used）"
     invalidation = "; ".join(invalidation_items) if invalidation_items else "no invalidation criteria identified"
 
     return HorizonProbability(
