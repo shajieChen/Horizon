@@ -395,8 +395,12 @@ class DailySummarizer:
         if not isinstance(trading_analysis, dict):
             return ""
 
-        market_question = str(trading_analysis.get("market_question") or "N/A")
         question_type = str(trading_analysis.get("question_type") or "generic_market_event")
+
+        if question_type == "asset_watchlist":
+            return self._format_asset_watchlist_block(trading_analysis)
+
+        market_question = str(trading_analysis.get("market_question") or "N/A")
         signals = trading_analysis.get("signals") if isinstance(trading_analysis.get("signals"), list) else []
         resonance = self._as_list(trading_analysis.get("resonance")) or ["N/A"]
         divergences = self._as_list(trading_analysis.get("divergences")) or ["N/A"]
@@ -456,40 +460,162 @@ class DailySummarizer:
         lines = [
             "**Trading Analysis**",
             "",
-            f"- Event Type: {question_type}",
+            f"- 分析类型 (Event Type): {question_type}",
             "",
-            "### Market Question",
+            "### 市场问题 (Market Question)",
             market_question,
             "",
-            "### Data Summary",
+            "### 数据摘要 (Data Summary)",
             "| Layer | Signal | Current Reading | Trading Meaning |",
             "|---|---|---:|---|",
             *signal_rows,
             "",
-            "### Resonance Signals",
+            "### 共振信号 (Resonance Signals)",
             *[f"- {entry}" for entry in resonance],
             "",
-            "### Key Divergences",
+            "### 关键分歧 (Key Divergences)",
             *[f"- {entry}" for entry in divergences],
             "",
-            "### Probability Estimates",
-            "| Scenario | Probability | Trading Bias |",
+            "### 概率估计 (Probability Estimates)",
+            "| 情景 | 概率 | 方向偏好 |",
             "|---|---:|---|",
             *scenario_rows,
             "",
-            "### Signals to Monitor",
+            "### 观察指标 (Signals to Monitor)",
             "| Signal | Threshold | Meaning |",
             "|---|---:|---|",
             *monitor_rows,
             "",
-            "### Falsifiers",
+            "### 反证条件 (Falsifiers)",
             *[f"- {entry}" for entry in (forecast_falsifiers or [DEFAULT_FALSIFIER])],
             "",
-            "### Data Sources",
+            "### 数据来源 (Data Sources)",
             *[f"- {entry}" for entry in data_sources],
         ]
         if errors:
-            lines.extend(["", "### Missing Evidence", *[f"- {entry}" for entry in errors]])
+            lines.extend(["", "### 信息缺口 (Missing Evidence)", *[f"- {entry}" for entry in errors]])
+        return "\n".join(lines)
+
+    def _format_asset_watchlist_block(self, trading_analysis: dict) -> str:
+        """Render asset_watchlist mode trading analysis block."""
+        asset_views = (
+            trading_analysis.get("asset_views")
+            if isinstance(trading_analysis.get("asset_views"), list)
+            else []
+        )
+        errors = self._as_list(trading_analysis.get("errors"))
+        data_sources = self._as_list(trading_analysis.get("data_sources")) or ["N/A"]
+
+        disclaimer = (
+            "> **免责声明**：本分析仅基于市场数据的概率估算，不构成投资建议。"
+            "市场存在不确定性，请独立判断并承担相应风险。"
+        )
+
+        lines = [
+            "**Trading Analysis**",
+            "",
+            "> 分析类型：固定资产池概率分析 (Asset Watchlist)  ",
+            "> 分析范围：QDII 纳斯达克 100 / 海外股票 / 美国股票 / 日本股票 / 香港股票  ",
+            "> 时间维度：1日 / 1周 / 1月",
+            "",
+            disclaimer,
+            "",
+        ]
+
+        if asset_views:
+            # Overview table
+            lines += [
+                "### 资产概率总览 (Asset Probability Overview)",
+                "",
+                "| 资产 | 市场 | 1D 偏向 | 1D ↑/↓/~ | 1W 偏向 | 1W ↑/↓/~ | 1M 偏向 | 1M ↑/↓/~ | 数据质量 |",
+                "|---|---|---|---|---|---|---|---|---|",
+            ]
+            for av in asset_views:
+                if not isinstance(av, dict):
+                    continue
+                horizons = av.get("horizons") or []
+                cells = {"1d": {}, "1w": {}, "1m": {}}
+                for hp in horizons:
+                    if isinstance(hp, dict):
+                        hz = hp.get("horizon", "")
+                        if hz in cells:
+                            cells[hz] = hp
+                def _fmt_cell(hp: dict) -> tuple:
+                    if not hp:
+                        return "-", "-"
+                    bias = hp.get("expected_bias", "-")
+                    up = hp.get("up_probability", 0)
+                    dn = hp.get("down_probability", 0)
+                    ne = hp.get("neutral_probability", 0)
+                    return bias, f"↑{up:.0f}/↓{dn:.0f}/~{ne:.0f}"
+                b1d, v1d = _fmt_cell(cells["1d"])
+                b1w, v1w = _fmt_cell(cells["1w"])
+                b1m, v1m = _fmt_cell(cells["1m"])
+                dq = av.get("data_quality", "medium")
+                lines.append(
+                    f"| {av.get('name', '-')} | {av.get('market', '-')} "
+                    f"| {b1d} | {v1d} | {b1w} | {v1w} | {b1m} | {v1m} | {dq} |"
+                )
+
+            # Detailed per-asset views
+            lines += ["", "### 详细资产分析 (Detailed Asset Views)"]
+            for av in asset_views:
+                if not isinstance(av, dict):
+                    continue
+                proxy_note = " *(代理品种)*" if av.get("analysis_proxy") else ""
+                lines += [
+                    "",
+                    f"#### {av.get('name', 'Unknown')}{proxy_note}",
+                    "",
+                ]
+                if av.get("note"):
+                    lines += [f"> {av['note']}", ""]
+                syms = ", ".join(av.get("symbols") or [])
+                lines += [
+                    f"**市场**：{av.get('market', '-')} | **品种**：{syms}",
+                    "",
+                    "| 周期 | 上涨概率 | 下跌概率 | 中性概率 | 偏向 | 置信度 |",
+                    "|---|---:|---:|---:|---|---|",
+                ]
+                for hp in (av.get("horizons") or []):
+                    if not isinstance(hp, dict):
+                        continue
+                    hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
+                    lines.append(
+                        f"| {hz_label} | {hp.get('up_probability', 0):.0f}% "
+                        f"| {hp.get('down_probability', 0):.0f}% "
+                        f"| {hp.get('neutral_probability', 0):.0f}% "
+                        f"| {hp.get('expected_bias', '-')} "
+                        f"| {hp.get('confidence', '-')} |"
+                    )
+                lines += [""]
+                if any(hp.get("basis") for hp in (av.get("horizons") or []) if isinstance(hp, dict)):
+                    lines.append("**分析依据 (Basis)**")
+                    for hp in (av.get("horizons") or []):
+                        if not isinstance(hp, dict) or not hp.get("basis"):
+                            continue
+                        hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
+                        lines.append(f"- {hz_label}: {hp['basis']}")
+                    lines.append("")
+                if any(hp.get("invalidation") for hp in (av.get("horizons") or []) if isinstance(hp, dict)):
+                    lines.append("**反证条件 (Invalidation)**")
+                    for hp in (av.get("horizons") or []):
+                        if not isinstance(hp, dict) or not hp.get("invalidation"):
+                            continue
+                        hz_label = {"1d": "1日", "1w": "1周", "1m": "1月"}.get(hp.get("horizon", ""), hp.get("horizon", "-"))
+                        lines.append(f"- {hz_label}: {hp['invalidation']}")
+                    lines.append("")
+                if av.get("conclusion"):
+                    lines += [f"**结论**：{av['conclusion']}", ""]
+
+        if errors:
+            lines += ["### 信息缺口 (Missing Evidence)", *[f"- {entry}" for entry in errors], ""]
+        lines += [
+            "### 数据来源 (Data Sources)",
+            *[f"- {entry}" for entry in data_sources],
+            "",
+            "> *以上分析仅为市场数据概率模型输出，不构成投资建议。*",
+        ]
         return "\n".join(lines)
 
     def _generate_empty_summary(self, date: str, total_fetched: int, labels: dict) -> str:

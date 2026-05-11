@@ -25,6 +25,33 @@ class MarketSignal(BaseModel):
     source: str
 
 
+class HorizonProbability(BaseModel):
+    """Probability view for one time horizon."""
+
+    horizon: str
+    up_probability: float
+    down_probability: float
+    neutral_probability: float
+    expected_bias: str
+    confidence: str
+    basis: str
+    invalidation: str
+
+
+class AssetTradingView(BaseModel):
+    """Trading view for one configured asset or basket."""
+
+    name: str
+    category: str
+    market: str
+    symbols: List[str]
+    analysis_proxy: bool = False
+    horizons: List[HorizonProbability]
+    key_signals: List[MarketSignal]
+    conclusion: str
+    data_quality: str = "medium"
+
+
 class TradingScenario(BaseModel):
     """One probability scenario."""
 
@@ -49,6 +76,7 @@ class TradingAnalysisResult(BaseModel):
     monitor_signals: List[Dict[str, str]]
     data_sources: List[str]
     errors: List[str] = Field(default_factory=list)
+    asset_views: List[AssetTradingView] = Field(default_factory=list)
 
 
 class TradingOracleAnalyzer:
@@ -81,6 +109,9 @@ class TradingOracleAnalyzer:
         route = self.router.route(item)
         if not route.enabled or not route.question_type:
             return None
+
+        if route.question_type == "asset_watchlist":
+            return await self.analyze_asset_watchlist(item)
 
         providers = self._select_providers(route.question_type)
         if len(providers) < self._MIN_SIGNALS:
@@ -207,3 +238,151 @@ class TradingOracleAnalyzer:
                 }
             )
         return monitors
+
+    async def analyze_asset_watchlist(
+        self, item: Optional[ContentItem] = None
+    ) -> Optional[TradingAnalysisResult]:
+        """Generate fixed asset watchlist trading analysis."""
+        from .universe import get_enabled_assets
+        from .probability import estimate_horizon_probability
+
+        enabled_assets = get_enabled_assets(self.config)
+        if not enabled_assets:
+            return None
+
+        errors: List[str] = []
+        all_signals: List[MarketSignal] = []
+        data_sources: List[str] = []
+        asset_views: List[AssetTradingView] = []
+
+        sec_env = self.config.user_email_env or "SEC_USER_EMAIL"
+        user_email = os.getenv(sec_env)
+
+        # Build a synthetic ContentItem for provider context if none provided
+        if item is None:
+            from datetime import datetime, timezone
+            from ..models import SourceType
+            item = ContentItem(
+                id="trading:asset_watchlist:synthetic",
+                source_type=SourceType.RSS,
+                title="Daily Asset Watchlist Analysis",
+                url="https://github.com/shajieChen/Horizon",
+                published_at=datetime.now(timezone.utc),
+            )
+
+        # Asset-watchlist providers
+        watchlist_providers = [
+            p for p in self.config.enabled_providers
+            if p in {"yahoo_price", "yfinance", "fear_greed", "treasury"}
+        ]
+        if not watchlist_providers:
+            watchlist_providers = ["fear_greed", "yahoo_price", "treasury"]
+
+        for asset in enabled_assets:
+            asset_signals: List[MarketSignal] = []
+            asset_errors: List[str] = []
+            call_context = ProviderCallContext(
+                item=item,
+                question_type="asset_watchlist",
+                symbols=asset.symbols,
+                user_email=user_email,
+            )
+            for provider_name in watchlist_providers:
+                try:
+                    provider = get_provider_by_name(provider_name)
+                    payloads = await asyncio.to_thread(provider.fetch, call_context)
+                    for payload in payloads:
+                        signal = MarketSignal(
+                            layer=provider.layer,
+                            signal=str(payload.get("signal", "")),
+                            value=str(payload.get("value", "")),
+                            horizon=str(payload.get("horizon", "short_to_medium")),
+                            interpretation=str(payload.get("interpretation", "")),
+                            source=str(payload.get("source", provider_name)),
+                        )
+                        asset_signals.append(signal)
+                        all_signals.append(signal)
+                        data_sources.append(signal.source)
+                except Exception as exc:
+                    msg = f"{asset.name}/{provider_name}: {exc}"
+                    asset_errors.append(msg)
+                    errors.append(msg)
+
+            # Compute per-horizon probabilities
+            horizons_list: List[HorizonProbability] = []
+            for hz in self.config.default_horizons:
+                horizons_list.append(
+                    estimate_horizon_probability(asset, asset_signals, hz)
+                )
+
+            data_quality = "medium" if len(asset_signals) >= 3 else "low"
+            if data_quality == "low":
+                errors.append(
+                    f"Missing Evidence: only {len(asset_signals)} signal(s) for {asset.name}"
+                )
+
+            conclusion = self._build_asset_conclusion(asset.name, asset_signals, horizons_list)
+
+            asset_views.append(
+                AssetTradingView(
+                    name=asset.name,
+                    category=asset.category,
+                    market=asset.market,
+                    symbols=asset.symbols,
+                    analysis_proxy=asset.analysis_proxy,
+                    horizons=horizons_list,
+                    key_signals=asset_signals[:5],
+                    conclusion=conclusion,
+                    data_quality=data_quality,
+                )
+            )
+
+        # Build aggregate result
+        signal_count = len(all_signals)
+        confidence = "medium" if signal_count >= 4 else "low"
+        resonance = self._extract_resonance(all_signals)
+        divergences = self._extract_divergences(all_signals)
+        scenarios = self._build_scenarios("asset_watchlist", confidence)
+        monitor_signals = self._build_monitor_signals(all_signals)
+        conclusion = (
+            f"Asset watchlist analysis for {len(asset_views)} basket(s) completed "
+            f"with {signal_count} signals. Data quality: {confidence}."
+        )
+        if errors:
+            conclusion += f" {len(errors)} provider error(s) recorded."
+
+        return TradingAnalysisResult(
+            is_forecastable=True,
+            question_type="asset_watchlist",
+            market_question=(
+                "asset_watchlist: 1D/1W/1M directional probability for "
+                "QDII Nasdaq 100 / US / Japan / Hong Kong baskets"
+            ),
+            summary=(
+                f"Generated from {signal_count} market signals across "
+                f"{len(set(data_sources))} sources for {len(asset_views)} asset basket(s)."
+            ),
+            signals=all_signals,
+            resonance=resonance,
+            divergences=divergences,
+            scenarios=scenarios,
+            conclusion=conclusion,
+            monitor_signals=monitor_signals,
+            data_sources=sorted(set(data_sources)),
+            errors=errors,
+            asset_views=asset_views,
+        )
+
+    @staticmethod
+    def _build_asset_conclusion(
+        name: str,
+        signals: List[MarketSignal],
+        horizons: List[HorizonProbability],
+    ) -> str:
+        """Build a one-line conclusion summarising bias direction and signal coverage."""
+        if not horizons:
+            return f"{name}: no horizon data available."
+        biases = [h.expected_bias for h in horizons]
+        bias_str = "/".join(biases)
+        signal_note = f"{len(signals)} signal(s)" if signals else "no signals"
+        return f"{name}: {bias_str} bias across 1D/1W/1M ({signal_note}). Treat as probability estimate only."

@@ -502,6 +502,48 @@ class HorizonOrchestrator:
 
         analyzer = TradingOracleAnalyzer(trading_config)
 
+        if trading_config.mode == "asset_watchlist":
+            from .models import ContentItem as _ContentItem, SourceType
+            from datetime import datetime, timezone
+
+            synthetic_item = _ContentItem(
+                id=f"trading:asset_watchlist:{datetime.now(timezone.utc).date()}",
+                source_type=SourceType.RSS,
+                title=(
+                    "Daily Trading Watchlist: QDII Nasdaq 100 / US / Japan / Hong Kong Stocks"
+                ),
+                url="https://github.com/shajieChen/Horizon",
+                content="Fixed asset watchlist trading analysis.",
+                author="Horizon Trading",
+                published_at=datetime.now(timezone.utc),
+                ai_score=10.0,
+                ai_summary=(
+                    "Daily fixed trading watchlist analysis for QDII Nasdaq 100, "
+                    "overseas stocks, US stocks, Japan stocks, and Hong Kong stocks."
+                ),
+                ai_tags=[
+                    "trading", "qdii", "nasdaq100",
+                    "us-stocks", "japan-stocks", "hongkong-stocks",
+                ],
+            )
+
+            self.console.print("📈 Running asset watchlist trading analysis...")
+            try:
+                result = await analyzer.analyze_asset_watchlist(synthetic_item)
+                if result:
+                    synthetic_item.metadata["trading_analysis"] = result.model_dump()
+                    synthetic_item.metadata["forecast"] = trading_result_to_forecast(result)
+                    items.insert(0, synthetic_item)
+                    self.console.print(
+                        f"   Added asset watchlist analysis: {len(result.asset_views)} basket(s)"
+                    )
+            except Exception as e:
+                self.console.print(
+                    f"[yellow]  asset watchlist analysis failed: {e}[/yellow]"
+                )
+            return
+
+        # --- event_driven mode (legacy) ---
         candidates = [
             item for item in items
             if item.ai_score and item.ai_score >= trading_config.min_ai_score

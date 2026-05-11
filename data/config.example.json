@@ -80,50 +80,51 @@
     "time_window_hours": 24
   },
   "trading": {
-    "enabled": false,
-    "min_ai_score": 7.0,
-    "max_items_per_run": 5,
-    "mode": "event_driven",
-    "user_email_env": "SEC_USER_EMAIL",
-    "watch_keywords": [
-      "rate cut",
-      "inflation",
-      "recession",
-      "war",
-      "oil",
-      "gold",
-      "bitcoin",
-      "ethereum",
-      "NVDA",
-      "SPY",
-      "AI bubble",
-      "Taiwan",
-      "Fed",
-      "Treasury",
-      "yield curve"
+    "enabled": true,
+    "mode": "asset_watchlist",
+    "min_ai_score": 0.0,
+    "max_items_per_run": 20,
+    "default_horizons": ["1d", "1w", "1m"],
+    "asset_scope": [
+      "qdii_nasdaq100",
+      "overseas_stock",
+      "us_stock",
+      "japan_stock",
+      "hongkong_stock"
     ],
-    "symbols": [
-      "SPY",
-      "QQQ",
-      "NVDA",
-      "GC=F",
-      "CL=F",
-      "HG=F",
-      "BTC",
-      "ETH"
+    "watch_assets": [
+      {
+        "name": "QDII Nasdaq 100 Proxy",
+        "category": "qdii_nasdaq100",
+        "symbols": ["QQQ", "^NDX", "NQ=F"],
+        "market": "US",
+        "analysis_proxy": true,
+        "note": "Proxy for QDII Nasdaq 100 underlying exposure. Does not include China-listed QDII premium/discount."
+      },
+      {
+        "name": "US Mega Cap Basket",
+        "category": "us_stock",
+        "symbols": ["AAPL", "MSFT", "NVDA", "GOOGL", "META", "AMZN", "TSLA"],
+        "market": "US"
+      },
+      {
+        "name": "Japan Equity Basket",
+        "category": "japan_stock",
+        "symbols": ["7203.T", "6758.T", "9984.T", "8035.T", "6861.T"],
+        "market": "JP"
+      },
+      {
+        "name": "Hong Kong Equity Basket",
+        "category": "hongkong_stock",
+        "symbols": ["0700.HK", "9988.HK", "3690.HK", "1810.HK", "9618.HK"],
+        "market": "HK"
+      }
     ],
     "enabled_providers": [
-      "treasury",
-      "fear_greed",
-      "cme_fedwatch",
-      "coingecko",
-      "deribit",
-      "polymarket",
-      "kalshi",
-      "cftc",
-      "edgar",
       "yahoo_price",
-      "yfinance"
+      "yfinance",
+      "fear_greed",
+      "treasury"
     ]
   },
   "webhook": {
