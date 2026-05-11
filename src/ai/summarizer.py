@@ -285,13 +285,13 @@ class DailySummarizer:
 
     @staticmethod
     def _clean_table_cell(value: Any) -> str:
-        """Sanitize content for Markdown table cells by flattening newlines and pipes."""
+        """Sanitize Markdown table cells by flattening newlines and replacing pipes that would break table structure."""
         text = str(value or "").replace("\n", " ").replace("|", "/").strip()
         return text
 
     @staticmethod
     def _to_probability_number(value: Any) -> str:
-        """Render probability values as compact whole numbers for overview table cells only."""
+        """Render probability values as compact whole numbers for the asset watchlist overview row, not detailed percent tables."""
         if isinstance(value, (int, float)):
             return f"{value:.0f}"
         text = DailySummarizer._clean_table_cell(value).rstrip("%")

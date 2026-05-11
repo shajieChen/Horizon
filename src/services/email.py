@@ -208,7 +208,7 @@ class EmailManager:
 
     @staticmethod
     def _merge_inline_styles(existing_style: str | None, style_updates: dict[str, str]) -> str:
-        """Merge inline styles and let `style_updates` override conflicting existing values."""
+        """Merge inline styles and let style_updates override conflicting existing values."""
         style_map = {}
         if existing_style:
             for declaration in existing_style.split(";"):
