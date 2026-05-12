@@ -44,6 +44,11 @@ class HorizonOrchestrator:
             else None
         )
 
+    @staticmethod
+    def _build_email_subject(now: datetime) -> str:
+        """Build the email subject for daily summaries."""
+        return f"Infomation Summary - {now.strftime('%Y-%m-%d %H:%M UTC')}"
+
     async def run(self, force_hours: int = None) -> None:
         """Execute the complete workflow.
 
@@ -121,7 +126,8 @@ class HorizonOrchestrator:
             await self._forecast_important_items(important_items)
 
             # 8. Generate and save daily summaries for each configured language
-            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            now_utc = datetime.now(timezone.utc)
+            today = now_utc.strftime("%Y-%m-%d")
             for lang in self.config.ai.languages:
                 summarizer = DailySummarizer()
                 summary = await summarizer.generate_summary(important_items, today, len(all_items), language=lang)
@@ -169,7 +175,7 @@ class HorizonOrchestrator:
                 if self.email_manager and self.config.email and self.config.email.enabled:
                     self.console.print(f"📧 Sending {lang.upper()} email summary...")
                     subscribers = self.storage.load_subscribers()
-                    subject = f"Horizon Summary ({lang.upper()}) - {today}"
+                    subject = self._build_email_subject(now_utc)
                     self.email_manager.send_daily_summary(summary, subject, subscribers)
 
                 # Send webhook notification if configured
