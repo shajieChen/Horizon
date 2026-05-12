@@ -35,7 +35,7 @@ jobs:
       - name: Verify trading dependencies
         run: |
           uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
-          uv run python -c "import digital_oracle; print('digital_oracle file:', digital_oracle.__file__)"
+          uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix(); print('digital_oracle file:', digital_oracle.__file__); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py'), f'digital_oracle must resolve to full vendored package: {p}'"
           uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
           uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle runtime:', b.describe_runtime()); assert b.available, 'DigitalOracleBridge is not available'"
           uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); assert len(hist) > 0"
