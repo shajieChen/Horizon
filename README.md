@@ -199,16 +199,16 @@ uv run horizon --hours 168
 
 GitHub Actions 会自动执行这些验证。本地排查时也可以手动运行。先按当前 shell 设置 `PYTHONPATH`。
 
-bash / zsh：
+bash / zsh（适用于 Linux / macOS / GitHub Actions runner）：
 
 ```bash
 export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
 ```
 
-PowerShell：
+PowerShell（Windows）：
 
 ```powershell
-$vendorPath = "$(Get-Location)/src/vendor/digital_oracle_full"
+$vendorPath = Join-Path (Get-Location) "src\vendor\digital_oracle_full"
 $env:PYTHONPATH = if ($env:PYTHONPATH) { "$vendorPath;$env:PYTHONPATH" } else { $vendorPath }
 ```
 
