@@ -4,9 +4,9 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
 [![Daily Horizon Summary](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml/badge.svg?style=flat-square)](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml)
 
-面向个人信息流和交易观察的 AI 信息摘要系统。Horizon 会聚合多来源内容并生成每日 **Information Summary**，同时附带基于 digital-oracle provider 的 **Trading Analysis**。
+面向个人信息流和交易观察的 AI 信息摘要系统。Horizon 会聚合多来源内容并生成每日 **Information Summary**。报告同时附带基于 digital-oracle provider 的 **Trading Analysis**。
 
-> 免责声明：Trading Analysis 只用于信息整理和概率观察，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。
+> 免责声明： Trading Analysis 只用于信息整理和概率观察，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。
 
 ## 当前输出内容
 
@@ -54,7 +54,7 @@ Horizon 当前每天会生成一份 Markdown 报告，默认包含两部分：
 
 Trading Analysis 的原则：
 
-- Horizon 通过 **vendored full digital_oracle Python providers**，并按照 **digital-oracle Skill 方法论**进行多信号市场分析。
+- Horizon 使用 **vendored full digital_oracle Python providers**。分析方法遵循 **digital-oracle Skill 方法论**进行多信号市场分析。
 - Trading Analysis 使用市场数据，不使用新闻观点或分析师观点作为交易依据。
 - QDII Nasdaq 100 是基于底层资产的代理分析，不包含中国场内 QDII 溢价 / 折价 / 限购 / 净值偏离。
 - 报告会记录 Trading 分析参考文章和 provider 数据来源，便于后续核查。
@@ -197,7 +197,7 @@ uv run horizon --hours 168
 
 ### 4. 验证 digital_oracle provider
 
-GitHub Actions 会自动执行这些验证；本地排查时也可以手动运行。先按当前 shell 设置 `PYTHONPATH`。
+GitHub Actions 会自动执行这些验证。本地排查时也可以手动运行。先按当前 shell 设置 `PYTHONPATH`。
 
 bash / zsh：
 
@@ -404,7 +404,7 @@ uv run horizon --hours 24
 注意：
 
 - `symbols` 需要能被当前 provider 识别。
-- 增加市场或资产类型时，应确认 provider 数据可用性和报告展示逻辑。
+- 增加市场或资产类型时应确认 provider 数据可用性和报告展示逻辑。
 - QDII 代理分析只覆盖底层市场暴露，不覆盖中国场内基金交易因素。
 
 ### 更新 vendored digital_oracle provider package
@@ -414,15 +414,15 @@ uv run horizon --hours 24
 1. 保持 package 路径仍为 `src/vendor/digital_oracle_full/digital_oracle/`
 2. 确认 workflow 中的 `PYTHONPATH` 仍指向该目录
 3. 运行 provider import 和 smoke test
-4. 运行 Horizon 生成一份完整报告，检查 Trading Analysis 是否包含数据来源和参考文章
+4. 运行 Horizon 生成一份完整报告，并检查 Trading Analysis 是否包含数据来源和参考文章
 
 ## 常见故障排查
 
 ### `digital_oracle` 导入到了错误位置
 
-现象：workflow 中断，提示 `digital_oracle must resolve to full vendored package`。
+现象： workflow 中断，提示 `digital_oracle must resolve to full vendored package`。
 
-处理：先按上文为当前 shell 设置 `PYTHONPATH`，再确认实际导入位置：
+处理： 先按上文为当前 shell 设置 `PYTHONPATH`。然后确认实际导入位置：
 
 ```bash
 uv run python -c "import digital_oracle; print(digital_oracle.__file__)"
@@ -512,7 +512,7 @@ python -m pip install -e '.[dev]'
 python -m pytest
 ```
 
-README 文档变更通常不需要运行完整测试；涉及 Python 逻辑、provider、workflow 或配置结构时，应运行相关测试和 smoke test。
+README 文档变更通常不需要运行完整测试。涉及 Python 逻辑、provider、workflow 或配置结构时，应运行相关测试和 smoke test。
 
 ## Roadmap
 
