@@ -197,7 +197,7 @@ uv run horizon --hours 168
 
 ### 4. 验证 digital_oracle provider
 
-GitHub Actions 会自动执行这些验证；本地排查时也可以手动运行：
+GitHub Actions 会自动执行这些验证；本地排查时也可以手动运行。以下命令适用于 bash / zsh：
 
 ```bash
 export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
@@ -410,7 +410,7 @@ uv run horizon --hours 24
 
 现象：workflow 中断，提示 `digital_oracle must resolve to full vendored package`。
 
-处理：确认：
+处理：确认。以下命令适用于 bash / zsh：
 
 ```bash
 export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
