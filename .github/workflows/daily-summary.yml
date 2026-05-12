@@ -98,6 +98,44 @@ jobs:
           assert len(result.results) >= 1, "No digital-oracle provider returned usable data"
           PY
 
+      - name: Verify DeepSeek model
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          uv run python - <<'PY'
+          import os
+          import asyncio
+          from openai import AsyncOpenAI
+
+          async def main():
+              api_key = os.getenv("DEEPSEEK_API_KEY")
+              assert api_key, "DEEPSEEK_API_KEY is missing"
+
+              client = AsyncOpenAI(
+                  api_key=api_key,
+                  base_url="https://api.deepseek.com",
+              )
+
+              model = "deepseek-v4-pro"
+
+              response = await client.chat.completions.create(
+                  model=model,
+                  messages=[
+                      {"role": "system", "content": "Return JSON only."},
+                      {"role": "user", "content": "{\"ping\": \"pong\"}"}
+                  ],
+                  temperature=0,
+                  max_tokens=64,
+                  response_format={"type": "json_object"},
+              )
+
+              content = response.choices[0].message.content
+              print("DeepSeek model smoke test ok:", model)
+              print("Response:", content)
+
+          asyncio.run(main())
+          PY
+
       - name: Run Horizon with DeepSeek
         env:
           # DeepSeek API key configured in GitHub repository secrets.

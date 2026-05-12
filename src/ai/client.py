@@ -1,5 +1,6 @@
 """AI client abstraction supporting multiple providers."""
 
+import logging
 import os
 from abc import ABC, abstractmethod
 from typing import Optional
@@ -11,6 +12,9 @@ from google.genai import types
 
 from ..models import AIConfig, AIProvider
 from .tokens import record_usage
+
+
+logger = logging.getLogger(__name__)
 
 
 class AIClient(ABC):
@@ -123,6 +127,9 @@ class OpenAIClient(AIClient):
         self.model = config.model
         self.temperature = config.temperature
         self.max_tokens = config.max_tokens
+        if config.base_url:
+            logger.info("Using OpenAI-compatible model: %s", self.model)
+            logger.info("Base URL: %s", config.base_url)
 
     async def complete(
         self,
