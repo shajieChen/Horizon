@@ -290,6 +290,57 @@ class DailySummarizer:
         return text
 
     @staticmethod
+    def _clean_reference_text(value: Any) -> str:
+        """Sanitize text used in trading reference bullets."""
+        return str(value or "").replace("\n", " ").replace("\r", " ").replace("|", "/").strip()
+
+    def _format_trading_references(self, references: Any) -> str:
+        """Render trading analysis references."""
+        if not isinstance(references, list):
+            references = []
+
+        lines = ["### Trading 分析参考文章", ""]
+        rendered = 0
+        seen_urls: set[str] = set()
+
+        for ref in references:
+            if not isinstance(ref, dict):
+                continue
+            url = self._clean_reference_text(ref.get("url"))
+            if not url or url in seen_urls:
+                continue
+            seen_urls.add(url)
+
+            title = self._clean_reference_text(ref.get("title")) or url
+            title = title.replace("[", "(").replace("]", ")")
+            provider = self._clean_reference_text(ref.get("provider")) or "N/A"
+            layer = self._clean_reference_text(ref.get("layer")) or "N/A"
+            query = self._clean_reference_text(ref.get("query")) or "N/A"
+            snippet = self._clean_reference_text(ref.get("snippet"))
+            if len(snippet) > 180:
+                snippet = snippet[:177].rstrip() + "..."
+
+            lines.extend(
+                [
+                    f"- [{title}]({url})",
+                    f"  - 来源：{provider} / {layer}",
+                    f"  - 查询：{query}",
+                ]
+            )
+            if snippet:
+                lines.append(f"  - 摘要：{snippet}")
+            lines.append("")
+
+            rendered += 1
+            if rendered >= 20:
+                break
+
+        if rendered == 0:
+            lines.append("暂无可追溯 Web 引用；本次主要使用结构化 provider 数据。")
+
+        return "\n".join(lines).rstrip()
+
+    @staticmethod
     def _to_probability_number(value: Any) -> str:
         """Render probability values as compact whole numbers for the asset watchlist overview row, not detailed percent tables."""
         if isinstance(value, (int, float)):
@@ -536,6 +587,11 @@ class DailySummarizer:
         )
         errors = self._as_list(trading_analysis.get("missing_evidence")) or self._as_list(trading_analysis.get("errors"))
         data_sources = self._as_list(trading_analysis.get("data_sources")) or ["N/A"]
+        references = (
+            trading_analysis.get("references")
+            if isinstance(trading_analysis.get("references"), list)
+            else []
+        )
         analysis_method = str(trading_analysis.get("analysis_method") or "unknown")
         digital_layers = (
             trading_analysis.get("digital_oracle_layers")
@@ -550,6 +606,9 @@ class DailySummarizer:
             "> 分析范围：QDII 纳斯达克 100 / 海外股票 / 美国股票 / 日本股票 / 香港股票  ",
             "> 时间维度：1日 / 1周 / 1月  ",
             "> 数据原则：仅使用市场交易数据，不使用新闻观点或分析师观点  ",
+            "> 可追溯性：结构化 provider 数据 + WebSearch 市场数据引用，参考文章列于报告末尾。  "
+            if references
+            else "> 可追溯性：本次主要使用结构化 provider 数据，未产生 WebSearch 文章引用。  ",
             "> 免责声明：本分析仅基于市场数据进行概率估算，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。",
             "",
         ]
@@ -701,6 +760,7 @@ class DailySummarizer:
 
         if errors:
             lines += ["### 信息缺口 (Missing Evidence)", *[f"- {entry}" for entry in errors], ""]
+        lines += [self._format_trading_references(references), ""]
         lines += [
             "### 数据来源 (Data Sources)",
             *[f"- {entry}" for entry in data_sources],

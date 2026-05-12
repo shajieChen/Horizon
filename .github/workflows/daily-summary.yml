@@ -44,24 +44,27 @@ jobs:
         run: |
           uv run python - <<'PY'
           from digital_oracle import (
-              YahooPriceProvider,
-              PriceHistoryQuery,
-              USTreasuryProvider,
-              FearGreedProvider,
-              gather,
-          )
+               YahooPriceProvider,
+               PriceHistoryQuery,
+               USTreasuryProvider,
+               FearGreedProvider,
+               WebSearchProvider,
+               gather,
+           )
 
-          yahoo = YahooPriceProvider()
-          treasury = USTreasuryProvider()
-          fear_greed = FearGreedProvider()
+           yahoo = YahooPriceProvider()
+           treasury = USTreasuryProvider()
+           fear_greed = FearGreedProvider()
+           web = WebSearchProvider()
 
-          result = gather(
-              {
-                  "qqq_price": lambda: yahoo.get_history(PriceHistoryQuery(symbol="QQQ", limit=5)),
-                  "yield_curve": lambda: treasury.latest_yield_curve(),
-                  "fear_greed": lambda: fear_greed.get_index(),
-              }
-          )
+           result = gather(
+               {
+                   "qqq_price": lambda: yahoo.get_history(PriceHistoryQuery(symbol="QQQ", limit=5)),
+                   "yield_curve": lambda: treasury.latest_yield_curve(),
+                   "fear_greed": lambda: fear_greed.get_index(),
+                   "vix_web": lambda: web.search("VIX current level"),
+               }
+           )
 
           print("digital-oracle gather results:", result.results.keys())
           print("digital-oracle gather errors:", result.errors)
@@ -78,12 +81,22 @@ jobs:
           if curve is None:
               print("WARN: USTreasuryProvider unavailable in smoke test")
 
-          fg = result.get_or("fear_greed", None)
-          if fg is None:
-              print("WARN: FearGreedProvider unavailable in smoke test")
+           fg = result.get_or("fear_greed", None)
+           if fg is None:
+               print("WARN: FearGreedProvider unavailable in smoke test")
 
-          assert len(result.results) >= 1, "No digital-oracle provider returned usable data"
-          PY
+           web_result = result.get_or("vix_web", None)
+           if web_result is not None:
+               snippets = getattr(web_result, "snippets", ())
+               print("digital-oracle web snippets:", len(snippets))
+               if snippets:
+                   first = snippets[0]
+                   print("first web ref:", getattr(first, "title", ""), getattr(first, "url", ""))
+           else:
+               print("WARN: WebSearchProvider smoke test returned no result")
+
+           assert len(result.results) >= 1, "No digital-oracle provider returned usable data"
+           PY
 
       - name: Run Horizon with DeepSeek
         env:
