@@ -115,7 +115,7 @@ flowchart LR
 推荐使用 `uv`。Trading Analysis 需要安装 `trading` extra：
 
 ```bash
-cd /home/runner/work/Horizon/Horizon
+cd Horizon
 uv sync --extra trading
 ```
 
@@ -322,7 +322,7 @@ export HORIZON_WEBHOOK_URL="https://example.com/webhook"
 
 ## GitHub Actions 自动运行
 
-当前工作流文件：`.github/workflows/daily-summary.yml`。
+当前工作流文件： `.github/workflows/daily-summary.yml`。
 
 触发方式：
 
