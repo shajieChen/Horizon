@@ -5,34 +5,32 @@ date: 2026-05-12
 lang: zh
 ---
 
-> From 44 items, 24 important content pieces were selected
+> From 44 items, 22 important content pieces were selected
 
 ---
 
 1. [Daily Trading Watchlist: QDII Nasdaq 100 / US / Japan / Hong Kong Stocks](#item-1) ⭐️ 10.0/10
-2. [联合国秘书长呼吁立即缓和霍尔木兹海峡局势](#item-2) ⭐️ 9.0/10
-3. [巴林和美国提出霍尔木兹海峡安理会决议草案](#item-3) ⭐️ 9.0/10
-4. [联合国安理会就阿联酋遭袭举行闭门会谈](#item-4) ⭐️ 9.0/10
-5. [黎巴嫩停火脆弱，民众被迫觅食](#item-5) ⭐️ 8.0/10
-6. [以色列空袭贝鲁特郊区引发联合国警报](#item-6) ⭐️ 8.0/10
-7. [一周内乌克兰超 70 名平民丧生](#item-7) ⭐️ 8.0/10
-8. [欧央行施纳贝尔警告央行独立性遭削弱](#item-8) ⭐️ 8.0/10
-9. [欧央行薪资追踪器显示 2026 年议定薪资增长稳定](#item-9) ⭐️ 8.0/10
-10. [拉加德暗示欧洲央行可能调整工具应对气候与自然风险](#item-10) ⭐️ 8.0/10
-11. [FSB 警告私人信贷存在系统性风险](#item-11) ⭐️ 8.0/10
-12. [黎巴嫩加沙危机在停火后仍加剧](#item-12) ⭐️ 7.0/10
-13. [武装无人机造成苏丹战争 80%平民死亡](#item-13) ⭐️ 7.0/10
-14. [联合国要求释放加沙船队成员，援助不是犯罪](#item-14) ⭐️ 7.0/10
-15. [欧央行副行长德金多斯讨论政策与经济前景](#item-15) ⭐️ 7.0/10
-16. [拉加德提出将稳定币功能与工具分离](#item-16) ⭐️ 7.0/10
-17. [欧央行副行长呼吁深化金融一体化促进欧盟繁荣](#item-17) ⭐️ 7.0/10
-18. [欧洲央行：欧元区金融一体化改善，碎片化仍存](#item-18) ⭐️ 7.0/10
-19. [欧洲央行执委奇波洛内谈新能源冲击情景](#item-19) ⭐️ 7.0/10
-20. [欧央行莱恩将气候变化与货币政策挂钩](#item-20) ⭐️ 7.0/10
-21. [海地暴力升级，帮派势力扩展至首都以外](#item-21) ⭐️ 6.0/10
-22. [资金削减威胁中非共和国人道主义援助](#item-22) ⭐️ 6.0/10
-23. [世卫组织确认乌克兰医疗设施遭 3000 多次攻击](#item-23) ⭐️ 6.0/10
-24. [油价上涨或加速塑料材料转型](#item-24) ⭐️ 6.0/10
+2. [联合国秘书长呼吁霍尔木兹海峡局势降温](#item-2) ⭐️ 9.0/10
+3. [巴林与美国起草霍尔木兹海峡攻击问题联合国决议](#item-3) ⭐️ 9.0/10
+4. [以色列空袭贝鲁特南郊，联合国称“非常令人担忧”](#item-4) ⭐️ 9.0/10
+5. [联合国安理会就阿联酋遭袭举行闭门会谈](#item-5) ⭐️ 9.0/10
+6. [黎巴嫩周末致命冲突，加沙暴力持续](#item-6) ⭐️ 8.0/10
+7. [黎巴嫩停火失败，家庭被迫觅食](#item-7) ⭐️ 8.0/10
+8. [欧央行副行长访谈可能暗示政策立场](#item-8) ⭐️ 8.0/10
+9. [欧洲央行施纳贝尔警告央行独立性遭侵蚀](#item-9) ⭐️ 8.0/10
+10. [欧洲央行奇波洛内谈新的能源冲击与政策影响](#item-10) ⭐️ 8.0/10
+11. [FSB 警告私人信贷风险威胁金融稳定](#item-11) ⭐️ 8.0/10
+12. [联合国：无人机造成苏丹战争 80%平民死亡](#item-12) ⭐️ 7.0/10
+13. [世卫组织：乌克兰医疗系统遭三千多次袭击](#item-13) ⭐️ 7.0/10
+14. [联合国报告 5 月初乌克兰超 70 名平民死亡](#item-14) ⭐️ 7.0/10
+15. [拉加德：将稳定币功能与工具分离](#item-15) ⭐️ 7.0/10
+16. [欧央行：欧元区金融一体化改善，碎片化仍存](#item-16) ⭐️ 7.0/10
+17. [欧央行工资追踪器显示 2026 年工资压力稳定](#item-17) ⭐️ 7.0/10
+18. [欧央行行长将气候与自然风险关联货币政策](#item-18) ⭐️ 7.0/10
+19. [联合国报告海地帮派扩张至太子港以外](#item-19) ⭐️ 6.0/10
+20. [资金削减威胁中非共和国人道主义援助](#item-20) ⭐️ 6.0/10
+21. [欧央行副行长德金多斯呼吁深化欧洲金融一体化](#item-21) ⭐️ 6.0/10
+22. [欧洲央行莱恩探讨气候变化与货币政策](#item-22) ⭐️ 6.0/10
 
 ---
 
@@ -41,7 +39,7 @@ lang: zh
 
 Daily fixed trading watchlist analysis for QDII Nasdaq 100, overseas stocks, US stocks, Japan stocks, and Hong Kong stocks.
 
-rss · Horizon Trading · May 12, 03:23
+rss · Horizon Trading · May 12, 05:46
 
 **Trading Analysis**
 
@@ -49,6 +47,7 @@ rss · Horizon Trading · May 12, 03:23
 > 分析范围：QDII 纳斯达克 100 / 海外股票 / 美国股票 / 日本股票 / 香港股票  
 > 时间维度：1日 / 1周 / 1月  
 > 数据原则：仅使用市场交易数据，不使用新闻观点或分析师观点  
+> 可追溯性：结构化 provider 数据 + WebSearch 市场数据引用，参考文章列于报告末尾。  
 > 免责声明：本分析仅基于市场数据进行概率估算，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。
 
 ### 资产概率总览 (Asset Probability Overview)
@@ -56,7 +55,7 @@ rss · Horizon Trading · May 12, 03:23
 | 资产 | 市场 | 1日 | 1周 | 1月 | 数据质量 |
 |---|---|---|---|---|---|
 | QDII Nasdaq 100 Proxy | US | bullish 38/31/31 | bullish 38/31/31 | bullish 42/29/30 | high |
-| US Mega Cap Basket | US | neutral 31/34/35 | bullish 36/29/34 | bullish 40/32/28 | high |
+| US Mega Cap Basket | US | neutral 33/33/34 | bullish 38/31/31 | bullish 42/29/30 | high |
 | Japan Equity Basket | JP | bullish 38/31/31 | bullish 38/31/31 | bullish 42/29/30 | medium |
 | Hong Kong Equity Basket | HK | bullish 38/31/31 | bullish 38/31/31 | bullish 42/29/30 | medium |
 
@@ -71,21 +70,21 @@ rss · Horizon Trading · May 12, 03:23
 | Signal | Data | What it's saying |
 |---|---|---|
 | ^NDX price trend | close=29320.66; 1d=+0.29%; 5d=+6.04%; 20d=+15.51% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| NQ=F price trend | close=29339.50; 1d=+0.02%; 5d=+5.63%; 20d=+14.86% | 价格趋势与均线位置用于判断短中期方向概率。 |
 | QQQ price trend | close=713.29; 1d=+0.29%; 5d=+6.01%; 20d=+15.53% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| NQ=F price trend | close=29279.50; 1d=-0.49%; 5d=+4.06%; 20d=+12.63% | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Layer 2: Options / Volatility
 | Signal | Data | What it's saying |
 |---|---|---|
-| QQQ options surface | ATM IV=21.9%; implied_move=0.8%; put/call OI=1.579330311226239 | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
+| QQQ options surface | ATM IV=0.8%; implied_move=0.0%; put/call OI=N/A | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
 
 ##### Layer 3: Risk Appetite / Macro
 | Signal | Data | What it's saying |
 |---|---|---|
-| CNN Fear & Greed | score=67.0; rating=greed | 风险偏好指数用于识别情绪顺风或逆风。 |
-| US Treasury curve | 10Y=4.42; 2Y=3.95; 10Y-2Y=0.46999999999999975 | 利率曲线决定权益估值贴现与风险偏好上限。 |
 | Web metric: NASDAQ 100 implied volatility current | NASDAQ 100 implied volatility current => 100.0 | 补充性交易数据用于校验波动与信用风险状态。 |
+| US Treasury curve | 10Y=4.42; 2Y=3.95; 10Y-2Y=0.46999999999999975 | 利率曲线决定权益估值贴现与风险偏好上限。 |
 | Web metric: VIX current level | VIX current level => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
+| CNN Fear & Greed | score=66.9; rating=greed | 风险偏好指数用于识别情绪顺风或逆风。 |
 | Web metric: MOVE index current level | MOVE index current level => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
 
 ##### Analysis
@@ -113,8 +112,8 @@ rss · Horizon Trading · May 12, 03:23
 | Signal | Current value | Threshold | Meaning |
 |---|---:|---:|---|
 | ^NDX price trend | close=29320.66; 1d=+0.29%; 5d=+6.04%; 20d=+15.51% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
-| NQ=F price trend | close=29339.50; 1d=+0.02%; 5d=+5.63%; 20d=+14.86% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
 | QQQ price trend | close=713.29; 1d=+0.29%; 5d=+6.01%; 20d=+15.53% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
+| NQ=F price trend | close=29279.50; 1d=-0.49%; 5d=+4.06%; 20d=+12.63% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Conclusion
 
@@ -129,31 +128,31 @@ rss · Horizon Trading · May 12, 03:23
 ##### Layer 1: Price Trend
 | Signal | Data | What it's saying |
 |---|---|---|
+| NVDA price trend | close=219.44; 1d=+1.97%; 5d=+10.56%; 20d=+15.92% | 价格趋势与均线位置用于判断短中期方向概率。 |
 | MSFT price trend | close=412.66; 1d=-0.59%; 5d=-0.23%; 20d=+7.36% | 价格趋势与均线位置用于判断短中期方向概率。 |
 | GOOGL price trend | close=388.64; 1d=-3.03%; 5d=+1.41%; 20d=+20.95% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| META price trend | close=598.86; 1d=-1.77%; 5d=-1.89%; 20d=-5.62% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| NVDA price trend | close=219.44; 1d=+1.97%; 5d=+10.56%; 20d=+15.92% | 价格趋势与均线位置用于判断短中期方向概率。 |
 | AMZN price trend | close=268.99; 1d=-1.35%; 5d=-1.12%; 20d=+12.13% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| AAPL price trend | close=292.68; 1d=-0.22%; 5d=+5.73%; 20d=+12.92% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| TSLA price trend | close=445.00; 1d=+3.89%; 5d=+13.37%; 20d=+26.27% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| META price trend | close=598.86; 1d=-1.77%; 5d=-1.89%; 20d=-5.62% | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Layer 2: Options / Volatility
 | Signal | Data | What it's saying |
 |---|---|---|
-| NVDA options surface | ATM IV=43.4%; implied_move=2.5%; put/call OI=0.9072268245987583 | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
-| GOOGL options surface | ATM IV=33.4%; implied_move=1.9%; put/call OI=0.7229347676182596 | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
-| MSFT options surface | ATM IV=31.0%; implied_move=1.8%; put/call OI=0.5777609945971068 | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
-| AMZN options surface | ATM IV=31.6%; implied_move=1.8%; put/call OI=0.7472915091962711 | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
-| META options surface | ATM IV=32.9%; implied_move=1.9%; put/call OI=0.6429610767551837 | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
-| TSLA options surface | ATM IV=56.2%; implied_move=3.3%; put/call OI=1.0218525938422607 | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
+| NVDA options surface | ATM IV=0.4%; implied_move=0.0%; put/call OI=N/A | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
+| TSLA options surface | ATM IV=0.0%; implied_move=0.0%; put/call OI=N/A | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
+| AMZN options surface | ATM IV=0.8%; implied_move=0.0%; put/call OI=N/A | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
+| MSFT options surface | ATM IV=0.1%; implied_move=0.0%; put/call OI=N/A | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
+| AAPL options surface | ATM IV=0.2%; implied_move=0.0%; put/call OI=N/A | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
+| META options surface | ATM IV=0.4%; implied_move=0.0%; put/call OI=N/A | 期权隐含波动与仓位结构刻画短期波动区间和尾部风险定价。 |
 
 ##### Layer 3: Risk Appetite / Macro
 | Signal | Data | What it's saying |
 |---|---|---|
-| CNN Fear & Greed | score=67.0; rating=greed | 风险偏好指数用于识别情绪顺风或逆风。 |
-| Web metric: VIX current level | VIX current level => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
-| MSFT insider filings | recent Form4 count=742 | 内部人交易节奏可作为估值温度辅助校验信号。 |
 | Web metric: US high yield OAS current | US high yield OAS current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
 | NVDA insider filings | recent Form4 count=567 | 内部人交易节奏可作为估值温度辅助校验信号。 |
+| MSFT insider filings | recent Form4 count=742 | 内部人交易节奏可作为估值温度辅助校验信号。 |
+| AAPL insider filings | recent Form4 count=586 | 内部人交易节奏可作为估值温度辅助校验信号。 |
+| Web metric: QQQ implied volatility current | QQQ implied volatility current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
 | US Treasury curve | 10Y=4.42; 2Y=3.95; 10Y-2Y=0.46999999999999975 | 利率曲线决定权益估值贴现与风险偏好上限。 |
 
 ##### Analysis
@@ -166,23 +165,23 @@ rss · Horizon Trading · May 12, 03:23
 - 价格方向与期权隐含波动可能出现背离，需跟踪IV变化。
 
 **Time stratification**
-- 1日：短线隐含波动偏高，回撤与震荡风险上升
-- 1周：5日收益与20日均线结构支持1周偏多；期权隐含波动较高，1周方向分歧增加
-- 1月：20日趋势维持上行，1月窗口偏多；期权市场仍在计入较高下行尾部风险；风险偏好仍可控且波动未失控，中期上行概率提高
+- 1日：有效交易信号不足，使用保守基准分布。
+- 1周：5日收益与20日均线结构支持1周偏多
+- 1月：20日趋势维持上行，1月窗口偏多；风险偏好仍可控且波动未失控，中期上行概率提高
 
 ##### Probability Estimates
 | Horizon | Up | Down | Neutral | Bias | Basis | Confidence |
 |---|---:|---:|---:|---|---|---|
-| 1日 | 31% | 34% | 35% | neutral | 短线隐含波动偏高，回撤与震荡风险上升 | high |
-| 1周 | 36% | 29% | 34% | bullish | 5日收益与20日均线结构支持1周偏多；期权隐含波动较高，1周方向分歧增加 | high |
-| 1月 | 40% | 32% | 28% | bullish | 20日趋势维持上行，1月窗口偏多；期权市场仍在计入较高下行尾部风险；风险偏好仍可控且波动未失控，中期上行概率提高 | high |
+| 1日 | 33% | 33% | 34% | neutral | 有效交易信号不足，使用保守基准分布。 | high |
+| 1周 | 38% | 31% | 31% | bullish | 5日收益与20日均线结构支持1周偏多 | high |
+| 1月 | 42% | 29% | 30% | bullish | 20日趋势维持上行，1月窗口偏多；风险偏好仍可控且波动未失控，中期上行概率提高 | high |
 
 ##### Signals to Monitor
 | Signal | Current value | Threshold | Meaning |
 |---|---:|---:|---|
+| NVDA price trend | close=219.44; 1d=+1.97%; 5d=+10.56%; 20d=+15.92% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
 | MSFT price trend | close=412.66; 1d=-0.59%; 5d=-0.23%; 20d=+7.36% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
 | GOOGL price trend | close=388.64; 1d=-3.03%; 5d=+1.41%; 20d=+20.95% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
-| META price trend | close=598.86; 1d=-1.77%; 5d=-1.89%; 20d=-5.62% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Conclusion
 
@@ -197,12 +196,12 @@ rss · Horizon Trading · May 12, 03:23
 ##### Layer 1: Price Trend
 | Signal | Data | What it's saying |
 |---|---|---|
-| 7203.T price trend | close=2827.50; 1d=-1.48%; 5d=-6.47%; 20d=-16.45% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 6861.T price trend | close=79580.00; 1d=-3.30%; 5d=+11.61%; 20d=+31.49% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 8035.T price trend | close=52290.00; 1d=+0.40%; 5d=+17.80%; 20d=+23.30% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 6758.T price trend | close=3468.00; 1d=+2.85%; 5d=+11.40%; 20d=+2.36% | 价格趋势与均线位置用于判断短中期方向概率。 |
 | EWJ price trend | close=92.26; 1d=+0.04%; 5d=+4.70%; 20d=+4.43% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 9984.T price trend | close=5976.00; 1d=+4.06%; 5d=+14.50%; 20d=+56.36% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 6861.T price trend | close=80080.00; 1d=-2.70%; 5d=+12.31%; 20d=+32.32% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 7203.T price trend | close=2834.50; 1d=-1.24%; 5d=-6.24%; 20d=-16.24% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 9984.T price trend | close=5951.00; 1d=+3.62%; 5d=+14.03%; 20d=+55.70% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 6758.T price trend | close=3441.00; 1d=+2.05%; 5d=+10.54%; 20d=+1.56% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 8035.T price trend | close=52230.00; 1d=+0.29%; 5d=+17.66%; 20d=+23.15% | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Layer 2: Options / Volatility
 | Signal | Data | What it's saying |
@@ -212,11 +211,11 @@ rss · Horizon Trading · May 12, 03:23
 ##### Layer 3: Risk Appetite / Macro
 | Signal | Data | What it's saying |
 |---|---|---|
-| Web metric: JPY USD exchange rate current | JPY USD exchange rate current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
-| CNN Fear & Greed | score=67.0; rating=greed | 风险偏好指数用于识别情绪顺风或逆风。 |
-| Web metric: Japan equity risk premium current | Japan equity risk premium current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
-| Web metric: Nikkei 225 volatility current | Nikkei 225 volatility current => 225.0 | 补充性交易数据用于校验波动与信用风险状态。 |
+| CNN Fear & Greed | score=66.9; rating=greed | 风险偏好指数用于识别情绪顺风或逆风。 |
+| Web metric: Japan equity ETF EWJ price current | Japan equity ETF EWJ price current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
 | US Treasury curve | 10Y=4.42; 2Y=3.95; 10Y-2Y=0.46999999999999975 | 利率曲线决定权益估值贴现与风险偏好上限。 |
+| Web metric: USD JPY exchange rate current | USD JPY exchange rate current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
+| Web metric: Nikkei 225 volatility current | Nikkei 225 volatility current => 225.0 | 补充性交易数据用于校验波动与信用风险状态。 |
 
 ##### Analysis
 
@@ -242,9 +241,9 @@ rss · Horizon Trading · May 12, 03:23
 ##### Signals to Monitor
 | Signal | Current value | Threshold | Meaning |
 |---|---:|---:|---|
-| 7203.T price trend | close=2827.50; 1d=-1.48%; 5d=-6.47%; 20d=-16.45% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 6861.T price trend | close=79580.00; 1d=-3.30%; 5d=+11.61%; 20d=+31.49% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 8035.T price trend | close=52290.00; 1d=+0.40%; 5d=+17.80%; 20d=+23.30% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
+| EWJ price trend | close=92.26; 1d=+0.04%; 5d=+4.70%; 20d=+4.43% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 6861.T price trend | close=80080.00; 1d=-2.70%; 5d=+12.31%; 20d=+32.32% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 7203.T price trend | close=2834.50; 1d=-1.24%; 5d=-6.24%; 20d=-16.24% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Conclusion
 
@@ -259,12 +258,12 @@ rss · Horizon Trading · May 12, 03:23
 ##### Layer 1: Price Trend
 | Signal | Data | What it's saying |
 |---|---|---|
-| 9618.HK price trend | close=119.20; 1d=+0.59%; 5d=+2.58%; 20d=+6.14% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| EWH price trend | close=24.32; 1d=+0.16%; 5d=+3.75%; 20d=+2.53% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 0700.HK price trend | close=463.00; 1d=-0.30%; 5d=-1.95%; 20d=-5.51% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 1810.HK price trend | close=31.74; 1d=+0.13%; 5d=+4.20%; 20d=+3.52% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 9618.HK price trend | close=119.30; 1d=+0.68%; 5d=+2.67%; 20d=+6.23% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 0700.HK price trend | close=461.40; 1d=-0.65%; 5d=-2.29%; 20d=-5.84% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 3690.HK price trend | close=85.00; 1d=+0.77%; 5d=+1.74%; 20d=-1.68% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| KWEB price trend | close=29.59; 1d=+0.14%; 5d=+3.50%; 20d=+3.03% | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 1810.HK price trend | close=31.60; 1d=-0.32%; 5d=+3.74%; 20d=+3.07% | 价格趋势与均线位置用于判断短中期方向概率。 |
 | FXI price trend | close=37.47; 1d=+0.62%; 5d=+2.52%; 20d=+2.77% | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 9988.HK price trend | close=135.20; 1d=+0.97%; 5d=+3.05%; 20d=+9.74% | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Layer 2: Options / Volatility
 | Signal | Data | What it's saying |
@@ -274,11 +273,11 @@ rss · Horizon Trading · May 12, 03:23
 ##### Layer 3: Risk Appetite / Macro
 | Signal | Data | What it's saying |
 |---|---|---|
+| CNN Fear & Greed | score=66.9; rating=greed | 风险偏好指数用于识别情绪顺风或逆风。 |
+| Web metric: Hang Seng volatility index current | Hang Seng volatility index current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
+| Web metric: USD HKD exchange rate current | USD HKD exchange rate current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
 | US Treasury curve | 10Y=4.42; 2Y=3.95; 10Y-2Y=0.46999999999999975 | 利率曲线决定权益估值贴现与风险偏好上限。 |
 | Web metric: China high yield dollar bond spread current | China high yield dollar bond spread current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
-| Web metric: USDHKD exchange rate current | USDHKD exchange rate current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
-| CNN Fear & Greed | score=67.0; rating=greed | 风险偏好指数用于识别情绪顺风或逆风。 |
-| Web metric: Hang Seng volatility index current | Hang Seng volatility index current => 1.0 | 补充性交易数据用于校验波动与信用风险状态。 |
 
 ##### Analysis
 
@@ -304,9 +303,9 @@ rss · Horizon Trading · May 12, 03:23
 ##### Signals to Monitor
 | Signal | Current value | Threshold | Meaning |
 |---|---:|---:|---|
-| 9618.HK price trend | close=119.20; 1d=+0.59%; 5d=+2.58%; 20d=+6.14% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
-| EWH price trend | close=24.32; 1d=+0.16%; 5d=+3.75%; 20d=+2.53% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
-| 0700.HK price trend | close=463.00; 1d=-0.30%; 5d=-1.95%; 20d=-5.51% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 9618.HK price trend | close=119.30; 1d=+0.68%; 5d=+2.67%; 20d=+6.23% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 0700.HK price trend | close=461.40; 1d=-0.65%; 5d=-2.29%; 20d=-5.84% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
+| 3690.HK price trend | close=85.00; 1d=+0.77%; 5d=+1.74%; 20d=-1.68% | regime shift | 价格趋势与均线位置用于判断短中期方向概率。 |
 
 ##### Conclusion
 
@@ -315,6 +314,108 @@ rss · Horizon Trading · May 12, 03:23
 ### 信息缺口 (Missing Evidence)
 - CMEFedWatchProvider: probabilities unavailable (request failed: https://www.cmegroup.com/services/fed-funds-target/fed-funds-target.json)
 - insufficient independent market signal layers (<3).
+
+### Trading 分析参考文章
+
+- [Nasdaq 100 Index Volatility Term Structure - Barchart.com](https://www.barchart.com/stocks/quotes/$IUXX/volatility-charts)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：NASDAQ 100 implied volatility current
+  - 摘要：Volatility Term Structure chart plots the at-the-money implied volatility across expirations, which are an invaluable tool in determining options strategies based on anticipated...
+
+- [Nasdaq-100 Volatility Index (VOLQ)](https://www.nasdaq.com/market-activity/index/volq)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：NASDAQ 100 implied volatility current
+  - 摘要：Find the latest information on Nasdaq-100 Volatility Index (VOLQ), including data, charts, related news, and more from Nasdaq.com
+
+- [NDAQ Implied Volatility Chart Nasdaq - MarketChameleon.com](https://marketchameleon.com/Overview/NDAQ/IV/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：NASDAQ 100 implied volatility current
+  - 摘要：View volatility charts for Nasdaq (NDAQ) including implied volatility and realized volatility. Overlay and compare different stocks and volatility metrics using the interactive...
+
+- [CBOE Volatility Index (^VIX) - Yahoo Finance](https://finance.yahoo.com/quote/%5EVIX/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：VIX current level
+  - 摘要：Find the latest data, charts, news, and insights on the CBOE Volatility Index (^VIX) to support your trading and investment decisions.
+
+- [Cboe Global Indices: VIX Index Dashboard](https://www.cboe.com/us/indices/dashboard/vix/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：VIX current level
+  - 摘要：The VIX Index is often referred to as the market's "fear gauge". The VIX Index is the centerpiece of Cboe Global Markets' volatility franchise, which includes volatility indexes...
+
+- [VIX / Cboe Volatility Index Overview / MarketWatch](https://www.marketwatch.com/investing/index/vix)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：VIX current level
+  - 摘要：VIX / A complete Cboe Volatility Index index overview by MarketWatch. View stock market news, stock market data and trading information.
+
+- [ICE BofAML MOVE Index (^MOVE) Charts, Data & News - Yahoo Finance](https://finance.yahoo.com/quote/%5EMOVE/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：MOVE index current level
+  - 摘要：Find the latest information on ICE BofAML MOVE Index (^MOVE) including data, charts, related news and more from Yahoo Finance
+
+- [Move Index Price - Barchart.com](https://www.barchart.com/stocks/quotes/$MOVE)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：MOVE index current level
+  - 摘要：Move Index stocks price quote with latest real-time prices, charts, financials, latest news, technical analysis and opinions.
+
+- [ICE BofA US High Yield Index Option-Adjusted Spread](https://fred.stlouisfed.org/series/BAMLH0A0HYM2/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：US high yield OAS current
+  - 摘要：The ICE BofA High Yield Master II OAS uses an index of bonds that are below investment grade (those rated BB or below). This data represents the ICE BofA US High Yield Index val...
+
+- [United States - ICE BofA US High Yield Index Option-Adjusted Spread ...](https://tradingeconomics.com/united-states/bofa-merrill-lynch-us-high-yield-option-adjusted-spread-fed-data.html)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：US high yield OAS current
+  - 摘要：United States - ICE BofA US High Yield Index Option-Adjusted Spread was 2.79% in May of 2026, according to the United States Federal Reserve. Historically, United States - ICE B...
+
+- [HY OAS Spread Today / High Yield Bond Spread Chart](https://dollarliquidity.com/en/indicators/hy-spread)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：US high yield OAS current
+  - 摘要：High Yield Spread (ICE BofA HY OAS). BAMLH0A0HYM2 — ICE BofA US High Yield Option-Adjusted Spread. Latest value 279.0 bps (2026-05-07). Track US Dollar Liquidity, market liquidi...
+
+- [QQQ: Invesco QQQ Trust Implied Volatility (IV) / OptionCharts](https://optioncharts.io/options/QQQ/volatility-skew)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：QQQ implied volatility current
+  - 摘要：QQQ Volatility Skew The Implied Volatility Skew Chart offers a visual representation of the implied volatility (IV). The chart displays the strikes on the x-axis and the IV on t...
+
+- [QQQ Implied Volatility Chart Invesco QQQ Trust - MarketChameleon.com](https://marketchameleon.com/Overview/QQQ/IV/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：QQQ implied volatility current
+  - 摘要：View volatility charts for Invesco QQQ Trust (QQQ) including implied volatility and realized volatility. Overlay and compare different stocks and volatility metrics using the in...
+
+- [QQQ Implied Volatility / IV Rank & Percentile / projectoption](https://projectoption.com/stocks/qqq/implied-volatility)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：QQQ implied volatility current
+  - 摘要：QQQ implied volatility is 20.7%. View IV Rank, IV Percentile, and 1-year historical IV chart for Invesco QQQ Trust.
+
+- [iShares MSCI Japan ETF (EWJ) - Yahoo Finance](https://finance.yahoo.com/quote/EWJ/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：Japan equity ETF EWJ price current
+  - 摘要：Find the latest iShares MSCI Japan ETF (EWJ) stock quote, history, news and other vital information to help you with your stock trading and investing.
+
+- [EWJ - iShares MSCI Japan ETF - ETF Stock Quote / Morningstar](https://www.morningstar.com/etfs/arcx/ewj/quote)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：Japan equity ETF EWJ price current
+  - 摘要：EWJ - iShares MSCI Japan ETF - Check EWJ price, review total assets, see historical growth, and review the analyst rating from Morningstar.
+
+- [iShares MSCI Japan ETF (EWJ) Price, Holdings, & News](https://www.marketbeat.com/stocks/NYSEARCA/EWJ/)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：Japan equity ETF EWJ price current
+  - 摘要：Should You Buy or Sell iShares MSCI Japan ETF Stock? Get The Latest EWJ Stock Price, Constituents List, Holdings Data, and Headlines at MarketBeat.
+
+- [1 USD to JPY - US Dollars to Japanese Yen Exchange Rate - Xe](https://www.xe.com/en/currencyconverter/convert/?Amount=1&From=USD&To=JPY)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：USD JPY exchange rate current
+  - 摘要：Get the latest 1 US Dollar to Japanese Yen rate for FREE with the original Universal Currency Converter. Set rate alerts for USD to JPY and learn more about US Dollars and Japan...
+
+- [USD JPY / US Dollar to Yen Live Rate - Investing.com](https://www.investing.com/currencies/usd-jpy)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：USD JPY exchange rate current
+  - 摘要：Get real time data on the USD/JPY pair including the live rate, as well as our currency converter, analysis, news, historical data and more.
+
+- [Valuta EX - Currency Converter / Real-Time Exchange Rates](https://valuta.exchange/usd-to-jpy)
+  - 来源：WebSearchProvider / Risk Appetite / Macro
+  - 查询：USD JPY exchange rate current
+  - 摘要：Convert USD to JPY with real-time exchange rates. Free, fast currency converter with up-to-date rates for US Dollar to Japanese Yen conversions. Updated hourly.
 
 ### 数据来源 (Data Sources)
 - EdgarProvider
@@ -331,343 +432,165 @@ rss · Horizon Trading · May 12, 03:23
 ---
 
 <a id="item-2"></a>
-## [联合国秘书长呼吁立即缓和霍尔木兹海峡局势](https://news.un.org/feed/view/en/story/2026/05/1167478) ⭐️ 9.0/10
+## [联合国秘书长呼吁霍尔木兹海峡局势降温](https://news.un.org/feed/view/en/story/2026/05/1167478) ⭐️ 9.0/10
 
-联合国秘书长紧急呼吁缓和霍尔木兹海峡局势，因为伊朗与美国之间的紧张局势持续推高油价并威胁全球稳定。 霍尔木兹海峡是全球石油运输的关键咽喉，任何持续的中断都可能导致严重经济后果，包括能源价格上涨和非洲等地区的不稳定。 油价周一早盘再次上涨，联合国秘书长警告影响正在扩大到非洲及其他地区，凸显外交解决的紧迫性。
+联合国秘书长呼吁就霍尔木兹海峡日益加深的危机紧急寻求和平解决方案，此时伊朗与美国之间的紧张局势未解，油价上涨。 霍尔木兹海峡是全球石油和化肥运输的关键咽喉，事态升级将威胁全球能源市场、供应链和经济稳定，尤其是对发展中国家。 联合国秘书长警告称‘后果正在向非洲及其他地区蔓延’，强调危机不仅限于中东。周一早盘油价因对峙持续再次上涨。
 
 rss · UN News · May 11, 12:00
 
-**背景**: 霍尔木兹海峡是伊朗与阿曼之间的狭窄水道，全球约 20%的石油和液化天然气经过此处。紧张局势在 2026 年 2 月底美以轰炸伊朗后升级，伊朗以实际封锁海峡作为报复，扰乱了全球能源市场。
+**背景**: 霍尔木兹海峡连接波斯湾与开阔海洋，是全世界战略意义最重要的海上咽喉之一。全球约三分之一的化肥贸易和相当一部分石油运输经由此处。联合国长期呼吁区域冲突降温，并借助《联合国海洋法公约》等框架解决海上争端。近期发生的扣押事件和海军对峙加剧了紧张局势，影响了保险费率和航运路线。
 
 <details><summary>参考链接</summary>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Strait_of_Hormuz">Strait of Hormuz - Wikipedia</a></li>
 <li><a href="https://www.bbc.com/news/articles/c78n6p09pzno">Iran war: What is the Strait of Hormuz and why does it matter?</a></li>
-<li><a href="https://www.businessinsider.com/oil-prices-rise-trump-threatens-iran-2026-4">Oil Prices Swing As Trump Threatens to Strike Iran 's Power Plants</a></li>
+<li><a href="https://www.nytimes.com/interactive/2026/05/07/world/middleeast/oil-tanker-strait-hormuz-iran-war.html">The Long Journey From the Strait of Hormuz to the Gas Tank - The New York Times</a></li>
 
 </ul>
 </details>
 
-**标签**: `#diplomacy`, `#geopolitics`, `#energy`, `#middle-east`, `#united-states`
+**标签**: `#diplomacy`, `#geopolitics`, `#energy`, `#middle-east`, `#supply-chain`
 
 ---
 
 <a id="item-3"></a>
-## [巴林和美国提出霍尔木兹海峡安理会决议草案](https://news.un.org/feed/view/en/story/2026/05/1167464) ⭐️ 9.0/10
+## [巴林与美国起草霍尔木兹海峡攻击问题联合国决议](https://news.un.org/feed/view/en/story/2026/05/1167464) ⭐️ 9.0/10
 
-巴林和美国已散发一份联合国安理会决议草案，要求伊朗停止在霍尔木兹海峡的袭击。 霍尔木兹海峡是全球最重要的石油运输咽喉，每日运输约 2000 万桶石油。该决议可能升级外交紧张局势，或为集体行动提供依据，直接影响全球能源市场和海上安全。 该草案由巴林和美国大使在联合国总部提出。通过需要 15 个安理会成员中至少 9 票赞成，且无任何常任理事国（美、英、法、俄、中）行使否决权。
+巴林和美国周四在联合国总部宣布，已散发一份联合国安理会决议草案，要求伊朗停止在霍尔木兹海峡的攻击行为。 该决议升级了对伊朗在关键石油咽喉要道问题上的外交压力，全球约 20%的石油通过该海峡。此举可能引发进一步制裁或军事对抗，从而扰乱全球能源供应并冲击金融市场。 该决议草案于 2026 年 5 月散发，若获通过，将依法要求伊朗停止攻击，并可能根据《联合国宪章》第七章采取强制措施。
 
 rss · UN News · May 7, 12:00
 
-**背景**: 霍尔木兹海峡位于阿曼和伊朗之间，是一条狭窄水道，全球约 20%的石油经此运输。伊朗曾多次威胁或干扰航运，引发国际关切。联合国安理会可发布具有法律约束力的决议，以应对国际和平与安全面临的威胁。
+**背景**: 霍尔木兹海峡是一条连接波斯湾与阿曼湾的狭窄水道，承载着全球约五分之一的石油出口。这里几十年来一直是冲突热点；两伊战争期间，双方袭击油轮，导致美欧干预。近期归因于伊朗的攻击再次引发对航行自由和能源安全的担忧。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Strait_of_Hormuz">Strait of Hormuz - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/United_Nations_Security_Council_resolution">United Nations Security Council resolution - Wikipedia</a></li>
-<li><a href="https://www.dallasfed.org/research/economics/2026/0320">What the closure of the Strait of Hormuz means for the global economy</a></li>
+<li><a href="https://www.britannica.com/place/Strait-of-Hormuz">Strait of Hormuz | Map, Importance, Conflict and Closure ... The Strategic Importance of the Strait of Hormuz: a ... Top Stories Strait of Hormuz: Location, Strategic Importance & the 2026 ... Historical and Strategic Significance of the Strait of Hormuz ... The Strait of Hormuz: A Key Point for Global Energy and ... Strait of Hormuz – Why This Narrow Waterway Holds Global Power Strait of Hormuz: Strategic Importance and 2026 Global Risk</a></li>
+<li><a href="https://hormuzmonitor.com/what-is-strait-of-hormuz/">Strait of Hormuz: Location, Strategic Importance & the 2026 ...</a></li>
 
 </ul>
 </details>
 
-**标签**: `#diplomacy`, `#energy`, `#middle-east`, `#united-nations`, `#strait-of-hormuz`
+**标签**: `#diplomacy`, `#geopolitics`, `#energy`, `#middle-east`, `#security-council`
 
 ---
 
 <a id="item-4"></a>
-## [联合国安理会就阿联酋遭袭举行闭门会谈](https://news.un.org/feed/view/en/story/2026/05/1167453) ⭐️ 9.0/10
+## [以色列空袭贝鲁特南郊，联合国称“非常令人担忧”](https://news.un.org/feed/view/en/story/2026/05/1167460) ⭐️ 9.0/10
 
-联合国安理会在阿拉伯联合酋长国遭袭后举行闭门磋商，此时霍尔木兹海峡危机正在升级。联合国发言人斯特凡·杜加里克重申联合国支持和平努力的承诺。 此次升级威胁到全球约 20%石油运输的关键能源咽喉，可能导致供应中断和能源价格上涨。安理会的介入预示着可能的外交或军事回应，可能重塑地区稳定和全球市场。 会议以闭门形式举行，未发布官方声明。袭击发生在霍尔木兹海峡航运持续受阻之际，船只被封锁或成为美伊紧张局势中的筹码。
-
-rss · UN News · May 6, 12:00
-
-**背景**: 霍尔木兹海峡是伊朗与阿曼之间的狭窄水道，是全球石油运输的战略咽喉。联合国安理会由 15 个成员组成，包括五个拥有否决权的常任理事国，负有维护国际和平与安全的首要责任。近期美伊冲突导致该地区出现封锁和袭击，扰乱了海上贸易。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://news.un.org/en/story/2026/04/1167383">Chokepoints and conflict: How the Hormuz crisis is exposing ...</a></li>
-<li><a href="https://en.wikipedia.org/wiki/United_Nations_Security_Council">United Nations Security Council - Wikipedia</a></li>
-<li><a href="https://unctad.org/system/files/official-document/osgttinf2026d1_en.pdf">Strait of Hormuz Disruptions - UNCTAD</a></li>
-
-</ul>
-</details>
-
-**标签**: `#diplomacy`, `#geopolitics`, `#military-risk`, `#energy`, `#middle-east`
-
----
-
-<a id="item-5"></a>
-## [黎巴嫩停火脆弱，民众被迫觅食](https://news.un.org/feed/view/en/story/2026/05/1167467) ⭐️ 8.0/10
-
-援助团队报告称，尽管存在脆弱的停火协议，但以色列的持续袭击已使黎巴嫩南部的村庄面目全非，家庭被迫寻找食物。 停火期间出现的人道主义危机凸显了冲突重新升级的风险以及保护平民的失败，威胁地区稳定并考验外交努力。 停火被描述为脆弱的，以色列的袭击继续造成伤亡和流离失所，黎巴嫩南部的整座村庄已完全无法辨认。
-
-rss · UN News · May 8, 12:00
-
-**背景**: 以色列与黎巴嫩真主党之间的冲突历史悠久，时有升级。为实现停火曾进行调解，但违规行为持续存在，导致黎巴嫩南部基础设施被毁，出现严重人道主义危机。
-
-**标签**: `#military-risk`, `#middle-east`, `#humanitarian`, `#ceasefire`, `#israel-lebanon`
-
----
-
-<a id="item-6"></a>
-## [以色列空袭贝鲁特郊区引发联合国警报](https://news.un.org/feed/view/en/story/2026/05/1167460) ⭐️ 8.0/10
-
-以色列对贝鲁特南郊的空袭导致新一轮平民流离失所，联合国对此表示深切担忧。 此次空袭可能升级以色列与真主党之间的持续冲突，引发报复性攻击并进一步破坏地区稳定，而联合国的警报则预示着可能的人道主义危机。 空袭目标为真主党据点达希耶（Dahieh），该地区人口密集，且发生在 2024 年黎巴嫩战争脆弱的停火期间。
+联合国周四报告称，以色列连夜对贝鲁特南郊发动空袭，导致本已受数月冲突影响的平民再次流离失所。 此次空袭可能使以色列与真主党冲突进一步升级，破坏正在进行的停火努力，并有引发更广泛地区卷入的风险。 贝鲁特南郊是真主党的据点。自 2023 年 10 月以来，真主党一直与以色列交战，之前以色列也曾对该地区进行过打击。
 
 rss · UN News · May 7, 12:00
 
-**背景**: 真主党是一个黎巴嫩什叶派伊斯兰政党和武装组织，其军事力量被认为强于黎巴嫩军队。贝鲁特南郊（达希耶）是真主党的堡垒，在过去冲突中曾遭以色列猛烈轰炸。联合国驻黎巴嫩临时部队（UNIFIL）自 1978 年起根据多项决议（包括第 1701 号决议）监测边界，要求停止敌对行动。
+**背景**: 真主党是黎巴嫩的什叶派伊斯兰政党和准军事组织，成立于 1982 年，与伊朗关系密切，被许多西方国家认定为恐怖组织。自 2023 年 10 月以来，真主党与以色列发生跨境敌对行动，导致 2024 年黎巴嫩战争及随后的停火。尽管有停火努力，但零星暴力仍在继续。贝鲁特南郊（达希耶）多次成为以色列打击目标。
 
 <details><summary>参考链接</summary>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Hezbollah">Hezbollah</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Southern_Suburbs_of_Beirut_(Dahieh)">Southern Suburbs of Beirut (Dahieh)</a></li>
-<li><a href="https://en.wikipedia.org/wiki/UNIFIL">UNIFIL</a></li>
+<li><a href="https://www.nytimes.com/2026/03/05/world/middleeast/israel-bombs-beirut.html">Israel Pounds Southern Beirut , a Hezbollah Stronghold</a></li>
 
 </ul>
 </details>
 
-**标签**: `#military-risk`, `#diplomacy`, `#middle-east`
+**标签**: `#military-risk`, `#middle-east`, `#israel-lebanon`, `#diplomacy`, `#displacement`
+
+---
+
+<a id="item-5"></a>
+## [联合国安理会就阿联酋遭袭举行闭门会谈](https://news.un.org/feed/view/en/story/2026/05/1167453) ⭐️ 9.0/10
+
+在霍尔木兹海峡危机持续之际，联合国安理会就阿拉伯联合酋长国遭袭事件举行了闭门磋商。 这些会谈表明可能的外交回应以及局势升级风险增高，鉴于霍尔木兹海峡在石油和液化天然气运输中的关键作用，这可能进一步扰乱全球能源供应并冲击金融市场。 此次磋商为闭门形式，表明讨论高度敏感。对阿联酋的袭击发生在霍尔木兹海峡自 2026 年 2 月下旬因美以打击而基本被伊朗封锁之后。
+
+rss · UN News · May 6, 12:00
+
+**背景**: 霍尔木兹海峡危机始于 2026 年 2 月 28 日，当时美国和以色列对伊朗发动空战，促使伊朗封锁海峡。该海峡通常承载全球约 25%的海运石油贸易和 20%的液化天然气运输。封锁导致油价飙升至每桶 100 美元以上，并扰乱全球能源市场，成为自 1970 年代以来最大的供应中断。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis">2026 Strait of Hormuz crisis - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/United_Nations_Security_Council">United Nations Security Council - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Strait_of_Hormuz_crisis">Strait of Hormuz crisis</a></li>
+
+</ul>
+</details>
+
+**标签**: `#diplomacy`, `#geopolitics`, `#middle-east`, `#energy`, `#military-risk`
+
+---
+
+<a id="item-6"></a>
+## [黎巴嫩周末致命冲突，加沙暴力持续](https://news.un.org/feed/view/en/story/2026/05/1167483) ⭐️ 8.0/10
+
+联合国报告称，黎巴嫩和加沙地区暴力持续升级，尽管上个月与以色列宣布停火，黎巴嫩的人道主义局势仍在恶化。 持续的暴力凸显了以色列与真主党之间停火的脆弱性，以及该地区再次升级的风险。黎巴嫩日益恶化的人道主义危机给稳定中东的国际外交努力增加了压力。 联合国周一发表的声明强调，尽管实现停火，黎巴嫩的人道主义局势仍在恶化，但未提供关于伤亡或援助的具体细节。
+
+rss · UN News · May 11, 12:00
+
+**背景**: 2026 年 5 月，以色列与真主党在数月的跨境冲突后宣布停火，但加沙地区自去年 10 月 7 日袭击及随后以色列军事行动以来的暴力仍未平息。联合国多次呼吁更广泛的冲突降级和人道主义准入。
+
+**标签**: `#middle-east`, `#lebanon`, `#gaza`, `#humanitarian`, `#ceasefire`
 
 ---
 
 <a id="item-7"></a>
-## [一周内乌克兰超 70 名平民丧生](https://news.un.org/feed/view/en/story/2026/05/1167454) ⭐️ 8.0/10
+## [黎巴嫩停火失败，家庭被迫觅食](https://news.un.org/feed/view/en/story/2026/05/1167467) ⭐️ 8.0/10
 
-联合国人权监测员报告称，自 5 月初以来，乌克兰各地已有至少 70 名平民死亡、500 多人受伤，多地城市遭受一波波攻击。 平民伤亡的急剧上升凸显了乌克兰日益严峻的人道主义危机，可能引发更强烈的国际谴责，并促使外交或援助政策调整。 伤亡发生在一周之内，人道主义工作者难以抵达前线社区，表明准入严重受限且敌对行动持续不断。
+尽管有停火协议，以色列对黎巴嫩的袭击仍在继续，导致持续的流离失所和破坏，家庭被迫觅食，表明停火未能维持。 这凸显了黎巴嫩停火的脆弱性和持续的人道主义危机，有进一步升级的风险，削弱了外交努力，并可能引发更广泛的地区不稳定。 援助团队报告称，黎巴嫩南部的村庄在以色列袭击后变得面目全非，即使在停火后，杀戮和流离失所仍在继续。
 
-rss · UN News · May 6, 12:00
+rss · UN News · May 8, 12:00
 
-**背景**: 俄乌战争自 2022 年 2 月爆发以来已导致数万名平民伤亡。联合国乌克兰人权监测团定期记录与冲突相关的死伤人数，但由于报告困难，实际数字被认为更高。
+**背景**: 以色列与真主党之间的停火是在 2024 年底经过数月的跨境敌对行动后促成的。然而，双方都指责对方违反停火，受影响地区的平民人道主义状况仍然严峻。
 
-**标签**: `#russia-ukraine`, `#military-risk`, `#diplomacy`, `#europe`
+**标签**: `#middle-east`, `#diplomacy`, `#military-risk`, `#humanitarian`, `#israel-lebanon`
 
 ---
 
 <a id="item-8"></a>
-## [欧央行施纳贝尔警告央行独立性遭削弱](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507_1~d5ae988ece.en.html) ⭐️ 8.0/10
+## [欧央行副行长访谈可能暗示政策立场](https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260511~3fa2df2fa9.en.html) ⭐️ 8.0/10
 
-欧洲央行执行委员会成员伊莎贝尔·施纳贝尔于 2026 年 5 月 7 日发表题为《央行独立性的悄然侵蚀》的演讲，警告政治压力和干预正在削弱货币政策的可信度。 央行独立性对于维持价格稳定和通胀预期至关重要；任何被察觉的侵蚀都可能导致债券收益率上升、欧元走弱，并加大欧央行抗击通胀的难度。此次演讲表明对政治干预的警惕性提高，可能影响市场对欧央行履行其使命的信心。 施纳贝尔是欧央行最具影响力的鹰派执委之一；她选择这一话题表明对政府施压央行的担忧日益加剧，尤其是在高公共债务和财政主导风险背景下。演讲可能引用具体例子，如要求货币融资或出于政治原因延迟加息。
+欧洲央行副行长路易斯·德·金多斯接受英国《金融时报》专访，讨论了货币政策前景和经济状况，可能透露欧央行未来行动的线索。 此次访谈意义重大，因为欧央行高级官员的言论可能影响市场对利率和资产购买的预期，进而影响欧元汇率和债券收益率。 访谈发表于 2026 年 5 月 11 日，是欧央行常规沟通策略的一部分。德·金多斯负责金融稳定和货币政策实施。
 
-rss · ECB Press Releases · May 7, 17:00
+rss · ECB Press Releases · May 11, 04:00
 
-**背景**: 央行独立性意味着央行可以在不受政治干预的情况下制定货币政策，这被广泛认为是控制通胀的关键。欧央行拥有全球最高的正式独立性之一，但近年来多个欧元区国家面临政治压力增加，一些政客呼吁更大的财政灵活性或直接货币融资。施纳贝尔的警告正值通胀持续和政府债务高企之际，可信度至关重要。
+**背景**: 欧洲央行负责制定欧元区的货币政策。副行长路易斯·德·金多斯是政策讨论的关键人物。欧央行常通过《金融时报》等媒体访谈来传达政策意图，投资者密切关注此类沟通以获取未来利率决策和经济评估的线索。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Central_bank_independence">Central bank independence</a></li>
-
-</ul>
-</details>
-
-**标签**: `#central-bank`, `#europe`, `#macroeconomics`, `#financial-stability`, `#sovereign-risk`
+**标签**: `#central-bank`, `#europe`, `#macroeconomics`, `#currency`, `#financial-stability`
 
 ---
 
 <a id="item-9"></a>
-## [欧央行薪资追踪器显示 2026 年议定薪资增长稳定](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html) ⭐️ 8.0/10
+## [欧洲央行施纳贝尔警告央行独立性遭侵蚀](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507_1~d5ae988ece.en.html) ⭐️ 8.0/10
 
-欧洲央行发布了其薪资追踪器的新数据，显示 2026 年议定薪资压力维持在温和水平，支持通胀逐步放缓的预期。 该数据是欧洲央行通胀前景和货币政策决策的关键输入；稳定的薪资增长降低了工资-物价螺旋上升的风险，可能允许欧洲央行在不激进收紧的情况下逐步实现政策正常化。 该薪资追踪器覆盖七个欧元区国家，数据显示 2026 年第四季度议定薪资增长稳定在 2.6%左右。
+欧洲央行执行委员会成员伊莎贝尔·施纳贝尔发表演讲，警告央行独立性正在悄然被侵蚀，这可能会削弱欧元区的货币政策有效性和金融稳定。 央行独立性对于可信的货币政策和通胀控制至关重要；其侵蚀可能导致政治干预、通胀预期上升以及欧元区金融不稳定，从而影响债券市场和欧元。 该演讲于 2026 年 5 月 7 日发表，凸显了全球范围内央行面临政治压力的更广泛趋势，例如新西兰等国的政府扩大了央行职责或影响了政策决策。
 
-rss · ECB Press Releases · May 6, 08:00
+rss · ECB Press Releases · May 7, 17:00
 
-**背景**: 欧央行薪资追踪器是欧洲央行发布的一套新指标，用于监测欧元区议定薪资变化。薪资增长是通胀动态的关键因素，因为它影响消费者支出和生产成本。稳定的薪资压力支持欧洲央行的预期，即通胀将逐步回归 2%目标，无需大幅加息。
+**背景**: 央行独立性指央行在没有直接政治干预的情况下运作的能力，通常通过明确的任务授权和操作自主权来实现。它被广泛认为是有效货币政策和维持低而稳定通胀的关键。近年来，全球范围内对央行独立性的政治攻击有所增加，引发了对这一原则被侵蚀的担忧。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://data.ecb.europa.eu/">Homepage | ECB Data Portal</a></li>
-<li><a href="https://tradingeconomics.com/euro-area/wage-tracker">ECB Wage Tracker</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Disinflation">Disinflation</a></li>
+<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260507_1~d5ae988ece.en.html">The quiet erosion of central bank independence</a></li>
+<li><a href="https://econofact.org/the-erosion-of-central-bank-independence">The Erosion of Central Bank Independence | Econofact</a></li>
+<li><a href="https://thedailyeconomy.org/article/why-the-erosion-of-central-bank-independence-matters/">Why the Erosion of Central Bank Independence Matters | The Daily Economy</a></li>
 
 </ul>
 </details>
 
-**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#bonds`, `#currency`
+**标签**: `#central-bank`, `#macroeconomics`, `#financial-stability`, `#europe`
 
 ---
 
 <a id="item-10"></a>
-## [拉加德暗示欧洲央行可能调整工具应对气候与自然风险](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505~936c9c11b5.en.html) ⭐️ 8.0/10
+## [欧洲央行奇波洛内谈新的能源冲击与政策影响](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260506~1bbd4ed780.en.html) ⭐️ 8.0/10
 
-欧洲央行行长克里斯蒂娜·拉加德发表演讲，概述了将气候和自然相关风险纳入欧洲央行货币政策框架的步骤，暗示可能调整其工具和目标以应对这些风险。 这标志着欧洲央行的一次重大转变，可能影响抵押品框架、资产购买和利率决策，对欧元区的金融稳定和绿色转型具有深远影响。 拉加德强调，生物多样性丧失等自然相关风险可能影响通胀和金融稳定，欧洲央行正在努力将这些风险纳入压力测试和风险评估。
-
-rss · ECB Press Releases · May 5, 12:30
-
-**背景**: 中央银行日益认识到气候和自然风险对其职责的重要性。欧洲央行制定了气候与自然风险计划（2020-2025），并将这些风险纳入其监管和货币政策框架。央行与监管机构绿色金融网络（NGFS）提供了自然相关金融风险的概念框架。拉加德的讲话在此基础上进一步推动了整合。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.ecb.europa.eu/press/key/date/2023/html/ecb.sp231122~e12db02da3.en.html">Monetary policy in the climate and nature crises: preserving a “Stabilitätskultur”</a></li>
-<li><a href="https://www.ngfs.net/sites/default/files/medias/documents/ngfs-conceptual-framework-nature-risks.pdf">Nature-related Financial Risks: a Conceptual Framework ...</a></li>
-<li><a href="https://www.bankingsupervision.europa.eu/press/speeches/date/2024/html/ssm.sp240906~7691e4e508.en.html">Nature-related risk: legal implications for central banks, supervisors and financial institutions</a></li>
-
-</ul>
-</details>
-
-**标签**: `#central-bank`, `#europe`, `#macroeconomics`, `#financial-stability`, `#climate`
-
----
-
-<a id="item-11"></a>
-## [FSB 警告私人信贷存在系统性风险](https://www.fsb.org/2026/05/fsb-warns-on-private-credit-vulnerabilities/) ⭐️ 8.0/10
-
-金融稳定委员会（FSB）警告称，私人信贷行业的复杂性、杠杆率和相互关联性可能在不利情景下放大压力，对金融稳定构成更广泛的风险。 这表明全球监管机构日益担忧快速增长的私人信贷市场带来的系统性风险，可能导致监管收紧和市场重新定价。 私人信贷资产估计已增长至 1.5-2 万亿美元，为中型企业融资提供支持，但由于缺乏透明度和监管较轻，带来了潜在的金融稳定风险。
-
-rss · Financial Stability Board News · May 6, 06:00
-
-**背景**: FSB 是 2009 年成立的国际机构，负责监测全球金融体系并提出建议。它协调各国金融当局和标准制定机构。私人信贷是指非银行机构向企业提供的贷款，其快速增长已引起国际货币基金组织和美联储等监管机构的关注。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Financial_Stability_Board">Financial Stability Board - Wikipedia</a></li>
-<li><a href="https://www.imf.org/en/blogs/articles/2025/10/14/growth-of-nonbanks-is-revealing-new-financial-stability-risks">Growth of Nonbanks is Revealing New Financial Stability Risks</a></li>
-
-</ul>
-</details>
-
-**标签**: `#financial-stability`, `#macroeconomics`, `#central-bank`, `#global-markets`
-
----
-
-<a id="item-12"></a>
-## [黎巴嫩加沙危机在停火后仍加剧](https://news.un.org/feed/view/en/story/2026/05/1167483) ⭐️ 7.0/10
-
-联合国报告称，尽管上月与以色列宣布停火，黎巴嫩的人道主义局势仍在恶化，同时加沙地带的暴力持续不断。 这表明黎巴嫩停火可能脆弱，加沙持续动荡，威胁地区稳定并复杂化外交努力。 联合国声明于周一发布，强调黎巴嫩局势恶化和加沙持续暴力，未提供伤亡或流离失所的具体数字。
-
-rss · UN News · May 11, 12:00
-
-**背景**: 以色列与黎巴嫩上月宣布停火，但执行进展脆弱。加沙地带长期冲突，人道主义危机严重，暴力循环反复。
-
-**标签**: `#diplomacy`, `#middle-east`, `#military-risk`, `#humanitarian`, `#ceasefire`
-
----
-
-<a id="item-13"></a>
-## [武装无人机造成苏丹战争 80%平民死亡](https://news.un.org/feed/view/en/story/2026/05/1167479) ⭐️ 7.0/10
-
-联合国人权事务负责人报告称，2026 年前四个月，武装无人机导致苏丹战争超过 80%的平民死亡，至少 880 人丧生，并警告可能进入更致命的阶段。 无人机战争的升级凸显了苏丹日益恶化的人道主义危机，并可能进一步破坏地区稳定，但对全球市场的直接影响有限。 报告特别指出，2026 年前四个月至少 880 名平民死于无人机袭击，占冲突中所有平民死亡人数的 80%以上。
-
-rss · UN News · May 11, 12:00
-
-**背景**: 自 2023 年 4 月以来，苏丹陷入苏丹武装部队（SAF）与准军事组织快速支援部队（RSF）之间的内战。双方越来越多地使用武装无人机（通常由外部势力提供），导致平民伤亡惨重。
-
-**标签**: `#military-risk`, `#geopolitics`, `#sovereign-risk`
-
----
-
-<a id="item-14"></a>
-## [联合国要求释放加沙船队成员，援助不是犯罪](https://news.un.org/feed/view/en/story/2026/05/1167450) ⭐️ 7.0/10
-
-联合国人权办公室呼吁以色列立即释放被扣押在国际水域的“全球坚毅船队”两名成员，并指出向加沙运送人道主义援助不是犯罪。 这一事件加剧了联合国与以色列之间的外交紧张，可能增加国际社会要求解除或放松加沙封锁的压力。同时也凸显了以色列安全主张与人道主义航行自由之间的冲突。 该船队由“海外巴勒斯坦人民大会”组织，美国已将其列为与哈马斯有关的特别指定全球恐怖实体。以色列声称出于安全考虑在国际水域拦截了船只。
-
-rss · UN News · May 6, 12:00
-
-**背景**: “全球坚毅船队”是一项由民间领导的海上行动，旨在挑战以色列自 2007 年起对加沙实施的海上封锁。联合国人权办公室（OHCHR）负责根据国际法促进和保护人权。以色列辩称封锁是为了防止武器走私到哈马斯，而批评者则认为这是集体惩罚。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Global_Sumud_Flotilla">Global Sumud Flotilla - Wikipedia</a></li>
-<li><a href="https://www.tbsnews.net/explainer/explainer-who-global-sumud-flotilla-and-why-are-they-sailing-gaza-1251231">Explainer: What is the Global Sumud Flotilla and why is it ...</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Office_of_the_United_Nations_High_Commissioner_for_Human_Rights">Office of the United Nations High Commissioner for Human Rights - Wikipedia</a></li>
-
-</ul>
-</details>
-
-**标签**: `#diplomacy`, `#middle-east`, `#israel-palestine`, `#united-nations`
-
----
-
-<a id="item-15"></a>
-## [欧央行副行长德金多斯讨论政策与经济前景](https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260511~3fa2df2fa9.en.html) ⭐️ 7.0/10
-
-欧洲央行副行长路易斯·德金多斯接受了英国《金融时报》采访，就央行货币政策立场和欧洲经济前景发表了看法。 作为欧央行高级官员，德金多斯的言论可能预示未来的利率决策或通胀评估变化，影响欧元汇率和欧洲债券市场。 采访涉及通胀前景、金融稳定风险以及货币政策正常化步伐等议题，但未宣布具体的新政策措施。
-
-rss · ECB Press Releases · May 11, 04:00
-
-**背景**: 欧洲央行负责制定欧元区的货币政策。副行长德金多斯经常在会议间隙传递政策方向。此次采访恰逢市场关注欧央行在近期利率调整后的下一步行动。
-
-**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#currency`
-
----
-
-<a id="item-16"></a>
-## [拉加德提出将稳定币功能与工具分离](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260508~dd909fbed1.en.html) ⭐️ 7.0/10
-
-欧洲央行行长克里斯蒂娜·拉加德于 2026 年 5 月 8 日发表演讲，主张采取监管方法，将稳定币的货币功能和技术功能与工具本身分离开来。 此次演讲标志着欧洲央行对稳定币监管的立场及其对数字欧元的愿景，可能影响欧盟政策并塑造全球数字货币框架。 拉加德指出了稳定币的两个结构性弱点：脆弱性和对储备资产的依赖，并认为需要像数字欧元这样的公共基础设施来锚定代币化市场。
-
-rss · ECB Press Releases · May 8, 07:00
-
-**背景**: 稳定币是旨在相对于法定货币或其他资产维持稳定价值的加密货币，但面临稳定性和监管问题。欧洲央行正在开发数字欧元作为央行数字货币，以提供隐私和控制，而欧盟的 MiCA 法规为加密资产提供了框架。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Stablecoin">Stablecoin</a></li>
-<li><a href="https://www.interactivecrypto.com/ecbs-lagardes-digital-euro-warning-why-europe-shouldnt-just-copy-the-us-stablecoin-model-1778308038842">Crypto: ECB's Lagarde’s digital euro warning: Why Europe shouldn’t just copy the U.S. stablecoin model</a></li>
-
-</ul>
-</details>
-
-**标签**: `#central-bank`, `#financial-stability`, `#digital-currency`, `#europe`, `#regulation`
-
----
-
-<a id="item-17"></a>
-## [欧央行副行长呼吁深化金融一体化促进欧盟繁荣](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507~c99288185f.en.html) ⭐️ 7.0/10
-
-2026 年 5 月 7 日，欧洲央行副行长路易斯·德金多斯发表讲话，呼吁深化欧洲金融一体化以支持该地区繁荣，表明继续推进银行业联盟和资本市场联盟的决心。 欧央行高级官员的这一政策信号强化了欧盟减少金融市场碎片化的长期议程，可能促进跨境资本流动、提高银行业稳定性并支持经济增长，尤其是对中小企业。 德金多斯强调需要完成银行业联盟（包括欧洲存款保险计划）和资本市场联盟，以释放欧洲增长资金，并指出经过多年努力，一体化仍不完整。
-
-rss · ECB Press Releases · May 7, 07:15
-
-**背景**: 欧洲银行业联盟于 2012 年欧元区危机后启动，将银行政策转移至欧盟层面，包括单一监管机制和单一决议机制，但缺乏共同存款保险。资本市场联盟于 2014 年启动，旨在创建单一资本市场，减少对银行贷款的依赖并多元化融资来源。这两项举措被视为完成经济与货币联盟的关键。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Banking_union_(Europe)">Banking union (Europe)</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Capital_Markets_Union">Capital Markets Union</a></li>
-
-</ul>
-</details>
-
-**标签**: `#central-bank`, `#europe`, `#financial-stability`, `#macroeconomics`
-
----
-
-<a id="item-18"></a>
-## [欧洲央行：欧元区金融一体化改善，碎片化仍存](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260507~8af27d170e.en.html) ⭐️ 7.0/10
-
-欧洲央行最新报告显示，欧元区金融一体化有所改善，但持续的碎片化仍是政策制定者担忧的问题。 这一点很重要，因为金融碎片化可能削弱货币政策的传导，增加金融稳定风险，从而影响欧洲央行的政策决策。 报告强调，尽管跨境银行放贷和证券市场有所加强，但各成员国主权债券收益率之间的差异持续存在，反映出碎片化。
-
-rss · ECB Press Releases · May 7, 06:00
-
-**背景**: 金融一体化指金融服务在欧元区内以相同规则和条件提供的程度。碎片化通常表现为成员国主权债券收益率的大幅利差，正如欧洲债务危机期间所见。欧洲央行监测这些趋势是其金融稳定职责的一部分。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.ecb.europa.eu/home/search/financial_integration/html/index.en.html">Financial integration - European Central Bank</a></li>
-<li><a href="https://www.elibrary.imf.org/view/journals/001/2025/194/article-A001-en.xml">Euro Area Financial Fragmentation and Bond Market Stability</a></li>
-<li><a href="https://www.ecb.europa.eu/press/financial-stability-publications/fsr/html/index.en.html">Financial Stability Review - European Central Bank</a></li>
-
-</ul>
-</details>
-
-**标签**: `#central-bank`, `#macroeconomics`, `#financial-stability`, `#europe`, `#global-markets`
-
----
-
-<a id="item-19"></a>
-## [欧洲央行执委奇波洛内谈新能源冲击情景](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260506~1bbd4ed780.en.html) ⭐️ 7.0/10
-
-欧洲央行执行委员会成员皮耶罗·奇波洛内发表演讲，讨论了新能源冲击的经济情景和政策影响，可能暗示未来货币政策方向。 此次演讲提供了欧洲央行对能源驱动型持续通胀评估及其可能政策回应的关键见解，影响市场对利率和货币紧缩的预期。 在演讲中，奇波洛内提到了基准情景，即能源价格上涨使近期通胀远高于 2%，并讨论了货币政策的影响。
+欧洲央行执行委员会成员皮耶罗·奇波洛内于 2026 年 5 月 6 日发表演讲，分析新的能源冲击、其潜在经济情景以及对货币政策的影响。 此次演讲直接揭示了欧洲央行政策制定者如何评估能源干扰带来的通胀风险，可能预示利率预期的变化，并影响欧元区债券市场和欧元汇率。 奇波洛内的讲话正值地缘政治紧张局势加剧和能源市场波动之际；演讲概述了从温和的供应冲击到带有滞胀效应的严重干扰等多种情景。
 
 rss · ECB Press Releases · May 6, 08:20
 
-**背景**: 自 2022 年俄罗斯入侵乌克兰以来，欧洲央行一直面临能源冲击，促使利率从负值区间上调。此次 2026 年 5 月的演讲发生在能源价格再度承压之际，全球央行都在努力在不损害增长的情况下控制通胀。
+**背景**: 欧洲央行是欧元区的中央银行，主要任务是维持物价稳定。能源冲击（如石油或天然气价格大幅上涨）可能推高整体通胀，并使货币政策决策复杂化。欧洲央行的中期通胀目标为 2%。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260506~1bbd4ed780.en.html">The new energy shock: economic scenarios and policy implications</a></li>
-<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260325~ac2916a211.en.html">Navigating energy shocks: risks and policy responses</a></li>
-<li><a href="https://en.wikipedia.org/wiki/European_Central_Bank">European Central Bank - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/European_Central_Bank_(ECB)">European Central Bank (ECB)</a></li>
+<li><a href="https://www.sciencedirect.com/topics/social-sciences/energy-shock">Energy Shock - an overview | ScienceDirect Topics</a></li>
 
 </ul>
 </details>
@@ -676,75 +599,209 @@ rss · ECB Press Releases · May 6, 08:20
 
 ---
 
-<a id="item-20"></a>
-## [欧央行莱恩将气候变化与货币政策挂钩](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html) ⭐️ 7.0/10
+<a id="item-11"></a>
+## [FSB 警告私人信贷风险威胁金融稳定](https://www.fsb.org/2026/05/fsb-warns-on-private-credit-vulnerabilities/) ⭐️ 8.0/10
 
-欧洲央行执行委员会成员菲利普·R·莱恩于 2026 年 5 月 5 日发表演讲，讨论气候变化对货币政策的影响，并暗示欧洲央行在应对气候风险方面可能调整策略。 此次演讲表明欧洲央行可能将气候风险进一步纳入其货币政策框架，这将影响欧元区的金融市场、银行贷款和投资决策。 演讲强调，央行需要考虑气候相关的物理风险和转型风险，这些风险可能影响价格稳定和金融稳定——这是欧洲央行的核心职责。
+金融稳定委员会（FSB）发布正式警告，指出私人信贷部门存在的复杂性、杠杆率和相互关联性等脆弱性，可能在不利情景下放大压力，并对金融稳定构成更广泛的风险。 这一警告突显了快速增长的 1.5 至 2 万亿美元私人信贷市场存在的系统性风险，可能促使监管加强审查，并影响全球金融稳定。 私人信贷部门资产已迅速扩张至约 1.5 至 2 万亿美元，FSB 特别指出其复杂性、杠杆率和相互关联性可能放大压力。
 
-rss · ECB Press Releases · May 5, 15:40
+rss · Financial Stability Board News · May 6, 06:00
 
-**背景**: 全球央行日益关注气候变化对其政策目标的影响。欧洲央行已将气候因素纳入其公司债券购买和抵押品框架。菲利普·R·莱恩是欧洲央行的首席经济学家，他的观点对未来政策方向尤其具有影响力。
-
-**标签**: `#central-bank`, `#macroeconomics`, `#financial-stability`, `#climate`, `#europe`
-
----
-
-<a id="item-21"></a>
-## [海地暴力升级，帮派势力扩展至首都以外](https://news.un.org/feed/view/en/story/2026/05/1167475) ⭐️ 6.0/10
-
-海地帮派势力正扩展至太子港以外地区，安全形势恶化，人道危机加深。 暴力升级可能使国家陷入崩溃，影响地区稳定，并导致更多难民涌向邻国和美国。 平民越来越多地陷入武装团体和安全部队的交火之中，局势缺乏缓和途径。
-
-rss · UN News · May 8, 12:00
-
-**背景**: 海地长期受政治动荡、自然灾害和帮派暴力困扰。2021 年总统若弗内尔·莫伊兹遇刺留下的权力真空被武装团体利用，导致当前危机。
-
-**标签**: `#haiti`, `#geopolitics`, `#humanitarian-crisis`, `#military-risk`
-
----
-
-<a id="item-22"></a>
-## [资金削减威胁中非共和国人道主义援助](https://news.un.org/feed/view/en/story/2026/05/1167474) ⭐️ 6.0/10
-
-联合国人道主义事务协调厅高级官员周五警告称，尽管中非共和国近期在稳定与安全方面取得进展，但主要援助预算削减正危及人道主义行动。 资金短缺可能逆转该国从多年冲突与不稳定中恢复的脆弱进展，可能加剧人道主义需求并破坏地区稳定。 这一警告来自联合国人道协调厅在纽约的一位高级官员，强调即便安全状况改善，预算削减仍危及关键行动。
-
-rss · UN News · May 8, 12:00
-
-**背景**: 中非共和国经历了数十年冲突，包括 2012 年爆发的内战。联合国及人道主义合作伙伴为数百万流离失所和脆弱群体提供关键援助。此类行动的资金通常来自捐助国的自愿捐款，因此易受预算削减影响。
-
-**标签**: `#diplomacy`, `#sovereign-risk`, `#africa`, `#humanitarian`
-
----
-
-<a id="item-23"></a>
-## [世卫组织确认乌克兰医疗设施遭 3000 多次攻击](https://news.un.org/feed/view/en/story/2026/05/1167468) ⭐️ 6.0/10
-
-世界卫生组织于周五报告称，自 2022 年 2 月俄罗斯全面入侵以来，已确认乌克兰医疗系统遭受超过 3000 次攻击。 这一里程碑凸显了乌克兰医疗基础设施持续遭受破坏，加剧了人道主义危机，并可能影响国际援助重点及对俄罗斯的政治压力。 攻击包括针对医院、诊所、救护车和医疗人员的袭击，违反国际人道法。这些确认基于卫生合作伙伴和公开来源的报告。
-
-rss · UN News · May 8, 12:00
-
-**背景**: 自 2022 年 2 月俄罗斯发动全面入侵以来，乌克兰医疗系统屡遭攻击。世卫组织一直在记录这些事件，以监测损害并支持问责工作。国际法明确保护冲突期间的医疗设施。
-
-**标签**: `#russia-ukraine`, `#military-risk`, `#humanitarian`, `#europe`
-
----
-
-<a id="item-24"></a>
-## [油价上涨或加速塑料材料转型](https://news.un.org/feed/view/en/story/2026/05/1167463) ⭐️ 6.0/10
-
-联合国文章指出，地缘政治动荡导致油价上涨，使人们更加关注塑料生产对气候的影响，而塑料生产与化石燃料紧密相关。更高的成本可能会加速从化石燃料衍生塑料向替代材料的转变。 这很重要，因为塑料生产在其整个供应链中是温室气体排放的一个重要且不断增长的来源。加速材料转型可能会减少对石化产品的需求，重塑全球能源市场，并有助于实现气候目标。 油价是塑料盈利能力的关键驱动因素；油价上涨使得化石燃料基塑料相对于生物基或回收替代品的竞争力下降。文章指出，石化行业约占全球石油需求的 8%，且预计还将增长。
-
-rss · UN News · May 7, 12:00
-
-**背景**: 塑料主要由石油和天然气中提取的石脑油和天然气液体制成。石化行业从开采到处置的整个生命周期排放对气候变化有显著影响。地缘政治紧张局势（如俄乌战争和 OPEC+减产）使油价居高不下。
+**背景**: 金融稳定委员会（FSB）是一个成立于 2009 年的国际机构，负责监测全球金融体系并提出建议，成员包括 G20 经济体及其他主要金融中心。私人信贷指非银行机构向中型企业提供的贷款，通常透明度和监管低于传统银行贷款。该市场增长迅猛，美国市场在 2020 年至 2024 年底翻倍至 1.3 万亿美元，全球估计达 2 万亿美元或更多。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.ciel.org/wp-content/uploads/2024/09/Emissioned-Unleashed_The-Climate-Crisis-and-Americas-Petrochemical-Boom.pdf">Emissions Unleashed The Climate Crisis and America's ...</a></li>
-<li><a href="https://www.neste.com/news-and-insights/renewable-solutions/transition-away-from-fossil-raw-materials">Why is the transition away from fossil raw materials not happening faster? | Neste</a></li>
+<li><a href="https://www.cnn.com/2026/02/23/business/what-is-blue-owl-private-credit">What is Blue Owl, and why are people suddenly worried about private ...</a></li>
+<li><a href="https://www.ft.com/content/e0050714-a3d0-4ac7-b3aa-11d5884d9520?syn-25a6b1a6=1">Why private credit ’s gung-ho growth needs proper monitoring</a></li>
 
 </ul>
 </details>
 
-**标签**: `#energy`, `#commodities`, `#climate-policy`, `#supply-chain`
+**标签**: `#financial-stability`, `#macroeconomics`, `#sovereign-risk`, `#global-markets`
+
+---
+
+<a id="item-12"></a>
+## [联合国：无人机造成苏丹战争 80%平民死亡](https://news.un.org/feed/view/en/story/2026/05/1167479) ⭐️ 7.0/10
+
+联合国人权事务高级专员报告称，2026 年前四个月，武装无人机造成了苏丹战争中超过 80%的平民死亡，至少 880 人丧生，并警告无人机战升级可能使冲突进入更致命的阶段。 这一发现凸显了无人机战对苏丹平民的毁灭性影响，可能引发国际外交压力、联合国安理会讨论或对无人机供应商的制裁，从而可能重塑全球关于武装无人机使用的规范。 无人机造成了超过 80%的平民伤亡，2026 年初至少有 880 例具体死亡记录；联合国人权事务高级专员警告称，进一步升级可能导致更高平民伤亡。
+
+rss · UN News · May 11, 12:00
+
+**背景**: 自 2023 年 4 月以来，苏丹陷入内战，主要交战方是苏丹武装部队和快速支援部队。武装无人机已成为关键武器，据报道双方都在使用，经常导致大量平民伤亡。联合国人权事务办公室一直在监测冲突并记录侵犯行为。
+
+**标签**: `#military-risk`, `#sudan`, `#un`, `#drones`, `#civilian-casualties`
+
+---
+
+<a id="item-13"></a>
+## [世卫组织：乌克兰医疗系统遭三千多次袭击](https://news.un.org/feed/view/en/story/2026/05/1167468) ⭐️ 7.0/10
+
+世界卫生组织（WHO）确认，自 2022 年 2 月俄罗斯全面入侵乌克兰以来，该国医疗系统已遭受超过 3000 次袭击。 这一里程碑数字凸显了国际人道法和医疗中立原则遭到系统性违反，可能促使更强烈的外交谴责、国际刑事法院的追责或对俄罗斯的新制裁。 袭击包括轰炸医院、针对医务人员以及扰乱基本医疗服务，乌克兰和巴勒斯坦被占领土是全球遭受袭击最多的地区。
+
+rss · UN News · May 8, 12:00
+
+**背景**: 国际人道法严格保护武装冲突中的医疗设施、人员和患者；攻击医疗系统属于战争罪。世卫组织的“医疗保健袭击监测系统”（SSA）系统性地收集和核实此类事件。自 2022 年俄罗斯入侵以来，乌克兰面临严重人道危机，数百万人流离失所，基础设施遭到广泛破坏。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.who.int/activities/stopping-attacks-on-health-care">Stopping attacks on health care - World Health Organization (WHO)</a></li>
+<li><a href="https://www.bmj.com/content/390/bmj.r1242">The protections for healthcare enshrined in international ...</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Russo-Ukrainian_war_(2022–present)">Russo- Ukrainian war (2022–present) - Wikipedia</a></li>
+
+</ul>
+</details>
+
+**标签**: `#russia-ukraine`, `#diplomacy`, `#health`, `#humanitarian`
+
+---
+
+<a id="item-14"></a>
+## [联合国报告 5 月初乌克兰超 70 名平民死亡](https://news.un.org/feed/view/en/story/2026/05/1167454) ⭐️ 7.0/10
+
+联合国人权监察员报告称，自 5 月初以来，乌克兰境内至少有 70 名平民死亡、500 多人受伤，凸显持续的袭击和人道主义准入困难。 持续的平民伤亡突显了冲突的严重人道主义影响，可能加剧国际社会对俄罗斯的外交压力，并呼吁增加对前线地区的人道主义准入。 该报告涵盖 5 月 1 日以来的时期，受伤人数超过 500 人，并指出由于战事激烈，人道主义工作者难以到达前线附近社区。
+
+rss · UN News · May 6, 12:00
+
+**背景**: 自 2022 年 2 月俄罗斯全面入侵以来，乌克兰战争持续不断，已造成数万名平民伤亡及严重人道主义危机。联合国乌克兰人权监测团（HRMMU）定期记录平民伤亡和准入问题。
+
+**标签**: `#russia-ukraine`, `#geopolitics`, `#humanitarian`, `#diplomacy`
+
+---
+
+<a id="item-15"></a>
+## [拉加德：将稳定币功能与工具分离](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260508~dd909fbed1.en.html) ⭐️ 7.0/10
+
+2026 年 5 月 8 日，欧洲央行行长克里斯蒂娜·拉加德在讲话中提出，稳定币监管应区分其服务功能与工具本身，表明对数字货币采取功能性监管思路。 这种方法可能重塑欧洲稳定币的监管格局，影响市场参与者并影响数字欧元的设计。它突显了欧洲央行在适应新型私人数字货币的同时，维持金融稳定的重点。 拉加德的讲话并未宣布新规，但设定了可能指导未来欧洲央行稳定币政策的概念框架。这种功能与工具的区分可能导致监管根据稳定币的实际功能而非技术标签来适用规则。
+
+rss · ECB Press Releases · May 8, 07:00
+
+**背景**: 稳定币是旨在维持价值稳定的加密货币，通常与美元等法定货币挂钩。央行数字货币（CBDC）是由央行发行的官方货币数字形式，例如欧洲央行的数字欧元项目始于 2021 年，并于 2026 年 2 月获得欧洲议会支持。欧洲央行在开发自身 CBDC 的同时，也在探索对私人数字货币的监管方法。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Stablecoin">Stablecoin - Wikipedia</a></li>
+<li><a href="https://www.investopedia.com/terms/s/stablecoin.asp">Stablecoins: Definition, How They Work, and Types - Investopedia</a></li>
+<li><a href="https://www.ecb.europa.eu/euro/digital_euro/html/index.en.html">Digital euro - European Central Bank</a></li>
+
+</ul>
+</details>
+
+**标签**: `#central-bank`, `#financial-stability`, `#digital-currency`, `#regulation`, `#europe`
+
+---
+
+<a id="item-16"></a>
+## [欧央行：欧元区金融一体化改善，碎片化仍存](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260507~8af27d170e.en.html) ⭐️ 7.0/10
+
+欧洲中央银行于 2026 年 5 月 7 日发布报告，显示欧元区金融一体化有所改善，但跨境碎片化问题依然存在。 这很重要，因为金融一体化降低了风险分散成本并改善了资本配置，而碎片化则削弱了欧元区的货币政策传导和金融稳定。 报告指出，尽管整体一体化有所进展，但核心国家与外围国家之间仍存在显著差异，影响资本流动预期和风险定价。
+
+rss · ECB Press Releases · May 7, 06:00
+
+**背景**: 金融一体化是指在欧元区内跨境交易金融工具的便利性。欧洲央行通过跨境持有量、价格收敛等指标进行监测。自欧元区债务危机以来，持续的碎片化一直是令人担忧的问题。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.ecb.europa.eu/home/search/financial_integration/html/index.en.html">Financial integration</a></li>
+<li><a href="https://news.google.com/stories/CAAqNggKIjBDQklTSGpvSmMzUnZjbmt0TXpZd1NoRUtEd2ktcTVlSUVSRkI0QWpDc3k4YUJpZ0FQAQ?hl=en-UG&gl=UG&ceid=UG:en">Google News - ECB report on euro area integration - Overview</a></li>
+
+</ul>
+</details>
+
+**标签**: `#central-bank`, `#macroeconomics`, `#financial-stability`, `#europe`, `#bonds`
+
+---
+
+<a id="item-17"></a>
+## [欧央行工资追踪器显示 2026 年工资压力稳定](https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html) ⭐️ 7.0/10
+
+欧洲央行发布了其工资追踪器的新数据，显示包括平滑一次性支付在内的谈判工资增长预计在 2025 年为 3.2%，2026 年为 2.3%，表明工资压力稳定。 稳定的工资增长缓解了近期通胀担忧，并支持欧央行在不激进降息的情况下继续正常化货币政策的预期，影响欧元区债券收益率和外汇市场。 该追踪器覆盖参与国 2025 年 51.3%和 2026 年 41.9%的员工；指标包括经 12 个月平滑处理的集体协议一次性支付。
+
+rss · ECB Press Releases · May 6, 08:00
+
+**背景**: 欧央行工资追踪器（EWT）是一个追踪欧元区谈判工资增长的数据集，包括通胀补偿等一次性支付。它被政策制定者和市场密切关注，作为劳动力成本带来的潜在通胀压力的指标。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html">New data release: ECB wage tracker indicates negotiated wage pressures stable in 2026</a></li>
+<li><a href="https://data.ecb.europa.eu/data/datasets/EWT/data-information">ECB Wage Tracker - EWT | ECB Data Portal</a></li>
+
+</ul>
+</details>
+
+**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#currency`, `#bonds`
+
+---
+
+<a id="item-18"></a>
+## [欧央行行长将气候与自然风险关联货币政策](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505~936c9c11b5.en.html) ⭐️ 7.0/10
+
+欧洲央行行长克里斯蒂娜·拉加德于 2026 年 5 月 5 日发表演讲，明确将气候变化和自然退化与货币政策联系起来，警告其可能威胁价格稳定和金融体系韧性。 这标志着欧央行政策框架可能发生转变，气候风险可能影响通胀和金融稳定，从而促使央行调整工具和前瞻指引。市场和政策制定者将关注具体措施。 拉加德强调，自然退化可能放大物理风险和转型风险，并对核心通胀产生第二轮效应。演讲暗示欧央行可能将生物多样性指标纳入风险评估。
+
+rss · ECB Press Releases · May 5, 12:30
+
+**背景**: 各国央行日益承认气候变化是金融风险的来源。欧央行已将气候考量纳入货币政策操作，例如要求公司债券发行人披露气候风险。此次演讲将关注范围扩展至自然与生物多样性，与自然相关财务信息披露工作组（TNFD）等全球倡议保持一致。
+
+**标签**: `#central-bank`, `#europe`, `#climate`, `#monetary-policy`, `#financial-stability`
+
+---
+
+<a id="item-19"></a>
+## [联合国报告海地帮派扩张至太子港以外](https://news.un.org/feed/view/en/story/2026/05/1167475) ⭐️ 6.0/10
+
+联合国报告称，海地帮派的活动已扩展到太子港以外地区，暴力升级加剧人道主义危机，平民陷入武装团体与安全部队之间的困境。 帮派扩张表明国家权威进一步崩溃，可能引发区域不稳定，或将促使联合国或国际社会采取更强外交反应，并使人道主义援助更加困难。 联合国声明未具体说明帮派扩张的准确区域或受影响平民数量，但指出暴力正日益威胁首都以外的人口。
+
+rss · UN News · May 8, 12:00
+
+**背景**: 海地长期面临政治不稳定和帮派暴力问题。近年来，帮派已控制太子港大片区域，导致严重人道主义危机。联合国在海地设有多个特派团和维和行动，但安全局势依然脆弱。
+
+**标签**: `#diplomacy`, `#security`, `#humanitarian-crisis`, `#latin-america`
+
+---
+
+<a id="item-20"></a>
+## [资金削减威胁中非共和国人道主义援助](https://news.un.org/feed/view/en/story/2026/05/1167474) ⭐️ 6.0/10
+
+联合国人道主义事务协调厅一位高级官员警告称，尽管中非共和国在稳定和安全方面近期取得进展，但重大预算削减正危及人道主义行动。 资金缺口可能逆转中非共和国来之不易的稳定成果，增加这个本就依赖国际援助的脆弱国家发生流离失所和暴力的风险。 一位联合国人道主义事务协调厅高级官员周五在纽约发表声明，强调由于资金不足，人道主义行动面临即将中断的风险。
+
+rss · UN News · May 8, 12:00
+
+**背景**: 中非共和国经历了数十年的冲突和不稳定，大部分人口依赖人道主义援助。联合国及合作伙伴提供关键的食品、健康和保护服务，这些服务通常由捐助国的自愿捐款资助。捐款减少直接威胁到拯救生命的援助的连续性。
+
+**标签**: `#diplomacy`, `#humanitarian`, `#central-african-republic`, `#aid`, `#risk`
+
+---
+
+<a id="item-21"></a>
+## [欧央行副行长德金多斯呼吁深化欧洲金融一体化](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260507~c99288185f.en.html) ⭐️ 6.0/10
+
+欧洲中央银行（ECB）副行长路易斯·德金多斯于 2026 年 5 月 7 日发表演讲，主张深化欧洲金融一体化以支持竞争力和繁荣。 这标志着欧央行持续关注金融团结与稳定，可能推动建立真正统一的银行市场和协调规则的政策举措，从而影响跨境资本流动和欧元区的韧性。 德金多斯强调要建成一个资本和流动性可以自由跨境流动、所有存款受到同等保护的单一银行市场，并指出金融碎片化限制了金融部门对实体经济的支持。
+
+rss · ECB Press Releases · May 7, 07:15
+
+**背景**: 欧洲中央银行是欧元区的央行，负责维持价格稳定和金融稳定。自 2022 年底以来，欧洲金融一体化有所改善，但仍未完成，碎片化的国家规则阻碍了统一金融市场的形成。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp260507~c99288185f.en.html">Deepening financial integration to support Europe’s prosperity</a></li>
+<li><a href="https://www.bis.org/review/r260507d.htm">Luis de Guindos: Deepening financial integration to support ...</a></li>
+<li><a href="https://www.europesays.com/europe/34044/">Euro area financial integration improves despite persistent ...</a></li>
+
+</ul>
+</details>
+
+**标签**: `#central-bank`, `#macroeconomics`, `#europe`, `#financial-stability`
+
+---
+
+<a id="item-22"></a>
+## [欧洲央行莱恩探讨气候变化与货币政策](https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html) ⭐️ 6.0/10
+
+欧洲央行首席经济学家菲利普·莱恩于 2026 年 5 月 5 日发表演讲，探讨央行如何将气候变化纳入其货币政策战略。 此次演讲表明欧洲央行正在持续进行制度调整以应对气候风险，这可能会对欧元区的资产购买和抵押品框架产生长期影响。 该演讲属于常规政策沟通，并无直接市场影响，但阐述了欧洲央行将气候因素纳入货币政策工具包的逐步演变方法。
+
+rss · ECB Press Releases · May 5, 15:40
+
+**背景**: 各国央行日益认识到气候变化对金融稳定和宏观经济结果的风险。欧洲央行一直处于这一趋势的前沿，将气候因素纳入其货币政策操作，包括策略评估和抵押品框架。
+
+**标签**: `#central-bank`, `#macroeconomics`, `#climate`, `#europe`
 
 ---
