@@ -66,6 +66,7 @@ class DigitalOracleBridge:
     def __init__(self, config: TradingConfig):
         self.config = config
         self.module: Any | None = None
+        self.module_file: str | None = None
         self.unavailable_reason: str | None = None
         self.available = self._detect_digital_oracle()
 
@@ -74,6 +75,8 @@ class DigitalOracleBridge:
 
         try:
             self.module = importlib.import_module("digital_oracle")
+            self.module_file = getattr(self.module, "__file__", None)
+            self.unavailable_reason = None
             return True
         except Exception:
             pass
@@ -84,6 +87,8 @@ class DigitalOracleBridge:
                 sys.path.insert(0, str(vendor_root))
             try:
                 self.module = importlib.import_module("digital_oracle")
+                self.module_file = getattr(self.module, "__file__", None)
+                self.unavailable_reason = None
                 return True
             except Exception as exc:
                 self.unavailable_reason = str(exc)
@@ -91,6 +96,14 @@ class DigitalOracleBridge:
 
         self.unavailable_reason = "digital_oracle package not importable"
         return False
+
+    def describe_runtime(self) -> dict[str, str | bool | None]:
+        """Return diagnostic information for the digital-oracle runtime."""
+        return {
+            "available": self.available,
+            "module_file": self.module_file,
+            "unavailable_reason": self.unavailable_reason,
+        }
 
     async def analyze_asset(self, asset: TradingAssetConfig) -> DigitalOracleAssetResult:
         """Analyze one configured asset using digital-oracle methodology."""

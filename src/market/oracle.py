@@ -265,6 +265,7 @@ class TradingOracleAnalyzer:
         bridge = DigitalOracleBridge(self.config)
         if bridge.available:
             print("🔮 digital-oracle bridge: available")
+            print(f"🔮 digital-oracle module: {bridge.module_file}")
             oracle_result = await bridge.analyze_assets(enabled_assets)
             return self._convert_digital_oracle_result(oracle_result)
 

@@ -28,6 +28,7 @@ dev = [
 ]
 trading = [
     "yfinance>=0.2.50",
+    "digital-oracle @ git+https://github.com/komako-workshop/digital-oracle.git",
 ]
 
 [project.scripts]
