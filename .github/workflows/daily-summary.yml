@@ -40,11 +40,10 @@ jobs:
           export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
 
           uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
-          uv run python -c "import digital_oracle; p=(digital_oracle.__file__ or '').replace('\\\\','/'); print('digital_oracle file:', digital_oracle.__file__); assert '/src/vendor/digital_oracle/' not in p, f'digital_oracle resolved to Horizon fallback shell: {p}'"
+          uv run python -c "import digital_oracle; p=(digital_oracle.__file__ or '').replace('\\\\','/'); print('digital_oracle file:', digital_oracle.__file__); assert '/src/vendor/digital_oracle/' not in p, f'digital_oracle must not resolve to Horizon fallback shell: {p}'"
           uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
           uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; print('bridge import ok')"
           uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle runtime:', b.describe_runtime()); assert b.available, 'DigitalOracleBridge is not using full digital_oracle provider package'"
-          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle bridge: available', b.available); assert b.available, 'DigitalOracleBridge is not using full digital_oracle provider package'"
           uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); print(hist.tail()); assert len(hist) > 0, 'QQQ yfinance smoke test returned no rows'"
 
       - name: Verify digital-oracle provider smoke tests
