@@ -27,13 +27,7 @@ jobs:
         uses: astral-sh/setup-uv@v3
 
       - name: Install dependencies
-        run: |
-          if ! uv sync --extra trading; then
-            echo "ERROR: uv sync --extra trading failed (likely digital-oracle Git dependency)."
-            echo "Falling back to vendored digital_oracle_full package and installing yfinance explicitly."
-            uv sync
-            uv pip install "yfinance>=0.2.50"
-          fi
+        run: uv sync --extra trading
 
       - name: Add vendored digital-oracle path
         run: echo "PYTHONPATH=$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}" >> "$GITHUB_ENV"
@@ -41,11 +35,10 @@ jobs:
       - name: Verify trading dependencies
         run: |
           uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
-          uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix(); print('digital_oracle file:', digital_oracle.__file__); assert '/src/vendor/digital_oracle/' not in p, f'digital_oracle must not resolve to Horizon fallback shell: {p}'"
+          uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix(); print('digital_oracle file:', digital_oracle.__file__); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py'), f'digital_oracle must resolve to full vendored package: {p}'"
           uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
-          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; print('bridge import ok')"
-          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle runtime:', b.describe_runtime()); assert b.available, 'DigitalOracleBridge is not using full digital_oracle provider package'"
-          uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); print(hist.tail()); assert len(hist) > 0, 'QQQ yfinance smoke test returned no rows'"
+          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle runtime:', b.describe_runtime()); assert b.available, 'DigitalOracleBridge is not available'"
+          uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); assert len(hist) > 0"
 
       - name: Verify digital-oracle provider smoke tests
         run: |
