@@ -4,7 +4,7 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
 [![Daily Horizon Summary](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml/badge.svg?style=flat-square)](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml)
 
-面向个人信息流和交易观察的 AI 信息摘要系统。Horizon 会聚合多来源内容，生成每日 **Information Summary**，并附带基于 digital-oracle provider 的 **Trading Analysis**。
+面向个人信息流和交易观察的 AI 信息摘要系统。Horizon 会聚合多来源内容并生成每日 **Information Summary**，同时附带基于 digital-oracle provider 的 **Trading Analysis**。
 
 > 免责声明：Trading Analysis 只用于信息整理和概率观察，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。
 
@@ -197,11 +197,23 @@ uv run horizon --hours 168
 
 ### 4. 验证 digital_oracle provider
 
-GitHub Actions 会自动执行这些验证；本地排查时也可以手动运行。以下命令适用于 bash / zsh：
+GitHub Actions 会自动执行这些验证；本地排查时也可以手动运行。先按当前 shell 设置 `PYTHONPATH`。
+
+bash / zsh：
 
 ```bash
 export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
+```
 
+PowerShell：
+
+```powershell
+$env:PYTHONPATH = "$(Get-Location)/src/vendor/digital_oracle_full;$env:PYTHONPATH"
+```
+
+然后运行验证命令：
+
+```bash
 uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
 uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix(); print('digital_oracle file:', p); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py')"
 uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
@@ -410,10 +422,9 @@ uv run horizon --hours 24
 
 现象：workflow 中断，提示 `digital_oracle must resolve to full vendored package`。
 
-处理：确认。以下命令适用于 bash / zsh：
+处理：先按上文为当前 shell 设置 `PYTHONPATH`，再确认实际导入位置：
 
 ```bash
-export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
 uv run python -c "import digital_oracle; print(digital_oracle.__file__)"
 ```
 
