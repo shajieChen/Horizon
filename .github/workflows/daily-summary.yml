@@ -27,14 +27,72 @@ jobs:
         uses: astral-sh/setup-uv@v3
 
       - name: Install dependencies
-        run: uv sync --extra trading
+        run: |
+          if ! uv sync --extra trading; then
+            echo "ERROR: uv sync --extra trading failed (likely digital-oracle Git dependency)."
+            echo "Falling back to vendored digital_oracle_full package and installing yfinance explicitly."
+            uv sync
+            uv pip install "yfinance>=0.2.50"
+          fi
 
       - name: Verify trading dependencies
         run: |
+          export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
+
           uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
+          uv run python -c "import digital_oracle; p=(digital_oracle.__file__ or '').replace('\\\\','/'); print('digital_oracle file:', digital_oracle.__file__); assert '/src/vendor/digital_oracle/' not in p, f'digital_oracle resolved to Horizon fallback shell: {p}'"
+          uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
           uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; print('bridge import ok')"
-          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle bridge: available', b.available)"
-          uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); print(hist.tail())"
+          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle runtime:', b.describe_runtime()); assert b.available, 'DigitalOracleBridge is not using full digital_oracle provider package'"
+          uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle bridge: available', b.available); assert b.available, 'DigitalOracleBridge is not using full digital_oracle provider package'"
+          uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); print(hist.tail()); assert len(hist) > 0, 'QQQ yfinance smoke test returned no rows'"
+
+      - name: Verify digital-oracle provider smoke tests
+        run: |
+          export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
+
+          uv run python - <<'PY'
+          from digital_oracle import (
+              YahooPriceProvider,
+              PriceHistoryQuery,
+              USTreasuryProvider,
+              FearGreedProvider,
+              gather,
+          )
+
+          yahoo = YahooPriceProvider()
+          treasury = USTreasuryProvider()
+          fear_greed = FearGreedProvider()
+
+          result = gather(
+              {
+                  "qqq_price": lambda: yahoo.get_history(PriceHistoryQuery(symbol="QQQ", limit=5)),
+                  "yield_curve": lambda: treasury.latest_yield_curve(),
+                  "fear_greed": lambda: fear_greed.get_index(),
+              }
+          )
+
+          print("digital-oracle gather results:", result.results.keys())
+          print("digital-oracle gather errors:", result.errors)
+
+          qqq_price = result.get_or("qqq_price", None)
+          assert qqq_price is not None, "digital-oracle YahooPriceProvider returned no QQQ price result"
+
+          bars = getattr(qqq_price, "bars", None)
+          assert bars is not None and len(bars) > 0, "QQQ price history has no bars"
+
+          print("digital-oracle QQQ bars:", len(bars))
+
+          curve = result.get_or("yield_curve", None)
+          if curve is None:
+              print("WARN: USTreasuryProvider unavailable in smoke test")
+
+          fg = result.get_or("fear_greed", None)
+          if fg is None:
+              print("WARN: FearGreedProvider unavailable in smoke test")
+
+          assert len(result.results) >= 1, "No digital-oracle provider returned usable data"
+          PY
 
       - name: Run Horizon with DeepSeek
         env:
