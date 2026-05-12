@@ -238,6 +238,23 @@ uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period=
 - `max_tokens`
 - `languages`
 
+DeepSeek-V4-Pro 使用 OpenAI-compatible API：
+
+```json
+{
+  "ai": {
+    "provider": "openai",
+    "model": "deepseek-v4-pro",
+    "base_url": "https://api.deepseek.com",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "temperature": 0.3,
+    "max_tokens": 4096,
+    "throttle_sec": 1.0,
+    "languages": ["zh"]
+  }
+}
+```
+
 ### Sources
 
 `sources` 用于配置内容来源：
