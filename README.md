@@ -4,7 +4,7 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
 [![Daily Horizon Summary](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml/badge.svg?style=flat-square)](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml)
 
-面向个人信息流和交易观察的 AI 信息摘要系统。Horizon 会聚合多来源内容并生成每日 **Information Summary**。报告同时附带基于 digital-oracle provider 的 **Trading Analysis**。
+面向个人信息流和交易观察的 AI 信息摘要系统。Horizon 会聚合多来源内容并生成每日 **Information Summary**。报告同时附带基于 digital_oracle provider 的 **Trading Analysis**。
 
 > 免责声明： Trading Analysis 只用于信息整理和概率观察，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。
 
@@ -54,7 +54,7 @@ Horizon 当前每天会生成一份 Markdown 报告，默认包含两部分：
 
 Trading Analysis 的原则：
 
-- Horizon 使用 **vendored full digital_oracle Python providers**。分析方法遵循 **digital-oracle Skill 方法论**进行多信号市场分析。
+- Horizon 通过 **vendored full digital_oracle Python providers** 并按照 **digital-oracle Skill 方法论**进行多信号市场分析。
 - Trading Analysis 使用市场数据，不使用新闻观点或分析师观点作为交易依据。
 - QDII Nasdaq 100 是基于底层资产的代理分析，不包含中国场内 QDII 溢价 / 折价 / 限购 / 净值偏离。
 - 报告会记录 Trading 分析参考文章和 provider 数据来源，便于后续核查。
@@ -215,9 +215,9 @@ $env:PYTHONPATH = "$(Get-Location)/src/vendor/digital_oracle_full;$env:PYTHONPAT
 
 ```bash
 uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
-uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix(); print('digital_oracle file:', p); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py')"
+uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix().replace(chr(92), '/'); print('digital_oracle file:', p); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py')"
 uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
-uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle runtime:', b.describe_runtime()); assert b.available"
+uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital_oracle runtime:', b.describe_runtime()); assert b.available"
 uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); assert len(hist) > 0"
 ```
 
