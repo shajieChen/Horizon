@@ -89,8 +89,8 @@ def build_asset_provider_plan(asset: TradingAssetConfig) -> list[ProviderGroupPl
                 "WebSearchProvider",
                 queries=(
                     "Nikkei 225 volatility current",
-                    "JPY USD exchange rate current",
-                    "Japan equity risk premium current",
+                    "USD JPY exchange rate current",
+                    "Japan equity ETF EWJ price current",
                 ),
             ),
         ]
@@ -106,7 +106,7 @@ def build_asset_provider_plan(asset: TradingAssetConfig) -> list[ProviderGroupPl
                 "WebSearchProvider",
                 queries=(
                     "Hang Seng volatility index current",
-                    "USDHKD exchange rate current",
+                    "USD HKD exchange rate current",
                     "China high yield dollar bond spread current",
                 ),
             ),

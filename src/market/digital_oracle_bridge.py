@@ -19,6 +19,19 @@ from .digital_oracle_routes import ProviderGroupPlan, build_asset_provider_plan
 from .oracle import HorizonProbability, TradingScenario
 
 
+class TradingReference(BaseModel):
+    """One reference used by trading analysis."""
+
+    title: str
+    url: str
+    snippet: str = ""
+    provider: str = ""
+    query: str = ""
+    asset: str = ""
+    layer: str = ""
+    fetched_at: str = ""
+
+
 class DigitalOracleSignal(BaseModel):
     """One normalized signal from digital-oracle provider."""
 
@@ -30,6 +43,7 @@ class DigitalOracleSignal(BaseModel):
     horizon: str
     confidence: str = "medium"
     raw: Dict[str, Any] = Field(default_factory=dict)
+    references: list[TradingReference] = Field(default_factory=list)
 
 
 class DigitalOracleAssetResult(BaseModel):
@@ -47,6 +61,7 @@ class DigitalOracleAssetResult(BaseModel):
     conclusion: str
     missing_evidence: list[str] = Field(default_factory=list)
     data_sources: list[str] = Field(default_factory=list)
+    references: list[TradingReference] = Field(default_factory=list)
 
 
 class DigitalOracleWatchlistResult(BaseModel):
@@ -58,6 +73,7 @@ class DigitalOracleWatchlistResult(BaseModel):
     global_divergences: list[str]
     missing_evidence: list[str]
     data_sources: list[str]
+    references: list[TradingReference] = Field(default_factory=list)
 
 
 class DigitalOracleBridge:
@@ -163,6 +179,10 @@ class DigitalOracleBridge:
         horizon_views = estimate_digital_oracle_probabilities(asset, signals)
         scenarios = self._build_scenarios(horizon_views)
         conclusion = self._build_conclusion(asset.name, horizon_views, unique_layers)
+        asset_references: list[TradingReference] = []
+        for signal in signals:
+            asset_references.extend(signal.references)
+        asset_references = self._dedupe_references(asset_references)
 
         data_sources = sorted({s.provider for s in signals})
         return DigitalOracleAssetResult(
@@ -178,6 +198,7 @@ class DigitalOracleBridge:
             conclusion=conclusion,
             missing_evidence=sorted(set(missing_evidence)),
             data_sources=data_sources,
+            references=asset_references,
         )
 
     async def analyze_assets(self, assets: list[TradingAssetConfig]) -> DigitalOracleWatchlistResult:
@@ -187,6 +208,10 @@ class DigitalOracleBridge:
         all_signals = [sig for result in results for sig in result.signals]
         missing_evidence = sorted({e for result in results for e in result.missing_evidence})
         data_sources = sorted({s.provider for s in all_signals})
+        global_references: list[TradingReference] = []
+        for result in results:
+            global_references.extend(result.references)
+        global_references = self._dedupe_references(global_references)
 
         global_resonance = [
             "多资产价格层与风险偏好层存在交叉验证。"
@@ -202,6 +227,7 @@ class DigitalOracleBridge:
             global_divergences=global_divergences,
             missing_evidence=missing_evidence,
             data_sources=data_sources,
+            references=global_references,
         )
 
     def _build_provider_instances(self, module: Any, plan: list[ProviderGroupPlan]) -> dict[str, Any]:
@@ -300,7 +326,7 @@ class DigitalOracleBridge:
         if kind == "kalshi":
             return [self._adapt_kalshi_signal(meta, payload)]
         if kind == "web":
-            return [self._adapt_web_signal(meta, payload)]
+            return [self._adapt_web_signal(asset, meta, payload)]
         if kind == "edgar":
             return [self._adapt_edgar_signal(meta, payload)]
         return []
@@ -436,10 +462,31 @@ class DigitalOracleBridge:
             raw={"kalshi_yes_probability": yes_prob},
         )
 
-    def _adapt_web_signal(self, meta: dict[str, str], result: Any) -> DigitalOracleSignal:
+    def _adapt_web_signal(self, asset: TradingAssetConfig, meta: dict[str, str], result: Any) -> DigitalOracleSignal:
         text = result.text() if hasattr(result, "text") else str(result)
         value = _extract_first_number(text)
-        raw: dict[str, Any] = {"query": meta["label"], "raw_text": text[:300]}
+        query = str(getattr(result, "query", "") or meta["label"])
+        fetched_at = str(getattr(result, "fetched_at", "") or "")
+        references: list[TradingReference] = []
+        for item in list(getattr(result, "snippets", ()) or ()):
+            url = str(getattr(item, "url", "") or "").strip()
+            if not url:
+                continue
+            title = str(getattr(item, "title", "") or "").strip() or url
+            references.append(
+                TradingReference(
+                    title=title,
+                    url=url,
+                    snippet=str(getattr(item, "snippet", "") or "").strip(),
+                    provider=meta["provider"],
+                    query=query,
+                    asset=asset.name,
+                    layer=meta["layer"],
+                    fetched_at=fetched_at,
+                )
+            )
+        references = self._dedupe_references(references)
+        raw: dict[str, Any] = {"query": query, "raw_text": text[:300], "extracted_value": value}
         lowered = meta["label"].lower()
         if "vix" in lowered:
             raw["vix"] = value
@@ -456,7 +503,57 @@ class DigitalOracleBridge:
             horizon="1d/1w",
             confidence="low",
             raw=raw,
+            references=references,
         )
+
+    def _dedupe_references(self, references: list[TradingReference]) -> list[TradingReference]:
+        """Deduplicate references by URL while preserving order."""
+
+        blocked_title_markers = (
+            "advertisement",
+            "sponsored",
+            "tracking",
+            "login",
+            "log in",
+            "sign in",
+            "subscribe",
+        )
+        seen: dict[str, int] = {}
+        asset_counts: dict[str, int] = {}
+        query_counts: dict[str, int] = {}
+        deduped: list[TradingReference] = []
+
+        for ref in references:
+            url = str(ref.url or "").strip()
+            if not url:
+                continue
+            title = str(ref.title or "").strip() or url
+            if any(marker in title.lower() for marker in blocked_title_markers):
+                continue
+
+            normalized = ref.model_copy(update={"title": title, "url": url})
+            if url in seen:
+                existing = deduped[seen[url]]
+                if normalized.snippet and not existing.snippet:
+                    deduped[seen[url]] = normalized
+                continue
+
+            asset_key = normalized.asset or ""
+            query_key = normalized.query or ""
+            if asset_key and asset_counts.get(asset_key, 0) >= 8:
+                continue
+            if query_key and query_counts.get(query_key, 0) >= 3:
+                continue
+            if len(deduped) >= 30:
+                break
+
+            seen[url] = len(deduped)
+            deduped.append(normalized)
+            if asset_key:
+                asset_counts[asset_key] = asset_counts.get(asset_key, 0) + 1
+            if query_key:
+                query_counts[query_key] = query_counts.get(query_key, 0) + 1
+        return deduped
 
     def _adapt_edgar_signal(self, meta: dict[str, str], summary: Any) -> DigitalOracleSignal:
         count = getattr(summary, "total_form4_count", None)

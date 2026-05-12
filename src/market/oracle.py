@@ -81,6 +81,7 @@ class TradingAnalysisResult(BaseModel):
     analysis_method: str = "unknown"
     digital_oracle_layers: Dict[str, Any] = Field(default_factory=dict)
     missing_evidence: List[str] = Field(default_factory=list)
+    references: List[Dict[str, Any]] = Field(default_factory=list)
 
 
 class TradingOracleAnalyzer:
@@ -474,6 +475,10 @@ class TradingOracleAnalyzer:
                 "resonance": asset.resonance,
                 "divergences": asset.divergences,
                 "probability_scenarios": [s.model_dump() for s in asset.probability_scenarios],
+                "references": [
+                    ref.model_dump() if hasattr(ref, "model_dump") else dict(ref)
+                    for ref in getattr(asset, "references", [])
+                ],
             }
 
         if not all_signals:
@@ -517,6 +522,10 @@ class TradingOracleAnalyzer:
             analysis_method="digital_oracle",
             digital_oracle_layers=digital_layers,
             missing_evidence=list(oracle_result.missing_evidence),
+            references=[
+                ref.model_dump() if hasattr(ref, "model_dump") else dict(ref)
+                for ref in getattr(oracle_result, "references", [])
+            ],
         )
 
     @staticmethod
