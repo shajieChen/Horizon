@@ -1,318 +1,526 @@
-<div align="center">
-
-# 🌅 Horizon
-
-**Enjoy the News itself. Leave others to Horizon**
+# Horizon
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](LICENSE)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
-[![Daily Summary](https://github.com/Thysrael/Horizon/actions/workflows/deploy-docs.yml/badge.svg?style=flat-square)](https://thysrael.github.io/Horizon/)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Thysrael/Horizon?style=flat-square)](https://github.com/Thysrael/Horizon/commits/main)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-![Sources Welcome](https://img.shields.io/badge/📡_sources-welcome-f97316?style=flat-square)
-<a href="https://hellogithub.com/repository/Thysrael/Horizon" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=7a4b606e28e4477998d35851cf4fdddf&claim_uid=rtjnLkYT7ziQJUG&theme=small" alt="Featured｜HelloGitHub" /></a>
-<br>
+[![Daily Horizon Summary](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml/badge.svg?style=flat-square)](https://github.com/shajieChen/Horizon/actions/workflows/daily-summary.yml)
 
-![Claude](https://img.shields.io/badge/Claude-f0daba?style=flat-square&logo=anthropic&logoColor=black)
-![GPT](https://img.shields.io/badge/GPT-412991?style=flat-square)
-![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=flat-square&logo=google&logoColor=white)
-![DeepSeek](https://img.shields.io/badge/DeepSeek-0A6DC2?style=flat-square)
-![Doubao](https://img.shields.io/badge/Doubao-00D6C2?style=flat-square)
-![MiniMax](https://img.shields.io/badge/MiniMax-FF6F00?style=flat-square)
-![OpenClaw](https://img.shields.io/badge/OpenClaw-C83232?style=flat-square)
+面向个人信息流和交易观察的 AI 信息摘要系统。Horizon 会聚合多来源内容并生成每日 **Information Summary**。报告同时附带基于 digital_oracle provider 的 **Trading Analysis**。
 
-📡 Your own AI-powered news radar. Generates daily briefings in English & Chinese. | 构建你专属的 AI 新闻雷达
+> 免责声明： Trading Analysis 只用于信息整理和概率观察，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。
 
-[📖 Live Demo](https://thysrael.github.io/Horizon/) · [📋 Configuration Guide](https://thysrael.github.io/Horizon/configuration) · [简体中文](README_zh.md)
+## 当前输出内容
 
-</div>
+Horizon 当前每天会生成一份 Markdown 报告，默认包含两部分：
 
-## Screenshots
+### 1. Information Summary
 
-<table>
-<tr>
-<td width="50%">
-<p align="center"><strong>Ranked Daily Briefing</strong></p>
-<img src="docs/assets/overview_en.png" alt="Daily Overview" />
-</td>
-<td width="50%">
-<p align="center"><strong>Context, Summary & Discussion</strong></p>
-<img src="docs/assets/one_news_en.png" alt="News Detail" />
-</td>
-</tr>
-</table>
+来自配置源的信息摘要：
 
-<details>
-<summary><strong>More Screenshots</strong></summary>
-<br>
-<table>
-<tr>
-<td width="33.33%">
-<p align="center"><strong>Terminal Output</strong></p>
-<img src="docs/assets/terminal_log.png" alt="Terminal Output" />
-</td>
-<td width="33.33%">
-<p align="center"><strong>Feishu Notification</strong></p>
-<img src="docs/assets/feishu_en.png" alt="Feishu Notification" />
-</td>
-<td width="33.33%">
-<p align="center"><strong>Email Delivery</strong></p>
-<img src="docs/assets/email.png" alt="Email Delivery" />
-</td>
-</tr>
-</table>
-</details>
+- RSS / Atom
+- Hacker News
+- Reddit
+- Telegram public channel
+- GitHub user events / repo releases
 
-## Why Horizon?
+处理流程包括：
 
-Good news is scattered; bad news is endless. Horizon gives you a personal first pass over Hacker News, Reddit, Telegram, RSS, and GitHub: it fetches, deduplicates, scores, filters, and enriches stories with background context and community discussion.
+- AI 评分与筛选
+- 跨来源去重
+- 背景知识增强
+- 重要内容的摘要、标签和引用整理
+- 中文 / 英文摘要输出，具体语言由 `ai.languages` 决定
 
-But Horizon is not just another summarizer. AI is great at reducing noise, but news still needs human taste: the sources you trust, the comments that change how you read a story, and the hidden gems only people can share. Horizon keeps that human layer in the loop with customizable sources, thresholds, models, languages, delivery channels, comment summaries, and a community source hub.
+### 2. Trading Analysis
 
-## Features
+默认配置中 `trading.enabled=true`，`mode=asset_watchlist`。每天会生成固定观察列表：
 
-- **📡 Watch Your Own Sources** — Track Hacker News, RSS, Reddit, Telegram, and GitHub releases or user activity in one pipeline
-- **🤖 Turn Noise Into a Reading List** — Score each item from 0-10 with Claude, GPT, Gemini, DeepSeek, Doubao, MiniMax, or any OpenAI-compatible API
-- **🔗 Merge Repeated Stories** — Deduplicate the same story across platforms before it reaches your briefing
-- **🔍 Understand the Background** — Add web-researched context for unfamiliar concepts, companies, projects, and technical terms
-- **💬 Read the Conversation** — Collect and summarize community comments from Hacker News, Reddit, and other supported sources
-- **🌐 Publish in Two Languages** — Generate English and Chinese daily briefings from the same source set
-- **📝 Ship a Daily Site** — Publish generated Markdown as a GitHub Pages daily briefing site
-- **📧 Deliver by Email** — Run a self-hosted SMTP/IMAP newsletter with automatic subscribe and unsubscribe handling
-- **🔔 Push to Chat or Automations** — Send templated results to Feishu/Lark, DingTalk, Slack, Discord, or custom webhook endpoints
-- **🧙 Start From Your Interests** — Use the setup wizard to generate a personalized source configuration
-- **⚙️ Tune the Radar** — Customize sources, thresholds, models, languages, and delivery channels from one JSON config
+- **Daily Trading Watchlist**
+- **QDII Nasdaq 100 Proxy**：`QQQ`、`^NDX`、`NQ=F`
+- **US Mega Cap Basket**：`AAPL`、`MSFT`、`NVDA`、`GOOGL`、`META`、`AMZN`、`TSLA`
+- **Japan Equity Basket**：`7203.T`、`6758.T`、`9984.T`、`8035.T`、`6861.T`
+- **Hong Kong Equity Basket**：`0700.HK`、`9988.HK`、`3690.HK`、`1810.HK`、`9618.HK`
 
-## How It Works
+每个资产篮子输出：
+
+- 1日 / 1周 / 1月概率分析
+- bullish / bearish / neutral bias
+- Data Quality
+- Price Trend layer
+- Options / Volatility layer
+- Risk Appetite / Macro layer
+- Resonance signals
+- Key divergences
+- Trading 分析参考文章与数据来源
+
+Trading Analysis 的原则：
+
+- Horizon 通过 **vendored full digital_oracle Python providers** 并按照 **digital-oracle Skill 方法论**进行多信号市场分析。
+- Trading Analysis 使用市场数据，不使用新闻观点或分析师观点作为交易依据。
+- QDII Nasdaq 100 是基于底层资产的代理分析，不包含中国场内 QDII 溢价 / 折价 / 限购 / 净值偏离。
+- 报告会记录 Trading 分析参考文章和 provider 数据来源，便于后续核查。
+
+### 3. 输出渠道
+
+当前输出位置和渠道：
+
+- `data/summaries/`：本地生成的每日 Markdown 摘要
+- `docs/_posts/`：用于 GitHub Pages 的 Jekyll posts
+- QQ Mail / SMTP Email：可选邮件发送
+- Webhook：可选将摘要推送到外部自动化或通知系统
+
+示例报告片段：
+
+```markdown
+# Information Summary - 2026-05-12 03:23 UTC
+
+## Daily Trading Watchlist: QDII Nasdaq 100 / US / Japan / Hong Kong Stocks
+
+### Asset Probability Overview
+| 资产 | 市场 | 1日 | 1周 | 1月 | 数据质量 |
+|---|---|---|---|---|---|
+| QDII Nasdaq 100 Proxy | US | bullish 38/31/31 | bullish 38/31/31 | bullish 42/29/30 | high |
+```
+
+## 工作流概览
 
 ```mermaid
-%%{init: {
-  "theme": "base",
-  "themeVariables": {
-    "fontFamily": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
-    "fontSize": "18px",
-    "primaryTextColor": "#2d2a3e",
-    "primaryBorderColor": "#e0dbd3",
-    "lineColor": "#7c7891",
-    "tertiaryColor": "#faf8f5",
-    "clusterBkg": "#f3f0eb",
-    "clusterBorder": "#e0dbd3"
-  }
-}}%%
 flowchart LR
-    classDef config fill:#fbbf24,stroke:#d4a017,color:#2d2a3e,stroke-width:1.5px;
-    classDef source fill:#ede7fb,stroke:#6d4aaa,color:#2d2a3e,stroke-width:1.5px;
-    classDef process fill:#ffe8db,stroke:#e0652e,color:#2d2a3e,stroke-width:1.5px;
-    classDef output fill:#f9d7e5,stroke:#be185d,color:#2d2a3e,stroke-width:1.5px;
-
-    config["⚙️ Config<br/>sources, thresholds, models, outputs"]
-
-    subgraph sources["Configured Sources"]
-        rss["📡 RSS"]
-        hn["📰 Hacker News"]
-        reddit["💬 Reddit"]
-        telegram["✈️ Telegram"]
-        github["🐙 GitHub"]
-    end
-
-    fetch["📥 Fetch"]
-    dedup["🧹 Deduplicate"]
-    score["🤖 AI Score & Filter"]
-    enrich["🔎 Enrich"]
-    summary["📝 Summarize"]
-
-    subgraph outputs["Outputs"]
-        direction TB
-        site["🌐 Pages"]
-        email["📧 Email"]
-        webhook["🔔 Webhooks"]
-        mcp["🧩 MCP"]
-    end
+    config[Config: ai / sources / filtering / trading / email / webhook]
+    sources[RSS / Hacker News / Reddit / Telegram / GitHub]
+    fetch[Fetch]
+    dedup[Deduplicate]
+    score[AI Score & Filter]
+    enrich[Background Enrichment]
+    trading[Trading Analysis\nvendored digital_oracle providers]
+    summary[Information Summary Markdown]
+    local[data/summaries]
+    pages[docs/_posts / GitHub Pages]
+    email[QQ Mail / SMTP]
+    webhook[Webhook]
 
     config --> fetch
-    rss --> fetch
-    hn --> fetch
-    reddit --> fetch
-    telegram --> fetch
-    github --> fetch
-
+    sources --> fetch
     fetch --> dedup --> score --> enrich --> summary
-    config --> score
-    config --> summary
-    config --> outputs
-
-    summary --> site
+    config --> trading --> summary
+    summary --> local
+    summary --> pages
     summary --> email
     summary --> webhook
-    summary --> mcp
-
-    class config config
-    class rss,hn,reddit,telegram,github source
-    class fetch,dedup,score,enrich,summary process
-    class site,email,webhook,mcp output
 ```
 
-1. **Define** — Configure sources, thresholds, models, languages, and delivery from one JSON config.
-2. **Fetch** — Pull latest content from all configured sources concurrently.
-3. **Deduplicate** — Merge items pointing to the same story or URL across platforms.
-4. **Score & Filter** — Use AI to rank items and keep only those above your threshold.
-5. **Enrich** — Search the web for background context and collect community discussion for important items.
-6. **Summarize** — Generate a structured Markdown briefing with summaries, tags, and references.
-7. **Deliver** — Publish the result to GitHub Pages, email, webhooks such as Feishu, MCP, or local files.
+## 快速开始
 
-## Quick Start
+### 1. 安装依赖
 
-### 1. Install
-
-**Option A: Local Installation**
+推荐使用 `uv`。Trading Analysis 需要安装 `trading` extra：
 
 ```bash
-git clone https://github.com/Thysrael/Horizon.git
-cd horizon
+cd Horizon
+uv sync --extra trading
+```
 
-# Install with uv (recommended)
+如果只运行非交易摘要，可以使用核心依赖：
+
+```bash
 uv sync
-
-# Or with pip
-pip install -e .
 ```
 
-**Option B: Docker**
+### 2. 准备配置
 
 ```bash
-git clone https://github.com/Thysrael/Horizon.git
-cd horizon
-
-# Configure environment
 cp .env.example .env
 cp data/config.example.json data/config.json
-# Edit .env and data/config.json with your API keys and preferences
-
-# Run with Docker Compose
-docker-compose run --rm horizon
-
-# Or run with custom time window
-docker-compose run --rm horizon --hours 48
 ```
 
-### 2. Configure
+在 `.env` 中配置 AI provider 的 API key，并按需配置邮件、Webhook、GitHub token 等变量。
 
-**Option A: Interactive wizard (recommended)**
+当前 `data/config.example.json` 已包含以下顶层配置：
 
-```bash
-uv run horizon-wizard
-```
+- `ai`
+- `email`
+- `sources`
+- `filtering`
+- `trading`
+- `webhook`
 
-The wizard asks about your interests (e.g. "LLM inference", "嵌入式", "web security") and auto-generates `data/config.json`.
-
-**Option B: Manual configuration**
-
-```bash
-cp .env.example .env          # Add your API keys
-cp data/config.example.json data/config.json  # Customize your sources
-```
-
-Minimal manual configuration:
+最小示例：
 
 ```jsonc
 {
+  "version": "1.0",
   "ai": {
     "provider": "openai",
     "model": "gpt-4",
-    "api_key_env": "OPENAI_API_KEY"
+    "api_key_env": "OPENAI_API_KEY",
+    "temperature": 0.3,
+    "max_tokens": 4096,
+    "languages": ["zh", "en"]
   },
   "sources": {
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 20,
+      "min_score": 100
+    },
     "rss": [
-      { "name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/" }
+      {
+        "name": "Simon Willison",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "ai-tools"
+      }
     ]
   },
   "filtering": {
-    "ai_score_threshold": 6.0
+    "ai_score_threshold": 6.0,
+    "time_window_hours": 24
+  },
+  "trading": {
+    "enabled": true,
+    "mode": "asset_watchlist",
+    "default_horizons": ["1d", "1w", "1m"],
+    "enabled_providers": ["yahoo_price", "yfinance", "fear_greed", "treasury"]
   }
 }
 ```
 
-For the full reference, see the [Configuration Guide](docs/configuration.md).
-
-### 3. Run
-
-#### Local Installation
+### 3. 本地运行
 
 ```bash
-uv run horizon           # Run with default 24h window
-uv run horizon --hours 48  # Fetch from last 48 hours
+uv run horizon --hours 168
 ```
 
-#### With Docker
+生成结果会写入：
+
+- `data/summaries/`
+- `docs/_posts/`
+
+### 4. 验证 digital_oracle provider
+
+GitHub Actions 会自动执行这些验证。本地排查时也可以手动运行。先按当前 shell 设置 `PYTHONPATH`。
+
+bash / zsh（适用于 Linux / macOS / GitHub Actions runner）：
 
 ```bash
-docker-compose run --rm horizon           # Run with default 24h window
-docker-compose run --rm horizon --hours 48  # Fetch from last 48 hours
+export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
 ```
 
-The generated report will be saved to `data/summaries/`.
+PowerShell（Windows）：
 
-### 4. Automate (Optional)
+```powershell
+$vendorPath = Join-Path (Get-Location) "src\vendor\digital_oracle_full"
+$env:PYTHONPATH = if ($env:PYTHONPATH) { "$vendorPath;$env:PYTHONPATH" } else { $vendorPath }
+```
 
-Horizon works great as a **GitHub Actions** cron job. See [`.github/workflows/daily-summary.yml`](.github/workflows/daily-summary.yml) for a ready-to-use workflow that generates and deploys your daily briefing to GitHub Pages automatically.
+然后运行验证命令：
 
-## Supported Sources
+```bash
+uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
+uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix().replace('\\\\', '/'); print('digital_oracle file:', p); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py')"
+uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
+uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital_oracle runtime:', b.describe_runtime()); assert b.available"
+uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); assert len(hist) > 0"
+```
 
-| Source | What it fetches | Comments |
-|--------|----------------|----------|
-| **Hacker News** | Top stories by score | Yes (top N comments) |
-| **RSS / Atom** | Any RSS or Atom feed | — |
-| **Reddit** | Subreddits + user posts | Yes (top N comments) |
-| **Telegram** | Public channel messages | — |
-| **GitHub** | User events & repo releases | — |
+## 配置说明
 
-## Where Your Briefing Goes
+### AI
 
-Horizon can publish or deliver the generated briefing in several ways:
+`ai` 决定摘要、评分和背景增强使用的模型。支持仓库代码中实现的 provider，例如 OpenAI-compatible API、Anthropic、Gemini、DeepSeek、Doubao、MiniMax 等。
 
-| Channel | What it does |
-|---------|--------------|
-| **GitHub Pages Daily Site** | Copies generated Markdown into `docs/` so GitHub Pages can publish a daily-updated briefing site |
-| **Email Subscription** | Sends the daily briefing to subscribers and handles subscribe/unsubscribe requests through SMTP/IMAP |
-| **Webhook Notification** | Pushes success or failure results to Feishu/Lark, DingTalk, Slack, Discord, or any custom webhook endpoint |
-| **MCP Server** | Exposes Horizon pipeline steps as tools so AI assistants can fetch, score, filter, enrich, summarize, and run the full workflow |
+关键字段：
 
-For setup details, see the [Configuration Guide](docs/configuration.md). For MCP tool references and client setup, see [`src/mcp/README.md`](src/mcp/README.md) and [`src/mcp/integration.md`](src/mcp/integration.md).
+- `provider`
+- `model`
+- `base_url`
+- `api_key_env`
+- `temperature`
+- `max_tokens`
+- `languages`
 
-## Documentation
+### Sources
 
-| Guide | Description |
-|-------|-------------|
-| [Configuration](docs/configuration.md) | AI providers, sources, filtering, email, webhook, GitHub Pages, and MCP setup |
-| [Scoring](docs/scoring.md) | How Horizon evaluates and ranks news items |
-| [Scrapers](docs/scrapers.md) | Source scraper details and extension notes |
-| [MCP Tools](src/mcp/README.md) | Tool reference for MCP-compatible clients |
+`sources` 用于配置内容来源：
 
-## Project Status
+| Source | 当前用途 |
+|---|---|
+| `rss` | RSS / Atom 订阅源 |
+| `hackernews` | Hacker News top stories |
+| `reddit` | subreddit / user posts，可抓取评论 |
+| `telegram` | Public channel messages |
+| `github` | GitHub user events / repo releases |
 
-Horizon already supports the full daily briefing loop: multi-source collection, AI scoring, deduplication, enrichment, comment summaries, bilingual generation, GitHub Pages publishing, email delivery, webhook delivery, Docker deployment, MCP integration, and the setup wizard.
+### Filtering
 
-Planned improvements:
+`filtering` 控制时间窗口和 AI 评分阈值：
 
-- More source types, such as Twitter/X and Discord
-- Custom scoring prompts per source
-- Publish releases on GitHub
-- Publish the package to PyPI for `pip install`
+```jsonc
+{
+  "filtering": {
+    "ai_score_threshold": 6.0,
+    "time_window_hours": 24
+  }
+}
+```
 
-## Contributing
+### Trading
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+当前默认 Trading 配置等价于：
 
-### Share Sources
+```jsonc
+{
+  "trading": {
+    "enabled": true,
+    "mode": "asset_watchlist",
+    "min_ai_score": 0.0,
+    "max_items_per_run": 20,
+    "default_horizons": ["1d", "1w", "1m"],
+    "enabled_providers": [
+      "yahoo_price",
+      "yfinance",
+      "fear_greed",
+      "treasury"
+    ]
+  }
+}
+```
 
-Want to share valuable source discoveries with the Horizon community? Please submit them through **[horizon1123.top](https://horizon1123.top)**.
+`asset_watchlist` 模式会在每日报告中插入一条固定的 `Daily Trading Watchlist` 内容，不依赖新闻条目触发。
 
-Great candidates: niche RSS discoveries, active subreddit trends, notable GitHub updates, or Telegram channel highlights in your area of expertise.
+### Email：QQ Mail / SMTP
 
-## Acknowledgements
+`email` 默认关闭。QQ Mail 示例字段：
 
-- Special thanks to [LINUX.DO](https://linux.do/) for providing a promotion platform.
-- Special thanks to [HelloGitHub](https://hellogithub.com/) for valuable guidance and suggestions.
+```jsonc
+{
+  "email": {
+    "enabled": true,
+    "smtp_server": "smtp.qq.com",
+    "smtp_port": 465,
+    "imap_server": "imap.qq.com",
+    "imap_port": 993,
+    "email_address": "xxx@qq.com",
+    "sender_name": "Horizon Daily",
+    "subscribe_keyword": "SUBSCRIBE",
+    "unsubscribe_keyword": "UNSUBSCRIBE"
+  }
+}
+```
+
+邮件密码 / 授权码通过环境变量提供：
+
+```bash
+export EMAIL_PASSWORD="your-smtp-authorization-code"
+```
+
+### Webhook
+
+`webhook` 默认关闭。URL 通过环境变量读取：
+
+```jsonc
+{
+  "webhook": {
+    "enabled": true,
+    "url_env": "HORIZON_WEBHOOK_URL",
+    "delivery": "summary",
+    "platform": "generic",
+    "layout": "markdown"
+  }
+}
+```
+
+```bash
+export HORIZON_WEBHOOK_URL="https://example.com/webhook"
+```
+
+## GitHub Actions 自动运行
+
+当前工作流文件： `.github/workflows/daily-summary.yml`。
+
+触发方式：
+
+- `workflow_dispatch` 手动触发
+- 每天 `00:30 UTC` 定时触发
+
+工作流当前执行：
+
+1. Checkout repository
+2. 设置 Python 3.12
+3. 安装 `uv`
+4. `uv sync --extra trading`
+5. 将 `src/vendor/digital_oracle_full` 添加到 `PYTHONPATH`
+6. 验证 `yfinance`
+7. 验证 `digital_oracle.__file__` 指向 `src/vendor/digital_oracle_full/digital_oracle/__init__.py`
+8. 验证 full digital_oracle providers import ok
+9. 验证 `DigitalOracleBridge` runtime
+10. 验证 `QQQ` 的 yfinance rows `> 0`
+11. smoke test digital_oracle `gather`：
+    - `qqq_price`
+    - `yield_curve`
+    - `fear_greed`
+    - `vix_web`
+12. `uv run horizon --hours 168`
+13. 发布 `./docs` 到 GitHub Pages 的 `gh-pages` 分支
+14. 如配置启用，可发送邮件和 Webhook
+
+需要在 GitHub repository secrets 中配置的常见变量：
+
+- `DEEPSEEK_API_KEY` 或你在 `ai.api_key_env` 中指定的变量
+- `EMAIL_PASSWORD`，用于 QQ Mail / SMTP 授权码
+- `HORIZON_WEBHOOK_URL`，用于 Webhook
+- `GITHUB_TOKEN` 由 GitHub Actions 自动提供
+
+## 后续维护方式
+
+### 更新信息源
+
+修改 `data/config.json`：
+
+- 增删 RSS feed
+- 调整 Hacker News / Reddit / Telegram / GitHub 源
+- 修改 `filtering.ai_score_threshold`
+- 修改 `ai.languages`
+
+建议先本地运行：
+
+```bash
+uv run horizon --hours 24
+```
+
+确认 `data/summaries/` 和 `docs/_posts/` 中的输出符合预期后再提交。
+
+### 更新 Trading 观察篮子
+
+修改 `trading.watch_assets`：
+
+```jsonc
+{
+  "name": "US Mega Cap Basket",
+  "category": "us_stock",
+  "symbols": ["AAPL", "MSFT", "NVDA", "GOOGL", "META", "AMZN", "TSLA"],
+  "market": "US"
+}
+```
+
+注意：
+
+- `symbols` 需要能被当前 provider 识别。
+- 增加市场或资产类型时应确认 provider 数据可用性和报告展示逻辑。
+- QDII 代理分析只覆盖底层市场暴露，不覆盖中国场内基金交易因素。
+
+### 更新 vendored digital_oracle provider package
+
+如果需要更新 `src/vendor/digital_oracle_full`：
+
+1. 保持 package 路径仍为 `src/vendor/digital_oracle_full/digital_oracle/`
+2. 确认 workflow 中的 `PYTHONPATH` 仍指向该目录
+3. 运行 provider import 和 smoke test
+4. 运行 Horizon 生成一份完整报告，并检查 Trading Analysis 是否包含数据来源和参考文章
+
+## 常见故障排查
+
+### `digital_oracle` 导入到了错误位置
+
+现象： workflow 中断，提示 `digital_oracle must resolve to full vendored package`。
+
+处理： 先按上文为当前 shell 设置 `PYTHONPATH`。然后确认实际导入位置：
+
+```bash
+uv run python -c "import digital_oracle; print(digital_oracle.__file__)"
+```
+
+输出应以：
+
+```text
+src/vendor/digital_oracle_full/digital_oracle/__init__.py
+```
+
+结尾。
+
+### `QQQ rows: 0` 或 yfinance 无数据
+
+可能原因：
+
+- 网络访问 Yahoo Finance 失败
+- 临时限流
+- 市场数据源短暂不可用
+
+处理：稍后重跑 workflow，或本地运行：
+
+```bash
+uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print(len(hist))"
+```
+
+### `FearGreedProvider` / `USTreasuryProvider` 返回空
+
+workflow smoke test 会对部分 provider 返回空给出 `WARN`。只要至少有 provider 返回可用数据，smoke test 不一定失败。
+
+如果报告中 Data Quality 下降，应检查：
+
+- provider 网络连通性
+- treasury / fear_greed 数据源是否可访问
+- `trading.enabled_providers` 是否被修改
+
+### Trading Analysis 没有出现在报告中
+
+检查：
+
+```jsonc
+{
+  "trading": {
+    "enabled": true,
+    "mode": "asset_watchlist"
+  }
+}
+```
+
+并确认运行命令安装了 trading extra：
+
+```bash
+uv sync --extra trading
+uv run horizon --hours 168
+```
+
+### 邮件没有发送
+
+检查：
+
+- `email.enabled=true`
+- `email.email_address` 是实际发信邮箱
+- `EMAIL_PASSWORD` 是 QQ Mail SMTP 授权码，不是网页登录密码
+- GitHub Actions secrets 中存在 `EMAIL_PASSWORD`
+
+### GitHub Pages 没有更新
+
+检查：
+
+- workflow 是否成功完成
+- `Deploy to GitHub Pages` step 是否成功
+- `docs/_posts/` 是否生成了当日 Markdown
+- repository Pages 是否配置为 `gh-pages` 分支
+
+## 测试
+
+开发依赖安装：
+
+```bash
+python -m pip install -e '.[dev]'
+```
+
+运行测试：
+
+```bash
+python -m pytest
+```
+
+README 文档变更通常不需要运行完整测试。涉及 Python 逻辑、provider、workflow 或配置结构时，应运行相关测试和 smoke test。
+
+## Roadmap
+
+- 扩展更多可验证的市场数据 provider
+- 增强 Trading Analysis 的数据质量说明
+- 改进 GitHub Pages 展示
+- 支持更多通知渠道或专用 webhook 模板
 
 ## License
 
