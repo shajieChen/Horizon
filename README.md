@@ -35,10 +35,10 @@ Horizon 当前每天会生成一份 Markdown 报告，默认包含两部分：
 默认配置中 `trading.enabled=true`，`mode=asset_watchlist`。每天会生成固定观察列表：
 
 - **Daily Trading Watchlist**
-- **QDII Nasdaq 100 Proxy**：`QQQ`, `^NDX`, `NQ=F`
-- **US Mega Cap Basket**：`AAPL`, `MSFT`, `NVDA`, `GOOGL`, `META`, `AMZN`, `TSLA`
-- **Japan Equity Basket**：`7203.T`, `6758.T`, `9984.T`, `8035.T`, `6861.T`
-- **Hong Kong Equity Basket**：`0700.HK`, `9988.HK`, `3690.HK`, `1810.HK`, `9618.HK`
+- **QDII Nasdaq 100 Proxy**：`QQQ`、`^NDX`、`NQ=F`
+- **US Mega Cap Basket**：`AAPL`、`MSFT`、`NVDA`、`GOOGL`、`META`、`AMZN`、`TSLA`
+- **Japan Equity Basket**：`7203.T`、`6758.T`、`9984.T`、`8035.T`、`6861.T`
+- **Hong Kong Equity Basket**：`0700.HK`、`9988.HK`、`3690.HK`、`1810.HK`、`9618.HK`
 
 每个资产篮子输出：
 
@@ -208,14 +208,15 @@ export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPA
 PowerShell：
 
 ```powershell
-$env:PYTHONPATH = "$(Get-Location)/src/vendor/digital_oracle_full;$env:PYTHONPATH"
+$vendorPath = "$(Get-Location)/src/vendor/digital_oracle_full"
+$env:PYTHONPATH = if ($env:PYTHONPATH) { "$vendorPath;$env:PYTHONPATH" } else { $vendorPath }
 ```
 
 然后运行验证命令：
 
 ```bash
 uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
-uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix().replace(chr(92), '/'); print('digital_oracle file:', p); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py')"
+uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix().replace('\\\\', '/'); print('digital_oracle file:', p); assert p.endswith('/src/vendor/digital_oracle_full/digital_oracle/__init__.py')"
 uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
 uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital_oracle runtime:', b.describe_runtime()); assert b.available"
 uv run python -c "import yfinance as yf; hist = yf.Ticker('QQQ').history(period='5d'); print('QQQ rows:', len(hist)); assert len(hist) > 0"
