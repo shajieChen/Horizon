@@ -35,12 +35,13 @@ jobs:
             uv pip install "yfinance>=0.2.50"
           fi
 
+      - name: Add vendored digital-oracle path
+        run: echo "PYTHONPATH=$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}" >> "$GITHUB_ENV"
+
       - name: Verify trading dependencies
         run: |
-          export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
-
           uv run python -c "import yfinance as yf; print('yfinance installed:', yf.__version__)"
-          uv run python -c "import digital_oracle; p=(digital_oracle.__file__ or '').replace('\\\\','/'); print('digital_oracle file:', digital_oracle.__file__); assert '/src/vendor/digital_oracle/' not in p, f'digital_oracle must not resolve to Horizon fallback shell: {p}'"
+          uv run python -c "import digital_oracle; from pathlib import Path; p=Path(digital_oracle.__file__ or '').as_posix(); print('digital_oracle file:', digital_oracle.__file__); assert '/src/vendor/digital_oracle/' not in p, f'digital_oracle must not resolve to Horizon fallback shell: {p}'"
           uv run python -c "from digital_oracle import YahooPriceProvider, PriceHistoryQuery, YFinanceProvider, OptionsChainQuery, USTreasuryProvider, FearGreedProvider, WebSearchProvider, gather; print('full digital_oracle providers import ok')"
           uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; print('bridge import ok')"
           uv run python -c "from src.market.digital_oracle_bridge import DigitalOracleBridge; from src.models import TradingConfig; b=DigitalOracleBridge(TradingConfig()); print('digital-oracle runtime:', b.describe_runtime()); assert b.available, 'DigitalOracleBridge is not using full digital_oracle provider package'"
@@ -48,8 +49,6 @@ jobs:
 
       - name: Verify digital-oracle provider smoke tests
         run: |
-          export PYTHONPATH="$(pwd)/src/vendor/digital_oracle_full${PYTHONPATH:+:$PYTHONPATH}"
-
           uv run python - <<'PY'
           from digital_oracle import (
               YahooPriceProvider,
