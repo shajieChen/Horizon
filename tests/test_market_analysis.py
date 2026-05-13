@@ -641,6 +641,18 @@ def test_workflow_installs_trading_extra():
     )
 
 
+def test_workflow_runs_at_china_0600_and_sets_china_date():
+    """daily-summary.yml must run at 06:00 China time and use China date."""
+    from pathlib import Path
+
+    wf = Path(__file__).parent.parent / ".github" / "workflows" / "daily-summary.yml"
+    content = wf.read_text()
+
+    assert '- cron: "0 22 * * *"' in content
+    assert "06:00 China time" in content
+    assert "TZ=Asia/Shanghai date +'%Y-%m-%d'" in content
+
+
 def test_only_na_price_signals_gives_low_data_quality():
     """data_quality must be 'low' when all price signals have value=N/A."""
     from src.market.oracle import TradingOracleAnalyzer

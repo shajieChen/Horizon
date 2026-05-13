@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
   schedule:
-    # Run every day at 00:30 UTC, which is 08:30 Singapore/China time.
-    - cron: "30 0 * * *"
+    # Run every day at 22:00 UTC, which is 06:00 China time on the next day.
+    - cron: "0 22 * * *"
 
 jobs:
   daily-summary:
@@ -158,7 +158,7 @@ jobs:
         run: uv run horizon --hours 168
 
       - name: Set current date
-        run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "DATE=$(TZ=Asia/Shanghai date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

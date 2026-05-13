@@ -5,6 +5,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from typing import List, Dict
 from urllib.parse import urlparse
+from zoneinfo import ZoneInfo
 import httpx
 from rich.console import Console
 
@@ -22,6 +23,9 @@ from .ai.analyzer import ContentAnalyzer
 from .ai.summarizer import DailySummarizer
 from .ai.enricher import ContentEnricher
 from .ai.tokens import get_usage_snapshot
+
+
+CHINA_TZ = ZoneInfo("Asia/Shanghai")
 
 
 class HorizonOrchestrator:
@@ -47,7 +51,12 @@ class HorizonOrchestrator:
     @staticmethod
     def _build_email_subject(now: datetime) -> str:
         """Build the email subject for daily summaries."""
-        return f"Infomation Summary - {now.strftime('%Y-%m-%d %H:%M UTC')}"
+        return f"Infomation Summary - {now.strftime('%Y-%m-%d %H:%M CST')}"
+
+    @staticmethod
+    def _now_china() -> datetime:
+        """Return current time in China timezone."""
+        return datetime.now(CHINA_TZ)
 
     async def run(self, force_hours: int = None) -> None:
         """Execute the complete workflow.
@@ -66,8 +75,10 @@ class HorizonOrchestrator:
             # 1. Determine time window
             lookback_hours = force_hours or self.config.filtering.time_window_hours
             since = self._determine_time_window(force_hours)
+            now_china = self._now_china()
             self.console.print(f"🕒 Using lookback window: {lookback_hours} hours")
             self.console.print(f"📅 Fetching content since: {since.strftime('%Y-%m-%d %H:%M:%S')}\n")
+            self.console.print(f"🕕 Report time China: {now_china.strftime('%Y-%m-%d %H:%M:%S %Z')}")
 
             # 2. Fetch content from all sources
             all_items = await self.fetch_all_sources(since)
@@ -126,8 +137,7 @@ class HorizonOrchestrator:
             await self._forecast_important_items(important_items)
 
             # 8. Generate and save daily summaries for each configured language
-            now_utc = datetime.now(timezone.utc)
-            today = now_utc.strftime("%Y-%m-%d")
+            today = now_china.strftime("%Y-%m-%d")
             for lang in self.config.ai.languages:
                 summarizer = DailySummarizer()
                 summary = await summarizer.generate_summary(important_items, today, len(all_items), language=lang)
@@ -175,7 +185,7 @@ class HorizonOrchestrator:
                 if self.email_manager and self.config.email and self.config.email.enabled:
                     self.console.print(f"📧 Sending {lang.upper()} email summary...")
                     subscribers = self.storage.load_subscribers()
-                    subject = self._build_email_subject(now_utc)
+                    subject = self._build_email_subject(now_china)
                     self.email_manager.send_daily_summary(summary, subject, subscribers)
 
                 # Send webhook notification if configured

@@ -357,7 +357,8 @@ export HORIZON_WEBHOOK_URL="https://example.com/webhook"
 触发方式：
 
 - `workflow_dispatch` 手动触发
-- 每天 `00:30 UTC` 定时触发
+- 每天 `22:00 UTC` 定时触发，对应中国时间次日早上 `06:00`
+- 报告日期、邮件标题和 GitHub Pages 文件日期使用 `Asia/Shanghai` 时间
 
 工作流当前执行：
 
