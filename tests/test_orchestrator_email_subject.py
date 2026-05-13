@@ -1,5 +1,6 @@
 import asyncio
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 from src.models import (
     AIConfig,
@@ -50,12 +51,12 @@ def _make_item() -> ContentItem:
     return item
 
 
-def test_build_email_subject_uses_required_utc_format() -> None:
+def test_build_email_subject_uses_required_china_time_format() -> None:
     subject = HorizonOrchestrator._build_email_subject(
-        datetime(2026, 5, 12, 3, 23, tzinfo=timezone.utc)
+        datetime(2026, 5, 13, 6, 0, tzinfo=ZoneInfo("Asia/Shanghai"))
     )
 
-    assert subject == "Infomation Summary - 2026-05-12 03:23 UTC"
+    assert subject == "Infomation Summary - 2026-05-13 06:00 CST"
     assert "Horizon Summary" not in subject
     assert "(ZH)" not in subject
     assert "(EN)" not in subject
@@ -64,10 +65,11 @@ def test_build_email_subject_uses_required_utc_format() -> None:
 def test_run_keeps_date_only_filenames_and_uses_timestamped_email_subject(
     tmp_path,
     monkeypatch,
+    capsys,
 ) -> None:
     import src.orchestrator as orchestrator_module
 
-    fixed_now = datetime(2026, 5, 12, 3, 23, tzinfo=timezone.utc)
+    fixed_now = datetime(2026, 5, 12, 22, 0, tzinfo=timezone.utc)
 
     class FixedDatetime(datetime):
         @classmethod
@@ -125,9 +127,22 @@ def test_run_keeps_date_only_filenames_and_uses_timestamped_email_subject(
 
     asyncio.run(orchestrator.run(force_hours=168))
 
+    output = capsys.readouterr().out
+    assert "🕕 Report time China: 2026-05-13 06:00:00 CST" in output
     assert fake_email_manager.sent_subjects == [
-        "Infomation Summary - 2026-05-12 03:23 UTC"
+        "Infomation Summary - 2026-05-13 06:00 CST"
     ]
-    assert (tmp_path / "data" / "summaries" / "horizon-2026-05-12-zh.md").exists()
-    assert (tmp_path / "docs" / "_posts" / "2026-05-12-summary-zh.md").exists()
-    assert not (tmp_path / "data" / "summaries" / "horizon-2026-05-12-03:23-zh.md").exists()
+    assert (tmp_path / "data" / "summaries" / "horizon-2026-05-13-zh.md").exists()
+    assert (tmp_path / "docs" / "_posts" / "2026-05-13-summary-zh.md").exists()
+    assert not (tmp_path / "data" / "summaries" / "horizon-2026-05-13-06:00-zh.md").exists()
+
+
+def test_orchestrator_uses_asia_shanghai_for_report_date() -> None:
+    import inspect
+
+    source = inspect.getsource(HorizonOrchestrator._now_china)
+    run_source = inspect.getsource(HorizonOrchestrator.run)
+
+    assert 'ZoneInfo("Asia/Shanghai")' in source or "CHINA_TZ" in source
+    assert "now_utc" not in run_source
+    assert "_build_email_subject(now_china)" in run_source
