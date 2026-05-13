@@ -65,6 +65,7 @@ def test_build_email_subject_uses_required_china_time_format() -> None:
 def test_run_keeps_date_only_filenames_and_uses_timestamped_email_subject(
     tmp_path,
     monkeypatch,
+    capsys,
 ) -> None:
     import src.orchestrator as orchestrator_module
 
@@ -126,6 +127,8 @@ def test_run_keeps_date_only_filenames_and_uses_timestamped_email_subject(
 
     asyncio.run(orchestrator.run(force_hours=168))
 
+    output = capsys.readouterr().out
+    assert "🕕 Report time China: 2026-05-13 06:00:00 CST" in output
     assert fake_email_manager.sent_subjects == [
         "Infomation Summary - 2026-05-13 06:00 CST"
     ]
