@@ -4,15 +4,8 @@ from __future__ import annotations
 
 from typing import Dict
 
-from .constants import DEFAULT_FALSIFIER
+from .constants import CONSERVATIVE_BASIS_MARKERS, DEFAULT_FALSIFIER
 from .oracle import TradingAnalysisResult
-
-_CONSERVATIVE_BASIS_MARKERS = (
-    "有效交易信号不足",
-    "保守基准分布",
-    "价格数据不足",
-    "conservative base distribution",
-)
 
 
 def _confidence_level(result: TradingAnalysisResult) -> str:
@@ -27,12 +20,12 @@ def _confidence_level(result: TradingAnalysisResult) -> str:
 def _has_conservative_basis(result: TradingAnalysisResult) -> bool:
     for scenario in result.scenarios:
         basis = str(getattr(scenario, "basis", "") or "")
-        if any(marker in basis for marker in _CONSERVATIVE_BASIS_MARKERS):
+        if any(marker in basis for marker in CONSERVATIVE_BASIS_MARKERS):
             return True
     for asset_view in result.asset_views:
         for horizon in asset_view.horizons:
             basis = str(getattr(horizon, "basis", "") or "")
-            if any(marker in basis for marker in _CONSERVATIVE_BASIS_MARKERS):
+            if any(marker in basis for marker in CONSERVATIVE_BASIS_MARKERS):
                 return True
     return False
 

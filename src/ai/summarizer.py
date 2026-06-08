@@ -3,7 +3,7 @@
 import re
 from typing import List, Dict, Any
 
-from ..market.constants import DEFAULT_FALSIFIER
+from ..market.constants import CONSERVATIVE_BASIS_MARKERS, DEFAULT_FALSIFIER
 from ..models import ContentItem
 
 
@@ -598,7 +598,6 @@ class DailySummarizer:
             if isinstance(trading_analysis.get("digital_oracle_layers"), dict)
             else {}
         )
-        fallback_markers = ("有效交易信号不足", "保守基准分布", "价格数据不足", "conservative base distribution")
         has_conservative_fallback = False
         for av in asset_views:
             if not isinstance(av, dict):
@@ -607,7 +606,7 @@ class DailySummarizer:
                 if not isinstance(hp, dict):
                     continue
                 basis = str(hp.get("basis") or "")
-                if any(marker in basis for marker in fallback_markers):
+                if any(marker in basis for marker in CONSERVATIVE_BASIS_MARKERS):
                     has_conservative_fallback = True
                     break
             if has_conservative_fallback:
