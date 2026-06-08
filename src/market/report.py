@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict
 
-from .constants import DEFAULT_FALSIFIER
+from .constants import CONSERVATIVE_BASIS_MARKERS, DEFAULT_FALSIFIER
 from .oracle import TradingAnalysisResult
 
 
@@ -15,6 +15,19 @@ def _confidence_level(result: TradingAnalysisResult) -> str:
     if signal_count >= 3:
         return "medium"
     return "low"
+
+
+def _has_conservative_basis(result: TradingAnalysisResult) -> bool:
+    for scenario in result.scenarios:
+        basis = str(getattr(scenario, "basis", "") or "")
+        if any(marker in basis for marker in CONSERVATIVE_BASIS_MARKERS):
+            return True
+    for asset_view in result.asset_views:
+        for horizon in asset_view.horizons:
+            basis = str(getattr(horizon, "basis", "") or "")
+            if any(marker in basis for marker in CONSERVATIVE_BASIS_MARKERS):
+                return True
+    return False
 
 
 def trading_result_to_forecast(result: TradingAnalysisResult) -> Dict:
@@ -35,6 +48,10 @@ def trading_result_to_forecast(result: TradingAnalysisResult) -> Dict:
     missing_evidence = list(result.missing_evidence or result.errors)
     if len(result.signals) < 3 and "signal coverage is insufficient." not in missing_evidence:
         missing_evidence.append("signal coverage is insufficient.")
+    if _has_conservative_basis(result):
+        concise_note = "部分市场数据暂不可用，已采用保守基准概率估计。"
+        if concise_note not in missing_evidence:
+            missing_evidence.append(concise_note)
 
     # Build asset_views summary for near_term_watch when available
     near_term_watch: Dict[str, list] = {

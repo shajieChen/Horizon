@@ -179,3 +179,41 @@ def test_generate_webhook_item_asset_watchlist_uses_narrow_tables_and_skips_fore
     assert "| QDII Nasdaq 100 Proxy | US | neutral 33/33/34 | neutral 33/33/34 | neutral 33/33/34 | medium |" in result
     assert "| 资产 | 市场 | 1D 偏向 | 1D ↑/↓/~ | 1W 偏向 | 1W ↑/↓/~ | 1M 偏向 | 1M ↑/↓/~ | 数据质量 |" not in result
     assert "**预测分析**" not in result
+
+
+def test_generate_webhook_item_asset_watchlist_adds_concise_data_unavailable_note():
+    summarizer = DailySummarizer()
+    item = _make_item(1)
+    item.metadata["trading_analysis"] = {
+        "question_type": "asset_watchlist",
+        "asset_views": [
+            {
+                "name": "QDII Nasdaq 100 Proxy",
+                "market": "US",
+                "symbols": ["QQQ"],
+                "data_quality": "low",
+                "horizons": [
+                    {
+                        "horizon": "1d",
+                        "up_probability": 33,
+                        "down_probability": 33,
+                        "neutral_probability": 34,
+                        "expected_bias": "neutral",
+                        "confidence": "low",
+                        "basis": "有效交易信号不足，使用保守基准分布。",
+                        "invalidation": "等待更多数据",
+                    }
+                ],
+            }
+        ],
+        "data_sources": ["Market data"],
+    }
+
+    result = summarizer.generate_webhook_item(
+        item,
+        language="zh",
+        index=1,
+        total=1,
+    )
+
+    assert "数据状态：部分市场数据暂不可用，已采用保守基准概率估计。" in result
