@@ -598,6 +598,20 @@ class DailySummarizer:
             if isinstance(trading_analysis.get("digital_oracle_layers"), dict)
             else {}
         )
+        fallback_markers = ("有效交易信号不足", "保守基准分布", "价格数据不足", "conservative base distribution")
+        has_conservative_fallback = False
+        for av in asset_views:
+            if not isinstance(av, dict):
+                continue
+            for hp in av.get("horizons") or []:
+                if not isinstance(hp, dict):
+                    continue
+                basis = str(hp.get("basis") or "")
+                if any(marker in basis for marker in fallback_markers):
+                    has_conservative_fallback = True
+                    break
+            if has_conservative_fallback:
+                break
 
         lines = [
             "**Trading Analysis**",
@@ -612,6 +626,11 @@ class DailySummarizer:
             "> 免责声明：本分析仅基于市场数据进行概率估算，不构成投资建议。市场存在不确定性，请独立判断并承担相应风险。",
             "",
         ]
+        if has_conservative_fallback:
+            lines += [
+                "> 数据状态：部分市场数据暂不可用，已采用保守基准概率估计。",
+                "",
+            ]
         if analysis_method == "horizon_minimal_fallback":
             lines += [
                 "> ⚠ 当前使用 Horizon fallback provider，并非完整 digital-oracle provider。",

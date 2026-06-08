@@ -322,6 +322,63 @@ def test_trading_report_conversion_has_required_fields():
     assert "confidence" in forecast
 
 
+def test_trading_report_adds_concise_missing_data_note_when_conservative_basis():
+    from src.market.oracle import (
+        AssetTradingView,
+        HorizonProbability,
+        TradingAnalysisResult,
+        TradingScenario,
+    )
+
+    result = TradingAnalysisResult(
+        is_forecastable=True,
+        question_type="asset_watchlist",
+        market_question="Q",
+        summary="S",
+        signals=[],
+        resonance=[],
+        divergences=[],
+        scenarios=[
+            TradingScenario(
+                name="baseline",
+                probability=50,
+                basis="有效交易信号不足，使用保守基准分布。",
+                trading_bias="neutral",
+            )
+        ],
+        conclusion="C",
+        monitor_signals=[],
+        data_sources=[],
+        asset_views=[
+            AssetTradingView(
+                name="A",
+                category="us_stock",
+                market="US",
+                symbols=["QQQ"],
+                horizons=[
+                    HorizonProbability(
+                        horizon="1d",
+                        up_probability=33,
+                        down_probability=33,
+                        neutral_probability=34,
+                        expected_bias="neutral",
+                        confidence="low",
+                        basis="有效交易信号不足，使用保守基准分布。",
+                        invalidation="等待更多数据",
+                    )
+                ],
+                key_signals=[],
+                conclusion="C1",
+                data_quality="low",
+            )
+        ],
+    )
+
+    forecast = trading_result_to_forecast(result)
+
+    assert "部分市场数据暂不可用，已采用保守基准概率估计。" in forecast["missing_evidence"]
+
+
 # ─── Summarizer ───────────────────────────────────────────────────────────────
 
 def test_summarizer_renders_asset_views():
